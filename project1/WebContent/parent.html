@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style>
+div {
+	padding: 20px;
+	border: 1px solid #ccc;
+}
+
+#container {
+	width: 960px;
+	margin: 0 auto;
+}
+
+#header {
+	padding: 20px;
+	margin-bottom: 20px;
+}
+
+#contents {
+	width: 490px;
+	height: 600px;
+	float: left;
+	margin-bottom: 20px;
+}
+
+#left-sidebar {
+	width: 150px;
+	float: left;
+	margin-bottom: 20px;
+	margin-right: 20px;
+}
+
+#right-sidebar {
+	width: 150px;
+	float: right;
+	margin-bottom: 20px;
+}
+
+#footer {
+	clear: both;
+}
+</style>
+
+</head>
+<body>
+	<div id="container">
+		<div id="header">
+			<h1>테스트 사이트</h1>
+		</div>
+		<div id = "catergory">
+			<form>
+				<table border="1">
+					<tr>
+						<td>게시판</td>
+						<td>판매 및 대여 카테고리</td>
+						<td>회원 모집 게시판</td>
+						<td>낚시터</td>
+						<td>이벤트달력</td>
+						<td>이달의 랭킹</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+
+		<div id="left-sidebar">
+			<h2>이달의 낚시왕</h2>
+			
+		</div>
+		<div id="contents">
+			<h2>진행중인 이벤트</h2>
+		</div>
+		<div id="right-sidebar">
+			<form>
+			<fieldset>
+				<legend>회원 정보</legend>
+				<ul>
+					<li><label for="loginid" class="screen_out">아이디</label> <input
+						type="text" id="loginid" name="loginid" placeholder="아이디">
+					</li>
+					<li><label for="loginpw" class="screen_out">비밀번호</label> <input
+						type="password" id="loginpw" name="loginpw" placeholder="비밀번호">
+					</li>
+				</ul>
+				<input type="submit" value="회원가입"> <input type="submit"
+					value="로그인">
+			</fieldset>
+		</form>
+		</div>
+		<div id="footer">
+			<h2>공지</h2>
+		</div>
+	</div>
+</body>
+</html>
