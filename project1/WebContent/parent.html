@@ -6,61 +6,88 @@
 <link href="test.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-	<header>
-		<div class="gnb">
-			<ul>
-				<li><a href="board.jsp">게시판</a></li>
-				<li><a href="store.jsp">판매 및 대여</a></li>
-				<li><a href="recruit.jsp">팀원모집</a></li>
-				<li><a href="fishing.jsp">낚시터</a></li>
-				<li><a href="event.jsp">이벤트 달력</a></li>
-				<li><a href="fishingking.jsp">이달의 낚시왕</a></li>
-			</ul>
-		</div>
-		<div class="logo">
-			<form action="search.jsp" name="search" method="get" >
-			<input type="text" name="searchBox" title="searchBox" placeholder="검색어를입력해주세요!">
-			</form>
-		</div>
-	</header> 
-	<div id="content">
-		<div class="section1">
-			<a href="event.jsp"><div class="event_side">이벤트 달력</div></a>
-			<form class="loginForm" action="login.jsp"><div class="login_side">
-			아이디 : <input type="text" name="id" id="id" ><br>
-			비밀번호 : <input type="password" name="pass" id="id" ><br>
-			<input type="submit" value="확인">
-			</div>
-			</form>
-		</div>
-		<div class="section2">
-		<a href="fishingking.jsp"><div class="fishingking_side">이달의 낚시왕</div></a>
-			<div class="hit_product">
+	<div class="wrap">
+		<header>
+			<div class="gnb">
 				<ul>
 					<li><a href="board.jsp">게시판</a></li>
-					<li><a href="notice.jsp">공지</a></li>
+					<li><a href="store.jsp">판매 및 대여</a></li>
+					<li><a href="recruit.jsp">팀원모집</a></li>
+					<li><a href="fishing.jsp">낚시터</a></li>
+					<li><a href="event.jsp">이벤트 달력</a></li>
+					<li><a href="fishingking.jsp">이달의 낚시왕</a></li>
 				</ul>
 			</div>
+			<div class="logo">
+				<form action="search.jsp" name="search" method="get">
+					<input type="text" name="searchBox" title="searchBox"
+						placeholder="검색어를입력해주세요!">
+				</form>
+			</div>
+		</header>
+
+		<!-- <div style="position:relative;width:1080px;margin:0 auto;z-index:11"> -->
+		<div style="position:relative;width:1080px;margin:0 auto;z-index:11">
+	<div id="da_top"></div>
+	<div id="da_brand"></div>
+	<div id="da_stake"></div>
+	<div id="da_expwide"></div>
+</div>
+		<!-- 스타일 절대건드리지마! -->
+		
+
+
+		<div class="container" role="main">
+		<div id="promotion1" style="display: block;"
+			data-cookie="PC_CENTER_BANNER_12940">
+			<img
+				src="https://s.pstatic.net/static/www/mobile/edit/2019/1010/mobile_1125227787.png"
+				width="1080" height="254" alt="V앱_BTS사우디생중계" usemap="#promotion1_map">
+			<map name="promotion1_map">
+				<area id="promotion1_link" shape="rect" coords="0,0,1038,50"
+					href="https://www.vlive.tv/video/152683" alt="프로모션 이동"
+					data-clk="neb.image">
+				<area id="promotion1_close" shape="rect" coords="1038,0,1080,50"
+					href="#" alt="프로모션 닫기" data-clk="neb.imagecls">
+			</map>
+		</div>
+		<!-- bts광고판 까지 -->
+		
+			<div class="column_left">
+				<div id="veta_top">
+					<iframe id="da_iframe_time" name="da_iframe_time"
+						src="https://nv.veta.naver.com/fxshow?su=SU10079&amp;nrefreshx=0"
+						data-veta-preview="main_time" title="광고" width="740" height="220"
+						marginheight="0" marginwidth="0" scrolling="no" frameborder="0"></iframe>
+				</div>
+				<!-- 이달의 낚시왕 자리 -->
+				<div id="boadrd" class="board_side">게시판(값 넣으면 높이늘어남)</div>
+				<!--  게시판 -->
+			</div>
+			<!-- 왼쪽칼럼 끝  -->
+			
+			<div class="column_right">
+				<div id="account" class="section_login">로그인창</div>
+			
+			<!-- 로그인  -->
+<!-- 			<div class="recruit_side"> -->
+			<div class="section_login">
+			공지사항(값 넣으면 높이 올라감)
+			</div>
+			<!-- 공지게시판  -->
+			<!-- <div class="recruit_side" > -->			
+			<div class="section_login" >
+			팀원모집(값 넣으면 높이 올라감)
+			</div>
+			<!-- 팀원모집  -->
+			</div>
+
 		</div>
 	</div>
+
+
 </body>
 </html>
 
 
 
-<!-- <div id="content">
-		<div class="section1">
-			<a href="fishingking.jsp"><div class="fishingking_side">이달의낚시왕(사진 및 랭킹 추가)</div></a>
-			 <a href=event.jsp><div class="event_side">이벤트 달력</div>
-			</a>
-			<form action="login.jsp">
-			<div class="login_side">
-				로그인 <input type="text" name="id" required="required"> <p>
-					비밀번호: <input type="password" name="password" required="required">	 <p>
-					<input type="submit" value="회원가입">
-					 <input type="submit" value="로그인">
-					 </div>
-			</form>
-			
-		</div>
-		</div> -->
