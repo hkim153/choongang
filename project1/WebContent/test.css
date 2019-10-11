@@ -56,7 +56,7 @@ header .logo {
 }
 
 #content .section1 div {
-	height: 400px;
+	height: 300px;
 	line-height: 400px;
 	text-align: center;
 	float: left;
@@ -70,16 +70,17 @@ header .logo {
 
 #content .section1 .event_side {
 	width: 700px;
+	height: auto;
 	
 }
 
 #content .section1 .login_side {	width: 200px;
-height: 200px;
+height: auto;
 	
 }
 #content .section1 .loginForm{
 	width: 200px;
-	height: 400px; 
+	height: auto; 
 }
 #content .section2 div {
            margin-top: 10px;
