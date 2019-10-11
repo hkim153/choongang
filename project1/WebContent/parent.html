@@ -18,18 +18,23 @@
 			</ul>
 		</div>
 		<div class="logo">
-			<a href="home"> <img src="yanakja.png"
-				style="width: 200px; height: 100px;"></a>
+			<form action="search.jsp" name="search" method="get" >
+			<input type="text" name="searchBox" title="searchBox" placeholder="검색어를입력해주세요!">
+			</form>
 		</div>
 	</header> 
 	<div id="content">
 		<div class="section1">
-			<a href="fishingking.jsp"><div class="fishingking_side">이달의 낚시왕</div></a>
-			<a href="event.jsp"><div class="event_side">이벤트 달력
-			</div></a>
-			<div class="login_side">로그인</div>
+			<a href="event.jsp"><div class="event_side">이벤트 달력</div></a>
+			<form class="loginForm" action="login.jsp"><div class="login_side">
+			아이디 : <input type="text" name="id" id="id" ><br>
+			비밀번호 : <input type="password" name="pass" id="id" ><br>
+			<input type="submit" value="확인">
+			</div>
+			</form>
 		</div>
 		<div class="section2">
+		<a href="fishingking.jsp"><div class="fishingking_side">이달의 낚시왕</div></a>
 			<div class="hit_product">
 				<ul>
 					<li><a href="board.jsp">게시판</a></li>
