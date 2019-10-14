@@ -5,11 +5,10 @@
 	list-style: none;
 } */
 .wrap {
-    position: relative;
-    overflow: hidden;
-    min-width: 1100px;
-    background: #f2f4f7;
-    
+	position: relative;
+	overflow: hidden;
+	min-width: 1100px;
+	background: #f2f4f7;
 }
 
 a {
@@ -23,7 +22,6 @@ header .gnb {
 }
 
 header .gnb ul {
-	
 	overflow: hidden;
 	width: 1000px;
 	height: 30px;
@@ -32,7 +30,7 @@ header .gnb ul {
 }
 
 header li {
-	list-style:none;
+	list-style: none;
 	float: left;
 	margin-left: 50px;
 	font-size: .9em;
@@ -57,26 +55,36 @@ header .logo {
 	padding: 8px 10px 0;
 	zoom: 1;
 }
-.container .column_left{
+
+.container .column_left {
 	float: left;
 	width: 740px;
+	
 }
+
 .veta_top {
 	position: relative;
 	height: 120%;
 }
-.board_side{
-    overflow: hidden;
-    padding-top: 8px;
+
+.board_side {
+	width:300px;
+	height:300px;
+	overflow: hidden;
+	padding-top: 8px;
+	background: #fff;
+	
 }
+
 .column_right {
-    position: relative;
-    float: right;
-    width: 332px;
+	position: relative;
+	float: right;
+	width: 332px;
 }
+
 .section_login {
-    position: relative;
-    height: 118px;
-    border: 1px solid #dee3eb;
-    background: #fff;
+	position: relative;
+	height: 118px;
+	border: 1px solid #dee3eb;
+	background: #fff;
 }
