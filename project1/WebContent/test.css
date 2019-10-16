@@ -59,7 +59,6 @@ header .logo {
 .container .column_left {
 	float: left;
 	width: 740px;
-	
 }
 
 .veta_top {
@@ -68,12 +67,11 @@ header .logo {
 }
 
 .board_side {
-	width:300px;
-	height:300px;
+	width: 740px;
+	height: 300px;
 	overflow: hidden;
 	padding-top: 8px;
 	background: #fff;
-	
 }
 
 .column_right {
