@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.Board;
 import dao.BoardDao;
 
-public class UpdateFormAction implements CommandProcess {
+public class SH_UpdateFormAction implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)

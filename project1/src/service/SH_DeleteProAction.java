@@ -9,24 +9,22 @@ import javax.servlet.http.HttpServletResponse;
 import dao.Board;
 import dao.BoardDao;
 
-public class ContentAction implements CommandProcess {
+public class SH_DeleteProAction implements CommandProcess {
+
+	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			int num = Integer.parseInt(request.getParameter("num"));	
+			int num = Integer.parseInt(request.getParameter("num"));
+			String passwd = request.getParameter("passwd");
 			String pageNum = request.getParameter("pageNum");
 			BoardDao bd = BoardDao.getInstance();
-			bd.readCount(num);
-			Board board = bd.select(num);
-			request.setAttribute("num", num);
+			int result = bd.delete(num, passwd);
+			request.setAttribute("result", result);
 			request.setAttribute("pageNum", pageNum);
-			request.setAttribute("board", board);
-			
-			
-			
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		return "content.jsp";
+			request.setAttribute("num", num);
+		} catch (Exception e) { System.out.println(e.getMessage()); }
+        return "deletePro.jsp";
 	}
+
 }

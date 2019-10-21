@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import dao.Board;
 import dao.BoardDao;
-public class ListAction implements CommandProcess {
+public class SH_ListAction implements CommandProcess {
 	public String requestPro(HttpServletRequest request,
 		HttpServletResponse response) throws ServletException, IOException {
 		BoardDao bd = BoardDao.getInstance();
