@@ -87,7 +87,7 @@
 				<div class="section_login">
 
 					<img alt="" src="images/event_C.png">
-
+ 
 				</div>
 				<!-- 이벤트달력 작게  -->
 
