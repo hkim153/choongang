@@ -1,5 +1,5 @@
 package dao;
 
 public class fish {
-	private 
+	private int f_code;
 }
