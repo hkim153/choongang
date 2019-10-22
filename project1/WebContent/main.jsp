@@ -12,19 +12,23 @@
 		<header>
 			<div class="gnb">
 				<ul>
-					<li><a href="board.jsp">게시판</a></li>
-					<li><a href="store.jsp">판매 및 대여</a></li>
-					<li><a href="recruit.jsp">팀원모집</a></li>
-					<li><a href="fishing.jsp">낚시터</a></li>
-					<li><a href="event.jsp">이벤트 달력</a></li>
-					<li><a href="fishingking.jsp">이달의 낚시왕</a></li>
+					<li><a href="board.do">게시판</a></li>
+					<li><a href="store.do">판매 및 대여</a></li>
+					<li><a href="recruit.do">팀원모집</a></li>
+					<li><a href="fishing.do">낚시터</a></li>
+					<li><a href="event.do">이벤트 달력</a></li>
+					<li><a href="fishingking.do">이달의 낚시왕</a></li>
 				</ul>
 			</div>
-			<div class="logo">
+			<!-- <div class="logo">
 				<form action="search.jsp" name="search" method="get">
 					<input type="text" name="searchBox" title="searchBox"
 						placeholder="검색어를입력해주세요!">
 				</form>
+			</div> -->
+			<div class="logo" >
+				<img src="images/LOGO.png" width="100%" height="100%">
+				<a href="main.do"></a>
 			</div>
 		</header>
 
@@ -43,7 +47,7 @@
 		<div id="promotion1" style="display: block;"
 			data-cookie="PC_CENTER_BANNER_12940">
 			<img
-				src="https://s.pstatic.net/static/www/mobile/edit/2019/1010/mobile_1125227787.png"
+				src="images/f_king.png"
 				width="1080" height="254" alt="V앱_BTS사우디생중계" usemap="#promotion1_map">
 			<map name="promotion1_map">
 				<area id="promotion1_link" shape="rect" coords="0,0,1038,50"
@@ -58,33 +62,40 @@
 			<div class="column_left">
 				<div id="veta_top">
 					<iframe id="da_iframe_time" name="da_iframe_time"
-						src="https://nv.veta.naver.com/fxshow?su=SU10079&amp;nrefreshx=0"
+						src="images/product.png"
 						data-veta-preview="main_time" title="광고" width="740" height="220"
 						marginheight="0" marginwidth="0" scrolling="no" frameborder="0"></iframe>
 				</div>
 				<!-- 낚시터 추천 or 낚시 물품 판매(슬라이드쇼) -->
 				
-				<div id="board" class="board_side" >게시판<p>1</p><p>2</p></div>
+				<div id="board" class="board_side" ><img src="images/board.png">
+				</div>
 				<!--  게시판 -->
 			</div>
 			<!-- 왼쪽칼럼 끝  -->
 			
 			<div class="column_right">
-				<div id="account" class="section_login"><form action="login.jsp"><input type="" value="로그인하기!"></form>
+			
+				<div id="account" class="section_login"><form action="login.jsp"></form>
+				<img alt="" src="images/login.png">
 				</div> 
 			
 			<!-- 로그인  -->
 <!-- 			<div class="event_side"> -->
 			<div class="section_login">
-			이벤트 달력
+			
+			<img alt="" src="images/event_C.png">
+			
 			</div>
-			<!-- 공지게시판  -->
+			<!-- 이벤트달력 작게  -->
 			
 			<!-- <div class="recruit_side" > -->			
 			<div class="section_login" >
-			팀원모집
+			
+			<img alt="" src="images/recruit.png">
+			
 			</div>
-			<!-- 팀원모집  -->
+			<!-- 인원모집  -->
 			</div>
 			<!-- 오른쪽 칼럼 끝 -->
 
