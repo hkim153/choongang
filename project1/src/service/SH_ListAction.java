@@ -18,7 +18,7 @@ public class SH_ListAction implements CommandProcess {
 				int pageSize  = 10, blockSize = 10;
 				int startRow = (currentPage - 1) * pageSize + 1;
 				int endRow   = startRow + pageSize - 1;
-				int startNum = totCnt - startRow + 1;
+				int startNum = totCnt - startRow + 1; 
 				List<Board> list = bd.list(startRow, endRow);	
 			    System.out.println("list.size()->" + list.size());
 
