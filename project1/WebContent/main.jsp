@@ -60,10 +60,7 @@
 
 			<div class="column_left">
 				<div id="veta_top">
-					<iframe id="da_iframe_time" name="da_iframe_time"
-						src="images/product.png" data-veta-preview="main_time" title="광고"
-						width="740" height="220" marginheight="0" marginwidth="0"
-						scrolling="no" frameborder="0"></iframe>
+					<img alt="" src="images/main_product.png" width="100%" height="100%">
 				</div>
 				<!-- 낚시터 추천 or 낚시 물품 판매(슬라이드쇼) -->
 
