@@ -27,8 +27,7 @@
 				</form>
 			</div> -->
 		<div class="logo">
-			<img src="images/LOGO.png" width="100%" height="100%"> <a
-				href="main.do"></a>
+			<a	href="main.do"><img src="images/LOGO.png" width="100%" height="100%"></a>
 		</div>
 		</header>
 
@@ -78,15 +77,16 @@
 			<div class="column_right">
 
 				<div id="account" class="section_login">
-					<form action="login.jsp"></form>
-					<img alt="" src="images/login.png">
+					<form action="login.do"><a href="jw_loginForm.do">
+					<img alt="" src="images/login.png" width="200" height="100" ></a> </form>
+					
 				</div>
 
 				<!-- 로그인  -->
 				<!-- 			<div class="event_side"> -->
 				<div class="section_login">
 
-					<img alt="" src="images/event_C.png">
+					<img alt="" src="images/event_C.png" >
  
 				</div>
 				<!-- 이벤트달력 작게  -->

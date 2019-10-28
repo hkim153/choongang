@@ -28,6 +28,7 @@ public class SH_WriteFormAction implements CommandProcess {
 			request.setAttribute("re_step", re_step);
 			request.setAttribute("pageNum", pageNum);
 		}catch(Exception e) {	System.out.println(e.getMessage());	}
+		
 		return "writeForm.jsp";
 	}
 }
