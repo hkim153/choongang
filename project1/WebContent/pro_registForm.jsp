@@ -115,8 +115,8 @@ if(b_code != "00"){
 			</tr>
 			<tr>
 				<td>상품상세이미지1</td>
-				<td><input type="file" name="pro_contentFile"  ></td>
-			</tr>
+				<td><input type="file" name="pro_contentFile" required="required" ></td>
+			</tr> 
 			<tr>
 				<td>상품이미지</td>
 				<td><input type="file" name="pro1_imgFile" required="required"></td>
@@ -129,21 +129,21 @@ if(b_code != "00"){
 				<td>상품이미지3</td>
 				<td><input type="file" name="pro3_imgFile" ></td>
 			</tr>
-			<tr>
+		 	<tr>
 				<td>상품이미지4</td>
 				<td><input type="file" name="pro4_imgFile" ></td>
 			</tr>
 			<tr>
 				<td>상품이미지5</td>
 				<td><input type="file" name="pro5_imgFile" ></td>
-			</tr>
+			</tr> 
 			<tr>
 				<td>상품가격</td>
 				<td><input type="number" name="price" required="required"></td>
 			</tr>
 			<tr>
 				<td>판매자명</td>
-				<td><input type="text" name="seller" required="required"></td>
+				<td><input type="text" name="seller" value="aa" required="required"></td>
 			</tr>
 <!-- 			<tr>
 				<td>누적판매개수</td>
