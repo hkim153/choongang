@@ -39,7 +39,7 @@ public class BoardDao {
 		Statement stmt = null;
 		ResultSet rs = null;
 		int tot = 0;
-		String sql = "select count(*) from board";
+		String sql = "select count(*) from store";
 		try {
 			conn = getConnection();
 			stmt = conn.createStatement();

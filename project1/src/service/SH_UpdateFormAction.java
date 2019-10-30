@@ -16,10 +16,10 @@ public class SH_UpdateFormAction implements CommandProcess {
 			throws ServletException, IOException {
 		try {
 			int num = Integer.parseInt(request.getParameter("num"));
-			String pagenNum = request.getParameter("pagenNum");
+			String pageNum = request.getParameter("pageNum");
 			BoardDao bd = BoardDao.getInstance();
 			Board board = bd.select(num);
-			request.setAttribute("pagenNum", pagenNum);
+			request.setAttribute("pageNum", pageNum);
 			request.setAttribute("board", board);
 			
 		} catch (Exception e) {

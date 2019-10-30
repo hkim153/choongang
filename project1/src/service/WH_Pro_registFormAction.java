@@ -1,34 +1,32 @@
 package service;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.Store;
 import dao.StoreDao;
+import dao.Store;
 
-public class JW_MainAction implements CommandProcess {
+public class WH_Pro_registFormAction implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		StoreDao sd = StoreDao.getInstance();
+		String b_code = "00";
 		try {
-			
-			request.setCharacterEncoding("utf-8");
-			List<Store> list = sd.list(); 	// 메인에서 상품리스트 불러오는 코드 by.원희
-			Store store = new Store();
-			
-		} catch (Exception e) {
+			List<Store> b_menu = sd.b_menu();
+			request.setAttribute("b_menu", b_menu);
+			request.setAttribute("b_code", b_code);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
-
-		
-		// TODO Auto-generated method stub
-		return "main.jsp";
+		return "pro_registForm.jsp";
 	}
 
-}
+} 
