@@ -44,6 +44,14 @@
 				<td><input type="button" value="회원가입"
 					onclick="location.href='jw_joinForm.do'"></td>
 			</tr>
+			<tr>
+				<td><input type="button" value="아이디찾기"
+					onclick="location.href='ws_idfind.jsp'"></td>
+			</tr>
+			<tr>
+				<td><input type="button" value="비밀번호찾기"
+					onclick="location.href='ws_pwfind.jsp'"></td>
+			</tr>
 
 		</table>
 	</form>
