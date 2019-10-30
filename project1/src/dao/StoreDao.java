@@ -39,7 +39,7 @@ public class StoreDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select distinct b_code, b_name from menu where b_name is not null order by b_code asc";
+		String sql = "select distinct b_code, b_name from store_menu where b_name is not null order by b_code asc";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -65,7 +65,7 @@ public class StoreDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select distinct b_code, m_code, m_name from menu where  b_code= ? and m_code != '00' order by m_code asc";
+		String sql = "select distinct b_code, m_code, m_name from store_menu where  b_code= ? and m_code != '00' order by m_code asc";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -93,7 +93,7 @@ public class StoreDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select s_code,s_name from menu where b_code=? and m_code=? and s_code != '00'";
+		String sql = "select s_code,s_name from store_menu where b_code=? and m_code=? and s_code != '00'";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);

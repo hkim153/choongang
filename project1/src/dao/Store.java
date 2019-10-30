@@ -6,7 +6,6 @@ public class Store {
 	private int pro_num;                // 상품번호
 	private int pro_code;               // 상품코드(낚시대/릴/낚시줄 등 구분코드)
 	private String pro_name;            // 상품명
-	private String pro_content;         // 상품 상세 내용
 	private int price;                  // 상품 금액
 	private String seller;              // 판매자
 	private int sellcnt;                // 누적판매개수
@@ -29,6 +28,10 @@ public class Store {
 	private String b_name;
 	private String m_name;
 	private String s_name;
+	private int img_num;
+	private String img_path;
+	private String file_name;
+	private String real_name;
  	
  	
 	
@@ -53,12 +56,6 @@ public class Store {
 	}
 	public void setPro_name(String pro_name) {
 		this.pro_name = pro_name;
-	}
-	public String getPro_content() {
-		return pro_content;
-	}
-	public void setPro_content(String pro_content) {
-		this.pro_content = pro_content;
 	}
 	public int getPrice() {
 		return price;
@@ -191,5 +188,29 @@ public class Store {
 	}
 	public void setS_name(String s_name) {
 		this.s_name = s_name;
+	}
+	public int getImg_num() {
+		return img_num;
+	}
+	public void setImg_num(int img_num) {
+		this.img_num = img_num;
+	}
+	public String getImg_path() {
+		return img_path;
+	}
+	public void setImg_path(String img_path) {
+		this.img_path = img_path;
+	}
+	public String getFile_name() {
+		return file_name;
+	}
+	public void setFile_name(String file_name) {
+		this.file_name = file_name;
+	}
+	public String getReal_name() {
+		return real_name;
+	}
+	public void setReal_name(String real_name) {
+		this.real_name = real_name;
 	}
 }

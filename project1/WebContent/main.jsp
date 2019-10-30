@@ -87,6 +87,7 @@
 						<c:when test="${sessionScope.result eq 1 }">
 							<p>${sessionScope.id }님환영합니다 !</p>
 							<input type="button" value="정보수정">
+							<a href="wh_Pro_registForm.do"><input type="button" value="상품등록"></a>
 							<a href="jw_logOut.do"> <input type="button" value="로그아웃">
 							</a>
 
