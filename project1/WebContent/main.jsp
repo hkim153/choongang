@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -27,7 +28,8 @@
 				</form>
 			</div> -->
 		<div class="logo">
-			<a	href="main.do"><img src="images/LOGO.png" width="100%" height="100%"></a>
+			<a href="main.do"><img src="images/LOGO.png" width="100%"
+				height="100%"></a>
 		</div>
 		</header>
 
@@ -60,7 +62,8 @@
 
 			<div class="column_left">
 				<div id="veta_top">
-					<img alt="" src="images/main_product.png" width="100%" height="100%">
+					<img alt="" src="images/main_product.png" width="100%"
+						height="100%">
 				</div>
 				<!-- 낚시터 추천 or 낚시 물품 판매(슬라이드쇼) -->
 
@@ -74,17 +77,29 @@
 			<div class="column_right">
 
 				<div id="account" class="section_login">
-					<form action="login.do"><a href="jw_loginForm.do">
-					<img alt="" src="images/login.png" width="200" height="100" ></a> </form>
-					
+					<c:choose>
+						<c:when test="${sessionScope.result ne 1 }">
+							<form action="login.do">
+								<a href="jw_loginForm.do"> <img alt=""
+									src="images/login.png" width="200" height="100"></a>
+							</form>
+						</c:when>
+						<c:when test="${sessionScope.result eq 1 }">
+							<p>${sessionScope.id }님환영합니다 !</p>
+							<input type="button" value="정보수정">
+							<a href="jw_logOut.do"> <input type="button" value="로그아웃">
+							</a>
+
+						</c:when>
+					</c:choose>
 				</div>
 
 				<!-- 로그인  -->
 				<!-- 			<div class="event_side"> -->
 				<div class="section_login">
 
-					<img alt="" src="images/event_C.png" >
- 
+					<img alt="" src="images/event_C.png">
+
 				</div>
 				<!-- 이벤트달력 작게  -->
 

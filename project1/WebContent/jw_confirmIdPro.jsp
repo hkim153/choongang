@@ -15,7 +15,7 @@
 <body>
 
 <%-- <c:set var="id" value="${id }"></c:set> --%>
-<input type="hidden" name="id" value="${id }">
+<input type="hidden" name="id" value=" ${id }">
 	<c:if test="${result==1 }">
 			<p1>${id } 는 이미있는 아이디입니다. 다른아이디를 사용해주세요</p1>
 	</c:if>

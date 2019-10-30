@@ -17,22 +17,27 @@ public class JW_loginProAction implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
+			
+			HttpSession session = request.getSession(); // 세션 선언
 			request.setCharacterEncoding("utf-8");
 			jw_MemberDto member = new jw_MemberDto();
+			jw_MemberDao md = jw_MemberDao.getInstance();
 			String id = request.getParameter("id");
-			String passwd = request.getParameter("passwd");
-			
+			String passwd = request.getParameter("passwd");		
 //			member.setId(request.getParameter("id"));
 //			member.setPasswd(request.getParameter("passwd"));
-
-			jw_MemberDao md = jw_MemberDao.getInstance();
+			
 			int result = md.check(id, passwd);
 			
-			request.setAttribute("result", result);
 			if(result == 1) {
-				HttpSession session = request.getSession();
-				session.getAttribute("result");		
-				System.out.println("세션: "+session);
+				System.out.println("로그인 성공!");
+				session.setAttribute("result", result);		
+				session.setAttribute("id", id);		
+				session.setAttribute("passwd", passwd);		
+				
+			} else {
+				System.out.println("로그인 실패...");
+				session.setAttribute("result", 0);
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
