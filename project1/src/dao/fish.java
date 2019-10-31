@@ -4,7 +4,7 @@ public class fish {
 	private String f_code;
 	private int num;
 	private String f_name;
-	private String f_img_url;
+	private String f_img;
 	public String getF_code() {
 		return f_code;
 	}
@@ -23,10 +23,10 @@ public class fish {
 	public void setF_name(String f_name) {
 		this.f_name = f_name;
 	}
-	public String getF_img_url() {
-		return f_img_url;
+	public String getF_img() {
+		return f_img;
 	}
-	public void setF_img_url(String f_img_url) {
-		this.f_img_url = f_img_url;
+	public void setF_img(String f_img) {
+		this.f_img = f_img;
 	}
 }

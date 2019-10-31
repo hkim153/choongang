@@ -2,31 +2,17 @@ package dao;
 
 public class fishingsite {
 	private String fs_code;
-	private String e_code;
-	private String f_code;
 	private int num;
 	private String fs_name;
 	private String fs_addr;
 	private String fs_reg;
 	private String fs_content;
-	private String fs_img_url;
+	private String fs_img;
 	public String getFs_code() {
 		return fs_code;
 	}
 	public void setFs_code(String fs_code) {
 		this.fs_code = fs_code;
-	}
-	public String getE_code() {
-		return e_code;
-	}
-	public void setE_code(String e_code) {
-		this.e_code = e_code;
-	}
-	public String getF_code() {
-		return f_code;
-	}
-	public void setF_code(String f_code) {
-		this.f_code = f_code;
 	}
 	public int getNum() {
 		return num;
@@ -58,11 +44,12 @@ public class fishingsite {
 	public void setFs_content(String fs_content) {
 		this.fs_content = fs_content;
 	}
-	public String getFs_img_url() {
-		return fs_img_url;
+	public String getFs_img() {
+		return fs_img;
 	}
-	public void setFs_img_url(String fs_img_url) {
-		this.fs_img_url = fs_img_url;
+	public void setFs_img(String fs_img) {
+		this.fs_img = fs_img;
 	}
+	
 	
 }
