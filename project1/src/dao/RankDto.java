@@ -9,14 +9,10 @@ public class RankDto {
 	private int length;
 	private String content;
 	private Date reg_date;
-	private String img;
+	private String img_folder;
+	private String file_name;
+	private String real_name;
 	
-	public String getImg() {
-		return img;
-	}
-	public void setImg(String img) {
-		this.img = img;
-	}
 	public int getNum() {
 		return num;
 	}
@@ -53,5 +49,22 @@ public class RankDto {
 	public void setReg_date(Date reg_date) {
 		this.reg_date = reg_date;
 	}
-	
+	public String getImg_folder() {
+		return img_folder;
+	}
+	public void setImg_folder(String img_folder) {
+		this.img_folder = img_folder;
+	}
+	public String getFile_name() {
+		return file_name;
+	}
+	public void setFile_name(String file_name) {
+		this.file_name = file_name;
+	}
+	public String getReal_name() {
+		return real_name;
+	}
+	public void setReal_name(String real_name) {
+		this.real_name = real_name;
+	}
 }

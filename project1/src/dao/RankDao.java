@@ -57,7 +57,7 @@ public class RankDao {
 		int result = 0;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "insert into ranking values(?,?,?,?,?,sysdate,?)";
+		String sql = "insert into ranking values(?,?,?,?,?,sysdate,?,?,?)";
 
 		try {
 			conn = getConnection();
@@ -68,7 +68,9 @@ public class RankDao {
 			pstmt.setString(3, rank.getGet_fish());
 			pstmt.setInt(4, rank.getLength());
 			pstmt.setString(5, rank.getContent());
-			pstmt.setString(6, ".jpg");
+			pstmt.setString(6, rank.getImg_folder());
+			pstmt.setString(7, rank.getFile_name());
+			pstmt.setString(8, rank.getReal_name());
 			result = pstmt.executeUpdate();
 
 		} catch (Exception e) {
@@ -113,7 +115,9 @@ public class RankDao {
 				rank.setLength(rs.getInt("length"));
 				rank.setContent(rs.getString("content"));
 				rank.setReg_date(rs.getDate("reg_date"));
-				rank.setImg(rs.getString("img"));
+				rank.setImg_folder(rs.getString("img_folder"));
+				rank.setFile_name(rs.getString("file_name"));
+				rank.setReal_name(rs.getString("real_name"));
 				list.add(rank);
 			}
 		} catch (Exception e) {
@@ -149,7 +153,9 @@ public class RankDao {
 				rank.setLength(rs.getInt("length"));
 				rank.setContent(rs.getString("content"));
 				rank.setReg_date(rs.getDate("reg_date"));
-				rank.setImg(rs.getString("img"));
+				rank.setImg_folder(rs.getString("img_folder"));
+				rank.setFile_name(rs.getString("file_name"));
+				rank.setReal_name(rs.getString("real_name"));
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -188,7 +194,9 @@ public class RankDao {
 				rank.setLength(rs.getInt("length"));
 				rank.setContent(rs.getString("content"));
 				rank.setReg_date(rs.getDate("reg_date"));
-				rank.setImg(rs.getString("img"));
+				rank.setImg_folder(rs.getString("img_folder"));
+				rank.setFile_name(rs.getString("file_name"));
+				rank.setReal_name(rs.getString("real_name"));
 				list.add(rank);
 			}
 		} catch (Exception e) {
@@ -204,4 +212,5 @@ public class RankDao {
 		}
 		return list;
 	}
+	
 }

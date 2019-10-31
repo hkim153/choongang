@@ -1,7 +1,15 @@
 package service;
 
 import java.io.IOException;
-
+import java.util.Enumeration;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import javax.servlet.ServletRequest;
+import java.util.Enumeration;
+import java.io.File;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.oreilly.servlet.MultipartRequest;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,17 +24,9 @@ public class SJ_RegFormAction implements CommandProcess {
 		
 		try {
 			System.out.println("sj_regformaction");			
-			int num=0;
+			int num=0;		
 			String id = request.getParameter("id");
-			System.out.println("id->"+id);
-			String get_fish = request.getParameter("get_fish");
-			System.out.println("get_fish->"+get_fish);
-			int length=Integer.parseInt(request.getParameter("length"));
-			System.out.println("length->"+length);
-			String content = request.getParameter("content");
-			System.out.println("content->"+content);
-			String img = request.getParameter("img");
-			System.out.println("img->"+img);
+			
 			RankDto rank = new RankDto();
 			rank.setNum(num);
 			
@@ -40,10 +40,7 @@ public class SJ_RegFormAction implements CommandProcess {
 			}
 			request.setAttribute("num", num);
 			request.setAttribute("id", id);
-			request.setAttribute("get_fish",get_fish );
-			request.setAttribute("length", length);
-			request.setAttribute("content", content);
-			request.setAttribute("img", img);
+			
 		} catch(Exception e) { System.out.println(e.getMessage()); }
 		
 
