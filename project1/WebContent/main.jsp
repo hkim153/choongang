@@ -48,15 +48,37 @@
 		<div class="container" role="main">
 			<div id="promotion1" style="display: block;"
 				data-cookie="PC_CENTER_BANNER_12940">
-				<img src="images/f_king.png" width="1080" height="254"
+				<table border="1">
+				<h3>광어의 현재 랭킹</h3>
+					<tr>
+						<th>순위</th>
+						<th>아이디(회원이랑 연동할 예정)</th>
+						<th>길이</th>
+						<th>등록일(삭제하고 사진 대체 예정 사진은 1등사진만?)</th>
+					</tr>
+					<c:forEach var="rank" items="${list1 }">
+					<c:if test="${rank.get_fish =='광어'}">
+					<c:if test="${startNum < 4 }">
+						<tr>
+							<td>${startNum }등</td>
+							<td><a href='sj_content.do?num=${rank.num }&id=${rank.id }'>${rank.id }/${rank.get_fish }</a></td>
+							<td>${rank.length }cm</td>
+							<td>${rank.reg_date }</td>	
+						</tr>
+						<c:set var="startNum" value="${startNum + 1 }"></c:set>
+					</c:if>
+					</c:if>
+					</c:forEach>
+				</table>
+				<!-- <img src="images/f_king.png" width="1080" height="254"
 					alt="V앱_BTS사우디생중계" usemap="#promotion1_map">
 				<map name="promotion1_map">
-					<area id="promotion1_link" shape="rect" coords="0,0,1038,50"
+					<area id="promotion1_link" shape="rect" coords="0,0,1038,250"
 						href="https://www.vlive.tv/video/152683" alt="프로모션 이동"
 						data-clk="neb.image">
-					<area id="promotion1_close" shape="rect" coords="1038,0,1080,50"
+					<area id="promotion1_close" shape="rect" coords="1038,0,1080,250"
 						href="#" alt="프로모션 닫기" data-clk="neb.imagecls">
-				</map>
+				</map> -->
 			</div>
 			<!-- bts광고판 이달의 낚시왕 -->
 
@@ -85,9 +107,10 @@
 							</form>
 						</c:when>
 						<c:when test="${sessionScope.result eq 1 }">
-							<p>${sessionScope.id }님환영합니다 !</p>
+							<p>${sessionScope.id }님환영합니다!</p>
 							<input type="button" value="정보수정">
-							<a href="wh_Pro_registForm.do"><input type="button" value="상품등록"></a>
+							<a href="wh_Pro_registForm.do"><input type="button"
+								value="상품등록"></a>
 							<a href="jw_logOut.do"> <input type="button" value="로그아웃">
 							</a>
 

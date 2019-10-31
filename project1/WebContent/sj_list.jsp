@@ -47,7 +47,7 @@
 			<c:forEach var ="rank" items="${list }">		
 			<tr>
 				<td>${startNum }등</td> 
-				<td><a href = 'sj_content.do?num=${rank.num }&id=${rank.id }'>${rank.id }${rank.get_fish }</a></td>
+				<td><a href = 'sj_content.do?num=${rank.num }&id=${rank.id }'>${rank.id }/${rank.get_fish }</a></td>
 				<td>${rank.length }cm<div style="width:${rank.length *2}%;" class="box1"></div></td>
 				<td>${rank.reg_date }</td>				
 			</tr>

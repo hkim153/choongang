@@ -165,65 +165,31 @@ public class RankDao {
 
 		return rank;
 	}
-	// public RankDto get(String get_fish) throws SQLException {
-	// Connection conn = null;
-	// PreparedStatement pstmt = null;
-	// ResultSet rs = null;
-	// String sql1 = "select get_fish from ranking group by get_fish";
-	//
-	// RankDto rank = new RankDto();
-	//
-	// try {
-	// conn = getConnection();
-	// pstmt = conn.prepareStatement(sql1);
-	// pstmt.setString(1, get_fish);
-	// rs = pstmt.executeQuery();
-	// if (rs.next()) {
-	//// rank.setNum(rs.getInt("num"));
-	//// rank.setId(rs.getString("id"));
-	// rank.setGet_fish(rs.getString("get_fish"));
-	//// rank.setLength(rs.getInt("length"));
-	//// rank.setContent(rs.getString("content"));
-	//// rank.setReg_date(rs.getDate("reg_date"));
-	//// rank.setImg(rs.getString("img"));
-	// }
-	// } catch (Exception e) {
-	// System.out.println(e.getMessage());
-	// } finally {
-	// if (rs != null)
-	// rs.close();
-	// if (pstmt != null)
-	// pstmt.close();
-	// if (conn != null)
-	// conn.close();
-	//
-	// }
-	//
-	// return rank;
-	// }
 
-	public List<RankDto> get(String get_fish) throws SQLException {
-		System.out.println("get start");
-		List<RankDto> get = new ArrayList<RankDto>();
+	public List<RankDto> list1(int startRow, int endRow) throws SQLException {
+		System.out.println("list start");
+		List<RankDto> list = new ArrayList<RankDto>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select get_fish from ranking group by get_fish";
+		String sql	 = "select * from ranking where num between ? and ? "
+					+ "order by length desc, reg_date asc";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, get_fish);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				RankDto rank = new RankDto();
-				// rank.setNum(rs.getInt("num"));
-				// rank.setId(rs.getString("id"));
+				rank.setNum(rs.getInt("num"));
+				rank.setId(rs.getString("id"));
 				rank.setGet_fish(rs.getString("get_fish"));
-				// rank.setLength(rs.getInt("length"));
-				// rank.setContent(rs.getString("content"));
-				// rank.setReg_date(rs.getDate("reg_date"));
-				// rank.setImg(rs.getString("img"));
-				get.add(rank);
+				rank.setLength(rs.getInt("length"));
+				rank.setContent(rs.getString("content"));
+				rank.setReg_date(rs.getDate("reg_date"));
+				rank.setImg(rs.getString("img"));
+				list.add(rank);
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -236,6 +202,6 @@ public class RankDao {
 				conn.close();
 
 		}
-		return get;
+		return list;
 	}
 }
