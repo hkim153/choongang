@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <link href="test.css" rel="stylesheet" type="text/css">
 </head>
-<body>
+<body> 
 	<div class="wrap">
 		<header>
 		<div class="gnb">

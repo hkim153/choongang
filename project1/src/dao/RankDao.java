@@ -22,7 +22,7 @@ public class RankDao {
 		if (instance == null) {
 			instance = new RankDao();
 		}
-		return instance;
+		return instance; 
 	}
 
 	private Connection getConnection() {

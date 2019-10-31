@@ -19,7 +19,7 @@ public class JW_MainAction implements CommandProcess {
 			throws ServletException, IOException {
 		StoreDao sd = StoreDao.getInstance();
 		try {
-			
+			 
 			request.setCharacterEncoding("utf-8");
 			List<Store> list = sd.list(); 	// ���ο��� ��ǰ����Ʈ �ҷ����� �ڵ� by.����
 			Store store = new Store();
