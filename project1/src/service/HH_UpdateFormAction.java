@@ -6,27 +6,28 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.Board;
-import dao.BoardDao;
 
-public class SH_UpdateFormAction implements CommandProcess {
+import dao.Event;
+import dao.EventDao;
+
+public class HH_UpdateFormAction implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			int num = Integer.parseInt(request.getParameter("num"));
-			String pageNum = request.getParameter("pageNum");
-			BoardDao bd = BoardDao.getInstance();
-			Board board = bd.select(num);
-			request.setAttribute("pageNum", pageNum);
-			request.setAttribute("board", board);
+			int e_id = Integer.parseInt(request.getParameter("e_id"));
+			String pagenNum = request.getParameter("pagenNum");
+			EventDao ed = EventDao.getInstance();
+			Event event = ed.select(e_id);
+			request.setAttribute("pagenNum", pagenNum);
+			request.setAttribute("event", event);
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 
-		return "updateForm.jsp";
+		return "hh_updateForm.jsp";
 	}
 
 }

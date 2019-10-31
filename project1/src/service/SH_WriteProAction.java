@@ -5,11 +5,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import dao.Board;
 import dao.BoardDao;
+import dao.jw_MemberDto;
 public class SH_WriteProAction implements CommandProcess {
 	public String requestPro(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		try {
 	        request.setCharacterEncoding("utf-8"); 
+	     
 	        String pageNum = request.getParameter("pageNum");
 	        Board board = new Board();
 			board.setNum(Integer.parseInt(request.getParameter("num")));
@@ -29,6 +31,7 @@ public class SH_WriteProAction implements CommandProcess {
 	        request.setAttribute("result", result);
 	        request.setAttribute("pageNum", pageNum);
 		} catch(Exception e) { System.out.println(e.getMessage()); }
+		
         return "writePro.jsp";
 	}
 }

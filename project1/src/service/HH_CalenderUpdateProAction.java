@@ -6,27 +6,27 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.Board;
-import dao.BoardDao;
+import org.json.simple.JSONArray;
 
-public class SH_UpdateFormAction implements CommandProcess {
+import dao.Event;
+import dao.EventDao;
+
+public class HH_CalenderUpdateProAction implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			int num = Integer.parseInt(request.getParameter("num"));
-			String pageNum = request.getParameter("pageNum");
-			BoardDao bd = BoardDao.getInstance();
-			Board board = bd.select(num);
-			request.setAttribute("pageNum", pageNum);
-			request.setAttribute("board", board);
-			
+//			Event event = new Event();	
+//			EventDao ed = EventDao.getInstance();
+//			JSONArray jsonArray = ed.getOnesoJSON();
+//			request.setAttribute("jsonArray", jsonArray);
+
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 
-		return "updateForm.jsp";
+		return "hh_calenderUpdate.jsp";
 	}
 
 }

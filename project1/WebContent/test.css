@@ -89,3 +89,11 @@ header .logo {
 	border: 1px solid #dee3eb;
 	background: #fff;
 }
+
+.section_event{
+	position: relative;
+	height: 500px;
+	border: 1px solid #dee3eb;
+	background: #fff;
+	
+}

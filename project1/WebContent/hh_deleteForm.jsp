@@ -7,11 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2>로그인 화면</h2>
-<form action="loginPro.do">
-아이디: <input type="text" name="id" require="require">
-암호: <input type="password" name="passwd" require="require">
-
+<h2>삭제 확인창</h2>
+<form action="hh_deletePro.do">
+	<input type="hidden" name="pageNum" value="${pageNum }">
+	<input type="hidden" name="e_id" value="${e_id }">
+	<input type="submit" value="확인">
 </form>
 
 </body>

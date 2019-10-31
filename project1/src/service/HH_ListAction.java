@@ -4,24 +4,23 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import dao.Board;
-import dao.BoardDao;
-public class SH_ListAction implements CommandProcess {
+import dao.Event;
+import dao.EventDao;
+public class HH_ListAction implements CommandProcess {
 	public String requestPro(HttpServletRequest request,
 		HttpServletResponse response) throws ServletException, IOException {
-		BoardDao bd = BoardDao.getInstance();
+		EventDao ed = EventDao.getInstance();
 		try { 
-			    int totCnt  = bd.getTotalCnt();		
+			    int totCnt  = ed.getTotalCnt();	
 				String pageNum = request.getParameter("pageNum");	
 				if (pageNum==null || pageNum.equals("")) {	pageNum = "1";	}
 				int currentPage = Integer.parseInt(pageNum);	
 				int pageSize  = 10, blockSize = 10;
 				int startRow = (currentPage - 1) * pageSize + 1;
 				int endRow   = startRow + pageSize - 1;
-				int startNum = totCnt - startRow + 1; 
-				List<Board> list = bd.list(startRow, endRow);	
+				int startNum = totCnt - startRow + 1;
+				List<Event> list = ed.list(startRow, endRow);	
 			    System.out.println("list.size()->" + list.size());
-
 				int pageCnt = (int)Math.ceil((double)totCnt/pageSize);
 				int startPage = (int)(currentPage-1)/blockSize*blockSize + 1;
 				int endPage = startPage + blockSize -1;	
@@ -48,6 +47,6 @@ public class SH_ListAction implements CommandProcess {
 				System.out.println("endPage-->" + endPage);  // /ch16/list.do
 			
 		} catch(Exception e) { System.out.println(e.getMessage()); }
-		return "list.jsp";
+		return "hh_list.jsp";
 	}
 }
