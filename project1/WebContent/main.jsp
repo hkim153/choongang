@@ -17,7 +17,7 @@
 				<li><a href="store.do">판매 및 대여</a></li>
 				<li><a href="recruit.do">팀원모집</a></li>
 				<li><a href="fishing.do">낚시터</a></li>
-				<li><a href="event.do">이벤트 달력</a></li>
+				<li><a href="hh_event.do">이벤트 달력</a></li>
 				<li><a href="fishingking.do">이달의 낚시왕</a></li>
 			</ul>
 		</div>
@@ -85,7 +85,7 @@
 							</form>
 						</c:when>
 						<c:when test="${sessionScope.result eq 1 }">
-							<p>${sessionScope.id }님환영합니다 !</p>
+							<p>${sessionScope.id }님환영합니다!</p>
 							<input type="button" value="정보수정">
 							<a href="jw_logOut.do"> <input type="button" value="로그아웃">
 							</a>
@@ -96,10 +96,8 @@
 
 				<!-- 로그인  -->
 				<!-- 			<div class="event_side"> -->
-				<div class="section_login">
-
-					<img alt="" src="images/event_C.png">
-
+				<div class="section_event" onclick="" >
+			<iframe src="index2.html" width="100%" height="350px"></iframe>		
 				</div>
 				<!-- 이벤트달력 작게  -->
 
