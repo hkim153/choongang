@@ -138,10 +138,8 @@
 
 				<!-- 로그인  -->
 				<!-- 			<div class="event_side"> -->
-				<div class="section_login">
-
-					<img alt="" src="images/event_C.png">
-
+				<div class="section_event" onclick="" >
+			<iframe src="index2.html" width="100%" height="350px"></iframe>		
 				</div>
 				<!-- 이벤트달력 작게  -->
 

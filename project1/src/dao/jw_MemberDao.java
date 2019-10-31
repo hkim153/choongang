@@ -48,7 +48,7 @@ public class jw_MemberDao {
 			if (rs.next()) {
 				String dbPasswd = rs.getString(1);
 				if (dbPasswd.equals(passwd))
-					result = 1;				
+					result = 1;
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -70,24 +70,29 @@ public class jw_MemberDao {
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		String sql = "select id from member where id=?";
-//		 System.out.println("sql: "+sql);
-//		 System.out.println("sql id: "+id);
+		// System.out.println("sql: "+sql);
+		// System.out.println("sql id: "+id);
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
-			if (rs.next()) 	result = 1;				// 있을땐 1
-			else	            result = 0;				// 없을땐 0
-//			 System.out.println("confirm result: "+result);
-		
+			if (rs.next())
+				result = 1; // 있을땐 1
+			else
+				result = 0; // 없을땐 0
+			// System.out.println("confirm result: "+result);
+
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			// TODO: handle exception
 		} finally {
-			if (rs != null)				rs.close();
-			if (pstmt != null)				pstmt.close();
-			if (conn != null)				conn.close();
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
 		}
 		return result;
 	}
@@ -96,8 +101,8 @@ public class jw_MemberDao {
 		Connection conn = null;
 		int result = 0;
 		PreparedStatement pstmt = null;
-		
-		String sql = "insert into member values(?,?,?,?,?,?, sysdate)";
+
+		String sql = "insert into member values(?, ?, ?, ?, ?, ?, ?, ?, sysdate)";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -107,8 +112,14 @@ public class jw_MemberDao {
 			pstmt.setString(4, member.getEmail());
 			pstmt.setString(5, member.getAddress());
 			pstmt.setString(6, member.getTel());
+			pstmt.setString(7, member.getAdmin_c());
+			pstmt.setString(8, member.getAlive_c());
+
+			// pstmt.setString(8, member.getAdmin_c());
+			// pstmt.setString(9, member.getAlive_c());
+
 			result = pstmt.executeUpdate();
-			System.out.println("insert result: " +result);
+			System.out.println("insert result: " + result);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		} finally {
@@ -136,8 +147,8 @@ public class jw_MemberDao {
 				member.setPasswd(rs.getString(2));
 				member.setName(rs.getString(3));
 				member.setEmail(rs.getString(4));
-//				member.setAdmin_c(rs.getString(5));
-//				member.setAlive_c(rs.getString(6));
+				// member.setAdmin_c(rs.getString(5));
+				// member.setAlive_c(rs.getString(6));
 				member.setAddress(rs.getString(5));
 				member.setTel(rs.getString(6));
 				member.setReg_date(rs.getDate(7));
@@ -145,8 +156,10 @@ public class jw_MemberDao {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		} finally {
-			if(pstmt !=null) pstmt.close();
-			if(conn !=null) conn.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
 		}
 		return member;
 	}

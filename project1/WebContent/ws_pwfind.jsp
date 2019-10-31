@@ -13,7 +13,7 @@
  <center>
  <table>
    <td id="block"> 아이디 </td>
-   <td><input type="text"/></td>
+   <td><input type="text"/></td>  
    </tr> 
    <tr>
    <td id="block"> E-Mail </td>

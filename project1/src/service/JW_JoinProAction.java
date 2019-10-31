@@ -23,7 +23,10 @@ public class JW_JoinProAction implements CommandProcess {
 			member.setName(request.getParameter("name"));
 			member.setEmail(request.getParameter("email"));
 			member.setAddress(request.getParameter("address"));
-			member.setTel(request.getParameter("tel"));			
+			member.setTel(request.getParameter("tel"));		
+			member.setAdmin_c("N");			
+			member.setAlive_c("A");	     
+					
 			
 			jw_MemberDao md = jw_MemberDao.getInstance();
 			int result = md.insert(member);

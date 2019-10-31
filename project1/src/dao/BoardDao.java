@@ -14,32 +14,37 @@ import javax.sql.DataSource;
 
 public class BoardDao {
 	private static BoardDao instance;
-	private BoardDao() {}
+
+	private BoardDao() {
+	}
+
 	public static BoardDao getInstance() {
-		if (instance == null) { instance = new BoardDao();
-			
+		if (instance == null) {
+			instance = new BoardDao();
+
 		}
 		return instance;
 	}
+
 	private Connection getConnection() {
 		Connection conn = null;
 		try {
 			Context ctx = new InitialContext();
-			DataSource ds = (DataSource)
-				ctx.lookup("java:comp/env/jdbc/OracleDB");
+			DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/OracleDB");
 			conn = ds.getConnection();
-			
+
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 		return conn;
 	}
+
 	public int getTotalCnt() throws SQLException {
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
 		int tot = 0;
-		String sql = "select count(*) from store";
+		String sql = "select count(*) from board";
 		try {
 			conn = getConnection();
 			stmt = conn.createStatement();
@@ -49,23 +54,24 @@ public class BoardDao {
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-		}finally {
-			if (rs != null) rs.close();
-			if (stmt != null) stmt.close();
-			if (conn != null) conn.close();
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (stmt != null)
+				stmt.close();
+			if (conn != null)
+				conn.close();
 		}
 		return tot;
-		
 	}
-	
+
 	public List<Board> list(int startRow, int endRow) throws SQLException {
 		List<Board> list = new ArrayList<Board>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = " select * from (select rownum rn,a.* from "+ 
-		" (select * from board order by ref desc, re_step) a) "+
-				" where rn between ? and ?";
+		String sql = " select * from (select rownum rn,a.* from "
+				+ " (select * from board order by ref desc, re_step) a) " + " where rn between ? and ?";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -88,14 +94,17 @@ public class BoardDao {
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-		}finally {
-			if (rs != null) rs.close();
-			if (pstmt != null) pstmt.close();
-			if (conn != null) conn.close();
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
 		}
 		return list;
-		
 	}
+
 	public void readCount(int num) throws SQLException {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -105,19 +114,21 @@ public class BoardDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			pstmt.executeUpdate();
-			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-		}finally {
-			if (pstmt != null) pstmt.close();
-			if (conn != null) conn.close();
+		} finally {
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
 		}
 	}
+
 	public Board select(int num) throws SQLException {
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
-		String sql = "select * from board where num="+num;
+		String sql = "select * from board where num=" + num;
 		Board board = new Board();
 		try {
 			conn = getConnection();
@@ -141,19 +152,22 @@ public class BoardDao {
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-		}finally {
-			if (stmt != null) stmt.close();
-			if (conn != null) conn.close();
-			if (rs != null) rs.close();
+		} finally {
+			if (stmt != null)
+				stmt.close();
+			if (conn != null)
+				conn.close();
+			if (rs != null)
+				rs.close();
 		}
 		return board;
 	}
+
 	public int update(Board board) throws SQLException {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		int result = 0;
 		String sql = "update board set subject=?, writer=?, email=?, passwd=?, content=?, ip=? where num=?";
-		
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -167,41 +181,45 @@ public class BoardDao {
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-		}finally {
-			if (pstmt != null) pstmt.close();
-			if (conn != null) conn.close();
-			
+		} finally {
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+
 		}
 		return result;
 	}
+
 	public int insert(Board board) throws SQLException {
 		int num = board.getNum();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		int result = 0;
 		ResultSet rs = null;
-		String sql1 ="select nvl(max(num),0) from board";
+		String sql1 = "select nvl(max(num),0) from board";
 		String sql = "insert into board values(?,?,?,?,?,?,?,?,?,?,?,sysdate)";
 		String sql2 = "update board set re_step = re_step+1 where " + "ref=? and re_step > ?";
 		try {
 			conn = getConnection();
-			if (num !=0) {
+			if (num != 0) {
 				pstmt = conn.prepareStatement(sql2);
 				pstmt.setInt(1, board.getRef());
 				pstmt.setInt(2, board.getRe_step());
 				pstmt.executeUpdate();
 				pstmt.close();
-				board.setRe_step(board.getRe_step()+1);
-				board.setRe_level(board.getRe_level()+1);
-				
+				board.setRe_step(board.getRe_step() + 1);
+				board.setRe_level(board.getRe_level() + 1);
+
 			}
-			
+
 			pstmt = conn.prepareStatement(sql1);
 			rs = pstmt.executeQuery();
 			rs.next();
-			int number = rs.getInt(1)+1;
+			int number = rs.getInt(1) + 1;
 			rs.close();
-			if (num == 0) board.setRef(number);
+			if (num == 0)
+				board.setRef(number);
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, number);
 			pstmt.setString(2, board.getWriter());
@@ -218,21 +236,25 @@ public class BoardDao {
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-		}finally {
-			if (rs != null) rs.close();
-			if (pstmt != null) pstmt.close();
-			if (conn != null) conn.close();
-			
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+
 		}
 		return result;
 	}
+
 	public int delete(int num, String passwd) throws SQLException {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		int result = 0;
 		ResultSet rs = null;
 		String sql1 = "select passwd from board where num=?";
-		String sql ="delete from board where num=?";
+		String sql = "delete from board where num=?";
 		try {
 			String dbPasswd = "";
 			conn = getConnection();
@@ -247,17 +269,20 @@ public class BoardDao {
 					pstmt = conn.prepareStatement(sql);
 					pstmt.setInt(1, num);
 					result = pstmt.executeUpdate();
-				}else result = 0;
-				
-			}else result = -1;
-			
-		}  catch (Exception e) {
+				} else
+					result = 0;
+
+			} else
+				result = -1;
+
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
-		}finally {
-			if (pstmt != null) pstmt.close();
-			if (conn != null) conn.close();
-			
-			
+		} finally {
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+
 		}
 		return result;
 	}
