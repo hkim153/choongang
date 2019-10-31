@@ -7,6 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.RankDao;
+import dao.RankDto;
 import dao.Store;
 import dao.StoreDao;
 
@@ -17,10 +19,16 @@ public class JW_MainAction implements CommandProcess {
 			throws ServletException, IOException {
 		StoreDao sd = StoreDao.getInstance();
 		try {
-			
+			 
 			request.setCharacterEncoding("utf-8");
-			List<Store> list = sd.list(); 	// ¸ÞÀÎ¿¡¼­ »óÇ°¸®½ºÆ® ºÒ·¯¿À´Â ÄÚµå by.¿øÈñ
+			List<Store> list = sd.list(); 	// ï¿½ï¿½ï¿½Î¿ï¿½ï¿½ï¿½ ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ by.ï¿½ï¿½ï¿½ï¿½
 			Store store = new Store();
+			RankDao rk = RankDao.getInstance();
+			int startRow = 1, endRow = 99;
+			List<RankDto> list1 = rk.list1(startRow, endRow);
+			int startNum = startRow;
+			request.setAttribute("list1", list1);
+			request.setAttribute("startNum", startNum);
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -30,5 +38,6 @@ public class JW_MainAction implements CommandProcess {
 		// TODO Auto-generated method stub
 		return "main.jsp";
 	}
+	
 
 }

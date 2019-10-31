@@ -17,10 +17,10 @@
 <%-- <c:set var="id" value="${id }"></c:set> --%>
 <input type="hidden" name="id" value=" ${id }">
 	<c:if test="${result==1 }">
-			<p1>${id } 는 이미있는 아이디입니다. 다른아이디를 사용해주세요</p1>
+			<p1>${id } 는 이미 있는 아이디입니다. 다른 아이디를 사용해주세요</p1>
 	</c:if>
 	<c:if test="${result==0 }">
-		<p1>	${id } 는 사용하실수 있습니다</p1>
+		<p1>	${id } 는 사용하실 수 있습니다</p1>
 	</c:if>
 	
 <p><input type="button" value="확인" onclick="wincl()">
