@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link href="test.css" rel="stylesheet" type="text/css">
-<link href="product.css" rel="stylesheet" type="text/css">
+<link href="./css/product.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div class="wrap">
