@@ -119,7 +119,7 @@
 				<!-- <div class="recruit_side" > -->
 				<div class="recruit">
 
-					<img alt="" src="images/recruit.png">
+					<a href="DH_channel.jsp"></a>
 
 				</div>
 				<!-- 인원모집  -->
