@@ -13,7 +13,7 @@
 		<div class="gnb">
 			<ul>
 				<li><a href="board.do">게시판</a></li>
-				<li><a href="store.do">판매 및 대여</a></li>
+				<li><a href="wh_store.do">판매 및 대여</a></li>
 				<li><a href="recruit.do">팀원모집</a></li>
 				<li><a href="fishing.do">낚시터</a></li>
 				<li><a href="event.do">이벤트 달력</a></li>
