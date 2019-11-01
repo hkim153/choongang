@@ -17,12 +17,12 @@
 </head>
 <body>
 <h2>등록 게시판</h2>
-<form action="sj_regpro.do">
+<form action="sj_regpro.do" enctype="multipart/form-data" method="post">
 <table class="table1" border="1">
 	어종 
 	 <ul>
 		 <li>
-			<label><input type="radio" name="get_fish" value="광어">광어</label>
+			<label><input type="radio" name="get_fish" value="광어" checked="checked">광어</label>
 		  	<label><input type="radio" name="get_fish" value="연어">연어</label>
 		</li>
 	</ul>
@@ -32,11 +32,11 @@
 	</tr>
 	<tr>
 		<th>물고기 길이</th>
-		<td><input type="text" name="length"></td>
+		<td><input type="text" name="length" required="required"></td>
 	</tr>
  	<tr>
 		<th>사진 등록하기</th>
-		<td>.jpg<input type="file" name="image"></td>
+		<td><input type="file" name="img_folder" required="required"></td>
 	</tr>
 	<tr>
 		<th>리뷰</th>	

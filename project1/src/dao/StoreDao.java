@@ -126,21 +126,13 @@ public class StoreDao {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, store.getPro_code());
-			
 			pstmt.setString(2, store.getPro_name());
-			
 			pstmt.setInt(3, store.getPrice());
-			
 			pstmt.setString(4, store.getSeller());
-			
 			pstmt.setInt(5, store.getStock());
-		
 			pstmt.setString(6, store.getOrigin());
-			
 			pstmt.setString(7, store.getPro_made());
-			
 			pstmt.setInt(8, store.getPro_state());
-			
 			result = pstmt.executeUpdate();
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -166,12 +158,11 @@ public class StoreDao {
 			rs.next();
 			int number = rs.getInt(1);
 			rs.close();
-			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, number);
 			pstmt.setInt(2, store.getPro_code());
 			pstmt.setInt(3, store.getImg_num());
-			pstmt.setString(4, store.getImg_path());
+			pstmt.setString(4, store.getImg_folder());
 			pstmt.setString(5, store.getFile_name());
 			pstmt.setString(6, store.getReal_name());
 			
@@ -186,19 +177,33 @@ public class StoreDao {
 		return result;
 	}
 	
-	public List<Store> list() throws SQLException {
+	public List<Store> pop_list() throws SQLException {
 		List<Store> list = new ArrayList<Store>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from store";
+		String sql = "select * from store s, store_img si where s.pro_num = si.pro_num and si.img_num = 1 and rownum < 5 order by sellcnt desc";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Store store = new Store();
-				
+				store.setPro_num(rs.getInt("pro_num"));
+				store.setPro_code(rs.getInt("pro_code"));
+				store.setPro_name(rs.getString("pro_name"));
+				store.setPrice(rs.getInt("price"));
+				store.setSeller(rs.getString("seller"));
+				store.setSellcnt(rs.getInt("sellcnt"));
+				store.setStock(rs.getInt("stock"));
+				store.setOrigin(rs.getString("origin"));
+				store.setPro_made(rs.getString("pro_made"));
+				store.setPro_state(rs.getInt("pro_state"));
+				store.setReg_date(rs.getDate("reg_date"));
+				store.setImg_num(rs.getInt("img_num"));
+				store.setFile_name(rs.getString("file_name"));
+				store.setReal_name(rs.getString("real_name"));
+				store.setImg_folder(rs.getString("img_folder"));
 				list.add(store);
 			}
 		} catch (Exception e) {

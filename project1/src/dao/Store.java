@@ -3,25 +3,25 @@ package dao;
 import java.util.Date;
 
 public class Store {
-	private int pro_num;                // »óÇ°¹øÈ£
-	private int pro_code;               // »óÇ°ÄÚµå(³¬½Ã´ë/¸±/³¬½ÃÁÙ µî ±¸ºÐÄÚµå)
-	private String pro_name;            // »óÇ°¸í
-	private int price;                  // »óÇ° ±Ý¾×
-	private String seller;              // ÆÇ¸ÅÀÚ
-	private int sellcnt;                // ´©ÀûÆÇ¸Å°³¼ö
-	private int stock;                  // Àç°í¼ö
-	private String origin;              // ¿ø»êÁö
-	private String pro_made;            // ÀçÁ¶»ç
-	private int pro_state;              // »óÇ° ÆÇ¸Å»óÅÂ(ÆÇ¸ÅÁß / Ç°Àý / ÆÇ¸Å ÁßÁö )
-	private int buy_num;                // ±¸¸Å¹øÈ£(³¯Â¥8ÀÚ¸®+½Ã°£+»óÇ°¹øÈ£3ÀÚ¸®+½ÃÄö½º3ÀÚ¸®) 16ÀÚ¸®
-	private String buyer;               // ±¸¸ÅÀÚ
-	private int quantity;               // ±¸¸Å¼ö·®
-	private int state;                  // ±¸¸Å»óÅÂ (±¸¸Å¿Ï·á / ¹è¼Û¿Ï·á / ±¸¸ÅÃë¼Ò / ¹ÝÇ° )
-	private int re_num;                 // ·»Å»¹øÈ£(³¯Â¥8ÀÚ¸®+½Ã°£+»óÇ°¹øÈ£3ÀÚ¸®+½ÃÄö½º3ÀÚ¸®) 16ÀÚ¸®
-	private Date re_start;              // ·»Å»½ÃÀÛÀÏ
-	private Date re_end;                // ·»Å»Á¾·áÀÏ
-	private int re_state;               // ·»Å»»óÅÂ (·»Å»¿Ï·á / ·»Å»ÁøÇàÁß / ·»Å»Á¾·á / ·»Å»Ãë¼Ò )
- 	private Date reg_date;              // ±¸¸ÅÀÏ / »óÇ°µî·ÏÀÏ 
+	private int pro_num;                // ï¿½ï¿½Ç°ï¿½ï¿½È£
+	private int pro_code;               // ï¿½ï¿½Ç°ï¿½Úµï¿½(ï¿½ï¿½ï¿½Ã´ï¿½/ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½)
+	private String pro_name;            // ï¿½ï¿½Ç°ï¿½ï¿½
+	private int price;                  // ï¿½ï¿½Ç° ï¿½Ý¾ï¿½
+	private String seller;              // ï¿½Ç¸ï¿½ï¿½ï¿½
+	private int sellcnt;                // ï¿½ï¿½ï¿½ï¿½ï¿½Ç¸Å°ï¿½ï¿½ï¿½
+	private int stock;                  // ï¿½ï¿½ï¿½ï¿½
+	private String origin;              // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String pro_made;            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private int pro_state;              // ï¿½ï¿½Ç° ï¿½Ç¸Å»ï¿½ï¿½ï¿½(ï¿½Ç¸ï¿½ï¿½ï¿½ / Ç°ï¿½ï¿½ / ï¿½Ç¸ï¿½ ï¿½ï¿½ï¿½ï¿½ )
+	private int buy_num;                // ï¿½ï¿½ï¿½Å¹ï¿½È£(ï¿½ï¿½Â¥8ï¿½Ú¸ï¿½+ï¿½Ã°ï¿½+ï¿½ï¿½Ç°ï¿½ï¿½È£3ï¿½Ú¸ï¿½+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½3ï¿½Ú¸ï¿½) 16ï¿½Ú¸ï¿½
+	private String buyer;               // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private int quantity;               // ï¿½ï¿½ï¿½Å¼ï¿½ï¿½ï¿½
+	private int state;                  // ï¿½ï¿½ï¿½Å»ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½Å¿Ï·ï¿½ / ï¿½ï¿½Û¿Ï·ï¿½ / ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ / ï¿½ï¿½Ç° )
+	private int re_num;                 // ï¿½ï¿½Å»ï¿½ï¿½È£(ï¿½ï¿½Â¥8ï¿½Ú¸ï¿½+ï¿½Ã°ï¿½+ï¿½ï¿½Ç°ï¿½ï¿½È£3ï¿½Ú¸ï¿½+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½3ï¿½Ú¸ï¿½) 16ï¿½Ú¸ï¿½
+	private Date re_start;              // ï¿½ï¿½Å»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Date re_end;                // ï¿½ï¿½Å»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private int re_state;               // ï¿½ï¿½Å»ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½Å»ï¿½Ï·ï¿½ / ï¿½ï¿½Å»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ / ï¿½ï¿½Å»ï¿½ï¿½ï¿½ï¿½ / ï¿½ï¿½Å»ï¿½ï¿½ï¿½ )
+ 	private Date reg_date;              // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ / ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	private String b_code;
 	private String m_code;
 	private String s_code;
@@ -29,7 +29,7 @@ public class Store {
 	private String m_name;
 	private String s_name;
 	private int img_num;
-	private String img_path;
+	private String img_folder;
 	private String file_name;
 	private String real_name;
  	
@@ -194,11 +194,11 @@ public class Store {
 	public void setImg_num(int img_num) {
 		this.img_num = img_num;
 	}
-	public String getImg_path() {
-		return img_path;
+	public String getImg_folder() {
+		return img_folder;
 	}
-	public void setImg_path(String img_path) {
-		this.img_path = img_path;
+	public void setImg_folder(String img_folder) {
+		this.img_folder = img_folder;
 	}
 	public String getFile_name() {
 		return file_name;

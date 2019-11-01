@@ -7,8 +7,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link href="test.css" rel="stylesheet" type="text/css">
+<link href="./css/product.css" rel="stylesheet" type="text/css">
 </head>
-<body> 
+<body>
 	<div class="wrap">
 		<header>
 		<div class="gnb">
@@ -16,8 +17,8 @@
 				<li><a href="board.do">게시판</a></li>
 				<li><a href="store.do">판매 및 대여</a></li>
 				<li><a href="recruit.do">팀원모집</a></li>
-				<li><a href="fishing.do">낚시터</a></li>
-				<li><a href="hh_event.do">이벤트 달력</a></li>
+				<li><a href="hs_userPreferForm.do">낚시터</a></li>
+				<li><a href="event.do">이벤트 달력</a></li>
 				<li><a href="fishingking.do">이달의 낚시왕</a></li>
 			</ul>
 		</div>
@@ -70,22 +71,40 @@
 					</c:if>
 					</c:forEach>
 				</table>
-				<!-- <img src="images/f_king.png" width="1080" height="254"
-					alt="V앱_BTS사우디생중계" usemap="#promotion1_map">
-				<map name="promotion1_map">
-					<area id="promotion1_link" shape="rect" coords="0,0,1038,250"
-						href="https://www.vlive.tv/video/152683" alt="프로모션 이동"
-						data-clk="neb.image">
-					<area id="promotion1_close" shape="rect" coords="1038,0,1080,250"
-						href="#" alt="프로모션 닫기" data-clk="neb.imagecls">
-				</map> -->
 			</div>
 			<!-- bts광고판 이달의 낚시왕 -->
 
 			<div class="column_left">
 				<div id="veta_top">
-					<img alt="" src="images/main_product.png" width="100%"
-						height="100%">
+					<div class="pro_best">
+						<div class="content">
+							<div>
+								<h3 class="best_tit">야낚자 추천 베스트 </h3>
+								<div class="pro_list">
+									<ul class="pro_wrap">
+										<c:forEach var="poplist" items="${pop_list}">
+											<li style="margin-right:opx;">
+												<div>
+													<div class="pro_img">
+														 <img src="${pageContext.request.contextPath}/${poplist.img_folder}/${poplist.real_name}" alt="상품대표이미지"/>
+													</div>
+													<div class="pro_info">	
+														<span class="pro_name"> ${poplist.pro_name} </span>
+														<span class="price"> ${poplist.price } 원</span>
+														<%-- <span class="sellcnt"> ${poplist.sellcnt }</span> --%>
+														<span class="stock"> 
+															<i>재고</i>
+															<strong>${poplist.stock } 개</strong>
+														</span>
+													</div>
+												</div>
+											</li>
+										</c:forEach>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 				<!-- 낚시터 추천 or 낚시 물품 판매(슬라이드쇼) -->
 
@@ -107,10 +126,9 @@
 							</form>
 						</c:when>
 						<c:when test="${sessionScope.result eq 1 }">
-							<p>${sessionScope.id }님환영합니다!</p>
+							<p>${sessionScope.id }님환영합니다 !</p>
 							<input type="button" value="정보수정">
-							<a href="wh_Pro_registForm.do"><input type="button"
-								value="상품등록"></a>
+							<a href="wh_Pro_registForm.do"><input type="button" value="상품등록"></a>
 							<a href="jw_logOut.do"> <input type="button" value="로그아웃">
 							</a>
 

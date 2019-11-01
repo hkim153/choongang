@@ -26,7 +26,8 @@
 <form action="fishingking.do?get_fish=${rank.get_fish }" >
 
 	<select name="get_fish" id="get_fish" onchange="ch(${rank.num })" ondblclick="ch(${rank.num })">
-		<option value="광어" selected="selected">광어</option>
+		<option selected="selected">물고기선택</option>
+		<option value="광어">광어</option>
 		<option value="연어">연어</option>
 	</select>
 랭킹
@@ -44,7 +45,7 @@
 			<th>길이(그림으로 나타내는거랑 숫자나오게)</th>
 			<th>등록일(길이 같을 경우 먼저 등록한 회원의 등수가 높음)</th>
 		</tr>
-			<c:forEach var ="rank" items="${list }">		
+			<c:forEach var ="rank" items="${list }">	
 			<tr>
 				<td>${startNum }등</td> 
 				<td><a href = 'sj_content.do?num=${rank.num }&id=${rank.id }'>${rank.id }/${rank.get_fish }</a></td>
