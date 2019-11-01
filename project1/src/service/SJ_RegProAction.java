@@ -27,8 +27,8 @@ public class SJ_RegProAction implements CommandProcess {
 			request.setCharacterEncoding("utf-8");
 			int num=1;
 			int maxSize = 10 * 1024 * 1024;
-			String fish_rank = "/fish_rank";
-			String realPath = request.getServletContext().getRealPath(fish_rank);
+			String img_folder = "/fish_rank";
+			String realPath = request.getServletContext().getRealPath(img_folder);
 			MultipartRequest multi = new MultipartRequest(request,realPath,maxSize,"utf-8",new DefaultFileRenamePolicy());
 			Enumeration en = multi.getFileNames();
 			String filename1 = (String)en.nextElement();
@@ -47,7 +47,7 @@ public class SJ_RegProAction implements CommandProcess {
 			rank.setGet_fish(get_fish);
 			rank.setLength(length);
 			rank.setContent(content);
-			rank.setImg_folder(fish_rank);
+			rank.setImg_folder(img_folder);
 			rank.setFile_name(filename);
 			rank.setReal_name(original);
 			
@@ -61,6 +61,10 @@ public class SJ_RegProAction implements CommandProcess {
 			request.setAttribute("get_fish", get_fish );
 			request.setAttribute("length", length);
 			request.setAttribute("content", content);
+			request.setAttribute("img_folder", img_folder );
+			request.setAttribute("filename", filename);
+			request.setAttribute("real_name", original);
+			
 			
 			request.setAttribute("result", result);
 

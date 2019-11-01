@@ -212,5 +212,32 @@ public class RankDao {
 		}
 		return list;
 	}
+	public int delete(String id) throws SQLException {
+		int result  = 0;
+		Connection conn = null;
+		PreparedStatement pstmt=null;
+		ResultSet rs = null;
+		String sql ="delete from ranking where id=?";
+		try {
+			conn = getConnection();
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+					result=pstmt.executeUpdate();
+				} else result=0;
+		} catch(Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			if(rs != null)
+				rs.close();
+			if(pstmt != null)
+				pstmt.close();
+			if (conn != null) 
+				conn.close();
+		}
+		return result;
+}
+	
 	
 }

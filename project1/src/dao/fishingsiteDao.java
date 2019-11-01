@@ -44,11 +44,12 @@ public class fishingsiteDao {
 			for(String cr : regions) {
 				for(String cf : fishes) {
 					String sql = "select * from fishingsite where\r\n" + 
-							"fs_code = (select fs_code from fishmapping where\r\n" + 
-							"fs_code = (select fs_code from fishingsite where fs_reg = '" + cr + "')\r\n" + 
-							"and f_code = (select f_code from fish where f_name = '" + cf +"'))";
+							"fs_code in (select fs_code from fishmapping where\r\n" + 
+							"fs_code in (select fs_code from fishingsite where fs_reg = '" + cr + "')\r\n" + 
+							"and f_code in (select f_code from fish where f_name = '" + cf +"'))";
 					rs = stmt.executeQuery(sql);
-					if(rs.next()) {
+					int check = 0;
+					while(rs.next()) {
 						fishingsite fs = new fishingsite();
 						fs.setFs_code(rs.getString("fs_code"));
 						fs.setNum(rs.getInt("num"));
@@ -58,6 +59,10 @@ public class fishingsiteDao {
 						fs.setFs_content(rs.getString("fs_content"));
 						fs.setFs_img(rs.getString("fs_img"));
 						list.add(fs);
+						check = 1;
+					}
+					if(check == 1) {
+						break;
 					}
 				}
 			}
