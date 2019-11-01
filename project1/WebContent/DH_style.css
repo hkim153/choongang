@@ -1,0 +1,6 @@
+@charset "UTF-8";
+body { background-color: #F6F6F6; font-size: 12pt; }
+table { background-color: #BDBDBD; }
+tr:hover { background-color: #1993A8; }
+td { background-color: #FFE271; text-align: center; padding: 10px;}
+.left { text-align: left; } 
