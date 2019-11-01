@@ -8,15 +8,17 @@
 	position: relative;
 	overflow: hidden;
 	min-width: 1100px;
-	background: #f2f4f7;
+	background: #fff;
 }
 
 a {
 	text-decoration: none;
 	font-weight: bold;
 }
-
-header .gnb {
+#header {
+	background: white;
+}
+#header .gnb {
 	margin-left: auto;
 	margin-right: auto;
 	
@@ -24,7 +26,7 @@ header .gnb {
 	background-color: #353535;
 }
 
-header .gnb ul {
+#header .gnb ul {
 	overflow: hidden;
 	width: 1000px;
 	height: 30px;
@@ -32,21 +34,21 @@ header .gnb ul {
 	margin: 0 auto;
 }
 
-header li {
+#header li {
 	list-style: none;
 	float: left;
 	margin-left: 50px;
 	font-size: .9em;
 }
 
-header .gnb a {
+#header .gnb a {
 	color: white;
 }
 
-header .logo {
-	border: 1px solid lightgray;
-	width: 200px;
-	height: 100px;
+#header .logo {
+	
+	width: 400px;
+	height: 150px;
 	line-height: 100px;
 	text-align: center;
 	margin: 30px auto 20px;
@@ -57,6 +59,7 @@ header .logo {
 	margin: 0 auto;
 	padding: 8px 10px 0;
 	zoom: 1;
+	height: 1000px;
 }
 
 .container .column_left {
