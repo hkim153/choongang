@@ -19,7 +19,7 @@
 	</tr>
 	<tr>
 		<td>사진</td>
-		<td>${rank.img }</td>
+		<td><img src="${pageContext.request.contextPath}/${img_folder }/${rank.real_name }"></td>
 	</tr>
 	<tr>
 		<td>작성일</td>
@@ -30,5 +30,7 @@
 		<td>${rank.content }</td>
 	</tr>
 </table>
+<input type="button" value="삭제"
+		onclick="location.href='sj_deleteform.do?num=${rank.num}&id=${rank.id }'">
 </body>
 </html>

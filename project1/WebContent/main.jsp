@@ -17,7 +17,7 @@
 				<li><a href="board.do">게시판</a></li>
 				<li><a href="store.do">판매 및 대여</a></li>
 				<li><a href="recruit.do">팀원모집</a></li>
-				<li><a href="fishing.do">낚시터</a></li>
+				<li><a href="hs_userPreferForm.do">낚시터</a></li>
 				<li><a href="event.do">이벤트 달력</a></li>
 				<li><a href="fishingking.do">이달의 낚시왕</a></li>
 			</ul>
@@ -152,7 +152,7 @@
 				<!-- 인원모집  -->
 			</div>
 			<!-- 오른쪽 칼럼 끝 -->
-
+ 
 		</div>
 	</div>
 
