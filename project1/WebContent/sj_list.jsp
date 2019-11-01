@@ -33,11 +33,15 @@
 랭킹
 </form>
 </h2>
+<c:choose>
+<c:when test="${sessionScope.result eq 1 }">
 	<table>
 		<tr>
 			<td><a href="sj_regform.do">나의 물고기 자랑하기</a></td>
 		</tr>
 	</table>
+</c:when>
+</c:choose>
 	<table border="1">
 		<tr>
 			<th>순위(순위 구현 완료)</th>
@@ -48,7 +52,7 @@
 			<c:forEach var ="rank" items="${list }">	
 			<tr>
 				<td>${startNum }등</td> 
-				<td><a href = 'sj_content.do?num=${rank.num }&id=${rank.id }'>${rank.id }/${rank.get_fish }</a></td>
+				<td><a href = 'sj_content.do?num=${rank.num }&id=${rank.id }&img_folder=${rank.img_folder}&real_name=${rank.real_name}'>${rank.id }/${rank.get_fish }</a></td>
 				<td>${rank.length }cm<div style="width:${rank.length *2}%;" class="box1"></div></td>
 				<td>${rank.reg_date }</td>				
 			</tr>

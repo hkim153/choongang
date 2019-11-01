@@ -26,7 +26,6 @@ public class SJ_RegFormAction implements CommandProcess {
 			System.out.println("sj_regformaction");			
 			int num=0;		
 			String id = request.getParameter("id");
-			
 			RankDto rank = new RankDto();
 			rank.setNum(num);
 			
@@ -34,7 +33,6 @@ public class SJ_RegFormAction implements CommandProcess {
 			num = Integer.parseInt(request.getParameter("num"));
 			RankDao rk = RankDao.getInstance();
 			
-			//RankDto rank= rk.insert(num); 
 			int result = rk.insert(rank);
 			
 			}
