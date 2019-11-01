@@ -121,8 +121,8 @@
 					<c:choose>
 						<c:when test="${sessionScope.result ne 1 }">
 							<form action="login.do">
-								<a href="jw_loginForm.do"> <img alt=""
-									src="images/login.png" width="200" height="100"></a>
+								<a href="jw_loginForm.do"> 
+								<img alt="" 	src="images/login.png" width="200" height="100"></a>
 							</form>
 						</c:when>
 						<c:when test="${sessionScope.result eq 1 }">
