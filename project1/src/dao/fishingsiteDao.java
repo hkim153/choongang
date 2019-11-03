@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -33,6 +34,94 @@ public class fishingsiteDao {
 		}
 		return conn;
 	}
+	public int getTotalCnt() throws SQLException {
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		int tot = 0;
+		String sql = "select count(*) from fishingsite";
+		try {
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			if (rs.next()) {
+				tot = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (stmt != null)
+				stmt.close();
+			if (conn != null)
+				conn.close();
+		}
+		return tot;
+	}
+	
+	public void readCount(int num) throws SQLException {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "update fishingsite set readcount=readcount+1 where fs_num=?";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		}
+	}
+
+	public List<fishingsite> list(int startRow, int endRow) throws SQLException {
+		List<fishingsite> list = new ArrayList<fishingsite>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from (select rownum rn,a.* from \r\n" + 
+				"(select * from fishingsite order by reg_date desc) a) where rn between ? and ?";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				fishingsite fs = new fishingsite();
+				fs.setFs_code(rs.getInt("fs_code"));
+				fs.setFs_num(rs.getInt("fs_num"));
+				fs.setFs_name(rs.getString("fs_name"));
+				fs.setFs_addr(rs.getString("fs_addr"));
+				fs.setFs_img(rs.getString("fs_img"));
+				fs.setFs_content(rs.getString("fs_content"));
+				fs.setFs_reg(rs.getString("fs_reg"));
+				fs.setId(rs.getString("id"));
+				fs.setReadcount(rs.getInt("readcount"));
+				fs.setReg_date(rs.getDate("reg_date"));
+
+				list.add(fs);
+			}
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		}
+		return list;
+	}
+	
+	
 	public List<fishingsite> find_fs_code(String [] regions, String [] fishes) throws SQLException{
 		List<fishingsite> list = new ArrayList<fishingsite>();
 		Connection conn = null;
@@ -51,13 +140,19 @@ public class fishingsiteDao {
 					int check = 0;
 					while(rs.next()) {
 						fishingsite fs = new fishingsite();
-						fs.setFs_code(rs.getString("fs_code"));
-						fs.setNum(rs.getInt("num"));
+						fs.setFs_code(rs.getInt("fs_code"));
+
 						fs.setFs_name(rs.getString("fs_name"));
 						fs.setFs_addr(rs.getString("fs_addr"));
-						fs.setFs_reg(rs.getString("fs_reg"));
-						fs.setFs_content(rs.getString("fs_content"));
 						fs.setFs_img(rs.getString("fs_img"));
+						fs.setFs_content(rs.getString("fs_content"));
+						fs.setFs_reg(rs.getString("fs_reg"));
+						fs.setId(rs.getString("id"));
+
+						fs.setReadcount(rs.getInt("readcount"));
+
+						fs.setReg_date(rs.getDate("reg_date"));
+
 						list.add(fs);
 						check = 1;
 					}
@@ -77,6 +172,131 @@ public class fishingsiteDao {
 			if(rs != null) rs.close();
 		}
 		return list;
+	}
+	
+	public fishingsite select(int num) throws SQLException {
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		String sql = "select * from fishingsite where fs_num=" + num;
+		fishingsite fs = new fishingsite();
+		try {
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			if(rs.next()) {
+				fs.setFs_num(rs.getInt("fs_num"));
+				fs.setFs_code(rs.getInt("fs_code"));
+				fs.setFs_name(rs.getString("fs_name"));
+				fs.setFs_addr(rs.getString("fs_addr"));
+				fs.setFs_img(rs.getString("fs_img"));
+				fs.setFs_content(rs.getString("fs_content"));
+				fs.setFs_reg(rs.getString("fs_reg"));
+				fs.setId(rs.getString("id"));
+				fs.setReadcount(rs.getInt("readcount"));
+				fs.setReg_date(rs.getDate("reg_date"));
+			}
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (stmt != null)
+				stmt.close();
+			if (conn != null)
+				conn.close();
+			if (rs != null)
+				rs.close();
+		}
+		return fs;
+	}
+	
+	public int insert(fishingsite fs) throws SQLException {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		ResultSet rs = null;
+		String sql1 = "select nvl(max(fs_num),0) from fishingsite";
+		String sql = "insert into fishingsite values(SEQ_FISHINGSITE_CODE.nextval"
+				+ ",?,?,?,?,?,?,sysdate,?,?)";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql1);
+			rs = pstmt.executeQuery();
+			rs.next();
+			int number = rs.getInt(1) + 1;
+			rs.close();
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, fs.getFs_name());
+			pstmt.setString(2, fs.getFs_addr());
+			pstmt.setString(3, fs.getFs_img());
+			pstmt.setString(4, fs.getFs_content());
+			pstmt.setString(5, fs.getFs_reg());
+			pstmt.setInt(6, fs.getReadcount());
+			pstmt.setString(7, fs.getId());
+			pstmt.setInt(8, number);
+
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+
+		}
+		return result;
+	}
+	
+	public int update(fishingsite fs) throws SQLException {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = "update fishingsite set fs_name=?, fs_addr=?, fs_reg=?, fs_content=?, fs_img=? where fs_num=?";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, fs.getFs_name());
+			pstmt.setString(2, fs.getFs_addr());
+			pstmt.setString(3, fs.getFs_reg());
+			pstmt.setString(4, fs.getFs_content());
+			pstmt.setString(5, fs.getFs_img());
+			pstmt.setInt(6, fs.getFs_num());
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+
+		}
+		return result;
+	}
+	
+	public int delete(int num) throws SQLException {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = "delete from fishingsite where fs_num=?";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			result = pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		}
+		return result;
 	}
 	
 	

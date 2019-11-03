@@ -25,6 +25,14 @@
 		left: 200px;
 		top: 100px;
 	}
+
+	#upright{
+			position: absolute;
+   			top: 0px;
+   			right: 0px;
+   			border-style:solid;
+	}
+
 </style>
 <script type="text/javascript">
 	
@@ -32,6 +40,13 @@
 
 </head>
 <body>
+
+<div id ="upright">
+		<a href="main.do">홈으로</a>
+		<a href="hs_fishingSiteForm.do">낚시터 홈으로</a>
+		<a href="jw_logOut.do">로그아웃하기</a>
+</div>
+
 <h1> 추천 지역 </h1>
 <hr>
 <figure>

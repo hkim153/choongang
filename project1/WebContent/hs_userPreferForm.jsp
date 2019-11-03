@@ -6,9 +6,21 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="test.css" rel="stylesheet" type="text/css">
+<style>
+	#upright{
+			position: absolute;
+   			top: 0px;
+   			right: 0px;
+   			border-style:solid;
+	}
+</style>
 </head>
 <body>
-
+<div id ="upright">
+		<a href="main.do">홈으로</a>
+		<a href="hs_fishingSiteForm.do">낚시터 홈으로</a>
+		<a href="jw_logOut.do">로그아웃하기</a>
+</div>
 <form action = "hs_userPreferPro.do" method = "get">
 	<table border = "1">
 		<caption><h2>나에게 딱맞는 낚시터가 있다?!?!</h2></caption>
