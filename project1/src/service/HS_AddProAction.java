@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.fish;
 import dao.fishingsite;
 import dao.fishingsiteDao;
 
@@ -24,7 +25,8 @@ public class HS_AddProAction implements CommandProcess {
 			fishingsite fs = new fishingsite();
 			
 			fs.setFs_num(Integer.parseInt(request.getParameter("num")));
-			fs.setFs_name(request.getParameter("fs_name"));
+			String fs_name = request.getParameter("fs_name");
+			fs.setFs_name(fs_name);
 			fs.setFs_addr(request.getParameter("fs_addr"));
 			//이미지
 			fs.setFs_content(request.getParameter("fs_content"));
@@ -34,8 +36,10 @@ public class HS_AddProAction implements CommandProcess {
 			fishingsiteDao fsd = fishingsiteDao.getInstance();
 			int result = fsd.insert(fs);
 			
-		     request.setAttribute("result", result);
-		     request.setAttribute("pageNum", pageNum);
+			String [] fishes = request.getParameterValues("어종");
+			fsd.mappingfish(fishes, fs_name);
+		    request.setAttribute("result", result);
+		    request.setAttribute("pageNum", pageNum);
 		}catch(Exception e) { System.out.println(e.getMessage()); }
 		
 		

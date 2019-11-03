@@ -298,6 +298,77 @@ public class fishingsiteDao {
 		}
 		return result;
 	}
+	public List<fish> get_all_fish() throws SQLException{
+		List<fish> list = new ArrayList<fish>();
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		String sql = "select * from fish";
+		try {
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			while(rs.next()) {
+				fish f = new fish();
+				f.setF_code(rs.getInt("f_code"));
+				f.setF_name(rs.getString("f_name"));
+				list.add(f);
+			}
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		finally {
+			if(stmt != null) stmt.close();
+			if(conn != null) conn.close();
+			if(rs != null) rs.close();
+		}
+		return list;
+	}
 	
+	public void mappingfish(String [] fishes, String fs_name) throws SQLException {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql1 = "select fs_code from fishingsite where fs_name = ?";
+		String sql2 = "select f_code from fish where f_name = ?";
+		String sql3 = "insert into fishmapping values (?,?)";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql1);
+			pstmt.setString(1, fs_name);
+			rs = pstmt.executeQuery();
+			rs.next();
+			int fs_code = rs.getInt(1);
+			System.out.println(fs_name);
+			System.out.println(fs_code);
+			rs.close();
+			for(String cf : fishes) {
+				pstmt = conn.prepareStatement(sql2);
+				pstmt.setString(1, cf);
+				rs = pstmt.executeQuery();
+				rs.next();
+				int f_code = rs.getInt(1);
+				System.out.println(cf);
+				System.out.println(f_code);
+				rs.close();
+				pstmt.close();
+				pstmt = conn.prepareStatement(sql3);
+				pstmt.setInt(1, fs_code);
+				pstmt.setInt(2, f_code);
+				pstmt.executeUpdate();
+			}
+
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			} finally {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			}
+	}
 	
 }

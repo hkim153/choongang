@@ -58,6 +58,14 @@
 		<td><textarea rows = "1" cols="50" name = "fs_addr" required="required"></textarea></td>
 	</tr>
 	<tr>
+		<td>서식 어종</td>
+		<td>
+			<c:forEach var = "fish" items = "${flist }">
+				<input type = "checkbox" name = "어종" value = "${fish.f_name }">${fish.f_name }
+			</c:forEach>
+		</td>
+	</tr>
+	<tr>
 		<td>내용</td>
 		<td><textarea rows="10" cols="50" name="fs_content" required="required"></textarea></td>
 	</tr>
