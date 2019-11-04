@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,17 +43,12 @@
 		<input type = "checkbox" name = "지역" value = "경상남도">경상남도
 		<input type = "checkbox" name = "지역" value = "울산광역시">울산광역시
 		<input type = "checkbox" name = "지역" value = "부산광역시">부산광역시
-		<tr><td>어종</td><td>
-		<input type = "checkbox" name = "어종" value = "광어">광어
-		<input type = "checkbox" name = "어종" value = "연어">연어
-		<input type = "checkbox" name = "어종" value = "문어">문어
-		<input type = "checkbox" name = "어종" value = "숭어">숭어
-		<input type = "checkbox" name = "어종" value = "송어">송어
-		<input type = "checkbox" name = "어종" value = "이면수">이면수
-		<input type = "checkbox" name = "어종" value = "산천어">산천어<p>
-		<input type = "checkbox" name = "어종" value = "갈치">갈치
-		<input type = "checkbox" name = "어종" value = "명태">명태
-		<input type = "checkbox" name = "어종" value = "은어">은어
+		<tr><td>어종</td>
+		<td>
+			<c:forEach var = "fish" items = "${flist }">
+				<input type = "checkbox" name = "어종" value = "${fish.f_name }">${fish.f_name }
+			</c:forEach>
+		</td>
 		<tr><td>
 		<input type = "submit" value = "확인">
 		</td>

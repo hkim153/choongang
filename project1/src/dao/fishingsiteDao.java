@@ -124,6 +124,8 @@ public class fishingsiteDao {
 	
 	public List<fishingsite> find_fs_code(String [] regions, String [] fishes) throws SQLException{
 		List<fishingsite> list = new ArrayList<fishingsite>();
+		List<Integer> fs_codes = new ArrayList<Integer>();
+		List<Integer> f_codes = new ArrayList<Integer>();
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -131,14 +133,37 @@ public class fishingsiteDao {
 			conn = getConnection();
 			stmt = conn.createStatement();
 			for(String cr : regions) {
-				for(String cf : fishes) {
-					String sql = "select * from fishingsite where\r\n" + 
-							"fs_code in (select fs_code from fishmapping where\r\n" + 
-							"fs_code in (select fs_code from fishingsite where fs_reg = '" + cr + "')\r\n" + 
-							"and f_code in (select f_code from fish where f_name = '" + cf +"'))";
-					rs = stmt.executeQuery(sql);
-					int check = 0;
-					while(rs.next()) {
+				System.out.println(cr);
+				String sql1 = "select fs_code from fishingsite where fs_reg ='" + cr + "'";
+				rs = stmt.executeQuery(sql1);
+				while(rs.next())
+				{
+					int fs_code = rs.getInt("fs_code");
+					System.out.println(fs_code);
+					fs_codes.add(fs_code);
+					
+				}
+				rs.close();
+			}
+			for(String cf : fishes) {
+				System.out.println(cf);
+				String sql2 = "select f_code from fish where f_name ='" + cf + "'";
+				rs = stmt.executeQuery(sql2);
+				while(rs.next())
+				{
+					int f_code = rs.getInt("f_code");
+					System.out.println(f_code);
+					f_codes.add(f_code);
+				}
+				rs.close();
+			}
+			for(int cfsc : fs_codes) {
+				for(int cfc : f_codes) {
+					String sql3 = "select * from fishingsite where fs_code = ("
+							+ "select fs_code from fishmapping where fs_code = " + cfsc+
+							"and f_code =" + cfc + ")";
+					rs = stmt.executeQuery(sql3);
+					if(rs.next()) {
 						fishingsite fs = new fishingsite();
 						fs.setFs_code(rs.getInt("fs_code"));
 
@@ -152,16 +177,13 @@ public class fishingsiteDao {
 						fs.setReadcount(rs.getInt("readcount"));
 
 						fs.setReg_date(rs.getDate("reg_date"));
-
+						fs.setFs_num(rs.getInt("fs_num"));
 						list.add(fs);
-						check = 1;
-					}
-					if(check == 1) {
 						break;
-					}
+					}	    
+					rs.close();
 				}
 			}
-			
 		}
 		catch(Exception e) {
 			System.out.println(e.getMessage());
@@ -224,6 +246,7 @@ public class fishingsiteDao {
 			rs.next();
 			int number = rs.getInt(1) + 1;
 			rs.close();
+			pstmt.close();
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setString(1, fs.getFs_name());

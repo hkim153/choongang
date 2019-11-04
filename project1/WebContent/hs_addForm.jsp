@@ -23,6 +23,7 @@
 </div>
 <form action="hs_addPro.do?pageNum=${pageNum}" method="post">
    <input type="hidden" name="num" value="${num}">
+   <input type = "hidden" name = "id" value = "${sessionScope.id }">
    <table>
 	<caption><h2>낚시터 정보</h2></caption>
 	<tr>
@@ -75,7 +76,7 @@
 	</tr>
 	<tr>
 		<td>작성자</td>
-		<td><input type = "text" name = "id" value = "${sessionScope.id }"></td> 
+		<td>${sessionScope.id }</td> 
 	</tr>
 	<tr>
 		<td><input type="submit" value="확인"></td>

@@ -23,7 +23,6 @@ public class HS_AddProAction implements CommandProcess {
 			
 			String pageNum = request.getParameter("pageNum");
 			fishingsite fs = new fishingsite();
-			
 			fs.setFs_num(Integer.parseInt(request.getParameter("num")));
 			String fs_name = request.getParameter("fs_name");
 			fs.setFs_name(fs_name);
