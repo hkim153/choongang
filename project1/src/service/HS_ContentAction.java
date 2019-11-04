@@ -1,6 +1,7 @@
 package service;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +24,8 @@ public class HS_ContentAction implements CommandProcess {
 			fishingsiteDao fsd = fishingsiteDao.getInstance();
 			fsd.readCount(num);
 			fishingsite fs = fsd.select(num);
+			List<String> fishes = fsd.get_fish(num);
+			request.setAttribute("fishes", fishes);
 			request.setAttribute("num", num);
 			request.setAttribute("pageNum", pageNum);
 			request.setAttribute("fs", fs);

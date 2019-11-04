@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,6 +31,13 @@
 	<tr><td>조회수</td><td>${fs.readcount}</td></tr>
 	<tr><td>지역</td><td>${fs.fs_reg}</td></tr>
 	<tr><td>주소</td><td>${fs.fs_addr}</td></tr>
+	<tr><td>서식 어종</td>
+		<td>
+			<c:forEach var="fish" items="${fishes }">
+				${fish } 
+			</c:forEach>
+		</td>
+	</tr>
 	<tr><td>이미지</td><td></td></tr>
 	<tr><td>내용</td><td><pre>${fs.fs_content}</pre></td></tr>
 	<tr><td colspan="2">

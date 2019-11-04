@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,6 +59,14 @@
 			<tr>
 				<td>주소</td>
 				<td><textarea rows = "1" cols="50" name = "fs_addr" required="required">${fs.fs_addr}</textarea></td>
+			</tr>
+			<tr>
+				<td>서식 어종</td>
+				<td>
+					<c:forEach var = "fish" items = "${flist }">
+						<input type = "checkbox" name = "어종" value = "${fish.f_name }">${fish.f_name }
+					</c:forEach>
+				</td>
 			</tr>
 			<tr>
 				<td>내용</td>

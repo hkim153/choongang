@@ -25,6 +25,7 @@ public class HS_UpdateProAction implements CommandProcess {
 			String rightpasswd = request.getParameter("rightpasswd");
 			String passwd = request.getParameter("passwd");
 			String pageNum = request.getParameter("pageNum");
+			String [] fishes = request.getParameterValues("어종");
 			int num = Integer.parseInt(request.getParameter("num"));
 			int result;
 			if(!id.equals(curid)) {
@@ -41,9 +42,12 @@ public class HS_UpdateProAction implements CommandProcess {
 					fs.setFs_addr(request.getParameter("fs_addr"));
 					fs.setFs_content(request.getParameter("fs_content"));
 					fs.setFs_img(request.getParameter("fs_img"));
-					fs.setFs_name(request.getParameter("fs_name"));
+					String fs_name = request.getParameter("fs_name");
+					fs.setFs_name(fs_name);
 					fishingsiteDao fsd = fishingsiteDao.getInstance();
+					fsd.deletefishmapping(num);
 					result = fsd.update(fs);
+					fsd.mappingfish(fishes, fs_name);
 				}
 			}
 			request.setAttribute("result", result);

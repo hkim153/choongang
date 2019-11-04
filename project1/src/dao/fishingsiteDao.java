@@ -371,4 +371,73 @@ public class fishingsiteDao {
 			}
 	}
 	
+	public List<String> get_fish(int num) throws SQLException{
+		List<String> fishes = new ArrayList<String>();
+		List<Integer> f_codes = new ArrayList<Integer>();
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		String sql1 = "select fs_code from fishingsite where fs_num=" + num;
+		try {
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql1);
+			rs.next();
+			int fs_code = rs.getInt("fs_code");
+			rs.close();
+			String sql2 = "select f_code from fishmapping where fs_code=" + fs_code;
+			rs = stmt.executeQuery(sql2);
+			while(rs.next()) {
+				f_codes.add(rs.getInt("f_code"));
+			}
+			rs.close();
+			for(int cc : f_codes) {
+				String sql3 = "select f_name from fish where f_code=" + cc;
+				rs = stmt.executeQuery(sql3);
+				rs.next();
+				fishes.add(rs.getString("f_name"));
+				rs.close();
+			}
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		finally {
+			if(stmt != null) stmt.close();
+			if(conn != null) conn.close();
+			if(rs != null) rs.close();
+		}
+		return fishes;
+	}
+	
+	public void deletefishmapping(int num) throws SQLException{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql1 = "select fs_code from fishingsite where fs_num = ?";
+		String sql2 = "delete from fishmapping where fs_code=?";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql1);
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery();
+			rs.next();
+			int fs_code = rs.getInt(1);
+			rs.close();
+			pstmt.close();
+			pstmt = conn.prepareStatement(sql2);
+			pstmt.setInt(1, fs_code);
+			pstmt.executeUpdate();
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			} finally {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			}
+	}
+	
 }

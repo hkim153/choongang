@@ -34,6 +34,7 @@ public class HS_DeleteProAction implements CommandProcess {
 				}
 				else {
 					fishingsiteDao fsd = fishingsiteDao.getInstance();
+					fsd.deletefishmapping(num);
 					result = fsd.delete(num);
 				}
 			}

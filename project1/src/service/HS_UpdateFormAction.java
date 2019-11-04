@@ -1,6 +1,7 @@
 package service;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.Board;
 import dao.BoardDao;
+import dao.fish;
 import dao.fishingsite;
 import dao.fishingsiteDao;
 
@@ -22,6 +24,9 @@ public class HS_UpdateFormAction implements CommandProcess {
 			String pageNum = request.getParameter("pageNum");
 			fishingsiteDao fsd = fishingsiteDao.getInstance();
 			fishingsite fs = fsd.select(num);
+			List<fish> flist = fsd.get_all_fish();
+			
+			request.setAttribute("flist", flist);
 			request.setAttribute("pageNum", pageNum);
 			request.setAttribute("fs", fs);
 			
