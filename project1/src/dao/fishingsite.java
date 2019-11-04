@@ -1,25 +1,54 @@
 package dao;
 
+import java.util.Date;
+
 public class fishingsite {
-	private String fs_code;
-	private int num;
+	private int fs_code;
+	private int fs_num;
+	public int getFs_num() {
+		return fs_num;
+	}
+	public void setFs_num(int fs_num) {
+		this.fs_num = fs_num;
+	}
 	private String fs_name;
 	private String fs_addr;
 	private String fs_reg;
 	private String fs_content;
 	private String fs_img;
-	public String getFs_code() {
+	
+	//추가
+	private String id;
+	private int readcount;
+	private Date reg_date;
+
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public int getReadcount() {
+		return readcount;
+	}
+	public void setReadcount(int readcount) {
+		this.readcount = readcount;
+	}
+	public Date getReg_date() {
+		return reg_date;
+	}
+	public void setReg_date(Date reg_date) {
+		this.reg_date = reg_date;
+	}
+	
+	public int getFs_code() {
 		return fs_code;
 	}
-	public void setFs_code(String fs_code) {
+	public void setFs_code(int fs_code) {
 		this.fs_code = fs_code;
 	}
-	public int getNum() {
-		return num;
-	}
-	public void setNum(int num) {
-		this.num = num;
-	}
+
 	public String getFs_name() {
 		return fs_name;
 	}

@@ -10,7 +10,7 @@
 			<a href="main.do"><img src="images/logo.png" width="100%"
 				height="100%"></a>
 		</div>
-		<div class="gnb">
+		<div class="gnb">  
 			<ul>
 				<li><a href="board.do">게시판</a></li>
 				<li><a href="wh_store.do">판매 및 대여</a></li>
