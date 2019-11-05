@@ -120,7 +120,7 @@
 						<a href="DH_channel.jsp"><img alt="" src="images/login.png"
 							width="200" height="100"></a></a>
 
-					</div>
+					</div>  
 					<!-- 인원모집  -->
 				</div>
 				<!-- 오른쪽 칼럼 끝 -->
