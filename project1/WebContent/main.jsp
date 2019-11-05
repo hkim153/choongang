@@ -32,7 +32,7 @@
 								<tr>
 									<td>${startNum }등</td>
 									<td><a
-										href='sj_content.do?num=${rank.num }&id=${rank.id }'>${rank.id }/${rank.get_fish }</a></td>
+										href='sj_content.do?num=${rank.num }&id=${rank.id }&img_folder=${rank.img_folder}'>${rank.id }/${rank.get_fish }</a></td>
 									<td>${rank.length }cm</td>
 									<td>${rank.reg_date }</td>
 								</tr>

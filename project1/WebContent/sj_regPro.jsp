@@ -15,13 +15,13 @@
 <c:if test="${result>0 }">
 <script type="text/javascript">
 	alert("입력 완료");
-	location.href="fishingking.do";
+	location.href="fishingking.do?id=${id}&num=${num}";
 </script>
 </c:if>
 <c:if test="${result==0 }">
 <script type="text/javascript">
 	alert("입력실패");
-	location.href="fishingking.do";
+	location.href="fishingking.do?id=${id}";
 </script>
 </c:if>
 </body>

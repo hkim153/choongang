@@ -30,7 +30,13 @@
 		<td>${rank.content }</td>
 	</tr>
 </table>
-<input type="button" value="삭제"
-		onclick="location.href='sj_deleteform.do?num=${rank.num}&id=${rank.id }'">
+<c:if test="${rank.id }==${id }"> <!-- 로그인하면 삭제버튼이 보이게하는건데 구현안되면 액션에서 해야하는데 일단 패스  -->
+	<table>
+		<tr>
+		<input type="button" value="삭제"
+		onclick="location.href='sj_deleteform.do?num=${num}&id=${id }'">
+		</tr>
+	</table>
+</c:if>
 </body>
 </html>

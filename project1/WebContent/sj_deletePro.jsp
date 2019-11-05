@@ -10,7 +10,7 @@
 <c:if test="${result>0 }">
 	<script type="text/javascript">
 		alert("삭제 완료");
-		location.href="main.do?id=${rank.id }";
+		location.href="fishingking.do?id=${rank.id }";
 	</script>
 </c:if>
 <c:if test="${result == 0 }">

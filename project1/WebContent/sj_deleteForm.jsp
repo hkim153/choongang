@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-	location.href="sj_deletepro.do?id=${rank.id }";
+	location.href="sj_deletepro.do?id=${rank.id }&num=${num}";
 </script> 
 </head>
 <body>
