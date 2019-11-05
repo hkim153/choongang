@@ -23,9 +23,8 @@ public class SJ_RegProAction implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			
-			request.setCharacterEncoding("utf-8");
-			int num=1;
+			//int num = 8;
+			request.setCharacterEncoding("utf-8");			
 			int maxSize = 10 * 1024 * 1024;
 			String img_folder = "/fish_rank";
 			String realPath = request.getServletContext().getRealPath(img_folder);
@@ -33,6 +32,7 @@ public class SJ_RegProAction implements CommandProcess {
 			Enumeration en = multi.getFileNames();
 			String filename1 = (String)en.nextElement();
 			String id = multi.getParameter("id");
+			int num = Integer.parseInt(multi.getParameter("num"));
 			String get_fish = multi.getParameter("get_fish");
 			int length = Integer.parseInt(multi.getParameter("length"));
 			String content = multi.getParameter("content");

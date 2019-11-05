@@ -17,7 +17,7 @@
 </head>
 <body>
 <h2>등록 게시판</h2>
-<form action="sj_regpro.do" enctype="multipart/form-data" method="post">
+<form action="sj_regpro.do?id=${id }" enctype="multipart/form-data" method="post">
 <table class="table1" border="1">
 	어종 
 	 <ul>
@@ -27,8 +27,12 @@
 		</li>
 	</ul>
 	<tr>
+		<th>좋아하는 숫자 입력</th>
+		<td><input type="text" name="num" required="required"></td>
+	</tr>
+	<tr>
 		<th>아이디</th>
-		<td><input type="text" name="id">원래는 가져오는건데 아직은 적는걸로</td>
+		<td>${id }</td>
 	</tr>
 	<tr>
 		<th>물고기 길이</th>
