@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script language="javascript">
-	function showPopup() { window.open("DH_roomPopup.html", "roomInfo", "width=400, height=300, left=100, top=50 ");}
+/* 	function showPopup() { window.open("DH_roomPopup.html", "roomInfo", "width=400, height=300, left=100, top=50 ");} */
 </script>
 
 <link rel="stylesheet" href="style.css" type="text/css">
