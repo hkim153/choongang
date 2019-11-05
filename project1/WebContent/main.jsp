@@ -32,7 +32,7 @@
 								<tr>
 									<td>${startNum }등</td>
 									<td><a
-										href='sj_content.do?num=${rank.num }&id=${rank.id }'>${rank.id }/${rank.get_fish }</a></td>
+										href='sj_content.do?num=${rank.num }&id=${rank.id }&img_folder=${rank.img_folder}'>${rank.id }/${rank.get_fish }</a></td>
 									<td>${rank.length }cm</td>
 									<td>${rank.reg_date }</td>
 								</tr>
@@ -86,23 +86,21 @@
 					<!--  게시판 -->
 				</div>
 				<!-- 왼쪽칼럼 끝  -->
-
+ 
 				<div class="column_right">
-
+				 
 					<div id="account" class="section_login">
 						<c:choose>
 							<c:when test="${sessionScope.result ne 1 }">
 								<form action="login.do">
-									<a href="jw_loginForm.do"> <img alt=""
-										src="images/login.png" width="200" height="100"></a>
+									<a href="jw_loginForm.do"> <img alt="" src="images/login.png" width="200" height="100"></a>
 								</form>
 							</c:when>
 							<c:when test="${sessionScope.result eq 1 }">
 								<p>${sessionScope.id }님환영합니다!</p>
-								<input type="button" value="정보수정">
-								<a href="wh_Pro_registForm.do"><input type="button"	value="상품등록"></a>
-								<a href="jw_myPage.do"> <input type="button" value="마이페이지"></a>
-									<a href="jw_logOut.do"> <input type="button" value="로그아웃">		</a>
+								<a href="jw_myPage.do"> <input type="button" value="마이페이지"> </a>
+								<a href="wh_Pro_registForm.do"><input type="button"	value="상품등록"> </a>								
+								<a href="jw_logOut.do"> <input type="button" value="로그아웃">		 </a>
 							</c:when>
 						</c:choose>
 					</div>
@@ -111,7 +109,7 @@
 					<!-- 			<div class="event_side"> -->
 					<div class="calendar	">
 
-						<iframe src="index2.html" width="100%" height="350px"></iframe>
+						<iframe src="index2.html" width="100%" height="350px" ></iframe>
 
 					</div>
 					<!-- 이벤트달력 작게  -->
