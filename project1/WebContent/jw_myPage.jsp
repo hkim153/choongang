@@ -16,9 +16,23 @@
 				<div class="column">
 					<div class="sh_group">
 						<div class="sh_header">
-							<h2>여기엔 뭐넣을까?</h2>
-						</div>						
+							<h2>여기는 프로필</h2>
+						</div>
+						<div class="sh_content">
+						<dl class="sh_list">
+						<dt class="nic_tit">이름</dt>
+						<dd class="nic_desc"></dd>
+						<dt class="nic_tit">E-Mail</dt>
+						<dd class="nic_desc"></dd>
+						<dt class="nic_tit">주소</dt>
+						<dd class="nic_desc"></dd>
+						<dt class="nic_tit">전화번호</dt>
+						<dd class="nic_desc"></dd>
+						</dl>						
 					</div>
+					<p class="btn_area_btm">
+					<a href="jw_myPage.jsp"></a>
+					</p>
 				</div>
 			</div>
 		</div>
@@ -29,3 +43,10 @@
 	</div>
 </body>
 </html>
+
+
+
+
+
+/jw_myPageForm.do=service.JW_MyPageFormAction
+/jw_myPage.do=service.JW_MyPageProAction

@@ -22,7 +22,7 @@
 </script>
 </head>
 <body>
-<h2>
+<h2>보고싶은 물고기를 선택하여 주세요
 <form action="fishingking.do?get_fish=${rank.get_fish }" >
 
 	<select name="get_fish" id="get_fish" onchange="ch(${rank.num })" ondblclick="ch(${rank.num })">
@@ -37,22 +37,28 @@
 <c:when test="${sessionScope.result eq 1 }">
 	<table>
 		<tr>
-			<td><a href="sj_regform.do">나의 물고기 자랑하기</a></td>
+			<td>${id}<a href="sj_regform.do?id=${id}">나의 물고기 자랑하기</a></td>
 		</tr>
 	</table>
+</c:when>
+<c:when test="${sessionScope.result ne 1 }">
+	<h3>로그인을 하시면 등록이 가능합니다</h3>
 </c:when>
 </c:choose>
 	<table border="1">
 		<tr>
+			<th style="display:none;">num</th>
 			<th>순위(순위 구현 완료)</th>
-			<th>아이디(회원이랑 연동할 예정)</th>
+			<th>아이디(회원이랑 연동 완료)</th>
 			<th>길이(그림으로 나타내는거랑 숫자나오게)</th>
 			<th>등록일(길이 같을 경우 먼저 등록한 회원의 등수가 높음)</th>
 		</tr>
 			<c:forEach var ="rank" items="${list }">	
 			<tr>
+				<th style="display:none;">${rank.num }</th>
 				<td>${startNum }등</td> 
-				<td><a href = 'sj_content.do?num=${rank.num }&id=${rank.id }&img_folder=${rank.img_folder}&real_name=${rank.real_name}'>${rank.id }/${rank.get_fish }</a></td>
+				<td><a href = 'sj_content.do?num=${rank.num }&id=${rank.id }&img_folder=${rank.img_folder}&real_name=${rank.real_name}&result=${result}'>${rank.id }/${rank.get_fish }</a></td>
+				<%-- <td><a href = 'sj_content.do?num=${rank.num }&id=${rank.id }&img_folder=${rank.img_folder}&real_name=${rank.real_name}'>${id }/${rank.get_fish }</a></td>--%>
 				<td>${rank.length }cm<div style="width:${rank.length *2}%;" class="box1"></div></td>
 				<td>${rank.reg_date }</td>				
 			</tr>

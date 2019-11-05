@@ -17,11 +17,13 @@ public class SJ_DeleteFormAction implements CommandProcess {
 		try {
 			System.out.println("sj_DeleteFormAction start");
 			String id = request.getParameter("id");
+			int num = Integer.parseInt(request.getParameter("num"));
 			String pageNum = request.getParameter("pageNum");
 			RankDao rk = RankDao.getInstance();
 			RankDto rank = rk.select(id);
 			request.setAttribute("id", id);
 			request.setAttribute("rank", rank);
+			request.setAttribute("num", num);
 			System.out.println("sj_DeleteFormAction end");
 		}catch(Exception e) {	System.out.println(e.getMessage());	}
 		return "sj_deleteForm.jsp";

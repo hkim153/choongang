@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -18,6 +19,13 @@
 				<li><a href="hs_fishingSiteForm.do">낚시터</a></li>
 				<li><a href="event.do">이벤트 달력</a></li>
 				<li><a href="fishingking.do">이달의 낚시왕</a></li>
+			<c:choose>
+			<c:when  test="${sessionScope.result ne 1 }"></c:when>
+			<c:when test="${sessionScope.result eq 1 }">
+			<li><a href="jw_myPageForm.do" >${sessionScope.id } 님 환영합니다.</a></li>
+			<li><a href="jw_logOut.do">로그아웃</a></li>
+			</c:when>			
+			</c:choose>
 			</ul>
 		</div>
 		<!-- <div class="logo">

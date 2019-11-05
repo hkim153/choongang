@@ -7,11 +7,7 @@
 <title>Insert title here</title>
 <link href="test.css" rel="stylesheet" type="text/css">
 <link href="./css/product.css" rel="stylesheet" type="text/css">
-<style type="text/css">
-#container {
-	
-}
-
+<style type="text/css">  
 #container .login_form{
 	padding:0;
 		margin :8em auto 25px;
@@ -19,16 +15,13 @@
 		position:relative;
 		height:330px;
 		text-align: center; 
-}
+		}
 #container .login_form .form{
 	padding:0;
 		margin :1em auto 25px;
 		width:370px;
-		position:relative;
-		
+		position:relative;		
 }
-
-
 </style>
 <script type="text/javascript">
 	function idchk() {

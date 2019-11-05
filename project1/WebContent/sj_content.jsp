@@ -30,7 +30,28 @@
 		<td>${rank.content }</td>
 	</tr>
 </table>
-<input type="button" value="삭제"
-		onclick="location.href='sj_deleteform.do?num=${rank.num}&id=${rank.id }'">
+${sessionScope.result }
+<c:choose>
+<c:when test="${sessionScope.result eq 1 }">
+	<table>
+		<tr>
+		${sessionScope.id }-1/${id }-2/${rank.id }-3/${sessionScope.result }-4
+		<input type="button" value="삭제"
+		onclick="location.href='sj_deleteform.do?num=${num}&id=${id }'">
+		</tr>
+	</table>
+</c:when>
+<c:when test="${sessionScope.result ne 1 }">
+${sessionScope.id }-1/${id }-2/${rank.id }-3/${sessionScope.result }-4
+</c:when>
+</c:choose>
+<%-- <c:if test="${rank.id }==${id }"> <!-- 로그인하면 삭제버튼이 보이게하는건데 구현안되면 액션에서 해야하는데 일단 패스  -->
+	<table>
+		<tr>
+		<input type="button" value="삭제"
+		onclick="location.href='sj_deleteform.do?num=${num}&id=${id }'">
+		</tr>
+	</table>
+</c:if> --%>
 </body>
 </html>

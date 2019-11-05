@@ -7,6 +7,7 @@
 	location.href="main.do";	 
 </script> 
 </head>
+
 <body>
 </body>
 </html>
