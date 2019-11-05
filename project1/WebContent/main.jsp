@@ -86,7 +86,7 @@
 					<!--  게시판 -->
 				</div>
 				<!-- 왼쪽칼럼 끝  -->
-
+ 
 				<div class="column_right">
 				${sessionScope.result }?? 
 					<div id="account" class="section_login">
