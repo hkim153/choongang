@@ -30,7 +30,7 @@ public class JW_loginProAction implements CommandProcess {
 
 			int result = md.check(id, passwd); // id,passwd 
 			int adminResult = md.confirm_A(admin_c); // 어드민인지 확인
-			
+			System.out.println("login result->" + result);
 //			System.out.println("결과 체크: " + result);
 			System.out.println("어드민 체크: " + adminResult);
 			
