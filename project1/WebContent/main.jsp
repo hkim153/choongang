@@ -88,7 +88,7 @@
 				<!-- 왼쪽칼럼 끝  -->
  
 				<div class="column_right">
-				${sessionScope.result }?? 
+				 
 					<div id="account" class="section_login">
 						<c:choose>
 							<c:when test="${sessionScope.result ne 1 }">
