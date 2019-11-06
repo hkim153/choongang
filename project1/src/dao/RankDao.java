@@ -127,7 +127,7 @@ public class RankDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql	 = "select * from ranking where num between ? and ? "
-					+ "and get_fish =? "
+					+ "and get_fish =? and TO_CHAR(reg_date , 'MM')=TO_CHAR(sysdate , 'MM')"
 					+ "order by length desc, reg_date asc";
 //		String sql1 = "select get_fish from ranking group by get_fish";
 		try {

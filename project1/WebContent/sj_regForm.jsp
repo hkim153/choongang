@@ -24,11 +24,15 @@
 		 <li>
 			<label><input type="radio" name="get_fish" value="광어" checked="checked">광어</label>
 		  	<label><input type="radio" name="get_fish" value="연어">연어</label>
+		  	<label><input type="radio" name="get_fish" value="문어">문어</label>
+		  	<label><input type="radio" name="get_fish" value="숭어">숭어</label>
+		  	<label><input type="radio" name="get_fish" value="송어">송어</label>
+		  	<label><input type="radio" name="get_fish" value="갈치">갈치</label>
 		</li>
 	</ul>
 	<tr>
 		<th>좋아하는 숫자 입력</th>
-		<td><input type="text" name="num" required="required"></td>
+		<td><input type="text" name="num" placeholder="3자리 이상 추천" required="required"></td>
 	</tr>
 	<tr>
 		<th>아이디</th>
@@ -36,7 +40,7 @@
 	</tr>
 	<tr>
 		<th>물고기 길이</th>
-		<td><input type="text" name="length" required="required"></td>
+		<td><input type="text" name="length" required="required">cm</td>
 	</tr>
  	<tr>
 		<th>사진 등록하기</th>
@@ -44,9 +48,10 @@
 	</tr>
 	<tr>
 		<th>리뷰</th>	
-		<td><input type="text" name="content"></td>
+		<td><textarea rows="10" cols="50" name="content" placeholder="물고기를 잡은 기분을 표현해 주세요" required="required"></textarea></td>
 	</tr>
 </table>
+<p>
 <input type="submit" value="제출">
 <input type="reset" value="취소">
 <input type="button" value="뒤로가기" onclick="history.back(-1)">

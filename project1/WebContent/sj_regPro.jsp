@@ -20,7 +20,7 @@
 </c:if>
 <c:if test="${result==0 }">
 <script type="text/javascript">
-	alert("입력실패");
+	alert("다른 분이 좋아하는 숫자입니다.");
 	location.href="fishingking.do?id=${id}";
 </script>
 </c:if>
