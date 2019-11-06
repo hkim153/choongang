@@ -21,11 +21,18 @@
 				<li><a href="fishingking.do">이달의 낚시왕</a></li>
 			<c:choose>
 			<c:when  test="${sessionScope.result ne 1 }"></c:when>
-			<c:when test="${sessionScope.result eq 1 }">
-			<li><a href="jw_myPageForm.do" >${sessionScope.id } 님 환영합니다.</a></li>
+			<c:when test="${sessionScope.result eq 1 and( sessionScope.adminResult ne 1) }">
+			<li><a href="jw_myPage.do" >${sessionScope.id } 님 환영합니다.</a></li>
 			<li><a href="jw_logOut.do">로그아웃</a></li>
-			</c:when>			
+			</c:when>	
+			<c:when test="${sessionScope.result eq 1 and(sessionScope.adminResult eq 1) }"> <!-- 로그인값, 어드민권한 둘다 있을때  -->
+							<li>Admin님 환영합니다</li>
+							<li><a href="jw_logOut.do">로그아웃</a></li>
+							</c:when>		
 			</c:choose>
+			
+			
+			
 			</ul>
 		</div>
 		<!-- <div class="logo">

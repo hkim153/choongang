@@ -126,23 +126,26 @@ public class jw_MemberDao {
 		return result;
 	}
 
-	public int confirm_A(String admin_c) throws SQLException {
+	public int confirm_A(String admin_c, String id) throws SQLException {
 		Connection conn = null;
 		int adminResult = 0;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-		String sql = "select admin_c from member where admin_c=?";
-		System.out.println("sql잘나오나요" + sql);
-		System.out.println("컨펌 admin_c: " + admin_c);
+		String sql = "select admin_c from member where id=?";
+		
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, admin_c);
+			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
-			if (rs.next())
-				adminResult = 1; // 있을땐 1
-			else
-				adminResult = 0; // 없을땐 0
+			if (rs.next()) {
+				String dbadmin = rs.getString(1);
+				if(dbadmin.equals('A'));
+				adminResult =1;
+			}
+//				adminResult = 1; // 있을땐 1
+//			else
+//				adminResult = 0; // 없을땐 0
 			System.out.println("confirm_A 결과: " + adminResult);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
