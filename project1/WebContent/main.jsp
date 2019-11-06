@@ -121,13 +121,12 @@
 
 					<div id="account" class="section_login">
 						<c:choose>
-							<c:when test="${sessionScope.result ne 1 }">
+							<c:when test="${sessionScope.result ne 1 }"> <!-- 로그인값이없을때 -->
 								<form action="login.do">
-									<a href="jw_loginForm.do"> <img alt=""
-										src="images/login.png" width="200" height="100"></a>
+									<a href="jw_loginForm.do"> <img alt=""src="images/login.png" width="200" height="100"></a>
 								</form>
 							</c:when>
-							<c:when test="${sessionScope.result eq 1 }">
+							<c:when test="${sessionScope.result eq 1 and( sessionScope.adminResult ne 1)}"> <!-- 로그인값이있고 어드민 권한이없을때  -->
 								<p>${sessionScope.id }님환영합니다!</p>
 								<a href="jw_myPage.do"> <input type="button" value="마이페이지">
 								</a>
@@ -135,6 +134,10 @@
 									value="상품등록"> </a>
 								<a href="jw_logOut.do"> <input type="button" value="로그아웃">
 								</a>
+							</c:when>
+							<c:when test="${sessionScope.result eq 1 and(sessionScope.adminResult eq 1) }"> <!-- 로그인값, 어드민권한 둘다 있을때  -->
+							<p> Admin입니다.</p>
+							<a href="jw_logOut.do"> <input type="button" value="로그아웃"></a>
 							</c:when>
 						</c:choose>
 					</div>
