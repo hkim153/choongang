@@ -12,28 +12,9 @@
 <body>
 	<div class="wrap">
 		<header>
-		<div class="gnb">
-			<ul>
-				<li><a href="board.do">게시판</a></li>
-				<li><a href="store.do">판매 및 대여</a></li>
-				<li><a href="recruit.do">팀원모집</a></li>
-				<li><a href="hs_userPreferForm.do">낚시터</a></li>
-				<li><a href="event.do">이벤트 달력</a></li>
-				<li><a href="fishingking.do">이달의 낚시왕</a></li>
-			</ul>
-		</div>
-		<!-- <div class="logo">
-				<form action="search.jsp" name="search" method="get">
-					<input type="text" name="searchBox" title="searchBox"
-						placeholder="검색어를입력해주세요!">
-				</form>
-			</div> -->
-		<div class="logo">
-			<a href="main.do"><img src="images/LOGO.png" width="100%"
-				height="100%"></a>
-		</div>
+			<jsp:include page="header.jsp"></jsp:include>
 		</header>
-
+		
 		<!-- <div style="position:relative;width:1080px;margin:0 auto;z-index:11"> -->
 		<div
 			style="position: relative; width: 1080px; margin: 0 auto; z-index: 11">
@@ -47,8 +28,7 @@
 
 
 		<div class="container" role="main">
-			<div id="promotion1" style="display: block;"
-				data-cookie="PC_CENTER_BANNER_12940">
+			<div id="promotion1" style="display: block;" data-cookie="PC_CENTER_BANNER_12940">
 				<table border="1">
 				<h3>광어의 현재 랭킹</h3>
 					<tr>
@@ -71,7 +51,8 @@
 					</c:if>
 					</c:forEach>
 				</table>
-			</div>
+			
+		
 			<!-- bts광고판 이달의 낚시왕 -->
 
 			<div class="column_left">
@@ -138,8 +119,10 @@
 
 				<!-- 로그인  -->
 				<!-- 			<div class="event_side"> -->
-				<div class="section_event" onclick="" >
-			<iframe src="index2.html" width="100%" height="350px"></iframe>		
+				<div class="section_login">
+
+			
+
 				</div>
 				<!-- 이벤트달력 작게  -->
 
@@ -152,10 +135,10 @@
 				<!-- 인원모집  -->
 			</div>
 			<!-- 오른쪽 칼럼 끝 -->
-
+				</div>
+			</div>
+			<jsp:include page="footer.jsp"></jsp:include>
 		</div>
-	</div>
-
 
 </body>
 </html>
