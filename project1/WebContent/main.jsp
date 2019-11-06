@@ -9,30 +9,34 @@
 <link href="test.css" rel="stylesheet" type="text/css">
 <link href="./css/product.css" rel="stylesheet" type="text/css">
 <style type="text/css">
-	.sj_c td {
-		border-top: 1px groove;
-		border-bottom: 1px solid;
-		border-collapse : collapse;
-	}
-	.sj_c {
-		float: left;
-		margin-left: 40px;
-	}
-	#sj_i{
-		text-align: center;
-		width:150px;
-	}
-	#sj_l{
-		text-align: center;
-		width:100px;
-		height:50px;
-	}
-	#sj_e{
-		float: right;
-		margin-right: 150px;
-		width:400px;
-		height:200px;
-	}
+.sj_c td {
+	border-top: 1px groove;
+	border-bottom: 1px solid;
+	border-collapse: collapse;
+}
+
+.sj_c {
+	float: left;
+	margin-left: 40px;
+}
+
+#sj_i {
+	text-align: center;
+	width: 150px;
+}
+
+#sj_l {
+	text-align: center;
+	width: 100px;
+	height: 50px;
+}
+
+#sj_e {
+	float: right;
+	margin-right: 150px;
+	width: 400px;
+	height: 200px;
+}
 </style>
 </head>
 <body>
@@ -70,8 +74,8 @@
 					</table>
 				</div>
 				<div id="sj_e">
-				광어 랭킹 1위의 물고기 사진(구현예정)
-				<img src="${pageContext.request.contextPath}/fish_rank/kwangA1.jpg">
+					광어 랭킹 1위의 물고기 사진(구현예정) <img
+						src="${pageContext.request.contextPath}/fish_rank/kwangA1.jpg">
 				</div>
 				<!-- 이달의 낚시왕 -->
 
@@ -121,12 +125,16 @@
 
 					<div id="account" class="section_login">
 						<c:choose>
-							<c:when test="${sessionScope.result ne 1 }"> <!-- 로그인값이없을때 -->
+							<c:when test="${sessionScope.result ne 1 }">
+								<!-- 로그인값이없을때 -->
 								<form action="login.do">
-									<a href="jw_loginForm.do"> <img alt=""src="images/login.png" width="200" height="100"></a>
+									<a href="jw_loginForm.do"> <img alt=""
+										src="images/login.png" width="200" height="100"></a>
 								</form>
 							</c:when>
-							<c:when test="${sessionScope.result eq 1 and( sessionScope.adminResult ne 1)}"> <!-- 로그인값이있고 어드민 권한이없을때  -->
+							<c:when
+								test="${sessionScope.result eq 1 and( sessionScope.adminResult ne 1)}">
+								<!-- 로그인값이있고 어드민 권한이없을때  -->
 								<p>${sessionScope.id }님환영합니다!</p>
 								<a href="jw_myPage.do"> <input type="button" value="마이페이지">
 								</a>
@@ -135,21 +143,23 @@
 								<a href="jw_logOut.do"> <input type="button" value="로그아웃">
 								</a>
 							</c:when>
-							<c:when test="${sessionScope.result eq 1 and(sessionScope.adminResult eq 1) }"> <!-- 로그인값, 어드민권한 둘다 있을때  -->
-							<p> Admin입니다.</p>
-							<a href="jw_logOut.do"> <input type="button" value="로그아웃"></a>
+							<c:when
+								test="${sessionScope.result eq 1 and(sessionScope.adminResult eq 1) }">
+								<!-- 로그인값, 어드민권한 둘다 있을때  -->
+								<p>Admin입니다.</p>
+								<a href="jw_logOut.do"> <input type="button" value="로그아웃"></a>
 							</c:when>
 						</c:choose>
 					</div>
 
 					<!-- 로그인  -->
-					<!-- 			<div class="event_side"> --> 
+					<!-- 			<div class="event_side"> -->
 					<div class="calendar	">
 
 						<iframe src="index2.html" width="100%" height="350px"></iframe>
 
 					</div>
-					<!-- 이벤트달력 작게  --> 
+					<!-- 이벤트달력 작게  -->
 
 					<!-- <div class="recruit_side" > -->
 					<div class="recruit">
