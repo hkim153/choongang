@@ -28,22 +28,7 @@
 </head>
 <body>
 <div class="wrap">
-		<header>
-		<div class="gnb">
-			<ul>
-				<li><a href="board.do">게시판</a></li>
-				<li><a href="store.do">판매 및 대여</a></li>
-				<li><a href="recruit.do">팀원모집</a></li>
-				<li><a href="fishing.do">낚시터</a></li>
-				<li><a href="event.do">이벤트 달력</a></li>
-				<li><a href="fishingking.do">이달의 낚시왕</a></li>
-			</ul>
-		</div>
-		<div class="logo">
-			<img src="images/LOGO.png" width="100%" height="100%"> <a
-				href="main.do"></a>
-		</div>
-		</header>
+		<header> <jsp:include page="header.jsp"></jsp:include> </header>
 		
 	<div class="container" role="main">	
 	<form action="jw_joinPro.do" method="post" name="frm"		onsubmit="return chk()">
@@ -89,6 +74,7 @@
 		</table>
 	</form>
 	</div>
+	<jsp:include page="footer.jsp"></jsp:include>
 	</div>
 	
 	
