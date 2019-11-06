@@ -15,13 +15,14 @@ a {
 	text-decoration: none;
 	font-weight: bold;
 }
+
 #header {
 	background: white;
 }
+
 #header .gnb {
 	margin-left: auto;
 	margin-right: auto;
-	
 	width: 100%;
 	background-color: #353535;
 }
@@ -46,7 +47,6 @@ a {
 }
 
 #header .logo {
-	
 	width: 400px;
 	height: 150px;
 	line-height: 100px;
@@ -93,10 +93,9 @@ a {
 	background: #fff;
 }
 
-.section_event{
+.section_event {
 	position: relative;
 	height: 500px;
 	border: 1px solid #dee3eb;
 	background: #fff;
-	
 }

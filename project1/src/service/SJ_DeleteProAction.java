@@ -17,14 +17,16 @@ public class SJ_DeleteProAction implements CommandProcess {
 		try {
 			System.out.println("DeleteProAction start");
 			request.setCharacterEncoding("utf-8");
-			String id = request.getParameter("id");	
+			//String id = request.getParameter("id");	
+			int num = Integer.parseInt(request.getParameter("num"));
 			RankDto rank = new RankDto();
 			RankDao rk = RankDao.getInstance();
-			int result = rk.delete(id);
+			int result = rk.delete(num);
 			System.out.println("DeleteProAction result->"+result);
 			request.setAttribute("result", result);
-			request.setAttribute("num", rank.getNum());
-			request.setAttribute("id", id);	
+			request.setAttribute("num", num);
+			//request.setAttribute("num", rank.getNum());
+			//request.setAttribute("id", id);	
 		} catch(Exception e) { System.out.println(e.getMessage()); }
 		
 		return "sj_deletePro.jsp";

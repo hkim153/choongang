@@ -4,9 +4,10 @@
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-	location.href="main.do";	
+	location.href="main.do?img_folder=${rank.img_folder}&real_name=${rank.real_name}";	 
 </script> 
 </head>
+
 <body>
 </body>
 </html>

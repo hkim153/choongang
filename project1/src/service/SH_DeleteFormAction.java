@@ -15,7 +15,7 @@ public class SH_DeleteFormAction implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			int num = num = Integer.parseInt(request.getParameter("num"));
+			int num = Integer.parseInt(request.getParameter("num"));
 			String pageNum = request.getParameter("pageNum");		
 			
 			BoardDao bd = BoardDao.getInstance();

@@ -53,8 +53,8 @@ public class RankDao {
 	 * return rank; }
 	 */
 	public int insert(RankDto rank) throws SQLException {
-		int num = rank.getNum();
-		int result = 0;
+		int num = 3;
+		int result1 = 0;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = "insert into ranking values(?,?,?,?,?,sysdate,?,?,?)";
@@ -63,7 +63,7 @@ public class RankDao {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 
-			pstmt.setInt(1, num);
+			pstmt.setInt(1, rank.getNum());
 			pstmt.setString(2, rank.getId());
 			pstmt.setString(3, rank.getGet_fish());
 			pstmt.setInt(4, rank.getLength());
@@ -71,7 +71,7 @@ public class RankDao {
 			pstmt.setString(6, rank.getImg_folder());
 			pstmt.setString(7, rank.getFile_name());
 			pstmt.setString(8, rank.getReal_name());
-			result = pstmt.executeUpdate();
+			result1 = pstmt.executeUpdate();
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -83,8 +83,41 @@ public class RankDao {
 
 		}
 
-		return result;
+		return result1;
 	}
+//	public int insert(RankDto rank) throws SQLException {
+//		int num = 3;
+//		int result1 = 0;
+//		Connection conn = null;
+//		PreparedStatement pstmt = null;
+//		String sql = "insert into ranking values(?,?,?,?,?,sysdate,?,?,?)";
+//
+//		try {
+//			conn = getConnection();
+//			pstmt = conn.prepareStatement(sql);
+//
+//			pstmt.setInt(1, rank.getNum());
+//			pstmt.setString(2, rank.getId());
+//			pstmt.setString(3, rank.getGet_fish());
+//			pstmt.setInt(4, rank.getLength());
+//			pstmt.setString(5, rank.getContent());
+//			pstmt.setString(6, rank.getImg_folder());
+//			pstmt.setString(7, rank.getFile_name());
+//			pstmt.setString(8, rank.getReal_name());
+//			result1 = pstmt.executeUpdate();
+//
+//		} catch (Exception e) {
+//			System.out.println(e.getMessage());
+//		} finally {
+//			if (pstmt != null)
+//				pstmt.close();
+//			if (conn != null)
+//				conn.close();
+//
+//		}
+//
+//		return result1;
+//	}
 
 	public List<RankDto> list(int startRow, int endRow, String get_fish
 			) throws SQLException {
@@ -94,7 +127,7 @@ public class RankDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql	 = "select * from ranking where num between ? and ? "
-					+ "and get_fish =? "
+					+ "and get_fish =? and TO_CHAR(reg_date , 'MM')=TO_CHAR(sysdate , 'MM')"
 					+ "order by length desc, reg_date asc";
 //		String sql1 = "select get_fish from ranking group by get_fish";
 		try {
@@ -212,7 +245,7 @@ public class RankDao {
 		}
 		return list;
 	}
-	public int delete(String id) throws SQLException {
+	/*public int delete(String id) throws SQLException {
 		int result  = 0;
 		Connection conn = null;
 		PreparedStatement pstmt=null;
@@ -237,7 +270,32 @@ public class RankDao {
 				conn.close();
 		}
 		return result;
+}*/
+	public int delete(int num) throws SQLException {
+		int result  = 0;
+		Connection conn = null;
+		PreparedStatement pstmt=null;
+		ResultSet rs = null;
+		String sql ="delete from ranking where num=?";
+		try {
+			conn = getConnection();
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+					result=pstmt.executeUpdate();
+				} else result=0;
+		} catch(Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			if(rs != null)
+				rs.close();
+			if(pstmt != null)
+				pstmt.close();
+			if (conn != null) 
+				conn.close();
+		}
+		return result;
 }
-	
 	
 }

@@ -64,14 +64,44 @@ public class jw_MemberDao {
 		return result;
 	}
 
+	// public int confirm_A(String id, String admin_c) throws SQLException {
+	// Connection conn = null;
+	// int result = 0;
+	// ResultSet rs = null;
+	// PreparedStatement pstmt = null;
+	// String sql = "select admin_c from member where id=?";
+	// try {
+	// conn = getConnection();
+	// pstmt = conn.prepareStatement(sql);
+	// pstmt.setString(1, id);
+	// rs = pstmt.executeQuery();
+	// if (rs.next()) {
+	// String dbPasswd = rs.getString(1);
+	// if (dbPasswd.equals(passwd))
+	// result = 1;
+	// }
+	// } catch (Exception e) {
+	// System.out.println(e.getMessage());
+	// // TODO: handle exception
+	// } finally {
+	// if (rs != null)
+	// rs.close();
+	// if (pstmt != null)
+	// pstmt.close();
+	// if (conn != null)
+	// conn.close();
+	// }
+	// return result;
+	// }
+
 	public int confirm(String id) throws SQLException {
 		Connection conn = null;
 		int result = 0;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		String sql = "select id from member where id=?";
-		// System.out.println("sql: "+sql);
-		// System.out.println("sql id: "+id);
+		System.out.println("sql: " + sql);
+		System.out.println("sql id: " + id);
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -82,7 +112,6 @@ public class jw_MemberDao {
 			else
 				result = 0; // 없을땐 0
 			// System.out.println("confirm result: "+result);
-
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			// TODO: handle exception
@@ -95,6 +124,45 @@ public class jw_MemberDao {
 				conn.close();
 		}
 		return result;
+	}
+
+	public int confirm_A(String admin_c, String id) throws SQLException {
+		Connection conn = null;
+		int adminResult = 0;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		String sql = "select admin_c from member where id=?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				String dbadmin = rs.getString(1);
+				System.out.println("뭐라고나옴? "+dbadmin);
+				if(dbadmin.equals("A"))
+				adminResult =1;
+				else 
+					adminResult =0;	
+			} 
+				
+//				adminResult = 1; // 있을땐 1
+//			else
+//				adminResult = 0; // 없을땐 0
+			System.out.println("confirm_A 결과: " + adminResult);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			// TODO: handle exception
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		}
+		return adminResult;
 	}
 
 	public int insert(jw_MemberDto member) throws SQLException {

@@ -27,6 +27,7 @@ public class JW_MainAction implements CommandProcess {
 			int startRow = 1, endRow = 99;
 			List<RankDto> list1 = rk.list1(startRow, endRow);
 			int startNum = startRow;
+
 			request.setAttribute("pop_list", pop_list);
 			request.setAttribute("list1", list1);
 			request.setAttribute("startNum", startNum);

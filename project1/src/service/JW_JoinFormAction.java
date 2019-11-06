@@ -15,6 +15,7 @@ public class JW_JoinFormAction implements CommandProcess {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		try {
 			String id = request.getParameter("id");
 			jw_MemberDao md = jw_MemberDao.getInstance();
