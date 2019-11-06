@@ -1,0 +1,116 @@
+#wrap1 {
+	position: relative;
+	min-width: 700px;
+	height: 100%;
+	padding-bottom: 30px;
+}
+
+div {
+	display: block;
+}
+
+#container {
+	position: relative;
+	z-index: 20;
+	max-width: 954px;
+	margin: 0 auto;
+}
+
+#content.section_home {
+	line-height: 14px;
+	zoom: 1;
+	padding: 16px 12px 94px;
+}
+
+.section_home 
+.column {
+	float: left;
+	width: 50%;
+}
+
+.sh_group {
+	min-height: 185px;
+}
+
+.sh_header {
+	position: relative;
+}
+
+.sh_group
+.sh_content {
+	min-height: 119px;
+	padding-top: 9px;
+}
+
+.sh_list {
+	position: relative;
+	min-height: 80px;
+	margin-top: -1px;
+	padding-bottom: 8px;
+}
+
+.section_home
+.btn_area_btm {
+	font-size: 0;
+	padding-left: 1px;
+}
+
+.section_home
+.btn_area_btm .btn_model:first-child {
+	margin-left: 0;
+}
+
+.btn_model {
+	font-size: 12px;
+	line-height: 14px;
+	display: inline-block;
+	vertical-align: top;
+	text-decoration: none ! important;
+}
+
+.sh_list .nic_tit {
+	margin: 12px 8px 0 40%;
+}
+
+.sh_list dt {
+	font-size: 12px;
+	font-weight: 700;
+	float: left;
+}
+
+.sh_list .nic_desc {
+	font-size: 14px;
+	line-height: 21px;
+	margin-top: 8px;
+	letter-spacing: -1px;
+}
+
+.sh_list dd {
+	overflow: hidden;
+	word-wrap: break-word;
+	word-break: keep-all;
+}
+
+.sh_group{
+	margin: 16px 8px 0;
+	padding: 32px 29px 32px;
+	text-align: left;
+	border: 1px solid #dadada;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	background: #fff
+}
+
+.section_home 
+.column+.column{
+	float: none;
+	overflow: hidden;
+	width: auto;	
+}
+
+.sh_list2:first-child{
+	padding-top: 10px;
+}
+.sh_list2{
+	overflow: hidden;
+}

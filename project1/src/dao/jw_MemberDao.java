@@ -64,6 +64,36 @@ public class jw_MemberDao {
 		return result;
 	}
 
+	// public int confirm_A(String id, String admin_c) throws SQLException {
+	// Connection conn = null;
+	// int result = 0;
+	// ResultSet rs = null;
+	// PreparedStatement pstmt = null;
+	// String sql = "select admin_c from member where id=?";
+	// try {
+	// conn = getConnection();
+	// pstmt = conn.prepareStatement(sql);
+	// pstmt.setString(1, id);
+	// rs = pstmt.executeQuery();
+	// if (rs.next()) {
+	// String dbPasswd = rs.getString(1);
+	// if (dbPasswd.equals(passwd))
+	// result = 1;
+	// }
+	// } catch (Exception e) {
+	// System.out.println(e.getMessage());
+	// // TODO: handle exception
+	// } finally {
+	// if (rs != null)
+	// rs.close();
+	// if (pstmt != null)
+	// pstmt.close();
+	// if (conn != null)
+	// conn.close();
+	// }
+	// return result;
+	// }
+
 	public int confirm(String id) throws SQLException {
 		Connection conn = null;
 		int result = 0;
@@ -101,25 +131,19 @@ public class jw_MemberDao {
 		int adminResult = 0;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-		String sql = "select admin_c from member where admin_c='A'";
-		System.out.println("sql admin_c: " + admin_c);
+		String sql = "select admin_c from member where admin_c=?";
+		System.out.println("sql잘나오나요" + sql);
+		System.out.println("컨펌 admin_c: " + admin_c);
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, admin_c);
 			rs = pstmt.executeQuery();
 			if (rs.next())
-				// {
-				// String dbId = rs.getString(1);
-				// if(dbId.equals(Admin_c))
-				// result =1;
-				// }
-				// else result = 0;
 				adminResult = 1; // 있을땐 1
 			else
 				adminResult = 0; // 없을땐 0
-			System.out.println("confirm_A result: " + adminResult);
-
+			System.out.println("confirm_A 결과: " + adminResult);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			// TODO: handle exception

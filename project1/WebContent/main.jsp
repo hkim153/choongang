@@ -86,21 +86,25 @@
 					<!--  게시판 -->
 				</div>
 				<!-- 왼쪽칼럼 끝  -->
- 
+
 				<div class="column_right">
-				 
+
 					<div id="account" class="section_login">
 						<c:choose>
 							<c:when test="${sessionScope.result ne 1 }">
 								<form action="login.do">
-									<a href="jw_loginForm.do"> <img alt="" src="images/login.png" width="200" height="100"></a>
+									<a href="jw_loginForm.do"> <img alt=""
+										src="images/login.png" width="200" height="100"></a>
 								</form>
 							</c:when>
 							<c:when test="${sessionScope.result eq 1 }">
 								<p>${sessionScope.id }님환영합니다!</p>
-								<a href="jw_myPage.do"> <input type="button" value="마이페이지"> </a>
-								<a href="wh_Pro_registForm.do"><input type="button"	value="상품등록"> </a>								
-								<a href="jw_logOut.do"> <input type="button" value="로그아웃">		 </a>
+								<a href="jw_myPage.do"> <input type="button" value="마이페이지">
+								</a>
+								<a href="wh_Pro_registForm.do"><input type="button"
+									value="상품등록"> </a>
+								<a href="jw_logOut.do"> <input type="button" value="로그아웃">
+								</a>
 							</c:when>
 						</c:choose>
 					</div>
@@ -109,7 +113,7 @@
 					<!-- 			<div class="event_side"> -->
 					<div class="calendar	">
 
-						<iframe src="index2.html" width="100%" height="350px" ></iframe>
+						<iframe src="index2.html" width="100%" height="350px"></iframe>
 
 					</div>
 					<!-- 이벤트달력 작게  -->
@@ -120,7 +124,7 @@
 						<a href="DH_channel.jsp"><img alt="" src="images/login.png"
 							width="200" height="100"></a></a>
 
-					</div>  
+					</div>
 					<!-- 인원모집  -->
 				</div>
 				<!-- 오른쪽 칼럼 끝 -->
