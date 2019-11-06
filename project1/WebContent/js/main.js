@@ -89,7 +89,6 @@ var calendar = $('#calendar').fullCalendar({
 
   eventRender: function (event, element, view) {
 
-    //일정에 hover시 요약
     element.popover({
       title: $('<div />', {
         class: 'popoverTitleCalendar',
@@ -101,11 +100,15 @@ var calendar = $('#calendar').fullCalendar({
       content: $('<div />', {
           class: 'popoverInfoCalendar'
         }).append()
-        .append('<p><strong>구분:</strong> ' + event.type + '</p>')
-        .append('<div class="popoverDescCalendar"><strong>설명:</strong> ' + event.description + '</div>'),
+        .append('<p><strong>구분:</strong>' + event.type + '</p>')
+        .append('<div class="popoverDescCalendar"><strong>설명:</strong> ' + event.description + '</div>')
+        .append('<div class="popoverDescCalendar"><strong>지역:</strong> ' + event.rsa + '</div>')
+        .append('<div class="popoverDescCalendar"><strong>링크:</strong> <a href="'+event.url+'">클릭</a></div>'),
+        
+        
       delay: {
         show: "800",
-        hide: "50"
+        hide: "2000"
       },
       trigger: 'hover',
       placement: 'top',

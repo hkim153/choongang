@@ -10,7 +10,7 @@ public class HH_CalenderAction implements CommandProcess {
 	public String requestPro(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 				
-		return "hh_calender.jsp";
+		return "hh_index.html";
 
 
 	}

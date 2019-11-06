@@ -35,7 +35,7 @@ public class HH_ListAction implements CommandProcess {
 				request.setAttribute("pageCnt", pageCnt);
 				request.setAttribute("startPage", startPage);
 				request.setAttribute("endPage", endPage);
-				 
+
 				System.out.println("-----------------------------------------------");  // /ch16/list.do
 				System.out.println("startNum-->" + startNum);  // /ch16/list.do
 				System.out.println("totCnt-->" + totCnt);  // /ch16/list.do

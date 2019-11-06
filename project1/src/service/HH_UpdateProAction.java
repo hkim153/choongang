@@ -24,6 +24,7 @@ public class HH_UpdateProAction implements CommandProcess {
 			event.setE_start(request.getParameter("e_start"));
 			event.setE_end(request.getParameter("e_end"));
 			event.setE_type(request.getParameter("e_type"));
+			event.setRsa(request.getParameter("rsa"));
 			
 			EventDao ed = EventDao.getInstance();
 			int result = ed.update(event);

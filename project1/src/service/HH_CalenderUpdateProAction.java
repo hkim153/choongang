@@ -17,10 +17,12 @@ public class HH_CalenderUpdateProAction implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-//			Event event = new Event();	
-//			EventDao ed = EventDao.getInstance();
-//			JSONArray jsonArray = ed.getOnesoJSON();
-//			request.setAttribute("jsonArray", jsonArray);
+			Event event = new Event();	
+			EventDao ed = EventDao.getInstance();
+			JSONArray jsonArray = ed.getOnesoJSON();
+			int result = ed.delpast();
+			
+
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

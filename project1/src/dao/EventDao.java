@@ -88,6 +88,7 @@ public class EventDao {
 				event.setE_start(rs.getString("e_start"));
 				event.setE_end(rs.getString("e_end"));
 				event.setE_type(rs.getString("e_type"));
+				event.setRsa(rs.getString("rsa"));
 				list.add(event);
 			}
 		} catch (Exception e) {
@@ -119,6 +120,8 @@ public class EventDao {
 				event.setE_start(rs.getString("e_start"));
 				event.setE_end(rs.getString("e_end"));
 				event.setDescription(rs.getString("description"));
+				event.setRsa(rs.getString("rsa"));
+				event.setUrl(rs.getString("url"));
 						
 			
 			}
@@ -135,7 +138,7 @@ public class EventDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String sql = "update event set title=?, description=?, e_start=?, e_end=?, e_type=? where e_id=?";
+		String sql = "update event set title=?, description=?, e_start=?, e_end=?, e_type=?, rsa=?, url=? where e_id=?";
 		
 		try {
 			conn = getConnection();
@@ -145,7 +148,10 @@ public class EventDao {
 			pstmt.setString(3, event.getE_start());
 			pstmt.setString(4, event.getE_end());
 			pstmt.setString(5, event.getE_type());
-			pstmt.setInt(6, event.getE_id());
+			pstmt.setString(6, event.getRsa());
+			pstmt.setString(7, event.getUrl());
+			pstmt.setInt(8, event.getE_id());
+			
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -164,7 +170,7 @@ public class EventDao {
 		int result = 0;
 		ResultSet rs = null;
 		String sql1 ="select nvl(max(e_id),0) from event";
-		String sql = "insert into event values(?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into event values(?,?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql1);
@@ -185,7 +191,9 @@ public class EventDao {
 			pstmt.setString(8, event.getBackgroundColor());
 			pstmt.setString(9, event.getAllDay());
 			pstmt.setString(10, event.getTextColor());
-
+			pstmt.setString(11, event.getRsa());
+			pstmt.setString(12, event.getUrl());
+			
 			result = pstmt.executeUpdate();
 			
 		} catch (Exception e) {
@@ -221,7 +229,7 @@ public class EventDao {
 	}
 
 	public JSONArray getOnesoJSON() throws SQLException, FileNotFoundException {
-		OutputStream output = new FileOutputStream("C:/JSP/jspSrc/och16/WebContent/data1.json");
+		OutputStream output = new FileOutputStream("C:/Users/user/git/choongang/project1/WebContent/data1.json");
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -231,11 +239,11 @@ public class EventDao {
 			conn = getConnection();
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
-			
 			while (rs.next()) {
 				JSONObject obj = new JSONObject();
 				
-				
+				obj.put("url", rs.getString(12));
+				obj.put("rsa", rs.getString(11));
 				obj.put("textColor", rs.getString(10));
 				obj.put("allday", rs.getString(9));
 				obj.put("backgroundColor", rs.getString(8));
@@ -247,14 +255,10 @@ public class EventDao {
 				obj.put("title", rs.getString(2));
 				obj.put("_id", rs.getInt(1));				
 				jsonArray.add(obj);
-				System.out.println(obj);
 			
 			}
 			String input = jsonArray.toJSONString();
-			output.write(input.getBytes());
-			
-			
-			    
+			output.write(input.getBytes());   
 					 
 	
 		}  catch (Exception e) {
@@ -271,9 +275,6 @@ public class EventDao {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		String sql ="delete from event where e_id=?";
-		for (int i = 0; i < e_ida.length; i++) {
-			System.out.println(e_ida[i]);
-		}
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -293,6 +294,56 @@ public class EventDao {
 		}
 		return result;
 	}
+		
 	
+	public List<Event> list() throws SQLException {
+		List<Event> list = new ArrayList<Event>();
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		String sql ="select FS_NAME from FISHINGSITE order by FS_NAME asc";
+
+		try {
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				Event event = new Event();
+				event.setRsa(rs.getString(1));
+				list.add(event);
+			}
+		
+		
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			if (stmt != null) stmt.close();
+			if (conn != null) conn.close();	
+			if (rs != null) rs.close();
+		}
+		
+		
+		return list;
+	}
+	public int delpast() throws SQLException {
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		String sql = "delete from event WHERE E_END<sysdate and E_TYPE='모임'";
+		int result = 0;
+		try {
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+	
+		}  catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			if (stmt != null) stmt.close();
+			if (conn != null) conn.close();	
+			if (rs != null) rs.close();	
+		}
+		return result;
+	}
 	
 }

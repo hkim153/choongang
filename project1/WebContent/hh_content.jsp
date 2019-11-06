@@ -23,6 +23,7 @@ table {
 		<tr><td>시작날자</td><td>${event.e_start}</td></tr>
 		<tr><td>종료 날자</td><td>${event.e_end}</td></tr>
 		<tr><td>타입</td><td>${event.e_type}</td></tr>
+		<tr><td>장소</td><td>${event.rsa}</td></tr>
 		<tr ><td colspan ="2">
 		<input type="button" value="수정"
 				onclick="location.href='hh_updateForm.do?e_id=${event.e_id}&pageNum=${pageNum }'">

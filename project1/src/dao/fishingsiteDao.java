@@ -468,5 +468,30 @@ public class fishingsiteDao {
 					conn.close();
 			}
 	}
+	public fishingsite select2(String parameter) throws SQLException {
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		String sql = "select fs_num from fishingsite where fs_name=" + "'"+parameter+"'";
+		fishingsite fs = new fishingsite();
+		try {
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			if(rs.next()) {
+				fs.setFs_num(rs.getInt("fs_num"));
+			}
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (stmt != null)
+				stmt.close();
+			if (conn != null)
+				conn.close();
+			if (rs != null)
+				rs.close();
+		}
+		return fs;
+	}//by hh
 	
 }

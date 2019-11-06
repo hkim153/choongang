@@ -14,26 +14,30 @@ table {	   width: 100%;   }
 </style>
 </head>
 <body>
+<input type="button" value="달력이동" onclick="location.href='hh_index.html'">
 	<h2>게시판</h2>
-	<table><tr><td><a href="hh_writeEventForm.jsp">글쓰기</a></td></tr></table>
+	<table><tr><td><a href="hh_writeEventForm.do">글쓰기</a></td></tr></table>
 	<table><tr><td><a href="hh_CalenderUpdate.do">달력 업데이트</a></td></tr></table>
 	<form action="hh_massdelete.do">
 	<table>
 		<tr>
 			<th>번호<input type="submit" value="일괄 삭제"> </th><th>제목</th><th>내용</th><th>시작날자</th><th>종료 날자</th>
-			<th>타입</th>
+			<th>타입</th><th>위치</th>
 		</tr>
 		<c:if test="${totCnt > 0 }">
 			<c:forEach var="event" items="${list }">
 				<tr>
 					<td>${startNum }<input type="checkbox" name="delf" value="${event.e_id }"></td>
 					<td class="left" width=200>
-						 <a href='hh_content.do?e_id=${event.e_id}&pageNum=${currentPage}&title=${title}&description=${description}&start=${e_start}&end=${e_end}&type=${e_type}'>
+						 <a href='hh_content.do?e_id=${event.e_id}&pageNum=${currentPage}'>
 							${event.title}</a></td>
 					<td>${event.description}</td>
 					<td>${event.e_start}</td>
 					<td>${event.e_end}</td>
 					<td>${event.e_type}</td>
+					<td>${event.rsa}</td>
+					<td><input type="hidden" value="${event.url}">
+					</td>
 				</tr>
 				<c:set var="startNum" value="${startNum - 1 }" />
 			</c:forEach>

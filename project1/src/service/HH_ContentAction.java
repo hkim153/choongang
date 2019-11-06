@@ -16,9 +16,11 @@ public class HH_ContentAction implements CommandProcess {
 			String pageNum = request.getParameter("pageNum");
 			String title = request.getParameter("title");
 			String description = request.getParameter("description");
-			String start = request.getParameter("start");
-			String end = request.getParameter("end");
-			String type = request.getParameter("type");
+			String e_start = request.getParameter("e_start");
+			String e_end = request.getParameter("e_end");
+			String e_type = request.getParameter("e_type");
+			String rsa = request.getParameter("rsa");
+			String url = request.getParameter("url");
 			
 			EventDao ed = EventDao.getInstance();
 			Event event = ed.select(e_id);
@@ -27,10 +29,11 @@ public class HH_ContentAction implements CommandProcess {
 			request.setAttribute("pageNum", pageNum);
 			request.setAttribute("title", title);
 			request.setAttribute("description", description);
-			request.setAttribute("start", start);
-			request.setAttribute("end", end);
-			request.setAttribute("type", type);
-			
+			request.setAttribute("e_start", e_start);
+			request.setAttribute("e_end", e_end);
+			request.setAttribute("e_type", e_type);
+			request.setAttribute("rsa", rsa);
+			request.setAttribute("url", url);
 			
 			
 			

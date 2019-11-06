@@ -5,13 +5,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
-	location.href="hh_list.do";
-</script>
+        <link href="test.css" rel="stylesheet" type="text/css">
 </head>
+
 <body>
-
-
+			<header> <jsp:include page="header.jsp"></jsp:include> </header>
+			<iframe src="hh_calender.jsp" width="100%" height="350px"/>
+			
+			<jsp:include page="footer.jsp"></jsp:include>
+			
 
 </body>
 </html>
+	

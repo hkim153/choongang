@@ -8,6 +8,21 @@ public class Event {
 	private String e_start;
 	private String e_end;
 	private String e_type;
+	private String rsa;
+	private String url;
+
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	public String getRsa() {
+		return rsa;
+	}
+	public void setRsa(String rsa) {
+		this.rsa = rsa;
+	}
 	public int getE_id() {
 		return e_id;
 	}

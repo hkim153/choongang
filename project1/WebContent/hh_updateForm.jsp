@@ -21,10 +21,11 @@ table {
 		<tr><td width="20">번호</td><td>${event.e_id}</td></tr>
 		<tr><td>제목</td><td><input type="text" name="title" required="required" value="${event.title}"></td></tr>
 		<tr><td>타입</td><td><input type="text" name="e_type" required="required" value="${event.e_type}"></td></tr>
-		<tr><td>시작날자</td><td><input type="text" name="e_start" required="required" value="${event.e_start}"></td></tr>
-		<tr><td>종료 날자</td><td><input type="text" name="e_end" required="required" value="${event.e_end}"></td></tr>
-		<tr><td>내용</td><td><textarea rows="10" cols="40" name="description" required="required">${event.description}</textarea>
-		</td></tr>
+		<tr><td>시작날자</td><td><input type="date" name="e_start" required="required" value="${event.e_start}"></td></tr>
+		<tr><td>종료 날자</td><td><input type="date" name="e_end" required="required" value="${event.e_end}"></td></tr>
+		<tr><td>장소</td><td><input type="text" name="rsa" required="required" value="${event.rsa}"></td></tr>
+		<tr><td>url</td><td><input type="text" name="url" " value="${event.url}"></td></tr>
+		<tr><td>내용</td><td><textarea rows="10" cols="40" name="description" required="required">${event.description}</textarea></td></tr>
 		<tr><td colspan ="2">
 		<input type="submit" value="수정 완료"></td></tr>
 	</table>
