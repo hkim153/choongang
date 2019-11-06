@@ -8,6 +8,32 @@
 <title>Insert title here</title>
 <link href="test.css" rel="stylesheet" type="text/css">
 <link href="./css/product.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	.sj_c td {
+		border-top: 1px groove;
+		border-bottom: 1px solid;
+		border-collapse : collapse;
+	}
+	.sj_c {
+		float: left;
+		margin-left: 40px;
+	}
+	#sj_i{
+		text-align: center;
+		width:150px;
+	}
+	#sj_l{
+		text-align: center;
+		width:100px;
+		height:50px;
+	}
+	#sj_e{
+		float: right;
+		margin-right: 150px;
+		width:400px;
+		height:200px;
+	}
+</style>
 </head>
 <body>
 	<div class="wrap">
@@ -18,32 +44,36 @@
 		<div class="container" role="main">
 			<div id="promotion1" style="display: block;"
 				data-cookie="PC_CENTER_BANNER_12940">
-				<table border="1">
-					<h3>광어의 현재 랭킹</h3>
-					<tr>
-						<th>순위</th>
-						<th>아이디(회원이랑 연동할 예정)</th>
-						<th>길이</th>
-						<th>등록일(삭제하고 사진 대체 예정 사진은 1등사진만?)</th>
-					</tr>
-					<c:forEach var="rank" items="${list1 }">
-						<c:if test="${rank.get_fish =='광어'}">
-							<c:if test="${startNum < 4 }">
-								<tr>
-									<td>${startNum }등</td>
-									<td><a
-										href='sj_content.do?num=${rank.num }&id=${rank.id }&img_folder=${rank.img_folder}'>${rank.id }/${rank.get_fish }</a></td>
-									<td>${rank.length }cm</td>
-									<td>${rank.reg_date }</td>
-								</tr>
-								<c:set var="startNum" value="${startNum + 1 }"></c:set>
+				<div class="sj_c">
+					<table>
+						<h3>광어의 현재 상위 랭킹</h3>
+						<tr>
+							<td>순위</td>
+							<td id="sj_i">아이디</td>
+							<td id="sj_l">길이</td>
+							<td>등록일</td>
+						</tr>
+						<c:forEach var="rank" items="${list1 }">
+							<c:if test="${rank.get_fish =='광어'}">
+								<c:if test="${startNum < 4 }">
+									<tr>
+										<td>${startNum }등</td>
+										<td id="sj_i"><a
+											href='sj_content.do?num=${rank.num }&id=${rank.id }&img_folder=${rank.img_folder}'>${rank.id }/${rank.get_fish }</a></td>
+										<td id="sj_l">${rank.length }cm</td>
+										<td>${rank.reg_date }</td>
+									</tr>
+									<c:set var="startNum" value="${startNum + 1 }"></c:set>
+								</c:if>
 							</c:if>
-						</c:if>
-					</c:forEach>
-				</table>
-
-
-				<!-- bts광고판 이달의 낚시왕 -->
+						</c:forEach>
+					</table>
+				</div>
+				<div id="sj_e">
+				광어 랭킹 1위의 물고기 사진(구현예정)
+				<img src="${pageContext.request.contextPath}/fish_rank/kwangA1.jpg">
+				</div>
+				<!-- 이달의 낚시왕 -->
 
 				<div class="column_left">
 					<div id="veta_top">
