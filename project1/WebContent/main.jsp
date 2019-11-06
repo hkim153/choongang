@@ -102,7 +102,7 @@
 																	개</strong>
 															</span>
 														</div>
->>>>>>> refs/remotes/origin/master
+
 													</div>
 												</li>
 											</c:forEach>
@@ -119,11 +119,11 @@
 					</div>
 					<!--  게시판 -->
 				</div>
-				<!-- 왼쪽칼럼 끝  -->
+				<!-- 왼쪽칼럼 끝  -->				
 
-				<div class="column_right">
+					<div class="column_right">
 
-					<div id="account" class="section_login">
+				<div id="account" class="section_login">
 						<c:choose>
 							<c:when test="${sessionScope.result ne 1 }">
 								<!-- 로그인값이없을때 -->
@@ -151,50 +151,6 @@
 							</c:when>
 						</c:choose>
 					</div>
-
-					<!-- 로그인  -->
-					<!-- 			<div class="event_side"> -->
-					<div class="calendar	">
-
-						<iframe src="index2.html" width="100%" height="350px"></iframe>
-
-					</div>
-					<!-- 이벤트달력 작게  -->
-
-					<!-- <div class="recruit_side" > -->
-					<div class="recruit">
-
-						<a href="DH_channel.jsp"><img alt="" src="images/login.png"
-							width="200" height="100"></a></a>
-
-					</div>
-					<!-- 인원모집  -->
-				</div>
-				<!-- 오른쪽 칼럼 끝 -->
-			</div>
-<<<<<<< HEAD
-			<!-- 왼쪽칼럼 끝  -->
-
-			<div class="column_right">
-
-				<div id="account" class="section_login">
-					<c:choose>
-						<c:when test="${sessionScope.result ne 1 }">
-							<form action="login.do">
-								<a href="jw_loginForm.do"> <img alt=""
-									src="images/login.png" width="200" height="100"></a>
-							</form>
-						</c:when>
-						<c:when test="${sessionScope.result eq 1 }">
-							<p>${sessionScope.id }님환영합니다 !</p>
-							<input type="button" value="정보수정">
-							<a href="wh_Pro_registForm.do"><input type="button" value="상품등록"></a>
-							<a href="jw_logOut.do"> <input type="button" value="로그아웃">
-							</a>
-
-						</c:when>
-					</c:choose>
-				</div>
 
 				<!-- 로그인  -->
 				<!-- 			<div class="event_side"> -->
@@ -224,8 +180,7 @@
 				</div>
 			</div>
 			<jsp:include page="footer.jsp"></jsp:include>
-=======
->>>>>>> refs/remotes/origin/master
+
 		</div>
 		<jsp:include page="footer.jsp"></jsp:include>
 	</div>
