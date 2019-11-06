@@ -140,7 +140,7 @@
 					</div>
 
 					<!-- 로그인  -->
-					<!-- 			<div class="event_side"> -->
+					<!-- 			<div class="event_side"> --> 
 					<div class="calendar	">
 
 						<iframe src="index2.html" width="100%" height="350px"></iframe>
