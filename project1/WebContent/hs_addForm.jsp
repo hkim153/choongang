@@ -21,7 +21,7 @@
 		<a href="hs_fishingSiteForm.do">낚시터 홈으로</a>
 		<a href="jw_logOut.do">로그아웃하기</a>
 </div>
-<form action="hs_addPro.do?pageNum=${pageNum}" method="post">
+<form action="hs_addPro.do?pageNum=${pageNum}" enctype="multipart/form-data" method="post">
    <input type="hidden" name="num" value="${num}">
    <input type = "hidden" name = "id" value = "${sessionScope.id }">
    <table>
@@ -72,7 +72,7 @@
 	</tr>
 	<tr>
 		<td>이미지</td>
-		<td><input type="file" name="img_folder"></td>
+		<td><input type="file" name="fs_img" required ="required"></td>
 	</tr>
 	<tr>
 		<td>작성자</td>

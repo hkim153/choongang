@@ -1,25 +1,79 @@
 package dao;
 
+import java.util.Date;
+
 public class fishingsite {
-	private String fs_code;
-	private int num;
+	private int fs_code;
+	private int fs_num;
+	public int getFs_num() {
+		return fs_num;
+	}
+	public void setFs_num(int fs_num) {
+		this.fs_num = fs_num;
+	}
 	private String fs_name;
 	private String fs_addr;
 	private String fs_reg;
 	private String fs_content;
 	private String fs_img;
-	public String getFs_code() {
+	
+	//추가
+	private String id;
+	private int readcount;
+	private Date reg_date;
+	
+	//이미지 추가
+	private String img_folder;
+	private String real_name;
+	private String saved_name;
+	
+	public String getSaved_name() {
+		return saved_name;
+	}
+	public void setSaved_name(String saved_name) {
+		this.saved_name = saved_name;
+	}
+	public String getImg_folder() {
+		return img_folder;
+	}
+	public void setImg_folder(String img_folder) {
+		this.img_folder = img_folder;
+	}
+	public String getReal_name() {
+		return real_name;
+	}
+	public void setReal_name(String real_name) {
+		this.real_name = real_name;
+	}
+	
+
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public int getReadcount() {
+		return readcount;
+	}
+	public void setReadcount(int readcount) {
+		this.readcount = readcount;
+	}
+	public Date getReg_date() {
+		return reg_date;
+	}
+	public void setReg_date(Date reg_date) {
+		this.reg_date = reg_date;
+	}
+	
+	public int getFs_code() {
 		return fs_code;
 	}
-	public void setFs_code(String fs_code) {
+	public void setFs_code(int fs_code) {
 		this.fs_code = fs_code;
 	}
-	public int getNum() {
-		return num;
-	}
-	public void setNum(int num) {
-		this.num = num;
-	}
+
 	public String getFs_name() {
 		return fs_name;
 	}
