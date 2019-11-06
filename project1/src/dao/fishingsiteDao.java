@@ -217,6 +217,9 @@ public class fishingsiteDao {
 				fs.setId(rs.getString("id"));
 				fs.setReadcount(rs.getInt("readcount"));
 				fs.setReg_date(rs.getDate("reg_date"));
+				fs.setImg_folder(rs.getString("img_folder"));
+				fs.setSaved_name(rs.getString("saved_name"));
+				fs.setReal_name(rs.getString("real_name"));
 			}
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -238,7 +241,7 @@ public class fishingsiteDao {
 		ResultSet rs = null;
 		String sql1 = "select nvl(max(fs_num),0) from fishingsite";
 		String sql = "insert into fishingsite values(SEQ_FISHINGSITE_CODE.nextval"
-				+ ",?,?,?,?,?,?,sysdate,?,?)";
+				+ ",?,?,?,?,?,?,sysdate,?,?,?,?,?)";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql1);
@@ -257,6 +260,9 @@ public class fishingsiteDao {
 			pstmt.setInt(6, fs.getReadcount());
 			pstmt.setString(7, fs.getId());
 			pstmt.setInt(8, number);
+			pstmt.setString(9, fs.getImg_folder());
+			pstmt.setString(10, fs.getReal_name());
+			pstmt.setString(11, fs.getSaved_name());
 
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
