@@ -140,9 +140,13 @@ public class jw_MemberDao {
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				String dbadmin = rs.getString(1);
-				if(dbadmin.equals('A'));
+				System.out.println("뭐라고나옴? "+dbadmin);
+				if(dbadmin.equals("A"))
 				adminResult =1;
-			}
+				else 
+					adminResult =0;	
+			} 
+				
 //				adminResult = 1; // 있을땐 1
 //			else
 //				adminResult = 0; // 없을땐 0

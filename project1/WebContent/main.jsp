@@ -42,9 +42,6 @@
 <body>
 	<div class="wrap">
 		<header> <jsp:include page="header.jsp"></jsp:include> </header>
-
-
-
 		<div class="container" role="main">
 			<div id="promotion1" style="display: block;"
 				data-cookie="PC_CENTER_BANNER_12940">
