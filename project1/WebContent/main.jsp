@@ -50,7 +50,7 @@
 					<div class="pro_best">
 						<div class="content">
 							<div>
-								<h3 class="best_tit">야낚자 추천 베스트 </h3>
+								<h3 class="best_tit">야낚자 추천 베스트 ${pageContext.request.contextPath} </h3>
 								<div class="pro_list">
 									<ul class="pro_wrap">
 										<c:forEach var="poplist" items="${pop_list}">
@@ -118,9 +118,16 @@
 
 				<!-- <div class="recruit_side" > -->
 				<div class="recruit">
-
-					<img alt="" src="images/recruit.png">
-
+					<div class="recruit_recruit" style="width:150px;">
+						<a href="dh_recruit.do">
+							<img alt="" src="images/Recruit.png">
+						</a>
+					</div>
+					<div class="recruit_list" style="width:150px;">
+						<a href="dh_recruitlist.do">
+							<img alt="" src="images/Recruit_list.png">
+						</a>
+					</div>
 				</div>
 				<!-- 인원모집  -->
 			</div>
