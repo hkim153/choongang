@@ -146,7 +146,7 @@
 						<iframe src="index2.html" width="100%" height="350px"></iframe>
 
 					</div>
-					<!-- 이벤트달력 작게  -->
+					<!-- 이벤트달력 작게  --> 
 
 					<!-- <div class="recruit_side" > -->
 					<div class="recruit">
