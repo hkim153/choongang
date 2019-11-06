@@ -1,20 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
 </head>
 <body>
-		<div class="gnb">
+	<div id="header">
+		<div class="logo">
+			<a href="main.do"><img src="images/logo.png" width="100%"
+				height="100%"></a>
+		</div>
+		<div class="gnb">  
 			<ul>
 				<li><a href="board.do">게시판</a></li>
-				<li><a href="store.do">판매 및 대여</a></li>
-				<li><a href="recruit.do">팀원모집</a></li>
-				<li><a href="fishing.do">낚시터</a></li>
-				<li><a href="hh_event.do">이벤트 달력</a></li>
+				<li><a href="wh_store.do">판매 및 대여</a></li>
+				<li><a href="DH_channel.jsp">팀원모집</a></li>
+				<li><a href="hs_fishingSiteForm.do">낚시터</a></li>
+				<li><a href="event.do">이벤트 달력</a></li>
 				<li><a href="fishingking.do">이달의 낚시왕</a></li>
+			<c:choose>
+			<c:when  test="${sessionScope.result ne 1 }"></c:when>
+			<c:when test="${sessionScope.result eq 1 }">
+			<li><a href="jw_myPageForm.do" >${sessionScope.id } 님 환영합니다.</a></li>
+			<li><a href="jw_logOut.do">로그아웃</a></li>
+			</c:when>			
+			</c:choose>
 			</ul>
 		</div>
 		<!-- <div class="logo">
@@ -23,11 +34,6 @@
 						placeholder="검색어를입력해주세요!">
 				</form>
 			</div> -->
-		<div class="logo">
-			<a href="main.do"><img src="images/LOGO.png" width="100%"
-				height="100%"></a>
-		</div>
-
-
+	</div>	
 </body>
 </html>
