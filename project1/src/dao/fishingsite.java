@@ -21,6 +21,31 @@ public class fishingsite {
 	private String id;
 	private int readcount;
 	private Date reg_date;
+	
+	//이미지 추가
+	private String img_folder;
+	private String real_name;
+	private String saved_name;
+	
+	public String getSaved_name() {
+		return saved_name;
+	}
+	public void setSaved_name(String saved_name) {
+		this.saved_name = saved_name;
+	}
+	public String getImg_folder() {
+		return img_folder;
+	}
+	public void setImg_folder(String img_folder) {
+		this.img_folder = img_folder;
+	}
+	public String getReal_name() {
+		return real_name;
+	}
+	public void setReal_name(String real_name) {
+		this.real_name = real_name;
+	}
+	
 
 	
 	public String getId() {
