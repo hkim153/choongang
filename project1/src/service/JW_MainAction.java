@@ -27,11 +27,14 @@ public class JW_MainAction implements CommandProcess {
 			int startRow = 1, endRow = 99;
 			List<RankDto> list1 = rk.list1(startRow, endRow);
 			int startNum = startRow;
-
+			int startRow1 = 1, endRow1 = 99;
+			int startNum1 = startRow1;
+			List<RankDto> list2 = rk.list2(startRow1, endRow1);
 			request.setAttribute("pop_list", pop_list);
 			request.setAttribute("list1", list1);
+			request.setAttribute("list2", list2);
 			request.setAttribute("startNum", startNum);
-			
+			request.setAttribute("startNum1", startNum1);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

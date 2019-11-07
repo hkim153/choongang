@@ -20,7 +20,7 @@ public class SJ_DeleteFormAction implements CommandProcess {
 			int num = Integer.parseInt(request.getParameter("num"));
 			String pageNum = request.getParameter("pageNum");
 			RankDao rk = RankDao.getInstance();
-			RankDto rank = rk.select(id);
+			RankDto rank = rk.select(num);
 			request.setAttribute("id", id);
 			request.setAttribute("rank", rank);
 			request.setAttribute("num", num);

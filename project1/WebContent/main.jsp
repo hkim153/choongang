@@ -8,36 +8,6 @@
 <title>Insert title here</title>
 <link href="test.css" rel="stylesheet" type="text/css">
 <link href="./css/product.css" rel="stylesheet" type="text/css">
-<style type="text/css">
-.sj_c td {
-	border-top: 1px groove;
-	border-bottom: 1px solid;
-	border-collapse: collapse;
-}
-
-.sj_c {
-	float: left;
-	margin-left: 40px;
-}
-
-#sj_i {
-	text-align: center;
-	width: 150px;
-}
-
-#sj_l {
-	text-align: center;
-	width: 100px;
-	height: 50px;
-}
-
-#sj_e {
-	float: right;
-	margin-right: 150px;
-	width: 400px;
-	height: 200px;
-}
-</style>
 </head>
 <body>
 	<div class="wrap">
@@ -50,19 +20,27 @@
 						<h3>광어의 현재 상위 랭킹</h3>
 						<tr>
 							<td>순위</td>
-							<td id="sj_i">아이디</td>
-							<td id="sj_l">길이</td>
+							<td id="sj_p">아이디</td>
+							<td id="sj_o">길이</td>
 							<td>등록일</td>
+							<th style="display: none;">삭제버튼 (안보이게할거)</th>
 						</tr>
 						<c:forEach var="rank" items="${list1 }">
 							<c:if test="${rank.get_fish =='광어'}">
 								<c:if test="${startNum < 4 }">
 									<tr>
 										<td>${startNum }등</td>
-										<td id="sj_i"><a
+										<td id="sj_p"><a
 											href='sj_content.do?num=${rank.num }&id=${rank.id }&img_folder=${rank.img_folder}'>${rank.id }/${rank.get_fish }</a></td>
-										<td id="sj_l">${rank.length }cm</td>
+										<td id="sj_o">${rank.length }cm</td>
 										<td>${rank.reg_date }</td>
+										<c:choose>
+								<c:when test="${sessionScope.result eq 1 and(sessionScope.adminResult eq 1) }">
+									<!-- 로그인값, 어드민권한 둘다 있을때  -->
+									<td><input type="button" value="삭제"
+										onclick="location.href='sj_deleteform.do?num=${rank.num}&id=${rank.id }'"></td>
+								</c:when>
+							</c:choose>
 									</tr>
 									<c:set var="startNum" value="${startNum + 1 }"></c:set>
 								</c:if>
@@ -71,8 +49,22 @@
 					</table>
 				</div>
 				<div id="sj_e">
-					광어 랭킹 1위의 물고기 사진(구현예정) <img
-						src="${pageContext.request.contextPath}/fish_rank/kwangA1.jpg">
+				현재 광어 랭킹 1위의 사진입니다.
+				<table>
+						<tr>
+							<td style="display:none;">순위${startNum1 }</td>
+						</tr> 
+					<c:forEach var="rank1" items="${list2 }">
+						<c:if test="${rank1.get_fish =='광어'}">
+							<c:if test="${startNum1 <2 }">
+								 <tr>
+									<td><img src="${pageContext.request.contextPath}/${rank1.img_folder }/${rank1.real_name }" height="250px"></td>									
+								</tr> 
+								<c:set var="startNum1" value="${startNum1 +1 }"></c:set>	
+							</c:if>
+						</c:if>
+					</c:forEach>
+				</table> 
 				</div>
 				<!-- 이달의 낚시왕 -->
 
