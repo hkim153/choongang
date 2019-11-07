@@ -74,7 +74,7 @@
 								</td>
 							</tr>
 						</table>
-					</div>
+					</div> 
 				</form>
 				</div>
 			</div>

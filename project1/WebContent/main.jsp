@@ -157,7 +157,7 @@
 							<img alt="" src="images/Recruit.png">
 						</a>
 					</div>
-					<div class="recruit_list" style="width:150px;">
+					<div class="recruit_list" style="width:150px; padding-left: 170px;">
 						<a href="dh_recruitlist.do">
 							<img alt="" src="images/Recruit_list.png">
 						</a>

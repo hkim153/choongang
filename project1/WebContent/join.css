@@ -1,51 +1,59 @@
-#wrap{
+#wrap {
 	width: 100%;
 }
-
-@media ( max-width : 767px) 
-#container1 {
-	min-width	: auto	;	
-	margin : 0	10	px	;	
-	box-sizing	:	border-box	;
-	}
-
-@media ( max-width : 1024px)
- #container1 {
-	width	:	 auto	;	
-	max-width :	768px;
-	}
-	
-@media (max-width: 767px)
-#content
-{
-	max-width: 460px;
-	width: auto;
-}
-@media (max-width: 1024px)
-#content
-{
-	max-width: 460px;
+#container1{
 	margin: 0 auto;
+	max-width: 768px;
+	min-width: 460px
 }
-form, body{
+@media ( max-width : 767px) {
+	#container1 {
+		min-width: auto;
+		margin: 0 10 px;
+		-webkit-box-sizing: border-box;
+		box-sizing: border-box
+	}
+	#content {
+		max-width: 460px;
+		width: auto
+	}
+}
+
+@media ( max-width : 1024px) {
+	#container1 {
+		width: auto;
+		max-width: 768px
+	}
+	#content {
+		width: 460px;
+		margin: 0 auto
+	}
+}
+
+form, body {
 	margin: 0;
 	padding: 0;
 }
+
 body, button, input, select, table, textarea {
 	font-family: Dotum, '돋움', Helvetica, sans-serif;
 	font-size: 12px;
+	-webkit-text-size-adjust: none
 }
 
-div{
-	display:block;
+div {
+	display: block;
 }
+
 .row_group {
 	overflow: hidden;
 	width: 100%;
 }
-label{
+
+label {
 	cursor: default;
 }
+
 .join_title {
 	margin: 19px 0 8px;
 	font-size: 14px;
@@ -56,7 +64,7 @@ label{
 	padding-right: 110px;
 }
 
-.ps_box, .ps_box_disable{
+.ps_box, .ps_box_disable {
 	display: block;
 	position: relative;
 	width: 100%;
@@ -89,8 +97,11 @@ label{
 	z-index: 10;
 }
 
-button, input, select, textarea{
+button, input, select, textarea {
+	border: 0;
 	border-radius: 0;
-	-webkit-appearace: none; 
-	
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none
 }
+
