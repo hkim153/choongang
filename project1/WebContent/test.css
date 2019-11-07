@@ -100,3 +100,29 @@ a {
 	border: 1px solid #dee3eb;
 	background: #fff;
 }
+
+.sj_c td {
+	border-top: 1px groove;
+	border-bottom: 1px solid;
+	border-collapse: collapse;
+}
+#sj_o {
+	text-align: center;
+	width: 100px;
+	height: 50px;
+}
+#sj_p {
+	text-align: center;
+	width: 150px;
+}
+.sj_c {
+	float: left;
+	margin-left: 40px;
+
+}
+#sj_e {
+	float: right;
+	margin-right: 150px;
+	width: 400px;
+	height: 200px;
+}
