@@ -50,7 +50,7 @@
 <header> <jsp:include page="header.jsp"></jsp:include> </header>
 </div>
 <div id="sj_a">
-<h2><h2>보고싶은 물고기를 선택하여 주세요</h2>
+<h2><h2>보고싶은 물고기를 선택하여 주세요(이번달 가능, 지난달 가능)</h2>
 <form action="fishingking.do?get_fish=${rank.get_fish }" >
 
 	<select name="get_fish" id="get_fish" onchange="ch(${rank.num })" ondblclick="ch(${rank.num })">

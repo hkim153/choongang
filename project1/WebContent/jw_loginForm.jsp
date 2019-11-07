@@ -21,7 +21,12 @@
 		margin :1em auto 25px;
 		width:370px;
 		position:relative;		
+		text-align: left;
+		margin-left: auto;
+		margin-right: auto;
+		
 }
+
 </style>
 <script type="text/javascript">
 	function idchk() {
@@ -49,9 +54,9 @@
 		</header>
 
 		<div id="container">
-			<div class="login_form">
-				<h2>로그인 화면</h2>
+			<div class="login_form">										
 				<form action="jw_loginPro.do" method="post" name="frm">
+				<h2>로그인 화면</h2>	
 					<div class="form">
 						<table>
 							<tr>
@@ -59,7 +64,7 @@
 								<td rowspan="2"><input type="submit" value="로그인"></td>
 							</tr>
 							<tr>
-								<td>암  호: <input type="password" name="passwd" onsubmit="return passwdchk()"	required="required"></td>
+								<td>암호: <input type="password" name="passwd" onsubmit="return passwdchk()"	required="required"></td>
 							</tr>
 							<tr>
 								<td>

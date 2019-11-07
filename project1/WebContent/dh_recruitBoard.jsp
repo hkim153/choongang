@@ -10,6 +10,7 @@
 <script language="javascript">
 /* 	function showPopup() { window.open("DH_roomPopup.html", "roomInfo", "width=400, height=300, left=100, top=50 ");} */
 </script>
+<link href="test.css" rel="stylesheet" type="text/css">
 
 <link rel="stylesheet" href="style.css" type="text/css">
 <style type="text/css">
@@ -17,6 +18,8 @@ table {width: 100%}
 </style>
 </head>
 <body>
+ <div class="wrap">
+<header> <jsp:include page="header.jsp"></jsp:include> </header>
 	<h2>야낚자 오픈채팅방</h2>
 	<table>
 		<tr>
@@ -25,5 +28,8 @@ table {width: 100%}
 	</table>
 	<input type="button" value="채팅방 제목 여기" onclick="showPopup();">
 		<!-- Here is not for "input" method, but instead as for chatroom link -->
+		
+<jsp:include page="footer.jsp"></jsp:include>
+</div>
 </body>
 </html>

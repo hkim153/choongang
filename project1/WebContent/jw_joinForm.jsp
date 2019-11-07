@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link href="test.css" rel="stylesheet" type="text/css">
+<link href="join .css" rel="stylesheet" type="text/css">
 <script type="text/javascript">
 	function chk() {
 		if (frm.passwd.value != frm.passwd2.value) {
@@ -30,9 +31,9 @@
 <div class="wrap">
 		<header> <jsp:include page="header.jsp"></jsp:include> </header>
 		
-	<div class="container" role="main">	
+	<div class="container1" role="main">	
 	<form action="jw_joinPro.do" method="post" name="frm"		onsubmit="return chk()">
-		<table border="1">
+		<table>
 			<caption>
 				<h2>회원가입</h2>
 			</caption>

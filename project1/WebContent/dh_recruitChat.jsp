@@ -3,6 +3,7 @@
 <!DOCTYPE html  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link href="test.css" rel="stylesheet" type="text/css">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="css/bootstrap.css">
@@ -91,6 +92,8 @@
 	<title>실시간 회원제 채팅 서비스</title>
 </head>
 <body>
+ <div class="wrap">
+<header> <jsp:include page="header.jsp"></jsp:include> </header>
 	<div class="container bootstrap snippet">
 		<div class="row">
 			<div class="col-xs-12">
@@ -120,6 +123,8 @@
 			</div>
 		</div>
 	</div>
+	<jsp:include page="footer.jsp"></jsp:include>
+</div>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			chatListFunction('ten');

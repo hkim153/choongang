@@ -1,0 +1,82 @@
+@media ( max-width : 767px) #container , # footer , # header {
+	min-width
+	:
+	 
+	auto
+	;
+	
+	
+	margin
+	:
+	 
+	0
+	10
+	px
+	;
+	
+	
+	box-sizing
+	:
+	 
+	border-box
+	;
+	
+
+}
+
+@media ( max-width : 1024px) #container {
+	width
+	:
+	 
+	auto
+	;
+	
+	
+	max-width
+	:
+	768px;
+	
+
+}
+
+body, button, input, select, table, textarea {
+	font-family: Dotum, '돋움', Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+.row_group {
+	overflow: hidden;
+	width: 100%;
+}
+
+.join_title {
+	margin: 19px 0 8px;
+	font-size: 14px;
+	font-weight: 700;
+}
+
+.ps_box .int_id {
+	padding-right: 110px;
+}
+
+.ps_box {
+	display: block;
+	position: relative;
+	widows: 100%;
+	height: 51px;
+	border: solid 1px;
+	box-sizing: border-box;
+	vertical-align: top;
+}
+
+.int {
+	display: block;
+	position: relative;
+	width: 100%;
+	height: 29px;
+	line-height: 29px;
+	border: none;
+	font-size: 15px;
+	box-sizing: border-box;
+	z-index: 10;
+}

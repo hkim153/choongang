@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>글 수정</title>
+<link href="test.css" rel="stylesheet" type="text/css">
 </head>
 
 <script>
@@ -25,7 +26,8 @@ body {
 }
 </style>
 <body>
-
+<div class="wrap">
+<header> <jsp:include page="header.jsp"></jsp:include> </header>
 	<table summary="글수정 전체 테이블">
 		<form name="dh_writeForm.jsp" method="post" action="dh_writeForm.jsp" onsubmit="return boardUpdateCheck();" >
 		
@@ -74,6 +76,7 @@ body {
 		</table>
 	</form> 
 </table>
-
+<jsp:include page="footer.jsp"></jsp:include>
+</div>
 </body>
 </html>

@@ -6,8 +6,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link href="test.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+ <div class="wrap">
+<header> <jsp:include page="header.jsp"></jsp:include> </header>
 	<h2>인원 모집 게시판</h2>
 	<table>
 		<tr>
@@ -30,5 +33,7 @@
 				</tr>
 			</c:forEach>
 	</table>
+	<jsp:include page="footer.jsp"></jsp:include>
+</div>
 </body>
 </html>
