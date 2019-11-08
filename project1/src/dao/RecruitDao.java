@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -79,12 +80,14 @@ public class RecruitDao {
 			pstmt.setString(6, recruit.getRecruit_species());
 			pstmt.setString(7, recruit.getRecruit_event());
 			pstmt.setInt(8, recruit.getRecruit_member());
+			
 			result = pstmt.executeUpdate();
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
 		}finally {
 		if (pstmt != null) pstmt.close();
 		if (conn != null) conn.close();
+
 		}
 		return result;
 	}
@@ -163,5 +166,35 @@ public class RecruitDao {
 		}
 		return recruit;
 	}
-	
+	public int maxnum() throws SQLException {
+		int result = 0;
+		System.out.println("RecruitDao maxnum-> start.... ");
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		String sql= "select nvl(max(recruit_num),0) from Recruit";
+		System.out.println("RecruitDao sql->" + sql);
+		Recruit recruit = new Recruit();
+		try {
+			conn = getConnection();
+			stmt = conn.createStatement();
+			System.out.println("RecruitDao createStatement->");
+			rs = stmt.executeQuery(sql);
+			System.out.println("RecruitDao executeQuery->");
+			if (rs.next()) {
+				System.out.println("RecruitDao recruit_num->" +rs.getInt(1) );
+				result = (rs.getInt(1));
+			}
+
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+		if (stmt != null) stmt.close();
+		if (conn != null) conn.close();
+		if (rs != null) rs.close();
+		
+
+		}
+		return result;
+	}
 }

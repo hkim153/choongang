@@ -14,7 +14,7 @@ table {	   width: 100%;   }
 </style>
 </head>
 <body>
-<input type="button" value="달력이동" onclick="location.href='hh_index.html'">
+<input type="button" value="달력이동" onclick="location.href='hh_event.do'">
 	<h2>게시판</h2>
 	<table><tr><td><a href="hh_writeEventForm.do">글쓰기</a></td></tr></table>
 	<table><tr><td><a href="hh_CalenderUpdate.do">달력 업데이트</a></td></tr></table>

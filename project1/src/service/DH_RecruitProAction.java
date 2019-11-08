@@ -11,6 +11,8 @@ import javax.servlet.http.HttpSession;
 
 import dao.Chat;
 import dao.ChatDao;
+import dao.Event;
+import dao.EventDao;
 import dao.Recruit;
 import dao.RecruitDao;
 import dao.StoreDao;
@@ -60,13 +62,48 @@ public class DH_RecruitProAction implements CommandProcess {
 		chat.setChatContent(newroom);
 		RecruitDao rd = RecruitDao.getInstance();
 		ChatDao cd = ChatDao.getInstance();
+		
+		
 		int result = 0;
 		int result2 = 0;
 		int result3 = 0;
+		
 		try {
 			result = rd.insert_recruit(recruit);
 			result2 = cd.chatRoom(chat);
 			result3 = cd.participantlist(chat);
+			
+				int result6 = rd.maxnum();
+			
+				Event event = new Event();
+		        event.setTitle(recruit_title);
+		        event.setUsername("사나");		
+		        event.setE_type("모임");		
+		        event.setTextColor("#ffffff");	
+		        event.setBackgroundColor("#74c0fc");
+		        String [] rea = recruit_event.split("");
+		        String re = "";
+		        for (int i = 0; i < rea.length; i++) {
+					re += rea[i];
+					if (i==3||i==5) {
+						re += "-";
+					}
+				}
+ 
+		        event.setE_start(re);
+		        event.setE_end(re);
+		        event.setDescription("상세 사항 참조");
+		        event.setAllDay("true");
+		        event.setRsa("변동 가능");
+		        
+		        String a= "/project1/dh_recruit_content.do?recruit_num="+result6+"&room_manager="+recruit_id;
+		        System.out.println("result6 - > " + result6);
+				event.setUrl(a);
+				EventDao ed = EventDao.getInstance();//DB 
+		        int result5 = ed.insert(event);
+		 
+		        System.out.println("Event DB"+event.getE_id()+"번 입력 성공");
+				
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
