@@ -22,7 +22,6 @@
 		<a href="hs_fishingSiteForm.do">낚시터 홈으로</a>
 		<a href="jw_logOut.do">로그아웃하기</a>
 </div>
-
 <table border="1">
 	<caption><h2>${fs.fs_name}</h2></caption>
 	<tr><td width="50">번호</td><td>${fs.fs_num}</td></tr>
@@ -38,7 +37,11 @@
 			</c:forEach>
 		</td>
 	</tr>
-	<tr><td>이미지</td><td></td></tr>
+	<tr>
+		<td>이미지 </td>
+		<td><img src="${pageContext.request.contextPath}/${fs.img_folder }/${fs.real_name}"
+						alt="상품대표이미지" /></td>
+	</tr>
 	<tr><td>내용</td><td><pre>${fs.fs_content}</pre></td></tr>
 	<tr><td colspan="2">
 	<input type="button" value="수정" 

@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
+<link href="test.css" rel="stylesheet" type="text/css">
 <!-- 방이름 확인문 -->
 <!-- <script type="text/javascript">
 	function chk() {
@@ -64,6 +64,8 @@
  
 </head>
 <body onload="window.resizeTo(400,600)">
+ <div class="wrap">
+<header> <jsp:include page="header.jsp"></jsp:include> </header>
 <h1>인원 모집 하고 싶어요</h1> 
 <form action="dh_recruitPro.do" name="frm" method="post" onsubmit="return chk()">
 	<input type="hidden" name="Recruit_id" value="${sessionScope.id }">
@@ -148,5 +150,7 @@
 		
 	</table>
 </form>
+<jsp:include page="footer.jsp"></jsp:include>
+</div>
 </body>
 </html>

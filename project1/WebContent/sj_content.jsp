@@ -7,44 +7,57 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link href="test.css" rel="stylesheet" type="text/css">
- <style type="text/css">
-	#sj_a{
-		height:1000px;
-		}
-</style> 
+<style type="text/css">
+#sj_a {
+	height: 1000px;
+	text-align: center;
+}
+
+.sj_a {
+	text-align: center;
+	margin: auto;
+	width: 600px;
+	height: 200px;
+}
+
+#sj_r {
+	width: 80px;
+}
+</style>
 </head>
 <body>
 	<div id="wrap">
 		<div>
 			<header> <jsp:include page="header.jsp"></jsp:include> </header>
 		</div>
+		<p>
 		<div id="sj_a">
-			<table border="1">
+			<table class="sj_a" border="1">
 				<caption>
 					<h2>회원 등록내역</h2>
 				</caption>
 				<tr>
-					<td>아이디</td>
+					<td id="sj_r">아이디</td>
 					<td>${rank.id }</td>
 				</tr>
 				<tr>
-					<td>물고기</td>
+					<td id="sj_r">물고기</td>
 					<td>${rank.get_fish }</td>
 				</tr>
 				<tr>
-					<td>사진</td>
-					<td><img
-						src="${pageContext.request.contextPath}/${img_folder }/${rank.real_name }"></td>
+					<td id="sj_r">사진</td>
+					<td><img src="${pageContext.request.contextPath}/${img_folder }/${rank.real_name }"></td>
 				</tr>
 				<tr>
-					<td>작성일</td>
+					<td id="sj_r">작성일</td>
 					<td>${rank.reg_date }</td>
 				</tr>
 				<tr>
-					<td>내용</td>
+					<td id="sj_r">내용</td>
 					<td>${rank.content }</td>
 				</tr>
 			</table>
+			<br>
 			<c:if test="${sessionScope.result eq 1 }">
 				<c:if test="${sessionScope.id == rank.id }">
 					<table>

@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
+<link href="test.css" rel="stylesheet" type="text/css">
 
 <!-- 달력 폼 -->
 <!-- https://sgroom.tistory.com/63 -->
@@ -42,6 +42,9 @@
 </head>
 <!-- <body onload="window.resizeTo(400,600)"> -->
 <!-- <form action="DH_index.jsp" onsubmit="return chk()">  -->
+<body>
+ <div class="wrap">
+<header> <jsp:include page="header.jsp"></jsp:include> </header>
 <h1>함께하기 방 만들기</h1> 
 <!-- </form> -->
 <form action="dh_recruitwrite.do" name="frm" method="post" onsubmit="return chk()">
@@ -129,5 +132,7 @@
 		
 	</table>
 </form>
+<jsp:include page="footer.jsp"></jsp:include>
+</div>
 </body>
 </html>

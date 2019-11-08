@@ -5,9 +5,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link href="test.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <table border="1">
+ <div class="wrap">
+<header> <jsp:include page="header.jsp"></jsp:include> </header>
 	<caption><h2>모집 상세내역</h2></caption>
 	<tr><td width="50">번호</td><td>${recruit.recruit_num}</td></tr>
 	<tr><td>제목</td><td>${recruit.recruit_title}</td></tr>
@@ -28,5 +31,7 @@
 	<input type="button" value="목록"
 			    onclick="location.href='dh_recruitlist.do'"></td></tr>
 </table>
+<jsp:include page="footer.jsp"></jsp:include>
+</div>
 </body>
 </html>
