@@ -1,10 +1,15 @@
 package service;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import dao.Board;
 import dao.BoardDao;
@@ -20,13 +25,20 @@ public class HS_UpdateProAction implements CommandProcess {
 		try {
 			request.setCharacterEncoding("utf-8");
 			
-			String id = request.getParameter("id");
-			String curid = request.getParameter("curid");
-			String rightpasswd = request.getParameter("rightpasswd");
-			String passwd = request.getParameter("passwd");
-			String pageNum = request.getParameter("pageNum");
-			String [] fishes = request.getParameterValues("어종");
-			int num = Integer.parseInt(request.getParameter("num"));
+			int maxSize = 10 * 1024 * 1024;
+			String imagefile = "/fishingsite_img";
+			String realPath = request.getServletContext().getRealPath(imagefile);
+			System.out.println("realpath->" +  realPath);
+			MultipartRequest multi = new MultipartRequest(request, realPath, maxSize, "utf-8", new DefaultFileRenamePolicy());
+			
+			
+			String id = multi.getParameter("id");
+			String curid = multi.getParameter("curid");
+			String rightpasswd = multi.getParameter("rightpasswd");
+			String passwd = multi.getParameter("passwd");
+			String pageNum = multi.getParameter("pageNum");
+			String [] fishes = multi.getParameterValues("어종");
+			int num = Integer.parseInt(multi.getParameter("num"));
 			int result;
 			if(!id.equals(curid)) {
 				result = -1;
@@ -38,12 +50,30 @@ public class HS_UpdateProAction implements CommandProcess {
 				else {
 					fishingsite fs = new fishingsite();
 					fs.setFs_num(num);
-					fs.setFs_reg(request.getParameter("fs_reg"));
-					fs.setFs_addr(request.getParameter("fs_addr"));
-					fs.setFs_content(request.getParameter("fs_content"));
-					fs.setFs_img(request.getParameter("fs_img"));
-					String fs_name = request.getParameter("fs_name");
+					fs.setFs_reg(multi.getParameter("fs_reg"));
+					fs.setFs_addr(multi.getParameter("fs_addr"));
+					fs.setFs_content(multi.getParameter("fs_content"));
+					String fs_name = multi.getParameter("fs_name");
 					fs.setFs_name(fs_name);
+					
+					fs.setFs_content(multi.getParameter("fs_content"));
+					fs.setFs_reg(multi.getParameter("fs_reg"));
+					fs.setId(multi.getParameter("id"));
+					
+					Enumeration en = multi.getFileNames();
+					String filename1 = (String)en.nextElement();
+					
+					String filename = multi.getFilesystemName(filename1);
+					String original = multi.getOriginalFileName(filename1);
+					String type = multi.getContentType(filename1);
+					File file = multi.getFile(filename1);
+					if(file != null){
+						 System.out.println("imgFile 크기 : "+file.length());
+					 }
+					fs.setImg_folder(imagefile);
+					fs.setReal_name(original);
+					fs.setSaved_name(filename);
+					
 					fishingsiteDao fsd = fishingsiteDao.getInstance();
 					fsd.deletefishmapping(num);
 					result = fsd.update(fs);

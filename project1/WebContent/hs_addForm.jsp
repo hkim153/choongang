@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="test.css" rel="stylesheet" type="text/css">
 <style>
 	#upright{
 			position: absolute;
@@ -16,11 +17,8 @@
 </style>
 </head>
 <body>
-<div id ="upright">
-		<a href="main.do">홈으로</a>
-		<a href="hs_fishingSiteForm.do">낚시터 홈으로</a>
-		<a href="jw_logOut.do">로그아웃하기</a>
-</div>
+<div class="wrap">
+		<header> <jsp:include page="header.jsp"></jsp:include> </header>
 <form action="hs_addPro.do?pageNum=${pageNum}" enctype="multipart/form-data" method="post">
    <input type="hidden" name="num" value="${num}">
    <input type = "hidden" name = "id" value = "${sessionScope.id }">
@@ -84,5 +82,8 @@
 	</tr>
   </table>
 </form>
+<jsp:include page="footer.jsp"></jsp:include>
+
+		</div>
 </body>
 </html>

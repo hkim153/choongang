@@ -6,9 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="test.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-
+<div class="wrap">
+		<header> <jsp:include page="header.jsp"></jsp:include> </header>
 <c:if test="${result == -1 }">
 	<script type="text/javascript">
 		alert("작성하신 글이 아니에요 ! ");
@@ -35,6 +37,8 @@
 		location.href="hs_deleteForm.do?num=${num}&pageNum=${pageNum}";
 	</script>
 </c:if>	
+<jsp:include page="footer.jsp"></jsp:include>
 
+		</div>
 </body>
 </html>

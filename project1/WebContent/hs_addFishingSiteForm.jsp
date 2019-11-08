@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="test.css" rel="stylesheet" type="text/css">
 <style>
 	table {
 		width: 100%;
@@ -23,12 +24,8 @@
 </style>
 </head>
 <body>
-
-<div id ="upright">
-		<a href="main.do">홈으로</a>
-		<a href="hs_fishingSiteForm.do">낚시터 홈으로</a>
-		<a href="jw_logOut.do">로그아웃하기</a>
-</div>
+<div class="wrap">
+		<header> <jsp:include page="header.jsp"></jsp:include> </header>
 
 <h2>낚시터</h2>
 	<table>
@@ -78,5 +75,9 @@
 			<a href='hs_addFishingSiteForm.do?pageNum=${startPage+blockSize}'>[다음]</a>
 		</c:if>
 	</div>
+	
+	<jsp:include page="footer.jsp"></jsp:include>
+
+</div>
 </body>
 </html>

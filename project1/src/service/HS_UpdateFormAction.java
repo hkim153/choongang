@@ -25,7 +25,9 @@ public class HS_UpdateFormAction implements CommandProcess {
 			fishingsiteDao fsd = fishingsiteDao.getInstance();
 			fishingsite fs = fsd.select(num);
 			List<fish> flist = fsd.get_all_fish();
+			List<String> fishes = fsd.get_fish(num);
 			
+			request.setAttribute("fishes", fishes);
 			request.setAttribute("flist", flist);
 			request.setAttribute("pageNum", pageNum);
 			request.setAttribute("fs", fs);

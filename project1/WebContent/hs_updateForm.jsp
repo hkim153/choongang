@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="test.css" rel="stylesheet" type="text/css">
 <style>
 	#upright{
 			position: absolute;
@@ -16,12 +17,9 @@
 </style>
 </head>
 <body>
-<div id ="upright">
-		<a href="main.do">홈으로</a>
-		<a href="hs_fishingSiteForm.do">낚시터 홈으로</a>
-		<a href="jw_logOut.do">로그아웃하기</a>
-</div>
-<form action="hs_updatePro.do" method="post">
+<div class="wrap">
+		<header> <jsp:include page="header.jsp"></jsp:include> </header>
+<form action="hs_updatePro.do" enctype="multipart/form-data" method="post">
 		<input type="hidden" name="num" value="${fs.fs_num}">
 		<input type="hidden" name="pageNum" value="${pageNum}">
 		<input type="hidden" name = "id" value = "${fs.id }">
@@ -34,7 +32,9 @@
 			 value="${fs.fs_name}"></td></tr>
 			 <tr>
 			<td>지역</td>
-				<td><input type="text" name="fs_reg" list="choices" required="required" >
+				<td>
+				현재 지역:${fs.fs_reg }->
+				<input type="text" name="fs_reg" list="choices" required="required" >
 					<datalist id = "choices">
 						<option value="경기도" label="경기도"></option>
 						<option value="서울특별시" label="서울특별시"></option>
@@ -62,7 +62,10 @@
 			</tr>
 			<tr>
 				<td>서식 어종</td>
-				<td>
+				<td>현재 어종:
+					<c:forEach var= "sfish" items = "${fishes }">
+						${sfish }  
+					</c:forEach>
 					<c:forEach var = "fish" items = "${flist }">
 						<input type = "checkbox" name = "어종" value = "${fish.f_name }">${fish.f_name }
 					</c:forEach>
@@ -75,7 +78,7 @@
 			</tr>
 			<tr>
 				<td>이미지</td>
-				<td><input type="file" name="img_folder"></td>
+				<td><input type="file" name="fs_img"></td>
 			</tr>
 			<tr>
 				<td>작성자</td>
@@ -86,5 +89,8 @@
 				</td></tr>
 		</table>
 </form>
+<jsp:include page="footer.jsp"></jsp:include>
+
+		</div>
 </body>
 </html>

@@ -17,11 +17,8 @@
 </style>
 </head>
 <body>
-<div id ="upright">
-		<a href="main.do">홈으로</a>
-		<a href="hs_fishingSiteForm.do">낚시터 홈으로</a>
-		<a href="jw_logOut.do">로그아웃하기</a>
-</div>
+<div class="wrap">
+		<header> <jsp:include page="header.jsp"></jsp:include> </header>
 <form action = "hs_userPreferPro.do" method = "get">
 	<table border = "1">
 		<caption><h2>나에게 딱맞는 낚시터가 있다?!?!</h2></caption>
@@ -58,6 +55,8 @@
 
 </form>
 
+<jsp:include page="footer.jsp"></jsp:include>
 
+		</div>
 </body>
 </html>

@@ -283,7 +283,8 @@ public class fishingsiteDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String sql = "update fishingsite set fs_name=?, fs_addr=?, fs_reg=?, fs_content=?, fs_img=? where fs_num=?";
+		String sql = "update fishingsite set fs_name=?, fs_addr=?, fs_reg=?, fs_content=?, fs_img=?"
+				+ ", img_folder = ?, real_name = ?, saved_name = ? where fs_num=?";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -292,7 +293,10 @@ public class fishingsiteDao {
 			pstmt.setString(3, fs.getFs_reg());
 			pstmt.setString(4, fs.getFs_content());
 			pstmt.setString(5, fs.getFs_img());
-			pstmt.setInt(6, fs.getFs_num());
+			pstmt.setString(6, fs.getImg_folder());
+			pstmt.setString(7, fs.getReal_name());
+			pstmt.setString(8, fs.getSaved_name());
+			pstmt.setInt(9, fs.getFs_num());
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -369,8 +373,6 @@ public class fishingsiteDao {
 			rs = pstmt.executeQuery();
 			rs.next();
 			int fs_code = rs.getInt(1);
-			System.out.println(fs_name);
-			System.out.println(fs_code);
 			rs.close();
 			for(String cf : fishes) {
 				pstmt = conn.prepareStatement(sql2);
@@ -378,8 +380,6 @@ public class fishingsiteDao {
 				rs = pstmt.executeQuery();
 				rs.next();
 				int f_code = rs.getInt(1);
-				System.out.println(cf);
-				System.out.println(f_code);
 				rs.close();
 				pstmt.close();
 				pstmt = conn.prepareStatement(sql3);
