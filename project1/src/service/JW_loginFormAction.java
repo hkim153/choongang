@@ -6,7 +6,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.BoardDao;
 import dao.jw_MemberDao;
 import dao.jw_MemberDto;
 

@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import dao.Board;
-import dao.BoardDao;
 import dao.fishingsite;
 import dao.fishingsiteDao;
 

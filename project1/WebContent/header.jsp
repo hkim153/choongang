@@ -18,7 +18,7 @@ color: yellow;
 		</div>
 		<div class="gnb">
 			<ul>
-				<li><a href="board.do">게시판</a></li>
+				<li><a href="sh_board.do">게시판</a></li>
 				<li><a href="wh_store.do">판매 및 대여</a></li>
 				<li><a href="DH_channel.jsp">팀원모집</a></li>
 				<li><a href="hs_fishingSiteForm.do">낚시터</a></li>
