@@ -19,9 +19,10 @@
 		/* $("#totalPrice").html(totalPrice); 
 		$('#totalPrice').text(totalPrice); */
 		$(function(){
+			
+			document.frm.totalPrice.value=totalPrice;
 			$('#totalPrice').html("<strong>"+totalPrice+"<strong>");
 		});
-		totalPrice.type="hidden";
 	}
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -34,9 +35,11 @@
 		<div>
 			<jsp:include page="header.jsp"></jsp:include>
 		</div>
-		<form action="wh_proOrderForm.do" onsubmit="return chk()">
+		<form action="wh_proOrderForm.do" onsubmit="return chk()" name="frm">
 		<input type="hidden" name="pro_num" value="${proContent.pro_num}">
 		<input type="hidden" name="pro_code" value="${proContent.pro_code}">
+		<input type="hidden" name="totalPrice" value="${proContent.price}">
+		
 		<div id="dhtmlgoodies_slideshow">
 			<div id="previewPane">
 				<img src="${pageContext.request.contextPath}/${first_img}"> <span id="waitMessage"></span>

@@ -159,7 +159,7 @@ public class MemberDao {
 		}
 		return result;
 	}
-
+	
 	public Member select(String id) throws SQLException { //id에 해당하는 정보 불러오기
 		Member member = new Member();
 		Connection conn = null;
@@ -179,6 +179,35 @@ public class MemberDao {
 				member.setAddress(rs.getString(5));
 				member.setTel(rs.getString(6));
 				member.setReg_date(rs.getDate(7));
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		}
+		return member;
+	}
+	
+	
+	public Member user_info(String id) throws SQLException { //id에 해당하는 정보 불러오기
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "select * from member where id=?";
+		ResultSet rs = null;
+		Member member = new Member();
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				member.setName(rs.getString("name"));
+				member.setEmail(rs.getString("email"));
+				member.setAddress(rs.getString("address"));
+				member.setTel(rs.getString("tel"));
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
