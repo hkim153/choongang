@@ -177,8 +177,34 @@ public class ChatDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql1 = "select * from chat_participant where PARTICIPANT = ?";
 		String sql = "insert into recruit_chatroom values(?,chatid.NEXTVAL, ?,?,?, sysdate)";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, recruit_num);
+			pstmt.setString(2, room_manager);
+			pstmt.setString(3, fromID);
+			pstmt.setString(4, chatContent);
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
+		}
+		return -1; // 데이터베이스 오류
+	}
+	public int chatroom_in(int recruit_num, String fromID) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql1 = "select * from chat_participant where PARTICIPANT = ?";
 		String sql2 = "insert into Chat_participant values(?,?)";
 		int result = 0;
 		try {
@@ -187,25 +213,13 @@ public class ChatDao {
 			pstmt.setString(1, fromID);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, recruit_num);
-				pstmt.setString(2, room_manager);
-				pstmt.setString(3, fromID);
-				pstmt.setString(4, chatContent);
-				return pstmt.executeUpdate();
+				return 0;
 			}else {
 				pstmt = conn.prepareStatement(sql2);
 				pstmt.setInt(1, recruit_num);
 				pstmt.setString(2, fromID);
 				result = pstmt.executeUpdate();
-				if(result ==1) {
-					pstmt = conn.prepareStatement(sql);
-					pstmt.setInt(1, recruit_num);
-					pstmt.setString(2, room_manager);
-					pstmt.setString(3, fromID);
-					pstmt.setString(4, chatContent);
-					return pstmt.executeUpdate();
-				}
+				return result;
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
