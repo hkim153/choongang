@@ -78,9 +78,9 @@ public class MemberDao {
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			if (rs.next())
-				result = 1; // 있을땐 1
+				result = 1; // 아아디가 존재할 때 
 			else
-				result = 0; // 없을땐 0
+				result = 0; // 아이디가 존재하지않을 때 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		} finally {
@@ -94,7 +94,7 @@ public class MemberDao {
 		return result;
 	}
 
-	public int confirm_A(String admin_c, String id) throws SQLException { // 어드민 권한 확인
+	public int confirm_Admin(String admin_c, String id) throws SQLException { // 어드민 권한 확인
 		Connection conn = null;
 		int adminResult = 0;
 		ResultSet rs = null;
@@ -107,14 +107,14 @@ public class MemberDao {
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				String dbadmin = rs.getString(1);
-				System.out.println("뭐라고나옴? " + dbadmin);
-				if (dbadmin.equals("A"))
+				String dbAdmin = rs.getString(1);
+				System.out.println("dbAdmin check " + dbAdmin);
+				if (dbAdmin.equals("A"))
 					adminResult = 1;
 				else
 					adminResult = 0;
 			}
-			System.out.println("confirm_A 결과: " + adminResult);
+			System.out.println("confirm_Admin 결과: " + adminResult);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			// TODO: handle exception
@@ -127,6 +127,40 @@ public class MemberDao {
 				conn.close();
 		}
 		return adminResult;
+	}
+	
+	public int confirm_Alive(String alive_c, String id) throws SQLException { // 가입 상태확인(Alive_c)
+		Connection conn = null;
+		int aliveResult = 0;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		String sql = "select alive_c from member where id=?";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				String dbAlive = rs.getString(1);
+				System.out.println("dbAlive check " + dbAlive);
+				if (dbAlive.equals("A"))
+					aliveResult = 1;
+				else
+					aliveResult = 0;
+			}
+			System.out.println("confirm_Alive check: " + aliveResult);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			// TODO: handle exception
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		}
+		return aliveResult;
 	}
 
 	public int insert(Member member) throws SQLException { //회원가입 정보 db에 넣기

@@ -15,11 +15,11 @@
 <body>
 
 <%-- <c:set var="id" value="${id }"></c:set> --%>
-<input type="hidden" name="id" value=" ${id }">
+<%-- <input type="hidden" name="id" value=" ${id }"> --%>
 	<c:if test="${result==1 }">
 			<p1>${id } 는 이미 있는 아이디입니땅! 다른 아이디를 사용하셔야 합니땅!</p1>
 	</c:if>
-	<c:if test="${result==0 }">
+	<c:if test="${result !=1 }">
 		<p1>	${id } 는 사용하실 수 있습니땅!</p1>
 	</c:if>
 	

@@ -28,11 +28,11 @@ public class JW_loginProAction implements CommandProcess {
 			
 			System.out.println("어드민 캐릭터: "+admin_c);
 
-			int result = md.check(id, passwd); // id,passwd
-			int adminResult = md.confirm_A(admin_c, id); // 어드민인지 확인
+			int result = md.check(id, passwd); // id,passwd 일치여부 확인
+			int adminResult = md.confirm_Admin(admin_c, id); // 어드민인지 확인
 			System.out.println("어드민 체크: " + adminResult);
 
-			String adminPage = "";
+			
 			if (result == 1) {
 				System.out.println("로그인 성공!");
 				session.setAttribute("result", result);

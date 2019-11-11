@@ -31,7 +31,7 @@
 <script type="text/javascript">
 	function idchk() {
 		if (!frm.id.value) {
-			alert("id를 입력해주세요!");
+			alert("id를 입력안하셨습니땅!");
 			frm.id.focus();
 			return false;
 		}
@@ -39,7 +39,7 @@
 	}
 	function passwdchk() {	
 		if (!frm.passwd.value) {
-			alert("암호를 입력해주세요!");
+			alert("암호를 입력안하셨습니땅!");
 			frm.passwd.value();
 			return false;
 		}

@@ -17,7 +17,7 @@
 </c:if>
 <c:if test="${result==0 }">
 	<script type="text/javascript"> 
-	alert("정보를 잘못입력하셨습니땅! ㅠ.ㅠ");
+	alert("정보를 잘못입력하셨습니땅! ㅠㅡㅠ");
 	location.href="jw_joinForm.do?id=${id}";
 	</script>
 </c:if>
