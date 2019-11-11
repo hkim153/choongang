@@ -146,19 +146,13 @@
 
 				<!-- 로그인  -->
 				<!-- 			<div class="event_side"> -->
-<<<<<<< HEAD
+
 				<div class="calendar">
 						   
 					<iframe src="hh_macalender.jsp" width="100%" height="330px"></iframe>	
  					<input type="button" value="달력 이동" onclick="location.href='hh_calender.jsp'" >    
 				</div> 
-=======
-				<div class="calendar	">
 
-					<iframe src="index2.html" width="100%" height="350px"></iframe>	
-
-				</div>
->>>>>>> branch 'master' of https://github.com/hkim153/choongang.git
 				<!-- 이벤트달력 작게  -->
 
 				<!-- <div class="recruit_side" > -->
