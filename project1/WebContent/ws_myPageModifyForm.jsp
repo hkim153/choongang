@@ -5,12 +5,26 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link href="test.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+
+	function winop() {
+		/* if (!frm.id.value) {
+			alert("id를 입력하고 사용하세요");
+			frm.id.focus();
+			return false;
+		} */
+		window.open("jw_confirmIdPro.do?id=${id}" + frm.id.value, "",
+				"width=300 height=300");
+	}
+</script>
 </head>
 <body>
 	<div class="wrap">
 		<header> <jsp:include page="header.jsp"></jsp:include> </header>
 		<div class="container" role="main">
-			<form action="jw_myPage.do" method="post"" >
+			<form action="ws_myPageModifyPro.do" method="post"" >
+		    	<input type="hidden" name="id" value="${sessionScope.id }">
 				<table border="1">
 					<caption>
 						<h2>회원정보수정</h2>
