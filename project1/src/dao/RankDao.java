@@ -37,7 +37,7 @@ public class RankDao {
 		return conn;
 	}
 
-	public int insert(RankDto rank) throws SQLException {
+	public int insert(Rank rank) throws SQLException {
 		int num = 3;
 		int result1 = 0;
 		Connection conn = null;
@@ -71,10 +71,10 @@ public class RankDao {
 		return result1;
 	}
 
-	public List<RankDto> list(int startRow, int endRow, String get_fish
+	public List<Rank> list(int startRow, int endRow, String get_fish
 			) throws SQLException {
 		System.out.println("list start");
-		List<RankDto> list = new ArrayList<RankDto>();
+		List<Rank> list = new ArrayList<Rank>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -89,7 +89,7 @@ public class RankDao {
 			pstmt.setString(3, get_fish);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				RankDto rank = new RankDto();
+				Rank rank = new Rank();
 				rank.setNum(rs.getInt("num"));
 				rank.setId(rs.getString("id"));
 				rank.setGet_fish(rs.getString("get_fish"));
@@ -115,12 +115,12 @@ public class RankDao {
 		return list;
 	}
 
-	public RankDto select(int num) throws SQLException {
+	public Rank select(int num) throws SQLException {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "select * from ranking where num=?";
-		RankDto rank = new RankDto();
+		Rank rank = new Rank();
 
 		try {
 			conn = getConnection();
@@ -152,9 +152,9 @@ public class RankDao {
 
 		return rank;
 	}
-	public List<RankDto> list1(int startRow, int endRow) throws SQLException {
+	public List<Rank> list1(int startRow, int endRow) throws SQLException {
 		System.out.println("list1 start");
-		List<RankDto> list1 = new ArrayList<RankDto>();
+		List<Rank> list1 = new ArrayList<Rank>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -167,7 +167,7 @@ public class RankDao {
 			pstmt.setInt(2, endRow);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				RankDto rank1 = new RankDto();
+				Rank rank1 = new Rank();
 				rank1.setNum(rs.getInt("num"));
 				rank1.setId(rs.getString("id"));
 				rank1.setGet_fish(rs.getString("get_fish"));
@@ -219,9 +219,9 @@ public class RankDao {
 		}
 		return result;
 }
-	public List<RankDto> list2(int startRow1, int endRow1) throws SQLException {
+	public List<Rank> list2(int startRow1, int endRow1) throws SQLException {
 		System.out.println("list2 start");
-		List<RankDto> list2 = new ArrayList<RankDto>();
+		List<Rank> list2 = new ArrayList<Rank>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -235,7 +235,7 @@ public class RankDao {
 			pstmt.setInt(2, endRow1);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				RankDto rank2 = new RankDto();
+				Rank rank2 = new Rank();
 				rank2.setNum(rs.getInt("num"));
 				rank2.setId(rs.getString("id"));
 				rank2.setGet_fish(rs.getString("get_fish"));

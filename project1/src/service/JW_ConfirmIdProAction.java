@@ -6,8 +6,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.jw_MemberDao;
-import dao.MemberDto;
+import dao.MemberDao;
+import dao.Member;
 
 public class JW_ConfirmIdProAction implements CommandProcess {
 
@@ -17,12 +17,12 @@ public class JW_ConfirmIdProAction implements CommandProcess {
 		 try {
 			 request.setCharacterEncoding("utf-8");
 			 String id = request.getParameter("id");
-			 MemberDto member = new MemberDto();
+			 Member member = new Member();
 			 member.setId(request.getParameter("id"));
 //			 System.out.println("member: "+member);			 
 //			 System.out.println("id: "+id);
 			 
-			 jw_MemberDao md = jw_MemberDao.getInstance();
+			 MemberDao md = MemberDao.getInstance();
 //			 int result = md.insert(member);
 			 int result = md.confirm(id);
 //			 System.out.println("result: "+result);

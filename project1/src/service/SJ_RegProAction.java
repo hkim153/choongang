@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.RankDao;
-import dao.RankDto;
+import dao.Rank;
 
 public class SJ_RegProAction implements CommandProcess {
 
@@ -41,7 +41,7 @@ public class SJ_RegProAction implements CommandProcess {
 			String type = multi.getContentType(filename1);            //파일타입
 			File file = multi.getFile(filename1);
 			
-			RankDto rank = new RankDto();
+			Rank rank = new Rank();
 			rank.setNum(num);
 			rank.setId(id);
 			rank.setGet_fish(get_fish);

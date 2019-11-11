@@ -6,8 +6,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.jw_MemberDao;
-import dao.MemberDto;
+import dao.MemberDao;
+import dao.Member;
 
 public class JW_JoinProAction implements CommandProcess {
 
@@ -17,7 +17,7 @@ public class JW_JoinProAction implements CommandProcess {
 		try {
 			request.setCharacterEncoding("utf-8");
 			
-			MemberDto member = new MemberDto();
+			Member member = new Member();
 			member.setId(request.getParameter("id"));
 			member.setPasswd(request.getParameter("passwd"));
 			member.setName(request.getParameter("name"));
@@ -28,7 +28,7 @@ public class JW_JoinProAction implements CommandProcess {
 			member.setAlive_c("A");	     
 					
 			
-			jw_MemberDao md = jw_MemberDao.getInstance();
+			MemberDao md = MemberDao.getInstance();
 			int result = md.insert(member);
 			request.setAttribute("result", result);
 			System.out.println("result: "+result);

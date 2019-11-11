@@ -2,7 +2,7 @@ package dao;
 
 import java.util.Date;
 
-public class MemberDto {
+public class Member {
 	private String id, passwd, name, email, admin_c, alive_c, address,tel;	
 	private Date reg_date;
 	

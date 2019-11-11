@@ -7,7 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.RankDto;
+import dao.Rank;
 import dao.RankDao;
 
 public class SJ_ListAction implements CommandProcess {
@@ -24,7 +24,7 @@ public class SJ_ListAction implements CommandProcess {
 //			String img_folder = request.getParameter("img_folder");
 			RankDao rk = RankDao.getInstance();
 			int startRow = 1, endRow = 99;
-			List<RankDto> list = rk.list(startRow, endRow, get_fish);
+			List<Rank> list = rk.list(startRow, endRow, get_fish);
 			int startNum = startRow;
 //			int num = Integer.parseInt(request.getParameter("num"));
 

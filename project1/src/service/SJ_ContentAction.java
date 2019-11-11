@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.RankDto;
-import dao.jw_MemberDao;
-import dao.MemberDto;
+import dao.Rank;
+import dao.MemberDao;
+import dao.Member;
 import dao.RankDao;
 
 public class SJ_ContentAction implements CommandProcess {
@@ -35,7 +35,7 @@ public class SJ_ContentAction implements CommandProcess {
 			RankDao rk = RankDao.getInstance();
 			String realPath = request.getServletContext().getRealPath(img_folder);
 			// System.out.println("realPath->"+realPath);
-			RankDto rank = rk.select(num);
+			Rank rank = rk.select(num);
 			request.setAttribute("num", num);
 			request.setAttribute("id", id);
 			// System.out.println("contentaction id->"+id);

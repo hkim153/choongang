@@ -9,15 +9,15 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-public class jw_MemberDao {
-	private static jw_MemberDao instance;
+public class MemberDao {
+	private static MemberDao instance;
 
-	private jw_MemberDao() {
+	private MemberDao() {
 	}
 
-	public static jw_MemberDao getInstance() {
+	public static MemberDao getInstance() {
 		if (instance == null) {
-			instance = new jw_MemberDao();
+			instance = new MemberDao();
 		}
 		return instance;
 	}
@@ -129,7 +129,7 @@ public class jw_MemberDao {
 		return adminResult;
 	}
 
-	public int insert(MemberDto member) throws SQLException { //회원가입 정보 db에 넣기
+	public int insert(Member member) throws SQLException { //회원가입 정보 db에 넣기
 		Connection conn = null;
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -160,8 +160,8 @@ public class jw_MemberDao {
 		return result;
 	}
 
-	public MemberDto select(String id) throws SQLException { //id에 해당하는 정보 불러오기
-		MemberDto member = new MemberDto();
+	public Member select(String id) throws SQLException { //id에 해당하는 정보 불러오기
+		Member member = new Member();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = "select * from member where id=?";

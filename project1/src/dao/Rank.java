@@ -2,7 +2,7 @@ package dao;
 
 import java.util.Date;
 
-public class RankDto {
+public class Rank {
 	private int num;
 	private String id;
 	private String get_fish;

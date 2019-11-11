@@ -8,8 +8,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.jw_MemberDao;
-import dao.MemberDto;
+import dao.MemberDao;
+import dao.Member;
 
 public class ws_ModifyFormAction implements CommandProcess {
 
@@ -22,8 +22,8 @@ public class ws_ModifyFormAction implements CommandProcess {
 			String email = request.getParameter("email");
 			String address = request.getParameter("address");
 			String tel = request.getParameter("tel");
-			jw_MemberDao md = jw_MemberDao.getInstance();
-			MemberDto member = md.select(name);
+			MemberDao md = MemberDao.getInstance();
+			Member member = md.select(name);
 
 			request.setAttribute("name", name);
 			request.setAttribute("email", email);
