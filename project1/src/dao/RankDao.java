@@ -100,6 +100,7 @@ public class RankDao {
 				rank.setFile_name(rs.getString("file_name"));
 				rank.setReal_name(rs.getString("real_name"));
 				list.add(rank);
+
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -259,5 +260,97 @@ public class RankDao {
 
 		}
 		return list2;
+	}
+	/*public List<fish> list3(int startRow3, int endRow3) throws SQLException {
+		System.out.println("list3 start");
+		List<fish> list3 = new ArrayList<fish>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql	 = "select f_name from fish where f_code between ? and ?";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startRow3);
+			pstmt.setInt(2, endRow3);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				fish fs = new fish();
+				fs.setF_code(rs.getInt("f_code"));
+				fs.setF_name(rs.getString("f_name"));
+				list3.add(fs);
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+
+		}
+		return list3;
+	}*/
+	public List<fish> list3() throws SQLException {
+		System.out.println("list3 start");
+		List<fish> list3 = new ArrayList<fish>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql	 = "select * from fish";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				fish fs = new fish();
+				fs.setF_code(rs.getInt("f_code"));
+				fs.setF_name(rs.getString("f_name"));
+				list3.add(fs);
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+
+		}
+		return list3;
+	}
+	public List<fish> list4() throws SQLException {
+		System.out.println("list4 start");
+		List<fish> list4 = new ArrayList<fish>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql	 = "select * from fish";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				fish fs = new fish();
+				fs.setF_code(rs.getInt("f_code"));
+				fs.setF_name(rs.getString("f_name"));
+				list4.add(fs);
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+
+		}
+		return list4;
 	}
 }

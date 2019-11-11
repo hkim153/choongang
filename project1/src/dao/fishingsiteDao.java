@@ -98,7 +98,7 @@ public class fishingsiteDao {
 				fs.setFs_num(rs.getInt("fs_num"));
 				fs.setFs_name(rs.getString("fs_name"));
 				fs.setFs_addr(rs.getString("fs_addr"));
-				fs.setFs_img(rs.getString("fs_img"));
+				fs.setFs_phone(rs.getString("fs_phone"));
 				fs.setFs_content(rs.getString("fs_content"));
 				fs.setFs_reg(rs.getString("fs_reg"));
 				fs.setId(rs.getString("id"));
@@ -169,7 +169,7 @@ public class fishingsiteDao {
 
 						fs.setFs_name(rs.getString("fs_name"));
 						fs.setFs_addr(rs.getString("fs_addr"));
-						fs.setFs_img(rs.getString("fs_img"));
+						fs.setFs_phone(rs.getString("fs_phone"));
 						fs.setFs_content(rs.getString("fs_content"));
 						fs.setFs_reg(rs.getString("fs_reg"));
 						fs.setId(rs.getString("id"));
@@ -211,7 +211,7 @@ public class fishingsiteDao {
 				fs.setFs_code(rs.getInt("fs_code"));
 				fs.setFs_name(rs.getString("fs_name"));
 				fs.setFs_addr(rs.getString("fs_addr"));
-				fs.setFs_img(rs.getString("fs_img"));
+				fs.setFs_phone(rs.getString("fs_phone"));
 				fs.setFs_content(rs.getString("fs_content"));
 				fs.setFs_reg(rs.getString("fs_reg"));
 				fs.setId(rs.getString("id"));
@@ -241,7 +241,7 @@ public class fishingsiteDao {
 		ResultSet rs = null;
 		String sql1 = "select nvl(max(fs_num),0) from fishingsite";
 		String sql = "insert into fishingsite values(SEQ_FISHINGSITE_CODE.nextval"
-				+ ",?,?,?,?,?,?,sysdate,?,?,?,?,?)";
+				+ ",?,?,?,?,?,sysdate,?,?,?,?,?,?)";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql1);
@@ -254,16 +254,16 @@ public class fishingsiteDao {
 
 			pstmt.setString(1, fs.getFs_name());
 			pstmt.setString(2, fs.getFs_addr());
-			pstmt.setString(3, fs.getFs_img());
-			pstmt.setString(4, fs.getFs_content());
-			pstmt.setString(5, fs.getFs_reg());
-			pstmt.setInt(6, fs.getReadcount());
-			pstmt.setString(7, fs.getId());
-			pstmt.setInt(8, number);
-			pstmt.setString(9, fs.getImg_folder());
-			pstmt.setString(10, fs.getReal_name());
-			pstmt.setString(11, fs.getSaved_name());
-
+			pstmt.setString(3, fs.getFs_content());
+			pstmt.setString(4, fs.getFs_reg());
+			pstmt.setInt(5, fs.getReadcount());
+			pstmt.setString(6, fs.getId());
+			pstmt.setInt(7, number);
+			pstmt.setString(8, fs.getImg_folder());
+			pstmt.setString(9, fs.getReal_name());
+			pstmt.setString(10, fs.getSaved_name());
+			pstmt.setString(11, fs.getFs_phone());
+			
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -283,7 +283,7 @@ public class fishingsiteDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String sql = "update fishingsite set fs_name=?, fs_addr=?, fs_reg=?, fs_content=?, fs_img=?"
+		String sql = "update fishingsite set fs_name=?, fs_addr=?, fs_reg=?, fs_content=?, fs_phone=?"
 				+ ", img_folder = ?, real_name = ?, saved_name = ? where fs_num=?";
 		try {
 			conn = getConnection();
@@ -292,7 +292,7 @@ public class fishingsiteDao {
 			pstmt.setString(2, fs.getFs_addr());
 			pstmt.setString(3, fs.getFs_reg());
 			pstmt.setString(4, fs.getFs_content());
-			pstmt.setString(5, fs.getFs_img());
+			pstmt.setString(5, fs.getFs_phone());
 			pstmt.setString(6, fs.getImg_folder());
 			pstmt.setString(7, fs.getReal_name());
 			pstmt.setString(8, fs.getSaved_name());

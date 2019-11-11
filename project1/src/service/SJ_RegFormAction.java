@@ -2,6 +2,8 @@ package service;
 
 import java.io.IOException;
 import java.util.Enumeration;
+import java.util.List;
+
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import javax.servlet.ServletRequest;
@@ -17,6 +19,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.RankDao;
 import dao.Rank;
+import dao.fish;
 import dao.MemberDao;
 import dao.Member;
 public class SJ_RegFormAction implements CommandProcess {
@@ -36,27 +39,17 @@ public class SJ_RegFormAction implements CommandProcess {
 			String passwd = request.getParameter("passwd");
 			Rank rank = new Rank();
 			rank.setNum(num);
-			//int result = md.check(id, passwd);
-			//System.out.println("regformaction result->"+result);
+			RankDao rk = RankDao.getInstance();
+			List<fish> list4 = rk.list4();
+			request.setAttribute("list4", list4);	
+			System.out.println("list4->"+list4);	
 			if(request.getParameter("num") != null) {
 			num = Integer.parseInt(request.getParameter("num"));
-			RankDao rk = RankDao.getInstance();
 			//System.out.println("regformaction result->"+result);
 			int result1 = rk.insert(rank);
-			/*if(result == 1) {
-				System.out.println("아이디 일치!");
-				session.setAttribute("result", result);		
-				session.setAttribute("id", id);		
-				session.setAttribute("passwd", passwd);		
-				
-			} else {
-				System.out.println("아이디 다름...1");
-				session.setAttribute("result", 0);
-			}*/
-			}
+	}
 			request.setAttribute("num", num);
 			request.setAttribute("id", id);
-			//session.setAttribute("id", id);
 			
 		} catch(Exception e) { System.out.println(e.getMessage()); }
 		

@@ -8,6 +8,8 @@
 <title>Insert title here</title>
 <link href="test.css" rel="stylesheet" type="text/css">
 <link href="./css/product.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+</style>
 </head>
 <body>
 	<div class="wrap">
@@ -19,17 +21,17 @@
 					<table>
 						<h3>광어의 현재 상위 랭킹</h3>
 						<tr>
-							<td>순위</td>
-							<td id="sj_p">아이디</td>
-							<td id="sj_o">길이</td>
-							<td>등록일</td>
+							<th>순위</td>
+							<th id="sj_p">아이디</td>
+							<th id="sj_o">길이</td>
+							<th>등록일</td>
 							<th style="display: none;">삭제버튼 (안보이게할거)</th>
 						</tr>
 						<c:forEach var="rank" items="${list1 }">
 							<c:if test="${rank.get_fish =='광어'}">
 								<c:if test="${startNum < 4 }">
 									<tr>
-										<td>${startNum }등</td>
+										<th>${startNum }등</td>
 										<td id="sj_p"><a
 											href='sj_content.do?num=${rank.num }&id=${rank.id }&img_folder=${rank.img_folder}'>${rank.id }/${rank.get_fish }</a></td>
 										<td id="sj_o">${rank.length }cm</td>
@@ -144,11 +146,19 @@
 
 				<!-- 로그인  -->
 				<!-- 			<div class="event_side"> -->
+<<<<<<< HEAD
 				<div class="calendar">
 						   
 					<iframe src="hh_macalender.jsp" width="100%" height="330px"></iframe>	
  					<input type="button" value="달력 이동" onclick="location.href='hh_calender.jsp'" >    
 				</div> 
+=======
+				<div class="calendar	">
+
+					<iframe src="index2.html" width="100%" height="350px"></iframe>	
+
+				</div>
+>>>>>>> branch 'master' of https://github.com/hkim153/choongang.git
 				<!-- 이벤트달력 작게  -->
 
 				<!-- <div class="recruit_side" > -->
@@ -158,7 +168,7 @@
 							<img alt="" src="images/Recruit.png">
 						</a>
 					</div>
-					<div class="recruit_list" style="width:150px; padding-left: 170px;">
+					<div class="recruit_list" style="width:150px;">
 						<a href="dh_recruitlist.do">
 							<img alt="" src="images/Recruit_list.png">
 						</a>

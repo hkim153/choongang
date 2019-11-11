@@ -28,6 +28,7 @@
 	<tr><td>조회수</td><td>${fs.readcount}</td></tr>
 	<tr><td>지역</td><td>${fs.fs_reg}</td></tr>
 	<tr><td>주소</td><td>${fs.fs_addr}</td></tr>
+	<tr><td>연락처</td><td>${fs.fs_phone }</td></tr>
 	<tr><td>서식 어종</td>
 		<td>
 			<c:forEach var="fish" items="${fishes }">
