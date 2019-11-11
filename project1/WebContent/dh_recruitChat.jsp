@@ -35,6 +35,7 @@
 			var recruit_num = '${recruit_num}';
 			var fromID = '${sessionScope.id}';
 			var room_manager = '${room_manager}';
+			
 			$.ajax({
 				type:'POST',
 				url:"AjaxChatList.jsp",

@@ -47,6 +47,7 @@ public String getID(int recruit_num, String room_manager, String chatID) {
 	String fromID = request.getParameter("fromID");
 	String room_manager = request.getParameter("room_manager");
 	String listType = request.getParameter("listType");
+	//System.out.println("AjaxChatList listType : "+listType);
 	if (fromID == null || fromID.equals("") || room_manager == null || room_manager.equals("") || listType == null
 			|| listType.equals("")) {
 		response.getWriter().write("");
@@ -61,4 +62,6 @@ public String getID(int recruit_num, String room_manager, String chatID) {
 			response.getWriter().write("");
 		}
 	}
+	//System.out.println("AjaxChatList END.....");
+
 %>

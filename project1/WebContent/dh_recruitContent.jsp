@@ -8,10 +8,10 @@
 <link href="test.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<table border="1">
  <div class="wrap">
 <header> <jsp:include page="header.jsp"></jsp:include> </header>
 	<caption><h2>모집 상세내역</h2></caption>
+	<table border="1">
 	<tr><td width="50">번호</td><td>${recruit.recruit_num}</td></tr>
 	<tr><td>제목</td><td>${recruit.recruit_title}</td></tr>
 	<tr><td>작성자</td><td>${recruit.id}</td></tr>
