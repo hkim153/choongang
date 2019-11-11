@@ -22,7 +22,9 @@
 											<li style="margin-right:opx;">
 												<div>
 													<div class="pro_img">
-														 <img src="${pageContext.request.contextPath}/${poplist.img_folder}/${poplist.real_name}" alt="상품대표이미지"/>
+														<a href="wh_ProContent.do?pro_num=${poplist.pro_num }&pro_code=${poplist.pro_code}">
+															 <img src="${pageContext.request.contextPath}/${poplist.img_folder}/${poplist.real_name}" alt="상품대표이미지"/>
+														</a>
 													</div>
 													<div class="pro_info">	
 														<span class="pro_name"> ${poplist.pro_name} </span>
