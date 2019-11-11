@@ -51,6 +51,7 @@ public class HS_UpdateProAction implements CommandProcess {
 					fs.setFs_reg(multi.getParameter("fs_reg"));
 					fs.setFs_addr(multi.getParameter("fs_addr"));
 					fs.setFs_content(multi.getParameter("fs_content"));
+					fs.setFs_phone(multi.getParameter("fs_phone"));
 					String fs_name = multi.getParameter("fs_name");
 					fs.setFs_name(fs_name);
 					
