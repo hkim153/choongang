@@ -35,7 +35,7 @@
 							</dl>
 						</div>
 						<p class="btn_area_btm">
-							<input type="button" onclick="location.href='jw_myPageForm.do'"
+							<input type="button" onclick="location.href='ws_myPageModifyForm.do'"
 								value="수정하기" class="btn_model">
 						</p>
 					</div>

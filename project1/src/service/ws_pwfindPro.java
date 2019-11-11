@@ -6,8 +6,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.jw_MemberDao;
-import dao.jw_MemberDto;
+import dao.MemberDao;
+import dao.Member;
 
 public class ws_pwfindPro implements CommandProcess {
 
@@ -16,7 +16,7 @@ public class ws_pwfindPro implements CommandProcess {
 			throws ServletException, IOException {
 		try { System.out.println("pwfindProStart");
 		request.setCharacterEncoding("utf-8"); 
-		jw_MemberDto member = new jw_MemberDto();
+		Member member = new Member();
 		
 		member.setId(request.getParameter("id"));
 		member.setPasswd(request.getParameter("passwd"));
@@ -28,7 +28,7 @@ public class ws_pwfindPro implements CommandProcess {
         System.out.println(member.getEmail());
         System.out.println(member.getTel());
         
-        jw_MemberDao md = jw_MemberDao.getInstance();
+        MemberDao md = MemberDao.getInstance();
         String y_pw = md.Findpw(member.getId(), member.getEmail(), member.getTel());
         int result = md.myPageModify(member);
 		request.setAttribute("result", result);

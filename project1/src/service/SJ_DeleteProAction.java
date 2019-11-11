@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.RankDao;
-import dao.RankDto;
+import dao.Rank;
 
 public class SJ_DeleteProAction implements CommandProcess {
 
@@ -19,7 +19,7 @@ public class SJ_DeleteProAction implements CommandProcess {
 			request.setCharacterEncoding("utf-8");
 			//String id = request.getParameter("id");	
 			int num = Integer.parseInt(request.getParameter("num"));
-			RankDto rank = new RankDto();
+			Rank rank = new Rank();
 			RankDao rk = RankDao.getInstance();
 			int result = rk.delete(num);
 			System.out.println("DeleteProAction result->"+result);

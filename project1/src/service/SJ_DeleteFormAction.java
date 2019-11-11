@@ -6,7 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.RankDto;
+import dao.Rank;
 import dao.RankDao;
 
 public class SJ_DeleteFormAction implements CommandProcess {
@@ -20,7 +20,7 @@ public class SJ_DeleteFormAction implements CommandProcess {
 			int num = Integer.parseInt(request.getParameter("num"));
 			String pageNum = request.getParameter("pageNum");
 			RankDao rk = RankDao.getInstance();
-			RankDto rank = rk.select(num);
+			Rank rank = rk.select(num);
 			request.setAttribute("id", id);
 			request.setAttribute("rank", rank);
 			request.setAttribute("num", num);

@@ -6,8 +6,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.jw_MemberDao;
-import dao.jw_MemberDto;
+import dao.MemberDao;
+import dao.Member;
 
 public class ws_idfindPro implements CommandProcess {
 
@@ -16,7 +16,7 @@ public class ws_idfindPro implements CommandProcess {
 			throws ServletException, IOException {
 		try { System.out.println("idfindProStart");
 		request.setCharacterEncoding("utf-8"); 
-		jw_MemberDto member = new jw_MemberDto();
+		Member member = new Member();
 		
 		member.setId(request.getParameter("id"));
 		member.setEmail(request.getParameter("email"));
@@ -26,7 +26,7 @@ public class ws_idfindPro implements CommandProcess {
         System.out.println(member.getEmail());
         System.out.println(member.getTel());
         
-        jw_MemberDao md = jw_MemberDao.getInstance();
+        MemberDao md = MemberDao.getInstance();
         String y_id = md.Findid(member.getEmail(), member.getTel());
         int result = md.myPageModify(member);
 		request.setAttribute("result", result);

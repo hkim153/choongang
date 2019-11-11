@@ -16,8 +16,8 @@ import dao.EventDao;
 import dao.Recruit;
 import dao.RecruitDao;
 import dao.StoreDao;
-import dao.jw_MemberDao;
-import dao.jw_MemberDto;
+import dao.MemberDao;
+import dao.Member;
 
 public class DH_RecruitProAction implements CommandProcess {
 

@@ -6,8 +6,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.jw_MemberDao;
-import dao.jw_MemberDto;
+import dao.MemberDao;
+import dao.Member;
 
 public class ws_ModifyProAction implements CommandProcess {
 
@@ -17,7 +17,7 @@ public class ws_ModifyProAction implements CommandProcess {
 		try {
 			request.setCharacterEncoding("utf-8");
 			String id = request.getParameter("id");
-			jw_MemberDto member = new jw_MemberDto();
+			Member member = new Member();
 			member.setId(request.getParameter("id"));
 			member.setName(request.getParameter("name"));
 			member.setEmail(request.getParameter("email"));
@@ -30,7 +30,7 @@ public class ws_ModifyProAction implements CommandProcess {
 			System.out.println("ws_ModifyProAction address"+request.getParameter("address"));
 					
 			
-			jw_MemberDao md = jw_MemberDao.getInstance();
+			MemberDao md = MemberDao.getInstance();
 			int result = md.myPageModify(member);
 			System.out.println("result"+result);
 			request.setAttribute("result", result);

@@ -7,8 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.jw_MemberDao;
-import dao.jw_MemberDto;
+import dao.MemberDao;
+import dao.Member;
 
 public class JW_JoinFormAction implements CommandProcess {
 
@@ -18,8 +18,8 @@ public class JW_JoinFormAction implements CommandProcess {
 		
 		try {
 			String id = request.getParameter("id");
-			jw_MemberDao md = jw_MemberDao.getInstance();
-			jw_MemberDto member = md.select(id);
+			MemberDao md = MemberDao.getInstance();
+			Member member = md.select(id);
 			request.setAttribute("id", id);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

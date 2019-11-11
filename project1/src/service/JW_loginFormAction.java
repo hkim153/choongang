@@ -6,8 +6,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.jw_MemberDao;
-import dao.jw_MemberDto;
+import dao.MemberDao;
+import dao.Member;
 
 public class JW_loginFormAction implements CommandProcess {
 
@@ -16,8 +16,8 @@ public class JW_loginFormAction implements CommandProcess {
 		try {
 			String id = request.getParameter("id");
 			String passwd = request.getParameter("passwd");
-			jw_MemberDao md = jw_MemberDao.getInstance();
-			jw_MemberDto member = md.select(id);
+			MemberDao md = MemberDao.getInstance();
+			Member member = md.select(id);
 			// passwd = member.getPasswd();
 
 			request.setAttribute("id", id);
