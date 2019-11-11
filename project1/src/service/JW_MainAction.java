@@ -24,10 +24,10 @@ public class JW_MainAction implements CommandProcess {
 			List<Store> pop_list = sd.pop_list(); 	// ���ο��� ��ǰ����Ʈ �ҷ����� �ڵ� by.����
 			Store store = new Store();
 			RankDao rk = RankDao.getInstance();
-			int startRow = 1, endRow = 99;
+			int startRow = 1, endRow = 999999999;
 			List<Rank> list1 = rk.list1(startRow, endRow);
 			int startNum = startRow;
-			int startRow1 = 1, endRow1 = 99;
+			int startRow1 = 1, endRow1 = 99999999;
 			int startNum1 = startRow1;
 			List<Rank> list2 = rk.list2(startRow1, endRow1);
 			request.setAttribute("pop_list", pop_list);
