@@ -57,6 +57,10 @@
 		<td><textarea rows = "1" cols="50" name = "fs_addr" required="required"></textarea></td>
 	</tr>
 	<tr>
+		<td>연락처</td>
+		<td><input type="text" name="fs_phone"></td>
+	</tr>
+	<tr>
 		<td>서식 어종</td>
 		<td>
 			<c:forEach var = "fish" items = "${flist }">
@@ -66,7 +70,7 @@
 	</tr>
 	<tr>
 		<td>내용</td>
-		<td><textarea rows="10" cols="50" name="fs_content" required="required"></textarea></td>
+		<td><textarea rows="10" cols="50" name="fs_content"></textarea></td>
 	</tr>
 	<tr>
 		<td>이미지</td>
