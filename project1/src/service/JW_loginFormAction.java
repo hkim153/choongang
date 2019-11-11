@@ -10,7 +10,7 @@ import dao.MemberDao;
 import dao.Member;
 
 public class JW_loginFormAction implements CommandProcess {
-
+// 로그인창
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {

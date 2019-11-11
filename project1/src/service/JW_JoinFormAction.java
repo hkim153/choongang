@@ -11,7 +11,7 @@ import dao.MemberDao;
 import dao.Member;
 
 public class JW_JoinFormAction implements CommandProcess {
-
+// 회원가입
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

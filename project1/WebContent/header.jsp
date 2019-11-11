@@ -24,8 +24,9 @@ color: yellow;
 				<li><a href="hs_fishingSiteForm.do">낚시터</a></li>
 				<li><a href="hh_event.do">이벤트 달력</a></li>
 				<li><a href="fishingking.do">이달의 낚시왕</a></li>
-				<c:choose>
-					<c:when test="${sessionScope.result ne 1 }"></c:when>
+								
+				<c:choose>				
+					<c:when test="${sessionScope.result ne 1 }"> <li><a href="jw_loginForm.do">로그인하기</a></li></c:when>					
 					<c:when
 						test="${sessionScope.result eq 1 and ( sessionScope.adminResult ne 1) }">
 						<li><a href="jw_myPage.do">${sessionScope.id } 님 환영합니다.</a></li>

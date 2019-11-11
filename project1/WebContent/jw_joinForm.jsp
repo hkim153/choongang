@@ -10,7 +10,7 @@
 <script type="text/javascript">
 	function chk() {
 		if (frm.passwd.value != frm.passwd2.value) {
-			alert("암호가 일치하지 않습니다!");
+			alert("암호가 일치하지 않습니땅!");
 			frm.passwd.focus();w
 			return false;
 		}

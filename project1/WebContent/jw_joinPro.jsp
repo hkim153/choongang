@@ -11,13 +11,13 @@
 
 <c:if test="${result >0 }">
 	<script type="text/javascript">
-	alert("성공!");
+	alert("회원이 되신걸 환영합니땅! ^ㅡ^");
 	location.href="jw_loginForm.do?id=${id}";
 	</script>
 </c:if>
 <c:if test="${result==0 }">
 	<script type="text/javascript"> 
-	alert("실패 ㅠ");
+	alert("정보를 잘못입력하셨습니땅! ㅠ.ㅠ");
 	location.href="jw_joinForm.do?id=${id}";
 	</script>
 </c:if>

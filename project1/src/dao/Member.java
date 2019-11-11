@@ -4,7 +4,9 @@ import java.util.Date;
 
 public class Member {
 	private String id, passwd, name, email, admin_c, alive_c, address,tel;	
+//					계정, 암호, 이름, E-Mail, 어드민권한, 탈퇴여부, 주소, 번호
 	private Date reg_date;
+//	가입일
 	
 	public String getId() {
 		return id;

@@ -10,7 +10,7 @@ import dao.MemberDao;
 import dao.Member;
 
 public class JW_ConfirmIdProAction implements CommandProcess {
-
+// 아이디 중복확인
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -19,13 +19,10 @@ public class JW_ConfirmIdProAction implements CommandProcess {
 			 String id = request.getParameter("id");
 			 Member member = new Member();
 			 member.setId(request.getParameter("id"));
-//			 System.out.println("member: "+member);			 
-//			 System.out.println("id: "+id);
 			 
 			 MemberDao md = MemberDao.getInstance();
-//			 int result = md.insert(member);
+			 
 			 int result = md.confirm(id);
-//			 System.out.println("result: "+result);
 			 request.setAttribute("result", result);
 			 request.setAttribute("id", id);
 			 

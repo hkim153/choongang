@@ -12,7 +12,7 @@ import dao.MemberDao;
 import dao.Member;
 
 public class JW_loginProAction implements CommandProcess {
-
+/// DB값이랑 비교해서 어드민권한 및 로그인 여부 확인
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
