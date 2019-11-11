@@ -136,6 +136,7 @@
 							<c:when
 								test="${sessionScope.result eq 1 and(sessionScope.adminResult eq 1) }">		<!-- 로그인값, 어드민권한 둘다 있을때  -->
 								<p>Admin입니다.</p>
+									<p align="right"><a href="hh_index.jsp">달력 게시판 이동</a></p>
 								<a href="jw_logOut.do"> <input type="button" value="로그아웃"></a>
 							</c:when>
 						</c:choose>
@@ -144,9 +145,9 @@
 				<!-- 로그인  -->
 				<!-- 			<div class="event_side"> -->
 				<div class="calendar">
-
-					<iframe src="index2.html" width="100%" height="350px"></iframe>	
-
+						   
+					<iframe src="hh_macalender.jsp" width="100%" height="330px"></iframe>	
+ 					<input type="button" value="달력 이동" onclick="location.href='hh_calender.jsp'" >    
 				</div> 
 				<!-- 이벤트달력 작게  -->
 

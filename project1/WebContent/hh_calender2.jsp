@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,7 +20,17 @@
 <body>
 	<div class="wrap">
 		<header>
-			<p align="right"><a href="hh_index.jsp">이동하기</a></p>
+			<c:choose>
+				
+					<c:when	test="${sessionScope.result eq 1 and(sessionScope.adminResult eq 1) }">	<!-- 로그인값, 어드민권한 둘다 있을때  -->
+						<p align="right"><a href="hh_index.jsp">이동하기</a></p>
+					</c:when>
+				</c:choose>
+		
+		
+					
+					
+			
 		</header>
 		
     <div class="container">
@@ -36,10 +47,11 @@
                     <label for="calendar_view">구분별</label>
                     <div class="input-group">
                         <select class="filter" id="type_filter" multiple="multiple">
-                            <option value="카테고리1">카테고리1</option>
-                            <option value="카테고리2">카테고리2</option>
-                            <option value="카테고리3">카테고리3</option>
-                            <option value="카테고리4">카테고리4</option>
+                             <option value="지역 행사" style="color: #4d638c;">지역 행사</option>
+                            <option value="개인 행사" style="color: #4d638c;">개인 행사</option>
+                            <option value="대회" style="color: #4d638c;">대회</option>
+                            <option value="모임" style="color: #4d638c">모임</option>
+                            <option value="기타" style="color: #4d638c;">기타</option>
                         </select>
                     </div>
                 </div>

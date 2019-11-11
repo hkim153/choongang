@@ -33,6 +33,7 @@ color: yellow;
 					</c:when>
 					<c:when	test="${sessionScope.result eq 1 and(sessionScope.adminResult eq 1) }">	<!-- 로그인값, 어드민권한 둘다 있을때  -->
 						<li>Admin님 환영합니다	<a href="jw_logOut.do">로그아웃</a></li>
+						<p align="right">
 					</c:when>
 				</c:choose>
 

@@ -177,7 +177,6 @@ public class EventDao {
 			rs = pstmt.executeQuery();
 			rs.next();
 			int number = rs.getInt(1)+1;
-			System.out.println("EventDao insert number->" + number);
 			rs.close();
 			if (num == 0) 
 			pstmt = conn.prepareStatement(sql);
