@@ -25,7 +25,6 @@ public class HH_WriteProAction implements CommandProcess {
 	        for (int i = 0; i < arr.length; i++) {
 				if (arr[i].equals(request.getParameter("eventpin"))) {
 					ck1 = 0;
-					System.out.println("insert for chk ->"+request.getParameter("eventpin"));
 					break;
 				}
 			}
@@ -56,7 +55,44 @@ public class HH_WriteProAction implements CommandProcess {
 	        
 	        
 	        EventDao ed = EventDao.getInstance();//DB 
-	        int result = ed.insert(event);
+	        String a = request.getParameter("e_start");
+	        String [] arra = a.split("-");
+	        
+	        String b = request.getParameter("e_end");
+	        String [] arrb = b.split("-");
+	        
+	        int [] aa = new int [arra.length];
+	        int [] bb = new int [arrb.length];
+	       
+	        for (int i = 0; i < aa.length; i++) {
+				aa [i] = Integer.parseInt(arra[i]);
+				bb [i] = Integer.parseInt(arrb[i]);
+			}
+	        if (aa[0]<bb[0]) {
+				bb[1]+=12;
+			}
+	        int sn = (aa[1]*30)+aa[2];
+	        int en = (bb[1]*30)+bb[2];
+	        int ck = 0;
+	        if (en-sn>10) {
+				ck = 1;
+			}
+	        int result = 0;
+	        if (ck==0) {
+	        	result = ed.insert(event);
+			}else {
+				event.setE_end(request.getParameter("e_start"));
+				String bytitle1 = request.getParameter("title") + " 시작";
+				event.setTitle(bytitle1);
+				result = ed.insert(event);
+				
+				event.setE_start(request.getParameter("e_end"));
+			    event.setE_end(request.getParameter("e_end"));
+				String bytitle2 = request.getParameter("title") + " 종료";
+				event.setTitle(bytitle2);
+			    
+			    result = ed.insert(event);    
+			}
 	        request.setAttribute("num", event.getE_id());
 	        request.setAttribute("result", result);
 		} catch(Exception e) { System.out.println(e.getMessage()); }

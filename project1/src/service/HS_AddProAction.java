@@ -40,6 +40,7 @@ public class HS_AddProAction implements CommandProcess {
 			fs.setFs_addr(multi.getParameter("fs_addr"));
 			//이미지
 			fs.setFs_content(multi.getParameter("fs_content"));
+			fs.setFs_phone(multi.getParameter("fs_phone"));
 			fs.setFs_reg(multi.getParameter("fs_reg"));
 			fs.setId(multi.getParameter("id"));
 			

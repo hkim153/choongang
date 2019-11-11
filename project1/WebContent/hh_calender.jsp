@@ -5,19 +5,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-        <link href="test.css" rel="stylesheet" type="text/css">
 </head>
-
 <body>
-			<header> <jsp:include page="header.jsp"></jsp:include> </header>
-			
+<header> <jsp:include page="header.jsp"></jsp:include> </header>
 
-			<jsp:include page="hh_calender2.jsp"></jsp:include>
-
-			
+			<jsp:include page="hh_calender2.jsp"></jsp:include>		
 			
 			<jsp:include page="footer.jsp"></jsp:include>
-			
 
 </body>
 </html>

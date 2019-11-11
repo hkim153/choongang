@@ -103,11 +103,11 @@ var calendar = $('#calendar').fullCalendar({
         .append('<p><strong>구분:</strong>' + event.type + '</p>')
         .append('<div class="popoverDescCalendar"><strong>설명:</strong> ' + event.description + '</div>')
         .append('<div class="popoverDescCalendar"><strong>지역:</strong> ' + event.rsa + '</div>')
-        .append('<div class="popoverDescCalendar"><strong>링크:</strong> <a href="'+event.url+'" target="_parent">클릭</a></div>'),
+        .append('<div class="popoverDescCalendar"><strong>링크:</strong> <a href="'+event.url+'" >클릭</a></div>'),
         
         
       delay: {
-        show: "800",
+        show: "10",
         hide: "2000"
       },
       trigger: 'hover',
