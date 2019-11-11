@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 import dao.RankDao;
 import dao.RankDto;
 import dao.jw_MemberDao;
-import dao.jw_MemberDto;
+import dao.MemberDto;
 public class SJ_RegFormAction implements CommandProcess {
 	
 	@Override
@@ -30,7 +30,7 @@ public class SJ_RegFormAction implements CommandProcess {
 			HttpSession session = request.getSession();	
 			request.setCharacterEncoding("utf-8");
 			int num=0;		
-			jw_MemberDto member = new jw_MemberDto();
+			MemberDto member = new MemberDto();
 			jw_MemberDao md = jw_MemberDao.getInstance();
 			String id = request.getParameter("id");
 			String passwd = request.getParameter("passwd");

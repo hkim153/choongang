@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.jw_MemberDao;
-import dao.jw_MemberDto;
+import dao.MemberDto;
 
 public class ws_ModifyProAction implements CommandProcess {
 
@@ -17,7 +17,7 @@ public class ws_ModifyProAction implements CommandProcess {
 		try {
 			request.setCharacterEncoding("utf-8");
 			String id = request.getParameter("id");
-			jw_MemberDto member = new jw_MemberDto();
+			MemberDto member = new MemberDto();
 			member.setId(request.getParameter("id"));
 			member.setName(request.getParameter("name"));
 			member.setEmail(request.getParameter("email"));

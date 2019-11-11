@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.jw_MemberDao;
-import dao.jw_MemberDto;
+import dao.MemberDto;
 
 public class ws_ModifyFormAction implements CommandProcess {
 
@@ -23,7 +23,7 @@ public class ws_ModifyFormAction implements CommandProcess {
 			String address = request.getParameter("address");
 			String tel = request.getParameter("tel");
 			jw_MemberDao md = jw_MemberDao.getInstance();
-			jw_MemberDto member = md.select(name);
+			MemberDto member = md.select(name);
 
 			request.setAttribute("name", name);
 			request.setAttribute("email", email);

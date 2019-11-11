@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.RankDto;
 import dao.jw_MemberDao;
-import dao.jw_MemberDto;
+import dao.MemberDto;
 import dao.RankDao;
 
 public class SJ_ContentAction implements CommandProcess {

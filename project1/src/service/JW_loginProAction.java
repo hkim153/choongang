@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
 import dao.jw_MemberDao;
-import dao.jw_MemberDto;
+import dao.MemberDto;
 
 public class JW_loginProAction implements CommandProcess {
 
@@ -20,7 +20,7 @@ public class JW_loginProAction implements CommandProcess {
 
 			HttpSession session = request.getSession(); // 세션 선언
 			request.setCharacterEncoding("utf-8");
-			jw_MemberDto member = new jw_MemberDto();
+			MemberDto member = new MemberDto();
 			jw_MemberDao md = jw_MemberDao.getInstance();
 			String id = request.getParameter("id");
 			String passwd = request.getParameter("passwd");
