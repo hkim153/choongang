@@ -144,9 +144,9 @@ public class MemberDao {
 				String dbAlive = rs.getString(1);
 				System.out.println("dbAlive check " + dbAlive);
 				if (dbAlive.equals("A"))
-					aliveResult = 1;
+					aliveResult = 1; //  =A 가입중인회원
 				else
-					aliveResult = 0;
+					aliveResult = 0; // !=A 탈퇴한 회원
 			}
 			System.out.println("confirm_Alive check: " + aliveResult);
 		} catch (Exception e) {
