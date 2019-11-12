@@ -25,21 +25,24 @@ public class JW_loginProAction implements CommandProcess {
 			String id = request.getParameter("id");
 			String passwd = request.getParameter("passwd");
 			String admin_c = request.getParameter("admin_c");
+			String alive_c = request.getParameter("alive_c");
 			
 			System.out.println("어드민 캐릭터: "+admin_c);
 
-			int result = md.check(id, passwd); // id,passwd
-			int adminResult = md.confirm_A(admin_c, id); // 어드민인지 확인
+			int result = md.check(id, passwd); // id,passwd 일치여부 확인
+			int adminResult = md.confirm_Admin(admin_c, id); // 어드민인지 확인
+			int aliveResult = md.confirm_Alive(alive_c, id);
 			System.out.println("어드민 체크: " + adminResult);
 
-			String adminPage = "";
+			if(aliveResult == 1) { 
+				
 			if (result == 1) {
 				System.out.println("로그인 성공!");
 				session.setAttribute("result", result);
 				session.setAttribute("id", id);
 				session.setAttribute("passwd", passwd);
 				session.setAttribute("adminResult", adminResult);
-				System.out.println("adminResult Check"+adminResult);
+				System.out.println("adminResult Check"+adminResult); }
 
 			} else {
 				System.out.println("로그인 실패...");

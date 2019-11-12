@@ -15,7 +15,7 @@
    <table>
 	<caption><h2>게시판 글쓰기</h2></caption>
 	<tr><td>제목</td><td><input type="text" name="f_board_title" required = "required"></td></tr>
-	<tr><td>작성자</td><td><input type="text" name="f_board_id" required="required"></td></tr>
+	<tr><td>작성자</td><td>${sessionScope = ID}</td></tr>
 
 	<tr><td>내용</td><td><textarea rows="10" cols="30" name="f_board_content" 
 		required="required"></textarea></td></tr>

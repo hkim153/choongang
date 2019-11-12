@@ -14,15 +14,18 @@
 </head>
 <body>
 
-<%-- <c:set var="id" value="${id }"></c:set> --%>
-<input type="hidden" name="id" value=" ${id }">
+	<%-- <c:set var="id" value="${id }"></c:set> --%>
+	<%-- <input type="hidden" name="id" value=" ${id }"> --%>
 	<c:if test="${result==1 }">
-			<p1>${id } 는 이미 있는 아이디입니땅! 다른 아이디를 사용하셔야 합니땅!</p1>
+		<p1>${id } 는 이미 있는 아이디입니땅! 다른 아이디를 사용하셔야 합니땅!</p1>
+		<img src="images/fail.jpg" width="400px" height="400px">
 	</c:if>
-	<c:if test="${result==0 }">
-		<p1>	${id } 는 사용하실 수 있습니땅!</p1>
+	<c:if test="${result !=1 }">
+		<p1> ${id } 는 사용하실 수 있습니땅!</p1>
+		<img src="images/success.jpg" width="400px" height="400px">
 	</c:if>
-	
-<p><input type="button" value="확인" onclick="wincl()">
+
+	<p>
+		<input type="button" value="확인" onclick="wincl()">
 </body>
 </html>

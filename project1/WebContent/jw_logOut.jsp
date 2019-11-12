@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 location.href="main.do";
-alert("다음에 또 놀러와주세요 ^-^!");
+alert("다음에 또 놀러오시길바랍니땅! ^-^");
 </script>
 </head>
 <body>

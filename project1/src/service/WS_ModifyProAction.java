@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.MemberDao;
 import dao.Member;
 
-public class ws_ModifyProAction implements CommandProcess {
+public class WS_ModifyProAction implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)

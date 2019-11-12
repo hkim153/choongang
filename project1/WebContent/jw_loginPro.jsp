@@ -16,7 +16,7 @@ location.href="main.do";
 </script></c:if>
 <c:if test="${result ==0 }">
 <script type="text/javascript">
-alert("로그인이 필요합니땅!");
+alert("회원정보가 일치하지 않습니땅!");
 location.href="jw_loginForm.do?id=${id}";
 </script>
 </c:if>

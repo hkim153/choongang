@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.MemberDao;
 import dao.Member;
 
-public class ws_ModifyFormAction implements CommandProcess {
+public class WS_ModifyFormAction implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
