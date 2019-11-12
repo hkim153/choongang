@@ -16,7 +16,7 @@ public class HS_UserPreferProAction implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		try{
+		try {
 			String [] regions = request.getParameterValues("rcheck");
 			String [] fishes = request.getParameterValues("fcheck");
 			System.out.println("어종 체크 ");

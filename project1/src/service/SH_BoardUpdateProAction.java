@@ -18,16 +18,17 @@ public class SH_BoardUpdateProAction implements CommandProcess {
 		try { 
 			request.setCharacterEncoding("utf-8"); 
 	        String pageNum = request.getParameter("pageNum");
+	        int b_num=Integer.parseInt(request.getParameter("b_num"));
 	        Board board = new Board();
-			board.setF_board_no(Integer.parseInt(request.getParameter("f_board_no")));
-	        board.setF_board_id(request.getParameter("f_board_id"));
-	        board.setF_board_title(request.getParameter("f_board_title"));
-	        board.setF_board_content(request.getParameter("f_board_content"));
-	        board.setF_board_pass(request.getParameter("f_board_pass"));
+	        
+	        board.setB_num(b_num);
+	        board.setB_title(request.getParameter("b_title"));
+	        board.setB_content(request.getParameter("b_content"));
+	       
 			BoardDao bd = BoardDao.getInstance();
 			int result = bd.update(board);
 			request.setAttribute("result", result);
-			request.setAttribute("num", board.getF_board_id());
+			request.setAttribute("num", b_num);
 			request.setAttribute("pageNum", pageNum);
 		} catch(Exception e) { 
 			System.out.println(e.getMessage()); 

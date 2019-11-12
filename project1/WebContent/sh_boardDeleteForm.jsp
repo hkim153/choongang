@@ -6,8 +6,10 @@
 <h2>삭제하려면 암호를 입력하세요</h2>
 <form action="sh_boardDeletePro.do">
 	<input type="hidden" name="pageNum" value="${pageNum }">
-	<input type="hidden" name="f_board_no" value="${f_board_no }">
-	암호 : <input type="text" name="f_board_pass"><p>
+	<input type="hidden" name="b_num" value="${b_num }">
+	<input type="hidden" name="curid" value ="${sessionScope.id}">
+	<input type="hidden" name="rightpasswd" value="${sessionScope.passwd}">
+	암호 : <input type="password" name="passwd"><p>
 	<input type="submit" value="확인">
 </form>
 </body>

@@ -20,19 +20,24 @@ try {
 	        request.setCharacterEncoding("utf-8"); 
 	        String pageNum = request.getParameter("pageNum");
 	        Board board = new Board();
-			board.setF_board_no(Integer.parseInt(request.getParameter("f_board_no")));
-			board.setF_board_id(request.getParameter("f_board_id"));
-			board.setF_board_title(request.getParameter("f_board_title"));
-			board.setF_board_content(request.getParameter("f_board_content"));
-	        board.setF_board_pass(request.getParameter("f_board_pass"));
-	        board.setF_board_readcount(Integer.parseInt("0"));
-			board.setF_board_file_name(null);
-			board.setGood(0);		
-			
-			
+			board.setB_id(request.getParameter("b_id"));
+			board.setB_title(request.getParameter("b_title"));
+			board.setB_content(request.getParameter("b_content"));
+	      	String type = request.getParameter("b_head");
+			if(type.equals("공지")) {
+				board.setB_notice(1);
+				board.setB_head(1);
+			}
+			else if(type.equals("자유")) {
+				board.setB_notice(0);
+				board.setB_head(2);
+			}
+			else if(type.equals("팁")) {
+				board.setB_notice(0);
+				board.setB_head(3);
+			}
 	        BoardDao bd = BoardDao.getInstance();//DB 
 	        int result = bd.insert(board);
-	        request.setAttribute("num", board.getF_board_no());
 	        request.setAttribute("result", result);
 	        request.setAttribute("pageNum", pageNum);
 		} catch(Exception e) { System.out.println(e.getMessage()); }

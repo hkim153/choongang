@@ -3,79 +3,69 @@ package dao;
 import java.sql.Date;
 
 public class Board {
-	private int f_board_no;
-	private String f_board_title;
-	private String f_board_content;
-	private String f_board_id;
-	private int f_board_readcount;
-	private String f_board_pass;
-	private Date f_board_date;
-	private String f_board_file_name;
-	private int good;
+	private int b_num;
+	public int getB_num() {
+		return b_num;
+	}
+	public void setB_num(int b_num) {
+		this.b_num = b_num;
+	}
+	public String getB_title() {
+		return b_title;
+	}
+	public void setB_title(String b_title) {
+		this.b_title = b_title;
+	}
+	public String getB_content() {
+		return b_content;
+	}
+	public void setB_content(String b_content) {
+		this.b_content = b_content;
+	}
+	public String getB_id() {
+		return b_id;
+	}
+	public void setB_id(String b_id) {
+		this.b_id = b_id;
+	}
+	public int getB_readcount() {
+		return b_readcount;
+	}
+	public void setB_readcount(int b_readcount) {
+		this.b_readcount = b_readcount;
+	}
+	public Date getB_date() {
+		return b_date;
+	}
+	public void setB_date(Date b_date) {
+		this.b_date = b_date;
+	}
+	public String getB_filename() {
+		return b_filename;
+	}
+	public void setB_filename(String b_filename) {
+		this.b_filename = b_filename;
+	}
+	public int getB_notice() {
+		return b_notice;
+	}
+	public void setB_notice(int b_notice) {
+		this.b_notice = b_notice;
+	}
+	public int getB_head() {
+		return b_head;
+	}
+	public void setB_head(int b_head) {
+		this.b_head = b_head;
+	}
+	private String b_title;
+	private String b_content;
+	private String b_id;
+	private int b_readcount;
+	private Date b_date;
+	private String b_filename;
+	private int b_notice;
+	private int b_head;
 
-	
-	
-	public int getGood() {
-		return good;
-	}
-	public void setGood(int good) {
-		this.good = good;
-	}
-	public int getF_board_no() {
-		return f_board_no;
-	}
-	public void setF_board_no(int f_board_no) {
-		this.f_board_no = f_board_no;
-	}
-	public String getF_board_title() {
-		return f_board_title;
-	}
-	public void setF_board_title(String f_board_title) {
-		this.f_board_title = f_board_title;
-	}
-	public String getF_board_content() {
-		return f_board_content;
-	}
-	public void setF_board_content(String f_board_content) {
-		this.f_board_content = f_board_content;
-	}
-	public String getF_board_id() {
-		return f_board_id;
-	}
-	public void setF_board_id(String f_board_id) {
-		this.f_board_id = f_board_id;
-	}
-	public int getF_board_readcount() {
-		return f_board_readcount;
-	}
-	public void setF_board_readcount(int f_board_readcount) {
-		this.f_board_readcount = f_board_readcount;
-	}
-
-	public String getF_board_pass() {
-		return f_board_pass;
-	}
-	public void setF_board_pass(String f_board_pass) {
-		this.f_board_pass = f_board_pass;
-	}
-	public Date getF_board_date() {
-		return f_board_date;
-	}
-	public void setF_board_date(Date f_board_date) {
-		this.f_board_date = f_board_date;
-	}
-
-	public String getF_board_file_name() {
-		return f_board_file_name;
-	}
-	public void setF_board_file_name(String f_board_file_name) {
-		this.f_board_file_name = f_board_file_name;
-	}
-	public int getgood() {
-		return good;
-	}
-	public void good(int good) {
-		this.good = good;
-	}
 	
 }

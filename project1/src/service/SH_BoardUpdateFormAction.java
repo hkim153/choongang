@@ -15,10 +15,10 @@ public class SH_BoardUpdateFormAction implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			int f_board_no = Integer.parseInt(request.getParameter("f_board_no"));
+			int b_num = Integer.parseInt(request.getParameter("b_num"));
 			String pageNum = request.getParameter("pageNum");
 			BoardDao bd = BoardDao.getInstance();
-			Board board = bd.select(f_board_no);
+			Board board = bd.select(b_num);
 			request.setAttribute("pageNum", pageNum);
 			request.setAttribute("board", board);
 		

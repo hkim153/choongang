@@ -8,19 +8,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>게시판</title>
+<link href="test.css" rel="stylesheet" type="text/css">
+
 
 </head>
 <body>
-
-
-	<h2>게시판</h2>
-
+ <div class="wrap">
+	 <header> <jsp:include page="header.jsp"></jsp:include> </header>
+	
 	<table>
 		<tr>
-			<td><a href="sh_boardWriteForm.do">글쓰기</a></td>
+			<c:if test="${sessionScope.result eq 1 }">
+			<td><a href="sh_boardWriteForm.do?pageNum=${pageNum}">글쓰기</a></td>
+			</c:if>
 		</tr>
 		<tr>
 			<th>번호</th>
+			<th>말머리</th>
 			<th>제목</th>
 			<th>내용</th>
 			<th>작성자</th>
@@ -31,13 +35,18 @@
 			<c:forEach var="board" items="${list }">
 				<tr>
 					<td>${startNum }</td>
+					<td>
+						<c:if test="${board.b_head==1}">[공지사항]</c:if>
+						<c:if test="${board.b_head==2}">[자유]</c:if>
+						<c:if test="${board.b_head==3}">[팁]</c:if>
+					</td>
 					<td class="left" width=200><a
-						href="sh_content.do?f_board_no=${board.f_board_no}&pageNum=${currentPage}&status=0">
-							${board.f_board_title}</a></td>
-					<th>${board.f_board_content}</th>
-					<th>${board.f_board_id}</th>
-					<th>${board.f_board_date}</th>
-					<th>${board.f_board_readcount}</th>
+						href="sh_content.do?b_num=${board.b_num}&pageNum=${currentPage}&status=0">
+							${board.b_title}</a></td>
+					<th>${board.b_content}</th>
+					<th>${board.b_id}</th>
+					<th>${board.b_date}</th>
+					<th>${board.b_readcount}</th>
 				</tr>
 				</tbody>
 				<c:set var="startNum" value="${startNum - 1 }" />
@@ -74,7 +83,8 @@
 			<a href='sh_board.do?pageNum=${startPage+blockSize}'>[다음]</a>
 		</c:if>
 	</div>
-
+	 <jsp:include page="footer.jsp"></jsp:include>
+</div>
 
 </body>
 </html>
