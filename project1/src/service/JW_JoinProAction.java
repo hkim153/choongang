@@ -30,6 +30,7 @@ public class JW_JoinProAction implements CommandProcess {
 			
 			MemberDao md = MemberDao.getInstance();
 			int result = md.insert(member);
+			
 			request.setAttribute("result", result);
 			System.out.println("result: "+result);
 		

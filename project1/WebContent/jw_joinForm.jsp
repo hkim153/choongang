@@ -23,7 +23,7 @@
 			return false;
 		} */
 		window.open("jw_confirmIdPro.do?id=${id}" + frm.id.value, "",
-				"width=300 height=300");
+				"width=510 height=510");
 	}
 </script>
 </head>

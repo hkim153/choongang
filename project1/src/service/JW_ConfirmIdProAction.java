@@ -27,9 +27,12 @@ public class JW_ConfirmIdProAction implements CommandProcess {
 			request.setAttribute("id", id);
 
 			if (aliveResult == 1) {
-				request.setAttribute("result", result);
+				
+				request.setAttribute("result", result);				
 			} else {
-				request.setAttribute("result", result);
+				result = 0;
+					request.setAttribute("result", result);
+				
 			}
 
 		} catch (Exception e) {
