@@ -283,4 +283,55 @@ public class StoreDao {
 		}
 		return store;
 	}
+	public int order(Store store) throws SQLException{
+		int result = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "insert into buy_list values(SEQ_BUY_NUM.nextval,?,?,?,?,?,?,?,?,?,?,?,?,1,sysdate)";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, store.getPro_num());
+			pstmt.setString(2, store.getId());
+			pstmt.setString(3, store.getName());
+			pstmt.setString(4, store.getEmail());
+			pstmt.setString(5, store.getAddress());
+			pstmt.setString(6, store.getTel());
+			pstmt.setString(7, store.getSeller());
+			pstmt.setInt(8, store.getPro_code());
+			pstmt.setString(9, store.getPro_name());
+			pstmt.setInt(10, store.getPrice());
+			pstmt.setInt(11, store.getQuantity());
+			pstmt.setString(12, store.getRequest_term());
+			
+			result = pstmt.executeUpdate();
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		if (pstmt != null) pstmt.close();
+		if (conn != null) conn.close();
+		return result;
+	}
+	public int sellcnt(int pro_num, int quantity) throws SQLException {
+		int result = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "update store set sellcnt = ( select sellcnt from store where pro_num = ? )+?, stock = ( select stock from store where pro_num = ? )-? where pro_num = ?";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, pro_num);
+			pstmt.setInt(2, quantity);
+			pstmt.setInt(3, pro_num);
+			pstmt.setInt(4, quantity);
+			pstmt.setInt(5, pro_num);
+			result = pstmt.executeUpdate();
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		if (pstmt != null) pstmt.close();
+		if (conn != null) conn.close();
+		return result;
+		
+	}
 }

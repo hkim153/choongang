@@ -33,6 +33,7 @@
 	
 	<div id="wrap">
 		<div>
+		
 			<jsp:include page="header.jsp"></jsp:include>
 		</div>
 		<form action="wh_proOrderForm.do" onsubmit="return chk()" name="frm">

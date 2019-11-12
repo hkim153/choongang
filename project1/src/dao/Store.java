@@ -32,12 +32,14 @@ public class Store {
 	private String img_folder;
 	private String file_name;
 	private String real_name;
- 	
+	private String id;
+	private String name;
+	private String email;
+	private String address;
+	private String tel;
+ 	private String request_term;
 	
- 	
- 	
- 	
- 	
+ 
 	public int getPro_num() {
 		return pro_num;
 	}
@@ -211,5 +213,41 @@ public class Store {
 	}
 	public void setReal_name(String real_name) {
 		this.real_name = real_name;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+	public String getRequest_term() {
+		return request_term;
+	}
+	public void setRequest_term(String request_term) {
+		this.request_term = request_term;
 	}
 }
