@@ -18,7 +18,11 @@ public class SH_BoardAction implements CommandProcess {
 		// TODO Auto-generated method stub
 		BoardDao bd = BoardDao.getInstance();
 		try { 
-			    int totCnt  = bd.getTotalCnt();			
+			
+				String searchType = request.getParameter("searchType");
+				String searchText = request.getParameter("searchText");
+			
+			    int totCnt  = bd.getTotalCnt(searchType, searchText);			
 				String pageNum = request.getParameter("pageNum");	
 				if (pageNum==null || pageNum.equals("")) {	pageNum = "1";	}
 				int currentPage = Integer.parseInt(pageNum);	
@@ -26,7 +30,9 @@ public class SH_BoardAction implements CommandProcess {
 				int startRow = (currentPage - 1) * pageSize + 1;
 				int endRow   = startRow + pageSize - 1;
 				int startNum = totCnt - startRow + 1;
-				List<Board> list = bd.list(startRow, endRow);	
+				
+				
+				List<Board> list = bd.list(searchType, searchText, startRow, endRow);	
 				int pageCnt = (int)Math.ceil((double)totCnt/pageSize);
 				int startPage = (int)(currentPage-1)/blockSize*blockSize + 1;
 				int endPage = startPage + blockSize -1;	
@@ -41,6 +47,8 @@ public class SH_BoardAction implements CommandProcess {
 				request.setAttribute("pageCnt", pageCnt);
 				request.setAttribute("startPage", startPage);
 				request.setAttribute("endPage", endPage);
+				request.setAttribute("searchText", searchText);
+				request.setAttribute("searchType", searchType);
 				 
 				System.out.println("-----------------------------------------------");  // /ch16/list.do
 				System.out.println("startNum-->" + startNum);  // /ch16/list.do

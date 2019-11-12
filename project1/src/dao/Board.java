@@ -78,10 +78,4 @@ public class Board {
 		this.good = good;
 	}
 	
-
-
-	
-	
-	
-
 }

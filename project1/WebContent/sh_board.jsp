@@ -34,7 +34,6 @@
 					<td class="left" width=200><a
 						href="sh_content.do?f_board_no=${board.f_board_no}&pageNum=${currentPage}&status=0">
 							${board.f_board_title}</a></td>
-				<tr>
 					<th>${board.f_board_content}</th>
 					<th>${board.f_board_id}</th>
 					<th>${board.f_board_date}</th>
@@ -50,7 +49,20 @@
 			</tr>
 		</c:if>
 	</table>
-
+	<form method="get" action="sh_board.do">
+		<div> 			
+			<select name="searchType">
+				<option value="01" <c:if test="${empty searchType or searchType eq 01}">selected="selected"</c:if>>제목</option>
+				<option value="02" <c:if test="${searchType eq 02}">selected="selected"</c:if>>제목+내용</option>
+				<option value="03" <c:if test="${searchType eq 03}">selected="selected"</c:if>>작성자</option>
+			</select>
+			<input type="text" name="searchText" value="${searchText}">
+			<input type="submit" value="검색" />
+		</div>	
+	</form>
+	
+	
+ 
 	<div style="text-align: center;">
 		<c:if test="${startPage > blockSize }">
 			<a href='sh_board.do?pageNum=${startPage-blockSize}'>[이전]</a>
@@ -62,6 +74,7 @@
 			<a href='sh_board.do?pageNum=${startPage+blockSize}'>[다음]</a>
 		</c:if>
 	</div>
+
 
 </body>
 </html>

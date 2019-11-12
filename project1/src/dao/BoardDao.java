@@ -1,7 +1,7 @@
 package dao;
 
 
-import java.io.IOException;
+
 import java.rmi.ServerException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,6 +18,7 @@ import javax.sql.DataSource;
 import javax.sql.rowset.serial.SerialException;
 
 import oracle.jdbc.driver.DBConversion;
+
 
 
 
@@ -52,16 +53,38 @@ public class BoardDao {
 
 	
 	
-	public int getTotalCnt() throws SQLException {
+	public int getTotalCnt(String searchType, String searchText) throws SQLException {
 		Connection conn = null;
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int tot = 0;
-		String sql = "select count(*) from FREE_board";
+		String sql = "select count(*) from FREE_board WHERE 1 = 1";
+		
+		if( searchText != null && searchText.trim().length() != 0) {
+			if( "01".equals(searchType)) {
+				sql += "    AND f_board_title LIKE ? \n";
+			}else if( "02".equals(searchType)) {
+				sql += "    AND ( f_board_title LIKE ? OR f_board_content LIKE ?)\n";
+			}else if( "03".equals(searchType)) {
+				sql += "    AND f_board_id LIKE ? \n";
+			}
+		}
+		
 		try {
 			conn = getConnection();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
+			pstmt = conn.prepareStatement(sql); 
+			
+			if( searchText != null && searchText.trim().length() != 0) {
+				if( "01".equals(searchType) ||  "03".equals(searchType)) {
+					pstmt.setString(1, "%" + searchText + "%");
+				}else if( "02".equals(searchType)) {
+					pstmt.setString(1, "%" + searchText + "%");
+					pstmt.setString(2, "%" + searchText + "%");
+				}	
+			}
+		
+			
+			rs = pstmt.executeQuery();
 			if (rs.next())
 				tot = rs.getInt(1);
 		} catch (Exception e) {
@@ -69,15 +92,15 @@ public class BoardDao {
 		} finally {
 			if (rs != null)
 				rs.close();
-			if (stmt != null)
-				stmt.close();
+			if (pstmt != null)
+				pstmt.close();
 			if (conn != null)
 				conn.close();
 		}
 		return tot;
 	}
 
-	public List<Board> list(int startRow, int endRow) throws SQLException {
+	public List<Board> list(String searchType, String searchText, int startRow, int endRow) throws SQLException {
 		List<Board> list = new ArrayList<Board>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -85,11 +108,40 @@ public class BoardDao {
 		String sql = " select * from (select rownum rn,a.* from " + 
 				"		(select * from FREE_board order by f_board_no DESC) a)" + 
 				"			 where rn between ? and ?";
+		
+		
+		
+		/*<option value="01">제목</option>
+		<option value="02">제목+내용</option>
+		<option value="03">작성자</option>*/
+
+		if( searchText != null && searchText.trim().length() != 0) {
+			System.out.println("왜 안됌?");
+			if( "01".equals(searchType)) {
+				sql += "    AND f_board_title LIKE ? \n";
+			}else if( "02".equals(searchType)) {
+				sql += "    AND ( f_board_title LIKE ? OR f_board_content LIKE ?)\n";
+			}else if( "03".equals(searchType)) {
+				sql += "    AND f_board_id LIKE ? \n";
+			}
+		}
+
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
+			
+			if( searchText != null && searchText.trim().length() != 0) {
+				System.out.println("왜 안됌?2222");
+				if( "01".equals(searchType) ||  "03".equals(searchType)) {
+					pstmt.setString(3, "%" + searchText + "%");	
+				}else if( "02".equals(searchType)) {
+					pstmt.setString(3, "%" + searchText + "%");
+					pstmt.setString(4, "%" + searchText + "%");
+				}	
+			}
+			
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Board board = new Board();
@@ -99,7 +151,7 @@ public class BoardDao {
 				board.setF_board_date(rs.getDate("f_board_date"));
 				board.setF_board_file_name(rs.getString("f_board_file_name"));
 				board.setF_board_pass(rs.getString("f_board_pass"));
-				board.setF_board_readcount(rs.getInt("f_board_readcount"));
+				board.setF_board_readcount(rs.getInt("f_board__readcount"));
 				board.setF_board_title(rs.getString("f_board_title"));
 				list.add(board);
 			}
