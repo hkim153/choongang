@@ -11,19 +11,27 @@
 	function chk() {
 		if (frm.passwd.value != frm.passwd2.value) {
 			alert("암호가 일치하지 않습니땅!");
-			frm.passwd.focus();w
+			frm.passwd.focus();
 			return false;
-		}
+		}		
+		if(frm.idDuplication.value !="idCheck"){
+			alert("ID 중복여부를 확인바랍니땅!");
+			return false;
+		}	
 		return true;
 	}
+	function inputIdChk() { //중복체크하고난뒤 아이디를 재입력시 다시 중복체크하도록 하는 기능
+		document.frm.idDuplication.value="idUncheck";		
+	}
+	
 	function winop() {
 		/* if (!frm.id.value) {
 			alert("id를 입력하고 사용하세요");
 			frm.id.focus();
 			return false;
 		} */
-		window.open("jw_confirmIdPro.do?id=${id}" + frm.id.value, "",
-				"width=510 height=510");
+		window.name = "parentForm";
+		window.open("jw_confirmIdPro.do?id=${id}" + frm.id.value, "chkForm",	"width=510 height=510");
 	}
 </script>
 </head>
@@ -37,15 +45,15 @@
 					<div class="join_content">
 						<div class="row_group">
 							<div class="join_row">
-							
+							<h1>회원가입</h1>
 								<h3 class="join_title">
 									<label for="id">아이디</label>
 								</h3>
 								<span class="ps_box int_id"> 
-								<input type="text" name="id"	required="required" id="id" class="int" title="ID"
-									maxlength="20">
-								</span> <input type="submit" value="중복확인" onclick="winop()"
-									required="required" style="height: 29px; font-size: 15px">
+								<input type="text" name="id"	required="required" id="id" class="int" title="ID"	maxlength="20" onkeydown="inputIdChk()">
+								</span> 
+								<input type="submit" value="중복확인" onclick="winop()"	style="height: 29px; font-size: 15px">
+								<input type="hidden" name="idDuplication" value="idUncheck">
 							</div>
 
 							<h3 class="join_title">

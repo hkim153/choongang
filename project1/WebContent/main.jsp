@@ -120,10 +120,10 @@
 				<div id="account" class="section_login">
 						<c:choose>
 							<c:when test="${sessionScope.result ne 1 }">		<!-- 로그인값이없을때 -->
-								<form action="login.do">
-									<a href="jw_loginForm.do"> <img alt=""
-										src="images/login.png" width="200" height="100"></a>
-								</form>
+								
+									<a href="jw_loginForm.do"><input type="button" value="로그인하기" > </a>
+									<!-- <img alt=""	src="images/login.png" width="330" height="100"> -->
+								
 							</c:when>
 							<c:when
 								test="${sessionScope.result eq 1 and( sessionScope.adminResult ne 1)}">		<!-- 로그인값이있고 어드민 권한이없을때  -->

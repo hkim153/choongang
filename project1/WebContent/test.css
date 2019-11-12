@@ -88,8 +88,8 @@ a {
 
 .section_login {
 	position: relative;
-	height: 118px;
-	border: 1px solid #dee3eb;
+	height: 118px;	
+	border: 0;
 	background: #fff;
 }
 

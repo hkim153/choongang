@@ -59,12 +59,14 @@
 				<h2>로그인 화면</h2>	
 					<div class="form">
 						<table>
+						
 							<tr>
 								<td>아이디: <input type="text" name="id" required="required" onsubmit="return idchk()"></td>
 								<td rowspan="2"><input type="submit" value="로그인"></td>
 							</tr>
 							<tr>
 								<td>암호: <input type="password" name="passwd" onsubmit="return passwdchk()"	required="required"></td>
+								
 							</tr>
 							<tr>
 								<td>

@@ -27,7 +27,7 @@ public class JW_loginProAction implements CommandProcess {
 			String admin_c = request.getParameter("admin_c");
 			String alive_c = request.getParameter("alive_c");
 			
-			System.out.println("어드민 캐릭터: "+admin_c);
+			System.out.println("어드민 컨디션: "+admin_c);
 
 			int result = md.check(id, passwd); // id,passwd 일치여부 확인
 			int adminResult = md.confirm_Admin(admin_c, id); // 어드민인지 확인

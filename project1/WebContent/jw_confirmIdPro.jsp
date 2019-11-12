@@ -10,10 +10,32 @@
 	function wincl() {
 		window.close();
 	}
+	
+	function idValue() {		
+		var id = '${id}';
+		
+		document.getElementById(id).value = opener.document.frm.id.value;
+		
+	}		
+	
+	function sendCheckValue() {
+		var result1 = '${result}';		
+		var id = '${id}';
+		
+		if(result1 == 0){
+		opener.document.frm.idDuplication.value = 'idCheck';
+		
+		opener.document.frm.id.value = id;		
+		if (opener != null) {
+			opener.chkForm = null;
+			self.close();
+		}
+		}
+	}
+	
 </script>
 </head>
 <body>
-
 	<%-- <c:set var="id" value="${id }"></c:set> --%>
 	<%-- <input type="hidden" name="id" value=" ${id }"> --%>
 	<c:if test="${result==1 }">
@@ -24,8 +46,8 @@
 		<p1> ${id } 는 사용하실 수 있습니땅!</p1>
 		<img src="images/success.jpg" width="400px" height="400px">
 	</c:if>
-
 	<p>
+		<input type="button" value="사용하기" onclick="sendCheckValue()">
 		<input type="button" value="확인" onclick="wincl()">
 </body>
 </html>
