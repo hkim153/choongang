@@ -101,6 +101,84 @@ div {
 	background: #fff
 }
 
+.sh_group4{
+	margin: 16px 8px 0;
+	padding: 20px 15px 20px;
+	text-align: left;
+	border: 1px solid #dadada;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	background: #fff
+}
+
+.sh_group4 .sh_content{
+	position: relative;
+    z-index: 30;
+    margin-top: -1px;
+    padding: 20px 20px 0;
+    border: 1px solid #dadddf;
+    background-color: #edeff2;
+}
+
+.sh_group4 .sh_content ul{
+	display: inline;
+    overflow: hidden;
+    margin: 0 0 0 5px;
+    padding: 24px 0;
+    border-right: 1px solid #d9dadd;
+    zoom: 1;
+    list-style:none;
+}
+
+.sh_group4 .sh_content li{
+	display: inline;
+    float: left;
+    position: relative;
+    width: 115px;
+    zoom: 1;
+	
+}
+.sh_content li .inner{
+	position: relative;
+    min-height: 83px;
+    padding-left: 72px;	
+    color: #4C4C4C;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.inner span img{
+	display: inline-block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 60px;
+    height: 60px;
+}
+
+.inner dt{
+    overflow: hidden;
+    height: 15px;
+    margin-left: -50px;	
+}
+
+.inner dd{
+    margin-top: 10px;
+    padding: 20px 0 24px
+}
+
+.com_num{
+	overflow: hidden;
+    margin-left: -3px;
+}
+
+.com_num em.num0{
+	width: 19px;
+    background-position: 0 -90px;
+    font-size: 50px;
+    font-style: normal;
+}
+
 .section_home 
 .column+.column{
 	float: none;

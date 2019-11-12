@@ -90,29 +90,53 @@
 								value="수정하기" class="btn_model">
 						</p>
 					</div>
-					<div class="sh_group">
-						<div class="sh_header">
-							<h2>여기는 물품구매내역</h2>
-						</div>
-						<div class="sh_content">
-							<dl class="sh_list2">
-								<dt class="nic_tit">이름</dt>
-								<dd class="nic_desc">${name}</dd>
-								<br>
-								<dt class="nic_tit">E-Mail</dt>
-								<dd class="nic_desc">${email }</dd>
-								<br>
-								<dt class="nic_tit">주소</dt>
-								<dd class="nic_desc">${address }</dd>
-								<br>
-								<dt class="nic_tit">전화번호</dt>
-								<dd class="nic_desc">+82 ${tel }</dd>
-							</dl>
-						</div>
-						<p class="btn_area_btm">
-							<input type="button" onclick="location.href='jw_myPageForm.do'"
-								value="추가하기" class="btn_model">
-						</p>
+					<div class="sh_group4">
+						
+							<div class="sh_header">
+								<h2 style="margin-block-start:0;">구매현황</h2>
+							</div>
+							<div class="sh_content" style="background-color: #EAEAEA;">
+								<ul>
+									<li>
+										<div class="inner">
+											<span><img src="images/delivery.png" alt="배송중"/></span>
+											<dl>
+												<dt>배송중</dt>
+												<dd class="com_num">
+													<em class="num0">0</em>
+												</dd>
+											</dl>
+										</div>
+									</li>
+									<li>
+										<div class="inner">
+											<span><img src="images/arrive.png" alt="배송완료"/></span>
+											<dl>
+												<dt>배송완료</dt>
+												<dd class="com_num">
+													<em class="num0">0</em>
+												</dd>
+											</dl>
+										</div>
+									</li>
+									<li>
+										<div class="inner">
+											<span><img src="images/return.png" alt="취소/반품/교환"/></span>
+											<dl>
+												<dt>취소/반품/교환</dt>
+												<dd class="com_num">
+													<em class="num0">0</em>
+												</dd>
+											</dl>
+										</div>
+									</li>
+								</ul>
+							</div>
+							<p class="btn_area_btm" style="text-align: right; margin: 20px 40px 0;">
+								<input type="button" onclick="location.href='wh_buylist.do'"
+									value="구매내역" class="btn_model">
+							</p>
+						
 					</div>					
 				</div>
 			</div>
