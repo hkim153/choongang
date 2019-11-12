@@ -1,7 +1,5 @@
 package dao;
 
-
-
 import java.rmi.ServerException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,9 +16,6 @@ import javax.sql.DataSource;
 import javax.sql.rowset.serial.SerialException;
 
 import oracle.jdbc.driver.DBConversion;
-
-
-
 
 public class BoardDao {
 	private static BoardDao instance;
@@ -49,41 +44,36 @@ public class BoardDao {
 		return conn;
 	}
 
-	
-
-	
-	
 	public int getTotalCnt(String searchType, String searchText) throws SQLException {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int tot = 0;
-		String sql = "select count(*) from FREE_board WHERE 1 = 1";
-		
-		if( searchText != null && searchText.trim().length() != 0) {
-			if( "01".equals(searchType)) {
+		String sql = "select count(*) from FREE_board where 1 = 1";
+
+		if (searchText != null && searchText.trim().length() != 0) {
+			if ("01".equals(searchType)) {
 				sql += "    AND f_board_title LIKE ? \n";
-			}else if( "02".equals(searchType)) {
+			} else if ("02".equals(searchType)) {
 				sql += "    AND ( f_board_title LIKE ? OR f_board_content LIKE ?)\n";
-			}else if( "03".equals(searchType)) {
+			} else if ("03".equals(searchType)) {
 				sql += "    AND f_board_id LIKE ? \n";
 			}
 		}
-		
+
 		try {
 			conn = getConnection();
-			pstmt = conn.prepareStatement(sql); 
-			
-			if( searchText != null && searchText.trim().length() != 0) {
-				if( "01".equals(searchType) ||  "03".equals(searchType)) {
+			pstmt = conn.prepareStatement(sql);
+
+			if (searchText != null && searchText.trim().length() != 0) {
+				if ("01".equals(searchType) || "03".equals(searchType)) {
 					pstmt.setString(1, "%" + searchText + "%");
-				}else if( "02".equals(searchType)) {
+				} else if ("02".equals(searchType)) {
 					pstmt.setString(1, "%" + searchText + "%");
 					pstmt.setString(2, "%" + searchText + "%");
-				}	
+				}
 			}
-		
-			
+
 			rs = pstmt.executeQuery();
 			if (rs.next())
 				tot = rs.getInt(1);
@@ -105,24 +95,51 @@ public class BoardDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = " select * from (select rownum rn,a.* from " + 
-				"		(select * from FREE_board order by f_board_no DESC) a)" + 
-				"			 where rn between ? and ?";
+		/*
+		 * String sql = " select * from (select rownum rn,a.* from " +
+		 * "(select * from FREE_board order by f_board_no DESC) a)" +
+		 * " where rn between ? and ?";
+		 */
+		 
+		String sql = "SELECT\n "+ 
+					 " *\n"+
+					 "FROM\n"+
+					 " (\n"+
+					 " SELECT\n"+
+					 " ROWNUM rn,\n" +
+					 " a.*\n"+
+					 " FROM\n"+
+					 " (\n"+
+					 " SELECT\n"+
+					 " *\n"+
+					 " FROM\n"+
+					 " free_board\n"+
+					 " order by\n"+
+					 " f_board_no desc\n"+
+					 "  )a\n"+
+					 " )\n"+
+					 " where 1 = 1\n"+
+					 " AND rn BETWEEN ? AND ? \n";
 		
 		
 		
-		/*<option value="01">제목</option>
-		<option value="02">제목+내용</option>
-		<option value="03">작성자</option>*/
-
-		if( searchText != null && searchText.trim().length() != 0) {
-			System.out.println("왜 안됌?");
-			if( "01".equals(searchType)) {
-				sql += "    AND f_board_title LIKE ? \n";
-			}else if( "02".equals(searchType)) {
-				sql += "    AND ( f_board_title LIKE ? OR f_board_content LIKE ?)\n";
-			}else if( "03".equals(searchType)) {
-				sql += "    AND f_board_id LIKE ? \n";
+		
+		
+		
+		
+		/*
+		 * <option value="01">제목</option> <
+		 * option  value="02">제목+내용</option> 
+		 * <option value="03">작성자</option>
+		 */
+		if (searchText != null && searchText.trim().length() != 0) {
+		
+			if ("01".equals(searchType)) {
+				sql += "  AND f_board_title LIKE ? \n";
+			} else if ("02".equals(searchType)) {
+				sql += "AND ( f_board_title LIKE ? OR f_board_content LIKE ?)\n";
+			} else if ("03".equals(searchType)) {
+				sql += "AND f_board_id LIKE ? \n";
 			}
 		}
 
@@ -131,17 +148,17 @@ public class BoardDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
+
+			if (searchText != null && searchText.trim().length() != 0) {
 			
-			if( searchText != null && searchText.trim().length() != 0) {
-				System.out.println("왜 안됌?2222");
-				if( "01".equals(searchType) ||  "03".equals(searchType)) {
-					pstmt.setString(3, "%" + searchText + "%");	
-				}else if( "02".equals(searchType)) {
+				if ("01".equals(searchType) || "03".equals(searchType)) {
+					pstmt.setString(3, "%" + searchText + "%");
+				} else if ("02".equals(searchType)) {
 					pstmt.setString(3, "%" + searchText + "%");
 					pstmt.setString(4, "%" + searchText + "%");
-				}	
+				}
 			}
-			
+
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Board board = new Board();
@@ -151,8 +168,9 @@ public class BoardDao {
 				board.setF_board_date(rs.getDate("f_board_date"));
 				board.setF_board_file_name(rs.getString("f_board_file_name"));
 				board.setF_board_pass(rs.getString("f_board_pass"));
-				board.setF_board_readcount(rs.getInt("f_board__readcount"));
+				board.setF_board_readcount(rs.getInt("f_board_readcount"));
 				board.setF_board_title(rs.getString("f_board_title"));
+				board_Setgood(rs.getInt("good"));
 				list.add(board);
 			}
 		} catch (Exception e) {
@@ -166,6 +184,11 @@ public class BoardDao {
 				conn.close();
 		}
 		return list;
+	}
+
+	private void board_Setgood(int int1) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	public Board select(int num) throws SQLException {
@@ -187,8 +210,7 @@ public class BoardDao {
 				board.setF_board_readcount(rs.getInt("f_board_readcount"));
 				board.setF_board_file_name(rs.getString("f_board_file_name"));
 				board.setF_board_pass(rs.getString("f_board_pass"));
-				
-				
+
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -261,11 +283,11 @@ public class BoardDao {
 			pstmt = conn.prepareStatement(sql1);
 			rs = pstmt.executeQuery();
 			rs.next();
-			int number = rs.getInt(1)+1;
+			int number = rs.getInt(1) + 1;
 			rs.close();
-			if (num == 0) 
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, number);	
+			if (num == 0)
+				pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, number);
 			pstmt.setString(2, board.getF_board_title());
 			pstmt.setString(3, board.getF_board_content());
 			pstmt.setString(4, board.getF_board_id());
@@ -275,14 +297,17 @@ public class BoardDao {
 			pstmt.setInt(8, board.getgood());
 
 			result = pstmt.executeUpdate();
-			
+
 		} catch (Exception e) {
 			System.out.println("insert->" + e.getMessage());
-		}finally {
-			if (rs != null) rs.close();
-			if (pstmt != null) pstmt.close();
-			if (conn != null) conn.close();
-			
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+
 		}
 		return result;
 	}
@@ -314,7 +339,7 @@ public class BoardDao {
 				result = -1;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-		
+
 		} finally {
 			if (pstmt != null)
 				pstmt.close();
@@ -324,27 +349,17 @@ public class BoardDao {
 		return result;
 	}
 
-	
-	
-	
-
-
-	
-	
-	
-	
 	public List<CommentDTO> getallreply(int bn) throws SQLException {
 		List<CommentDTO> reply = new ArrayList<CommentDTO>();
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
-		String sql = "select * from board_comment  where comment_board = " + bn
-				+ "order by comment_Date desc";
+		String sql = "select * from board_comment  where comment_board = " + bn + "order by comment_Date desc";
 		try {
 			conn = getConnection();
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
-			while(rs.next()) {
+			while (rs.next()) {
 				CommentDTO temp = new CommentDTO();
 				temp.setComment_board(rs.getInt("comment_board"));
 				temp.setComment_num(rs.getInt("comment_num"));
@@ -364,9 +379,9 @@ public class BoardDao {
 				conn.close();
 		}
 		return reply;
-		
+
 	}
-	
+
 	public int insertreply(CommentDTO temp) throws SQLException {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -381,7 +396,7 @@ public class BoardDao {
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-		
+
 		} finally {
 			if (pstmt != null)
 				pstmt.close();
@@ -389,11 +404,9 @@ public class BoardDao {
 				conn.close();
 		}
 		return result;
-		
-		
+
 	}
 
-	
 	public int cdelete(int comment_num) throws SQLException {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -405,7 +418,7 @@ public class BoardDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, comment_num);
 			result = pstmt.executeUpdate();
-			//todo need to check id;
+			// todo need to check id;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 
@@ -418,165 +431,3 @@ public class BoardDao {
 		return result;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-/*//시퀀스를 가져온다(댓글 시퀀스)
-		public int getSeq() throws SQLException{
-			Connection conn = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs= null;
-		
-			int result = 1;
-			try {
-				conn = getConnection();
-				// 시퀀스 값을 가져옴. (DUAL : 시퀀스 값을 가져오기 위한 임시 테이블)
-				StringBuffer sql =new StringBuffer();
-				sql.append("SELECT COMMENT_SEQ.NEXTVAL FROM DUAL"); //DUAL은 시퀀스 값을 가져오기 위한 임시 테이블
-			
-				pstmt = conn.prepareStatement(sql.toString());
-				rs = pstmt.executeQuery(); //쿼리 실행
-				
-				if (rs.next()) result = rs.getInt(1);
-				
-				
-			} catch (Exception e) {
-				throw new RuntimeException(e.getMessage());
-			
-			
-		} finally {
-			
-			
-			if(conn != null)
-				conn.close();
-			if(pstmt != null)
-				pstmt.close();
-			if(rs != null)
-				rs.close();
-		}
-			return result;
-		}
-		
-	
-	public boolean insertcomment(CommentDTO comment) throws SQLException  {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		boolean result = false;
-		try {
-			
-			conn = getConnection();
-			
-			StringBuffer sql = new StringBuffer();
-            sql.append("INSERT INTO BOARD_COMMENT");
-            sql.append(" (COMMENT_NUM, COMMENT_BOARD, COMMENT_ID, COMMENT_DATE");
-            sql.append(" , COMMENT_PARENT, COMMENT_CONTENT)");
-            sql.append(" VALUES(?,?,?,sysdate,?,?)");
-    
-            pstmt = conn.prepareStatement(sql.toString());
-           
-            
-			pstmt.setInt(1, comment.getComment_num());
-            pstmt.setInt(2, comment.getComment_board());
-            pstmt.setString(3, comment.getComment_id());
-            pstmt.setInt(4, comment.getComment_parent());
-            pstmt.setString(5, comment.getComment_content());
-            
-            int flag = pstmt.executeUpdate();
-            if(flag > 0){
-                result = true;
-                conn.commit(); // 완료시 커밋
-            }
-            
-        } catch (Exception e) {
-            try {
-                conn.rollback(); // 오류시 롤백
-            } catch (SQLException sqle) {
-                sqle.printStackTrace();
-            } 
-            e.printStackTrace();
-            throw new RuntimeException(e.getMessage());
-        }finally {
-        	if (conn != null) conn.close();
-        	if (pstmt != null) pstmt.close();
-        	
-        }
-		return result;
-	
-    } 
-	//댓글 목록 가져오기
-	public ArrayList<CommentDTO> getCommentList(int f_board_no) throws SQLException
-	{
-			
-		ArrayList<CommentDTO> list = new ArrayList<CommentDTO>();
-			Connection conn = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-	
-		try {
-			conn = getConnection();
-			
-			StringBuffer sql= new StringBuffer();
-			sql.append(" SELECT LEVEL, COMMENT_NUM, COMMENT_BOARD,");
-			sql.append(" COMMENT_ID, COMMENT_DATE,");
-			sql.append(" COMMENT_PARENT, COMMENT_CONTENT");
-			sql.append(" FROM BOARD_COMMENT");
-            sql.append(" WHERE COMMENT_BOARD = ?");
-            sql.append(" START WITH COMMENT_PARENT = 0");
-            sql.append(" CONNECT BY PRIOR COMMENT_NUM = COMMENT_PARENT"); 
-
-		pstmt = conn.prepareStatement(sql.toString());
-		pstmt.setInt(1, f_board_no);
-		
-		rs=pstmt.executeQuery();
-		while(rs.next())
-		{
-			CommentDTO comment = new CommentDTO();
-			comment.setComment_level(rs.getInt("LEVEL"));
-			comment.setComment_num(rs.getInt("COMMENT_NUM"));
-			comment.setComment_board(rs.getInt("COMMENT_BOARD"));
-			comment.setComment_id(rs.getString("COMMENT_ID"));
-			comment.setComment_date(rs.getDate("COMMENT_DATE"));
-			comment.setComment_parent(rs.getInt("COMMENT_PARENT"));
-			comment.setComment_content(rs.getString("COMMENT_CONTENT"));
-			list.add(comment);
-			}
-		} catch(Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException(e.getMessage());
-		}finally {
-			
-		
-			if ( conn != null) conn.close();
-			if ( pstmt != null) pstmt.close();
-			if ( rs != null) rs.close();
-		}
-			
-			return list;
-				
-			}
-			 
-		        
-		}*/
-
-
-
-
-
-	
-
-
-
-		
-
-		
-
-	

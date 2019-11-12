@@ -32,7 +32,11 @@ public class SH_BoardAction implements CommandProcess {
 				int startNum = totCnt - startRow + 1;
 				
 				
+			
 				List<Board> list = bd.list(searchType, searchText, startRow, endRow);	
+				System.out.println("searchType,searchText -> "+ searchType);
+				System.out.println("searchType,searchText -> "+ searchText);
+				System.out.println("list? -> "+ list);
 				int pageCnt = (int)Math.ceil((double)totCnt/pageSize);
 				int startPage = (int)(currentPage-1)/blockSize*blockSize + 1;
 				int endPage = startPage + blockSize -1;	
