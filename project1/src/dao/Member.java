@@ -5,8 +5,9 @@ import java.util.Date;
 public class Member {
 	private String id, passwd, name, email, admin_c, alive_c, address,tel;	
 //					계정, 암호, 이름, E-Mail, 어드민권한, 탈퇴여부, 주소, 번호
-	private Date reg_date;
-//	가입일
+	private Date reg_date; //	가입일
+	private int User_num;
+	
 	
 	public String getId() {
 		return id;
@@ -46,6 +47,13 @@ public class Member {
 	}
 	public String getAddress() {
 		return address;
+	}
+	
+	public int getUser_num() {
+		return User_num;
+	}
+	public void setUser_num(int user_num) {
+		User_num = user_num;
 	}
 	public void setAddress(String address) {
 		this.address = address;

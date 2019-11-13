@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -33,6 +34,29 @@ public class MemberDao {
 		}
 		return conn;
 	}
+	
+	public int getUser_num() throws SQLException{
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		int tot = 0;
+		String sql = "select user_num(*) from member";
+		try {
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			if(rs.next())
+				tot = rs.getInt(1);
+		} catch (Exception e) {
+			 System.out.println(e.getMessage());
+		} finally {
+			if(rs !=null) rs.close();
+			if(stmt !=null) stmt.close();
+			if(conn !=null) conn.close();
+		}
+		return tot;
+	}
+	
 
 	public int check(String id, String passwd) throws SQLException { // 로그인
 		Connection conn = null;
@@ -166,11 +190,21 @@ public class MemberDao {
 	public int insert(Member member) throws SQLException { //회원가입 정보 db에 넣기
 		Connection conn = null;
 		int result = 0;
+		int user_num = member.getUser_num();
 		PreparedStatement pstmt = null;
-
+		ResultSet rs = null;
+//		String sql1 = "select nvl(max(user_num),0) from member";
 		String sql = "insert into member values(?, ?, ?, ?, ?, ?, ?, ?, sysdate)";
+	
 		try {
 			conn = getConnection();
+//			pstmt = conn.prepareStatement(sql1);
+//			rs = pstmt.executeQuery();
+//			rs.next();
+//			int number = rs.getInt(9)+1;
+//			rs.close();
+//			if(user_num == 0)
+//				pstmt = conn.prepareStatement(sql);
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, member.getId());
 			pstmt.setString(2, member.getPasswd());
@@ -180,6 +214,7 @@ public class MemberDao {
 			pstmt.setString(6, member.getTel());
 			pstmt.setString(7, member.getAdmin_c());
 			pstmt.setString(8, member.getAlive_c());
+//			pstmt.setInt(9, number);
 
 			result = pstmt.executeUpdate();
 			System.out.println("insert result: " + result);

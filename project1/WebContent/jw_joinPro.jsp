@@ -9,13 +9,13 @@
 </head>
 <body>
 
-<c:if test="${result >0 }">
+<c:if test="${result ==1}">
 	<script type="text/javascript">
 	alert("회원이 되신걸 환영합니땅! ^ㅡ^");
 	location.href="jw_loginForm.do?id=${id}";
 	</script>
 </c:if>
-<c:if test="${result==0 }">
+<c:if test="${result !=1 }">
 	<script type="text/javascript"> 
 	alert("정보를 잘못입력하셨습니땅! ㅠㅡㅠ");
 	location.href="jw_joinForm.do?id=${id}";

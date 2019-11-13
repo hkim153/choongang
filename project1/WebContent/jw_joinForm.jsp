@@ -17,9 +17,10 @@
 		if(frm.idDuplication.value !="idCheck"){
 			alert("ID 중복여부를 확인바랍니땅!");
 			return false;
-		}	
+		}
 		return true;
-	}
+	}		
+	
 	function inputIdChk() { //중복체크하고난뒤 아이디를 재입력시 다시 중복체크하도록 하는 기능
 		document.frm.idDuplication.value="idUncheck";		
 	}
@@ -50,10 +51,11 @@
 									<label for="id">아이디</label>
 								</h3>
 								<span class="ps_box int_id"> 
-								<input type="text" name="id"	required="required" id="id" class="int" title="ID"	maxlength="20" onkeydown="inputIdChk()">
+								<input type="text" name="id"	required="required" id="id" class="int" title="ID"	maxlength="20" >
+								<!-- onkeydown="inputIdChk()" -->
 								</span> 
 								<input type="submit" value="중복확인" onclick="winop()"	style="height: 29px; font-size: 15px">
-								<input type="hidden" name="idDuplication" value="idUncheck">
+								<!-- <input type="hidden" name="idDuplication" value="idUncheck"> -->
 							</div>
 
 							<h3 class="join_title">

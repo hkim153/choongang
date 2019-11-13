@@ -258,6 +258,7 @@ public class BoardDao {
 			pstmt.setString(4, board.getF_board_file_name());
 			pstmt.setString(5, board.getF_board_content());
 			pstmt.setInt(6, board.getF_board_no());
+			
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

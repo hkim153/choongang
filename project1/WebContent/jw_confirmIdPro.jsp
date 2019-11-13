@@ -6,48 +6,59 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.id{
+position: relative;
+}
+</style>
 <script type="text/javascript">
 	function wincl() {
 		window.close();
 	}
-	
+
 	function idValue() {		
 		var id = '${id}';
-		
 		document.getElementById(id).value = opener.document.frm.id.value;
-		
-	}		
-	
+	}
+
 	function sendCheckValue() {
-		var result1 = '${result}';		
+		var result = '${result}';
 		var id = '${id}';
 		
-		if(result1 == 0){
-		opener.document.frm.idDuplication.value = 'idCheck';
-		
-		opener.document.frm.id.value = id;		
-		if (opener != null) {
-			opener.chkForm = null;
-			self.close();
-		}
+		if (result == 0) {			
+			
+			opener.document.frm.id.value = id;
+			opener.document.frm.idDuplication.value = "idCheck";
+			
+			if (opener != null) {				
+				opener.chkForm = null;
+				window.close();
+			}
 		}
 	}
-	
+	function idCheck() {
+		var id = '${id}';		
+	}
 </script>
 </head>
 <body>
 	<%-- <c:set var="id" value="${id }"></c:set> --%>
-	<%-- <input type="hidden" name="id" value=" ${id }"> --%>
-	<c:if test="${result==1 }">
-		<p1>${id } 는 이미 있는 아이디입니땅! 다른 아이디를 사용하셔야 합니땅!</p1>
+	<%-- <input type="hidden" name="id" value=" ${id }"> --%>	
+	<c:if test="${result ==1 }">
+	<!-- <form action=""> -->
+		${id } 는 이미 있는 아이디입니땅! 다른 아이디를 입력바랍니땅!
+		<!-- <input type="text" name="id" id="id" placeholder="다른아이디를 입력해주세요." > -->
 		<img src="images/fail.jpg" width="400px" height="400px">
+	<!-- 	</form> -->
 	</c:if>
 	<c:if test="${result !=1 }">
-		<p1> ${id } 는 사용하실 수 있습니땅!</p1>
+	<!-- <form action=""> -->
+		${id } 는 사용하실 수 있습니땅!
 		<img src="images/success.jpg" width="400px" height="400px">
-	</c:if>
+	<!-- 	</form> -->
+	</c:if>	
 	<p>
-		<input type="button" value="사용하기" onclick="sendCheckValue()">
+		<!-- <input type="button" value="사용하기" > -->
 		<input type="button" value="확인" onclick="wincl()">
 </body>
 </html>
