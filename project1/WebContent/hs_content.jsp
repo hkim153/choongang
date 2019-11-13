@@ -43,10 +43,12 @@
 	</tr>
 	<tr><td>내용</td><td><pre>${fs.fs_content}</pre></td></tr>
 	<tr><td colspan="2">
+	<c:if test="${fs.id == sessionScope.id }">
 	<input type="button" value="수정" 
 	            onclick="location.href='hs_updateForm.do?num=${fs.fs_num}&pageNum=${pageNum}'">
 	<input type="button" value="삭제"
 	            onclick="location.href='hs_deleteForm.do?num=${fs.fs_num}&pageNum=${pageNum}'">
+	</c:if>
 	<input type="button" value="목록"
 			    onclick="location.href='hs_addFishingSiteForm.do?pageNum=${pageNum}'"></td></tr>
 </table>

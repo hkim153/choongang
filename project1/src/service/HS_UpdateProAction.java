@@ -59,21 +59,35 @@ public class HS_UpdateProAction implements CommandProcess {
 					fs.setFs_reg(multi.getParameter("fs_reg"));
 					fs.setId(multi.getParameter("id"));
 					
+					
 					Enumeration en = multi.getFileNames();
 					String filename1 = (String)en.nextElement();
-					
 					String filename = multi.getFilesystemName(filename1);
 					String original = multi.getOriginalFileName(filename1);
-					String type = multi.getContentType(filename1);
-					File file = multi.getFile(filename1);
-					if(file != null){
-						 System.out.println("imgFile 크기 : "+file.length());
-					 }
-					fs.setImg_folder(imagefile);
-					fs.setReal_name(original);
-					fs.setSaved_name(filename);
+					
 					
 					fishingsiteDao fsd = fishingsiteDao.getInstance();
+					
+					if(filename == null) {
+						System.out.println("파일 없음!!!!!!!");
+						fishingsite temp = fsd.select(num);
+						fs.setImg_folder(temp.getImg_folder());
+						fs.setReal_name(temp.getReal_name());
+						fs.setSaved_name(temp.getSaved_name());
+					}
+					else {
+						System.out.println("파일 잇음!!!~~~~~~");
+					
+						File file = multi.getFile(filename1);
+						if(file != null){
+							 System.out.println("imgFile 크기 : "+file.length());
+						 }
+						fs.setImg_folder(imagefile);
+						fs.setReal_name(original);
+						fs.setSaved_name(filename);
+					}
+					
+					
 					fsd.deletefishmapping(num);
 					result = fsd.update(fs);
 					fsd.mappingfish(fishes, fs_name);

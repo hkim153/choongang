@@ -15,6 +15,27 @@
    			border-style:solid;
 	}
 </style>
+
+<script src="./js/jquery.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+    //최상단 체크박스 클릭    
+    $("#checkall").click(function(){
+        //클릭되었으면
+        if($("#checkall").prop("checked")){
+            //input태그의 name이 chk인 태그들을 찾아서 checked옵션을 true로 정의
+            $("input[name=어종]").prop("checked",true);
+            //클릭이 안되있으면
+        }else{
+            //input태그의 name이 chk인 태그들을 찾아서 checked옵션을 false로 정의
+            $("input[name=어종]").prop("checked",false);
+        }
+    })
+
+})
+</script>
+
 </head>
 <body>
 <div class="wrap">
@@ -70,6 +91,8 @@
 					<c:forEach var= "sfish" items = "${fishes }">
 						${sfish }  
 					</c:forEach>
+					<br>
+					<input type = "checkbox"  id="checkall">모두 체크<br>
 					<c:forEach var = "fish" items = "${flist }">
 						<input type = "checkbox" name = "어종" value = "${fish.f_name }">${fish.f_name }
 					</c:forEach>
