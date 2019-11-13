@@ -8,13 +8,13 @@
 <title>Insert title here</title>
 <c:if test="${result>0}">
 	<script type="text/javascript">
-		alert("입력완료");
+		alert("주문완료");
 		location.href="main.do";
 	</script>
 </c:if>
 <c:if test="${result==0 }">
 	<script type="text/javascript">
-		alert("입력실패");
+		alert("주문실패");
 		location.href="pro_registForm.do";
 	</script>
 </c:if>

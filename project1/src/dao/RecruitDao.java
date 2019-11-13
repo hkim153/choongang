@@ -68,7 +68,7 @@ public class RecruitDao {
 		ResultSet rs = null;
 		String sql1= "select max(recruit_num) from Recruit";
 		String sql2= "insert into recruit_chatroom values(?,?,?,?,?,sysdate)";
-		String sql = "insert into recruit values(SEQ_RECRUIT_NUM.nextval,?,?,?,?,?,?,?,?,sysdate)";
+		String sql = "insert into recruit values(SEQ_RECRUIT_NUM.nextval,?,?,?,?,?,?,?,?,sysdate,1)";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
