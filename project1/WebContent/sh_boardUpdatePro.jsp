@@ -13,7 +13,8 @@
 <c:if test="${result == 0 }">
 	<script type="text/javascript">
 		alert("수정오류");
-		location.href="sh_boardUpdateForm.do?f_board_no=${f_board_no}&pageNum=${pageNum}";
+		location.href="sh_boardUpdateForm.do?b_num=${b_num}&pageNum=${pageNum}";
+
 	</script>
 </c:if>
 </body>

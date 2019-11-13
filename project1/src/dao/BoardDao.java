@@ -49,15 +49,15 @@ public class BoardDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int tot = 0;
-		String sql = "select count(*) from FREE_board where 1 = 1";
+		String sql = "select count(*) from board where 1 = 1";
 
 		if (searchText != null && searchText.trim().length() != 0) {
 			if ("01".equals(searchType)) {
-				sql += "    AND f_board_title LIKE ? \n";
+				sql += "    AND b_title LIKE ? \n";
 			} else if ("02".equals(searchType)) {
-				sql += "    AND ( f_board_title LIKE ? OR f_board_content LIKE ?)\n";
+				sql += "    AND ( b_title LIKE ? OR b_content LIKE ?)\n";
 			} else if ("03".equals(searchType)) {
-				sql += "    AND f_board_id LIKE ? \n";
+				sql += "    AND b_id LIKE ? \n";
 			}
 		}
 
@@ -95,36 +95,10 @@ public class BoardDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		/*
-		 * String sql = " select * from (select rownum rn,a.* from " +
-		 * "(select * from FREE_board order by f_board_no DESC) a)" +
-		 * " where rn between ? and ?";
-		 */
+		
 		 
-		String sql = "SELECT\n "+ 
-					 " *\n"+
-					 "FROM\n"+
-					 " (\n"+
-					 " SELECT\n"+
-					 " ROWNUM rn,\n" +
-					 " a.*\n"+
-					 " FROM\n"+
-					 " (\n"+
-					 " SELECT\n"+
-					 " *\n"+
-					 " FROM\n"+
-					 " free_board\n"+
-					 " order by\n"+
-					 " f_board_no desc\n"+
-					 "  )a\n"+
-					 " )\n"+
-					 " where 1 = 1\n"+
-					 " AND rn BETWEEN ? AND ? \n";
-		
-		
-		
-		
-		
+		String sql = "select * from (select rownum rn, a.* from(\r\n" + 
+				"select * from board order by b_notice desc, b_date desc)a) where rn between ? and ?";
 		
 		
 		/*
@@ -135,11 +109,11 @@ public class BoardDao {
 		if (searchText != null && searchText.trim().length() != 0) {
 		
 			if ("01".equals(searchType)) {
-				sql += "  AND f_board_title LIKE ? \n";
+				sql += "  AND b_title LIKE ? \n";
 			} else if ("02".equals(searchType)) {
-				sql += "AND ( f_board_title LIKE ? OR f_board_content LIKE ?)\n";
+				sql += "AND ( b_title LIKE ? OR b_content LIKE ?)\n";
 			} else if ("03".equals(searchType)) {
-				sql += "AND f_board_id LIKE ? \n";
+				sql += "AND b_id LIKE ? \n";
 			}
 		}
 
@@ -162,15 +136,15 @@ public class BoardDao {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Board board = new Board();
-				board.setF_board_no(rs.getInt("f_board_no"));
-				board.setF_board_id(rs.getString("f_board_id"));
-				board.setF_board_content(rs.getString("f_board_content"));
-				board.setF_board_date(rs.getDate("f_board_date"));
-				board.setF_board_file_name(rs.getString("f_board_file_name"));
-				board.setF_board_pass(rs.getString("f_board_pass"));
-				board.setF_board_readcount(rs.getInt("f_board_readcount"));
-				board.setF_board_title(rs.getString("f_board_title"));
-				board_Setgood(rs.getInt("good"));
+				board.setB_num(rs.getInt("b_num"));
+				board.setB_title(rs.getString("b_title"));
+				board.setB_content(rs.getString("b_content"));
+				board.setB_id(rs.getString("b_id"));
+				board.setB_readcount(rs.getInt("b_readcount"));
+				board.setB_date(rs.getDate("b_date"));
+				board.setB_filename(rs.getString("b_filename"));
+				board.setB_notice(rs.getInt("b_notice"));
+				board.setB_head(rs.getInt("b_head"));
 				list.add(board);
 			}
 		} catch (Exception e) {
@@ -186,31 +160,28 @@ public class BoardDao {
 		return list;
 	}
 
-	private void board_Setgood(int int1) {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 	public Board select(int num) throws SQLException {
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
-		String sql = "select * from FREE_board where f_board_no=" + num;
+		String sql = "select * from board where b_num=" + num;
 		Board board = new Board();
 		try {
 			conn = getConnection();
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			if (rs.next()) {
-				board.setF_board_no(rs.getInt("f_board_no"));
-				board.setF_board_title(rs.getString("f_board_title"));
-				board.setF_board_content(rs.getString("f_board_content"));
-				board.setF_board_id(rs.getString("f_board_id"));
-				board.setF_board_date(rs.getDate("f_board_date"));
-				board.setF_board_readcount(rs.getInt("f_board_readcount"));
-				board.setF_board_file_name(rs.getString("f_board_file_name"));
-				board.setF_board_pass(rs.getString("f_board_pass"));
-
+				board.setB_num(rs.getInt("b_num"));
+				board.setB_title(rs.getString("b_title"));
+				board.setB_content(rs.getString("b_content"));
+				board.setB_id(rs.getString("b_id"));
+				board.setB_date(rs.getDate("b_date"));
+				board.setB_readcount(rs.getInt("b_readcount"));
+				board.setB_filename(rs.getString("b_filename"));
+				board.setB_head(rs.getInt("b_head"));
+				board.setB_notice(rs.getInt("b_notice"));
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -228,7 +199,7 @@ public class BoardDao {
 	public void readCount(int num) throws SQLException {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "update FREE_board set f_board_readcount=f_board_readcount+1 where f_board_no=?";
+		String sql = "update board set b_readcount=b_readcount+1 where b_num=? "+ num;
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -248,17 +219,13 @@ public class BoardDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String sql = "update FREE_board set F_board_title=?,F_board_id=?,F_board_pass=?,F_board_file_name=?,F_board_content=? where F_board_no=?";
+		String sql = "update board set b_title=?,b_content=? where b_num=?";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, board.getF_board_title());
-			pstmt.setString(2, board.getF_board_id());
-			pstmt.setString(3, board.getF_board_pass());
-			pstmt.setString(4, board.getF_board_file_name());
-			pstmt.setString(5, board.getF_board_content());
-			pstmt.setInt(6, board.getF_board_no());
-			
+			pstmt.setString(1, board.getB_title());
+			pstmt.setString(2, board.getB_content());
+			pstmt.setInt(3, board.getB_num());
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -272,13 +239,12 @@ public class BoardDao {
 	}
 
 	public int insert(Board board) throws SQLException {
-		int num = board.getF_board_no();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		int result = 0;
 		ResultSet rs = null;
-		String sql1 = "select nvl(max(f_board_no),0) from FREE_board";
-		String sql = "insert into FREE_board values(?,?,?,?,?,?,sysdate,?,?)";
+		String sql1 = "select nvl(max(b_num),0) from board";
+		String sql = "insert into board values(?,?,?,?,?,sysdate,?,?,?)";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql1);
@@ -286,16 +252,17 @@ public class BoardDao {
 			rs.next();
 			int number = rs.getInt(1) + 1;
 			rs.close();
-			if (num == 0)
-				pstmt = conn.prepareStatement(sql);
+			pstmt.close();
+			
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, number);
-			pstmt.setString(2, board.getF_board_title());
-			pstmt.setString(3, board.getF_board_content());
-			pstmt.setString(4, board.getF_board_id());
-			pstmt.setInt(5, board.getF_board_readcount());
-			pstmt.setString(6, board.getF_board_pass());
-			pstmt.setString(7, board.getF_board_file_name());
-			pstmt.setInt(8, board.getgood());
+			pstmt.setString(2, board.getB_title());
+			pstmt.setString(3, board.getB_content());
+			pstmt.setString(4, board.getB_id());
+			pstmt.setInt(5, 0);
+			pstmt.setString(6, board.getB_filename());
+			pstmt.setInt(7, board.getB_notice());
+			pstmt.setInt(8, board.getB_head());
 
 			result = pstmt.executeUpdate();
 
@@ -313,31 +280,19 @@ public class BoardDao {
 		return result;
 	}
 
-	public int delete(int num, String passwd) throws SQLException {
+	public int delete(int num) throws SQLException {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		int result = 0;
-		ResultSet rs = null;
-		String sql1 = "select F_board_pass from FREE_board where F_board_no=?";
-		String sql = "delete from FREE_board where F_board_no=?";
+
+		
+		String sql = "delete from board where b_num=?";
 		try {
-			String dbPasswd = "";
+			
 			conn = getConnection();
-			pstmt = conn.prepareStatement(sql1);
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, num);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				dbPasswd = rs.getString(1);
-				if (dbPasswd.equals(passwd)) {
-					rs.close();
-					pstmt.close();
-					pstmt = conn.prepareStatement(sql);
-					pstmt.setInt(1, num);
-					result = pstmt.executeUpdate();
-				} else
-					result = 0;
-			} else
-				result = -1;
+			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 
@@ -355,18 +310,18 @@ public class BoardDao {
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
-		String sql = "select * from board_comment  where comment_board = " + bn + "order by comment_Date desc";
+		String sql = "select * from b_comment  where c_bnum = " + bn + "order by c_date desc";
 		try {
 			conn = getConnection();
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				CommentDTO temp = new CommentDTO();
-				temp.setComment_board(rs.getInt("comment_board"));
-				temp.setComment_num(rs.getInt("comment_num"));
-				temp.setComment_date(rs.getDate("comment_date"));
-				temp.setComment_id(rs.getString("comment_id"));
-				temp.setComment_content(rs.getString("comment_content"));
+				temp.setComment_board(rs.getInt("c_bnum"));
+				temp.setComment_num(rs.getInt("c_num"));
+				temp.setComment_date(rs.getDate("c_date"));
+				temp.setComment_id(rs.getString("c_id"));
+				temp.setComment_content(rs.getString("c_content"));
 				reply.add(temp);
 			}
 		} catch (Exception e) {
@@ -387,7 +342,7 @@ public class BoardDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String sql = "insert into board_comment values(COMMENT_SEQ.nextval,?,?,sysdate,?)";
+		String sql = "insert into b_comment values(COMMENT_SEQ.nextval,?,?,sysdate,?)";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -412,7 +367,7 @@ public class BoardDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String sql = "delete from board_comment where comment_num=? ";
+		String sql = "delete from b_comment where c_num=? ";
 		try {
 
 			conn = getConnection();
@@ -430,5 +385,27 @@ public class BoardDao {
 				conn.close();
 		}
 		return result;
+	}
+	
+	public int cdeleteall(int b_num) throws SQLException{
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			int result = 0;
+			String sql = "delete from b_comment where c_bnum=? ";
+				try {
+					conn = getConnection();
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setInt(1, b_num);
+					result = pstmt.executeUpdate();
+				}catch (Exception e) {
+					System.out.println(e.getMessage());
+				}
+					finally {
+					if (pstmt != null)
+						pstmt.close();
+					if (conn != null)
+						conn.close();
+				}
+				return result;
 	}
 }

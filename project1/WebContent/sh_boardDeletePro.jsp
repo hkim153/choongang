@@ -12,8 +12,20 @@
 </c:if>	
 <c:if test="${result == 0 }">
 	<script type="text/javascript">
-		alert("헐 ~ ㅠㅠ 암호 틀려");
-		location.href="sh_boardDeleteForm.do?f_board_no=${f_board_no}&pageNum=${pageNum}";
+		alert("수정 오류");
+		location.href="sh_boardDeleteForm.do?b_num=${b_num}&pageNum=${pageNum}";
+	</script>
+</c:if>	
+<c:if test="${result == -1 }">
+	<script type="text/javascript">
+		alert("작성자가 아닙니다");
+		location.href="sh_boardDeleteForm.do?b_num=${b_num}&pageNum=${pageNum}";
+	</script>
+</c:if>	
+<c:if test="${result == -2 }">
+	<script type="text/javascript">
+		alert("암호가 틀립니다");
+		location.href="sh_boardDeleteForm.do?b_num=${b_num}&pageNum=${pageNum}";
 	</script>
 </c:if>	
 </body>

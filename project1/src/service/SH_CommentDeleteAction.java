@@ -16,13 +16,13 @@ public class SH_CommentDeleteAction  implements CommandProcess{
 		
 		try {
 			int comment_num = Integer.parseInt(request.getParameter("reply_num"));
-			int f_board_no = Integer.parseInt(request.getParameter("f_board_no"));
+			int b_num = Integer.parseInt(request.getParameter("b_num"));
 			String pageNum = request.getParameter("pageNum");
 
 			BoardDao db = BoardDao.getInstance();
 			int result = db.cdelete(comment_num);
 			
-			request.setAttribute("f_board_no", f_board_no);
+			request.setAttribute("b_num", b_num);
 			request.setAttribute("result", result);
 			request.setAttribute("pageNum", pageNum);
 			

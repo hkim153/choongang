@@ -6,6 +6,11 @@
 <head>
 <link href="test.css" rel="stylesheet" type="text/css">
 <link href="./css/store.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+	function sell_list(){
+		
+	}
+</script>
 </head>
 <body>
 	<div id="wrap">
@@ -16,6 +21,7 @@
 						<div class="content">
 							<div>
 								<h3 class="best_tit">야낚자 추천 베스트 </h3>
+								<input type="button" value="판매리스트" onclick="sell_list()">
 								<div class="pro_list">
 									<ul class="pro_wrap">
 										<c:forEach var="poplist" items="${pop_list}">

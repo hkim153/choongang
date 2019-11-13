@@ -93,7 +93,7 @@
 					<div class="sh_group4">
 						
 							<div class="sh_header">
-								<h2 style="margin-block-start:0;">구매현황</h2>
+								<h2 style="margin-block-start:0;">구매현황	</h2>
 							</div>
 							<div class="sh_content" style="background-color: #EAEAEA;">
 								<ul>

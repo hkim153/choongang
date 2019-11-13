@@ -11,14 +11,14 @@
 <c:if test="${result > 0 }">
 		<script type="text/javascript">
 		alert("삭제 완료 ! ");
-		location.href="sh_content.do?f_board_no=${f_board_no}&pageNum=${pageNum}&status=0";
+		location.href="sh_content.do?b_num=${b_num}&pageNum=${pageNum}&status=0";
 	</script>
 </c:if>
 	
 	<c:if test="${result == 0 }">
 	<script type="text/javascript">
 		alert("삭제 오류");
-		location.href="sh_content.do?f_board_no=${f_board_no}&pageNum=${pageNum}&status=0";
+		location.href="sh_content.do?b_num=${b_num}&pageNum=${pageNum}&status=0";
 	</script>
 </c:if>
 
