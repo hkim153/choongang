@@ -23,15 +23,16 @@ public class JW_ConfirmIdProAction implements CommandProcess {
 			MemberDao md = MemberDao.getInstance();
 
 			int result = md.confirm(id);
-			int aliveResult = md.confirm_Alive(alive_c, id);
+			int aliveResult = md.confirm_Alive( id);
 			request.setAttribute("id", id);
 
-			if (aliveResult == 1) {
-				
-				request.setAttribute("result", result);				
+			if (aliveResult == 1) {				
+				request.setAttribute("result", result);
+				System.out.println("여기가 1일때: "+result);
 			} else {
 				result = 0;
 					request.setAttribute("result", result);
+					System.out.println("0일때: "+result);
 				
 			}
 
@@ -39,7 +40,7 @@ public class JW_ConfirmIdProAction implements CommandProcess {
 			System.out.println(e.getMessage());
 			// TODO: handle exception
 		}
-		return "jw_confirmIdPro.jsp";
+		return "nameCheckAjax.jsp";
 
 	}
 

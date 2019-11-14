@@ -17,13 +17,7 @@ public class JW_JoinProAction implements CommandProcess {
 		MemberDao md = MemberDao.getInstance();
 		try {
 			request.setCharacterEncoding("utf-8");
-			
-//			int totCnt = md.getUser_num();
-//			String user_num = request.getParameter("user_num");
-//			if(user_num == null || user_num.equals("")) { user_num ="1";}
-//			int user_num1 = Integer.parseInt(user_num);
-			
-			
+		
 			Member member = new Member();
 			
 			member.setId(request.getParameter("id"));
@@ -34,9 +28,11 @@ public class JW_JoinProAction implements CommandProcess {
 			member.setTel(request.getParameter("tel"));		
 			member.setAdmin_c("N");			
 			member.setAlive_c("A");
-//			member.setUser_num(user_num1);		
+			
+			
 			
 			int result = md.insert(member);
+			
 			
 			request.setAttribute("result", result);
 			System.out.println("result: "+result);
