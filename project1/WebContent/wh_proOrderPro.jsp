@@ -15,7 +15,7 @@
 <c:if test="${result==0 }">
 	<script type="text/javascript">
 		alert("주문실패");
-		location.href="pro_registForm.do";
+		location.href="wh_ProContent.do?pro_num=${pro_num}&pro_code=${pro_code}";
 	</script>
 </c:if>
 </head>

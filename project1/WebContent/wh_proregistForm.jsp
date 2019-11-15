@@ -90,7 +90,7 @@ if(b_code != "00"){
 </head>
 <body>
 	<h2>상품등록</h2>
-	<form action="pro_registPro.do" enctype="multipart/form-data" method="post">
+	<form action="wh_ProregistPro.do" enctype="multipart/form-data" method="post">
 		<table border="1">
 			<tr>
 				<td>상품코드</td>

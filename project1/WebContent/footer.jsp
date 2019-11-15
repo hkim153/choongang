@@ -130,7 +130,19 @@
 						</ul>
 					</div>
 				</div>
-				
+				<div class="f-cs">
+					<div>
+						<span>
+							<img src="./images/cs.png" style="vertical-align:middle;border:0;">
+						</span>
+						<a>
+							<img src="./images/order_s.png" style="vertical-align:middle;border:0;">
+						</a>
+						<a>
+							<img src="./images/board_button.png" style="vertical-align:middle;border:0;">
+						</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

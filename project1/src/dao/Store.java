@@ -38,8 +38,10 @@ public class Store {
 	private String address;
 	private String tel;
  	private String request_term;
+ 	private int state_count;
 	
  
+	
 	public int getPro_num() {
 		return pro_num;
 	}
@@ -249,5 +251,11 @@ public class Store {
 	}
 	public void setRequest_term(String request_term) {
 		this.request_term = request_term;
+	}
+	public int getState_count() {
+		return state_count;
+	}
+	public void setState_count(int state_count) {
+		this.state_count = state_count;
 	}
 }

@@ -7,29 +7,26 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import dao.Store;
 import dao.StoreDao;
+import dao.Store;
 
-public class WH_StoreMainFormAction implements CommandProcess {
+public class WH_ProregistFormAction implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession();
 		StoreDao sd = StoreDao.getInstance();
-		String id = (String)session.getAttribute("id");
-		request.setCharacterEncoding("utf-8");
+		String b_code = "00";
 		try {
-			List<Store> pop_list = sd.pop_list();
-			request.setAttribute("pop_list", pop_list);
+			List<Store> b_menu = sd.b_menu();
+			request.setAttribute("b_menu", b_menu);
+			request.setAttribute("b_code", b_code);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
-		} 	
-		Store store = new Store();
-		return "wh_storemain.jsp";
-	} 
+		}
+		return "wh_proregistForm.jsp";
+	}
 
-}
+} 

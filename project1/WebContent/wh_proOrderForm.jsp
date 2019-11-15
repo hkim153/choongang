@@ -41,7 +41,7 @@
 		
 			<jsp:include page="header.jsp"></jsp:include>
 		</div>
-	<form action="wh_proOrderPro.do" method="post" name="frm">
+	<form action="wh_ProOrderPro.do" method="post" name="frm">
 		<input type="hidden" name="totalPrice" value="${totalPrice}">	
 		<input type="hidden" name="quantity" value="${quantity}">
 		<input type="hidden" name="pro_name" value="${proContent.pro_name}">

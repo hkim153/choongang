@@ -36,7 +36,7 @@
 		
 			<jsp:include page="header.jsp"></jsp:include>
 		</div>
-		<form action="wh_proOrderForm.do" onsubmit="return chk()" name="frm">
+		<form action="wh_ProOrderForm.do" onsubmit="return chk()" name="frm">
 		<input type="hidden" name="pro_num" value="${proContent.pro_num}">
 		<input type="hidden" name="pro_code" value="${proContent.pro_code}">
 		<input type="hidden" name="totalPrice" value="${proContent.price}">
