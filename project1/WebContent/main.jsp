@@ -51,7 +51,7 @@
 					</table>
 				</div>
 				<div id="sj_e">
-				현재 광어 랭킹 1위의 사진입니다.
+				
 				<table>
 						<tr>
 							<td style="display:none;">순위${startNum1 }</td>

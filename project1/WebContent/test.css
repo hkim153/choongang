@@ -94,11 +94,14 @@ a {
 }
 .section_login #loginBtn{
 	position: relative;
-	height: 100px;
-	width: 250px;	
+	height: 37px;
+	width: 280px;	
 	border: 0;
-	color: #999999;
-	background-color: #FFFFFF;
+	color: white;
+	margin-left: 26px;
+	margin-top: 40.5px;
+	background-color: #4CAF50;
+	background-position: - -47px;
 }
 
 .section_event {
