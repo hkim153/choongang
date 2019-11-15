@@ -6,7 +6,10 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import dao.Member;
+import dao.MemberDao;
 import dao.Rank;
 import dao.RankDao;
 import dao.fish;
@@ -29,12 +32,9 @@ public class SJ_ListAction implements CommandProcess {
 			int startRow = 1, endRow = 999999999;
 			List<Rank> list = rk.list(startRow, endRow, get_fish);
 			int startNum = startRow;
-			
-			
 						
 			request.setAttribute("get_fish", get_fish);
 			request.setAttribute("list", list);
-			
 			request.setAttribute("startNum", startNum);
 			System.out.println("list->" + list);
 		} catch (Exception e) {

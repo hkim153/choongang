@@ -17,7 +17,6 @@ public class SJ_DeleteProAction implements CommandProcess {
 		try {
 			System.out.println("DeleteProAction start");
 			request.setCharacterEncoding("utf-8");
-			//String id = request.getParameter("id");	
 			int num = Integer.parseInt(request.getParameter("num"));
 			Rank rank = new Rank();
 			RankDao rk = RankDao.getInstance();
@@ -25,8 +24,6 @@ public class SJ_DeleteProAction implements CommandProcess {
 			System.out.println("DeleteProAction result->"+result);
 			request.setAttribute("result", result);
 			request.setAttribute("num", num);
-			//request.setAttribute("num", rank.getNum());
-			//request.setAttribute("id", id);	
 		} catch(Exception e) { System.out.println(e.getMessage()); }
 		
 		return "sj_deletePro.jsp";
