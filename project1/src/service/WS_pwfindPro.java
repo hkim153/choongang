@@ -18,6 +18,10 @@ public class WS_pwfindPro implements CommandProcess {
 		request.setCharacterEncoding("utf-8"); 
 		Member member = new Member();
 		
+		String id = request.getParameter("id");
+		String email = request.getParameter("email");
+		String tel = request.getParameter("tel");
+		
 		member.setId(request.getParameter("id"));
 		member.setPasswd(request.getParameter("passwd"));
 		member.setEmail(request.getParameter("email"));
@@ -29,8 +33,8 @@ public class WS_pwfindPro implements CommandProcess {
         System.out.println(member.getTel());
         
         MemberDao md = MemberDao.getInstance();
-        String y_pw = md.Findpw(member.getId(), member.getEmail(), member.getTel());
-        int result = md.myPageModify(member);
+        String y_pw = md.Findpw1(id, email, tel);
+        int result = md.Findpw2(id, email, tel);
 		request.setAttribute("result", result);
 		request.setAttribute("y_pw", y_pw);
 		System.out.println("result"+result);
