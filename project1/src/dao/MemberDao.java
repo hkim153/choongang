@@ -181,17 +181,13 @@ public class MemberDao {
 				System.out.println("아이디리스트"  + ids.get(i).getId());
 			}
 			
-			rs.close();
-			pstmt.close(); 
-			
 			//pstmt = conn.prepareStatement(sql);
 			//rs = pstmt.executeQuery();
 			for(int i = 0; i<ids.size(); i++) {
 				if(id.equals(ids.get(i).getId()) == true) {
+					System.out.println("일치하는 아이디 : "+ids.get(i).getId());
 					aliveResult = 1;
-				}else {
-					aliveResult = 0;
-				}
+				} 
 				
 			}
 			//pstmt.setString(1, id);
