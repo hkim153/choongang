@@ -18,7 +18,7 @@ public class StoreDao {
 		if (instance == null) { instance = new StoreDao();
 			
 		}
-		return instance;
+		return instance; 
 	}
 	private Connection getConnection() {
 		Connection conn = null;
