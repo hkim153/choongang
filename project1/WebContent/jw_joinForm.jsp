@@ -10,7 +10,7 @@
 <script type="text/javascript">
 	function chk() {
 		if(frm.idChkVal.value !="1"){
-			alert("2.아이디중복체크를해주세요");
+			alert("아이디중복체크를 하셔야합니땅!");
 			return false;
 	   }
 
@@ -58,7 +58,7 @@
 <body>
 	<div class="wrap">
 		<header> <jsp:include page="header.jsp"></jsp:include> </header>
-		<form action="jw_joinPro.do" method="post" name="frm"			onsubmit="return chk()" id="join_form">
+		<form action="jw_joinPro.do" method="post" name="frm"	onsubmit="return chk()" id="join_form">
 			<input type="hidden"  id="idChkVal" name="idChkVal"  value="0" >
 			<div id="container1" role="main">
 				<div id="content">
@@ -69,12 +69,10 @@
 								<h3 class="join_title">
 									<label for="id">아이디</label>
 								</h3>
-								<span class="ps_box int_id"> <input type="text" name="id"
-									required="required" id="id" class="int" title="ID"
-									maxlength="20">
+								<span class="ps_box int_id"> <input type="text" name="id" required="required" id="id" class="int" title="ID" maxlength="20">
 								</span> 
 		
-							    <input type="button" id="idChk" name="idChk" value="ID Check"  style="height: 29px; width:120px; font-size: 15px"> 
+							    <input type="button" id="idChk" name="idChk" value="중복확인"  style="height: 29px; width:120px; font-size: 15px"> 
 								<span id="msg"></span>		<p>
 									<!-- <input type="hidden" name="idDuplication" value="idUncheck"> -->
 							</div>

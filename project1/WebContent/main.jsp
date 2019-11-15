@@ -121,7 +121,7 @@
 						<c:choose>
 							<c:when test="${sessionScope.result ne 1 }">		<!-- 로그인값이없을때 -->
 								
-									<a href="jw_loginForm.do"><input type="button" value="로그인하기" > </a>
+									<a href="jw_loginForm.do"><input type="button" value="로그인하기"  id="loginBtn"> </a>
 									<!-- <img alt=""	src="images/login.png" width="330" height="100"> -->
 								
 							</c:when>

@@ -92,6 +92,14 @@ a {
 	border: 0;
 	background: #fff;
 }
+.section_login #loginBtn{
+	position: relative;
+	height: 100px;
+	width: 250px;	
+	border: 0;
+	color: #999999;
+	background-color: #FFFFFF;
+}
 
 .section_event {
 	position: relative;

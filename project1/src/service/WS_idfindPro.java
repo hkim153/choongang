@@ -17,7 +17,10 @@ public class WS_idfindPro implements CommandProcess {
 		try { System.out.println("idfindProStart");
 		request.setCharacterEncoding("utf-8"); 
 		Member member = new Member();
-		
+
+		String email = request.getParameter("email");
+		String tel = request.getParameter("tel");
+
 		member.setId(request.getParameter("id"));
 		member.setEmail(request.getParameter("email"));
         member.setTel(request.getParameter("tel"));
@@ -27,8 +30,8 @@ public class WS_idfindPro implements CommandProcess {
         System.out.println(member.getTel());
         
         MemberDao md = MemberDao.getInstance();
-        String y_id = md.Findid(member.getEmail(), member.getTel());
-        int result = md.myPageModify(member);
+        String y_id = md.Findid1(email, tel);
+        int result = md.Findid2(email, tel);
 		request.setAttribute("result", result);
 		request.setAttribute("y_id", y_id);
 		System.out.println("result"+result);

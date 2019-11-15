@@ -308,90 +308,162 @@ public class MemberDao {
 		return member;
 	}
 
-	public String Findpw(String id, String email, String tel) throws SQLException {
-		Connection conn = null;
-		String passwd = null;
-		String sql = "select passwd from member where id=? and email=? and tel=?";
-		PreparedStatement pstmt = null;
+	public String Findid1(String email, String tel) throws SQLException {
+		Connection conn = null;			
+		String id = null;
+		String sql  = "select id from member where email=? and tel=?"; 
+		PreparedStatement pstmt = null; 	
 		ResultSet rs = null;
-		try {
-			conn = getConnection();
+		try { 
+			conn  = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			pstmt.setString(2, tel);
+			
+			rs = pstmt.executeQuery();
+			System.out.println("=====>");
+			System.out.println("Findid email=====>"+email);
+			System.out.println("Findid tel=====>"+tel);
+			if(rs.next()) {
+				id = rs.getString("id");
+			}
+			else {
+				id = "";
+			}
+				
+			System.out.println("=====2>" + id );
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			if (rs != null) rs.close();
+			if (pstmt != null) pstmt.close();
+			if (conn != null) conn.close();
+		}
+		return id ;		
+	}
+	
+	public int Findid2(String email, String tel) throws SQLException {
+		Connection conn = null;			
+		String id = null;
+		int result = 0;
+		String sql  = "select id from member where email=? and tel=?"; 
+		PreparedStatement pstmt = null; 	
+		ResultSet rs = null;
+		try { 
+			conn  = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			pstmt.setString(2, tel);
+			
+			rs = pstmt.executeQuery();
+			System.out.println("=====>");
+			System.out.println("Findid email=====>"+email);
+			System.out.println("Findid tel=====>"+tel);
+			if(rs.next()) {
+				result = 1;
+			}
+				else {
+				result = 0;
+			}
+				
+			System.out.println("=====2>" + id );
+			System.out.println("=====2>" + rs );
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			if (rs != null) rs.close();
+			if (pstmt != null) pstmt.close();
+			if (conn != null) conn.close();
+		}
+		return result ;		
+	}
+	
+	public String Findpw1(String id, String email, String tel) throws SQLException {
+		Connection conn = null;			
+		String passwd = null;
+		String sql  = "select passwd from member where id=? and email=? and tel=?"; 
+		PreparedStatement pstmt = null; 	
+		ResultSet rs = null;
+		try { 
+			conn  = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, email);
 			pstmt.setString(3, tel);
-
+			
 			rs = pstmt.executeQuery();
 			System.out.println("=====>");
-			System.out.println("Findpw id=====>" + id);
-			System.out.println("Findpw email=====>" + email);
-			System.out.println("Findpw tel=====>" + tel);
-			if (rs.next()) {
-				System.out.println("Findpw end");
-				passwd = rs.getString(1);
+			System.out.println("Findpw id=====>"+id);
+			System.out.println("Findpw email=====>"+email);
+			System.out.println("Findpw tel=====>"+tel);
+			if(rs.next()) {
+				passwd = rs.getString("passwd");
 			}
+			else {
+					passwd = "";
 
-			System.out.println("=====2>" + passwd);
-			System.out.println("=====2>" + rs);
-		} catch (Exception e) {
+			}
+				
+			System.out.println("=====2>" + passwd );
+		}catch(Exception e) {
 			System.out.println(e.getMessage());
-		} finally {
-			if (rs != null)
-				rs.close();
-			if (pstmt != null)
-				pstmt.close();
-			if (conn != null)
-				conn.close();
+		}finally {
+			if (rs != null) rs.close();
+			if (pstmt != null) pstmt.close();
+			if (conn != null) conn.close();
 		}
-		return passwd;
+		return passwd ;		
 	}
-
-	public String Findid(String email, String tel) throws SQLException {
-		Connection conn = null;
-		String id = null;
-		String sql = "select id from member where email=? and tel=?";
-		PreparedStatement pstmt = null;
+	
+	public int Findpw2(String id, String email, String tel) throws SQLException {
+		Connection conn = null;			
+		String passwd = null;
+		int result = 0;
+		String sql  = "select passwd from member where id=? and email=? and tel=?"; 
+		PreparedStatement pstmt = null; 	
 		ResultSet rs = null;
-		try {
-			conn = getConnection();
+		try { 
+			conn  = getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, email);
-			pstmt.setString(2, tel);
-
+			pstmt.setString(1, id);
+			pstmt.setString(2, email);
+			pstmt.setString(3, tel);
+			
 			rs = pstmt.executeQuery();
 			System.out.println("=====>");
-			System.out.println("Findid email=====>" + email);
-			System.out.println("Findid tel=====>" + tel);
-			if (rs.next()) {
-				System.out.println("Findid end");
-				id = rs.getString(1);
+			System.out.println("Findpw id=====>"+id);
+			System.out.println("Findid email=====>"+email);
+			System.out.println("Findid tel=====>"+tel);
+			if(rs.next()) {
+				result = 1;
 			}
-
-			System.out.println("=====2>" + id);
-			System.out.println("=====2>" + rs);
-		} catch (Exception e) {
+				else {
+				result = 0;
+			}
+				
+			System.out.println("=====2>" + passwd );
+			System.out.println("=====2>" + rs );
+		}catch(Exception e) {
 			System.out.println(e.getMessage());
-		} finally {
-			if (rs != null)
-				rs.close();
-			if (pstmt != null)
-				pstmt.close();
-			if (conn != null)
-				conn.close();
+		}finally {
+			if (rs != null) rs.close();
+			if (pstmt != null) pstmt.close();
+			if (conn != null) conn.close();
 		}
-		return id;
+		return result ;		
 	}
-
-	public int myPageModify(Member member) throws SQLException {
-
+	
+public int myPageModify(Member member) throws SQLException{
+		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		int result = 0;
 
-		// String sql = "update member values(?, ?, ?, ?)";
-		String sql = "update member set name=?,email=?,address=?," + "tel=? where id=?";
+	//	String sql = "update member values(?, ?, ?, ?)";
+		String sql="update member set name=?,email=?,address=?,"+
+            	"tel=? where id=?";
 
-		System.out.println("sql:" + sql);
+		System.out.println("sql:"+sql);
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -400,9 +472,9 @@ public class MemberDao {
 			pstmt.setString(3, member.getAddress());
 			pstmt.setString(4, member.getTel());
 			pstmt.setString(5, member.getId());
-			System.out.println("myPageModify member.getId()>" + member.getId());
-			System.out.println("myPageModify member.getName()" + member.getName());
-
+			System.out.println("myPageModify member.getId()>"+member.getId());
+			System.out.println("myPageModify member.getName()"+member.getName());
+			
 			result = pstmt.executeUpdate();
 			System.out.println("insert result: " + result);
 
