@@ -8,7 +8,7 @@
 <link href="test.css" rel="stylesheet" type="text/css">
 <style>
 #hsd1 {
-	margin: 20px;
+	margin: 60px;
 }
 
 #hsb1, #hsb2 {
@@ -39,7 +39,7 @@
 			<jsp:include page="header.jsp"></jsp:include>
 		</div>
 		<div
-			style="width: 1080px; text-align: center; margin: 0 auto; padding: 8px 10px 0; zoom: 1;">
+			style="width: 1080px; height: 500px; text-align: center; margin: 0 auto; padding: 8px 10px 0; zoom: 1;">
 			<div id="hsd1">
 				<div id="hsb1">
 					<div id="hsf1">

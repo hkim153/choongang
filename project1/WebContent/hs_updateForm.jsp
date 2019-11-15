@@ -131,9 +131,7 @@ td {
 					</tr>
 					<tr>
 						<td>내용</td>
-						<td><pre>
-								<textarea rows="10" cols="40" name="fs_content">${fs.fs_content}</textarea>
-							</pre></td>
+						<td><textarea rows="10" cols="50" name="fs_content">${fs.fs_content}</textarea></td>
 					</tr>
 					<tr>
 						<td>이미지</td>
