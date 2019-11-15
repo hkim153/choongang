@@ -16,7 +16,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import dao.Store;
 import dao.StoreDao;
 
-public class WH_Pro_registProAction implements CommandProcess {
+public class WH_ProregistProAction implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
@@ -218,34 +218,8 @@ public class WH_Pro_registProAction implements CommandProcess {
 									
 			default : break;
 			}
-			
-			
-			
-			
-			/*String filename1 = (String)en.nextElement();
-			String filename = multi.getFilesystemName(filename1);
-			String original = multi.getOriginalFileName(filename1);
-			String type = multi.getContentType(filename1);
-			File file = multi.getFile(filename1);
-			pro_imgFile = filename1;
-			System.out.println("real Path : "+realPath);
-			System.out.println("파라메타 이름 : "+filename1);
-			System.out.println("실제파일이름 : "+original);
-			System.out.println("저장된 파일이름 : "+filename);
-			System.out.println("파일 타입 : "+ type);
-			if(file != null){
-				System.out.println("크기 : "+file.length());
-			}
-*/
+					
 		}
-		/*System.out.println("pro_contentFile 이름 : "+pro_contentFile);
-		System.out.println("pro_imgFile 이름 : "+pro_imgFile);
-		System.out.println("pro2_imgFile 이름 : "+pro2_imgFile);
-		System.out.println("pro3_imgFile 이름 : "+pro3_imgFile);
-		System.out.println("pro4_imgFile 이름 : "+pro4_imgFile);
-		System.out.println("pro5_imgFile 이름 : "+pro5_imgFile);*/
-		
-
 		
 		System.out.println("상품명 ==>"+ pro_name);
 		System.out.println("상품가격 ==>"+ price);
@@ -254,43 +228,7 @@ public class WH_Pro_registProAction implements CommandProcess {
 		System.out.println("제조사 ==>"+ pro_made);
 		System.out.println("상품판매상태 ==>"+ pro_state);
 		
-		/*Board board = new Board();
-		
-		System.out.println("0 = > "+ pageNum);
-		System.out.println("1 = > "+ num);
-		System.out.println("2 = > "+ ref);
-		System.out.println("3 = > "+ re_level);
-		System.out.println("4 = > "+ re_step);
-		System.out.println("5 = > "+ subject);
-		System.out.println("6 = > "+ writer);
-		System.out.println("7 = > "+ email);
-		System.out.println("8 = > "+ content);
-		System.out.println("9 = > "+ passwd);
-		System.out.println("-------------------------------------------------");*/
-		try {
-			/*BoardDao bd = BoardDao.getInstance();
-			board.setNum(num);
-			board.setRef(ref);
-			board.setRe_level(re_level);
-			board.setRe_step(re_step);
-			board.setSubject(subject);
-			board.setWriter(writer);
-			board.setEmail(email);
-			board.setContent(content);
-			board.setPasswd(passwd);
-			board.setIp(request.getRemoteAddr());
-			
-			int result = bd.insert(board);
-			request.setAttribute("num", num);
-			request.setAttribute("result", result);
-			request.setAttribute("pageNum", pageNum);*/
-		}catch (Exception e) {
-			// TODO: handle exception
-			System.out.println(e.getMessage());
-		}finally {
-			
-		}
-		return "pro_registPro.jsp";
+		return "wh_proregistPro.jsp";
 	}
 
 }

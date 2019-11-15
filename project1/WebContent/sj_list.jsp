@@ -23,7 +23,9 @@
 .sj_b {
 	margin-left: -5%;
 }
-
+.sj_f {
+	min-width: 700px ;
+}
 .sj_d {
 	margin-left: -2%;
 	font-size: 20px;
@@ -39,13 +41,16 @@ table {
 }
 
 #sj_l {
-	width: 300px;
+	width: relative;
 	text-align: center;
+	
 }
 
-#sj_i {
+ #sj_i {
 	text-align: center;
-	width: 200px;
+}
+#sj_w {
+	width: relative;
 }
 </style>
 <script type="text/javascript">
@@ -63,32 +68,8 @@ table {
 		<div id="sj_y">
 			<h2>
 				<h2>보고싶은 물고기를 선택하여 주세요</h2>
-				<%-- <form
-					action="sj_list.do?get_fish=${rank.get_fish }&f_name=${fs.f_name }">
-					<table>
-						<tr>
-							<td><c:forEach var="rank3" items="${list3 }">
-								<label><input type = "radio" id="get_Fish" name = "get_Fish" value="${rank3.f_name }" onchange="ch(${rank.num })"
-							ondblclick="ch(${rank.num })"></label>${rank3.f_name }</c:forEach>
-							</td>
-						</tr>			
-					</table>
-				</form> --%>
-				<%-- <form action="fishingking.do?get_fish=${rank.get_fish }">
-						<select name="get_fish" id="get_fish" onchange="ch(${rank.num })"
-							ondblclick="ch(${rank.num })">
-							<option selected="selected">물고기선택</option>
-							<option value="광어">광어</option>
-							<option value="연어">연어</option>
-							<option value="문어">문어</option>
-							<option value="숭어">숭어</option>
-							<option value="송어">송어</option>
-							<option value="갈치">갈치</option>
-						</select> 랭킹
-				</form> --%>
-				<form action="fishingking.do?get_fish=${rank.get_fish }">
-						<select name="get_fish" id="get_fish" onchange="ch(${rank.num })"
-							ondblclick="ch(${rank.num })">
+				<form action="fishingking.do?get_fish=${rank.get_fish }&id=${id}">
+						<select name="get_fish" id="get_fish" onchange="ch(${rank.num })">
 							<option selected="selected">물고기선택</option>
 							<c:forEach var="rank3" items="${list3 }">
 							<option value="${rank3.f_name }">${rank3.f_name }</option>
@@ -113,10 +94,10 @@ table {
 				<br>
 				<!-- 먼저 admin인 경우  -->
 			<div class="sj_b">
-				<table>
+				<table class="sj_f">
 					<tr>
 						<th style="display: none;">num</th>
-						<th>순위</th>
+						<th id="sj_i">순위</th>
 						<th id="sj_i">아이디</th>
 						<th id="sj_l">길이</th>
 						<th>등록일</th>
@@ -125,13 +106,13 @@ table {
 					<c:forEach var="rank" items="${list }">
 						<tr>
 							<th style="display: none;">${rank.num }</th>
-							<td>${startNum }등</td>
+							<td id="sj_i">${startNum }등</td>
 							<td id="sj_i"><a
 								href='sj_content.do?num=${rank.num }&id=${rank.id }&img_folder=${rank.img_folder}&real_name=${rank.real_name}'>${rank.id }/${rank.get_fish }</a></td>
-							<td>${rank.length }cm<div style="width:${rank.length *2}%;"
-									class="sj_box1"></div></td>
-							<td>${rank.reg_date }</td>
-							<c:choose>
+							<td id="sj_w">${rank.length }cm<div style="width:${rank.length *2}%;"
+									class="sj_box1"></div></td>									
+							<td id="sj_i"><div>${rank.reg_date }</div></td>
+								<c:choose>
 								<c:when
 									test="${sessionScope.result eq 1 and(sessionScope.adminResult eq 1) }">
 									<!-- 로그인값, 어드민권한 둘다 있을때  -->
@@ -140,15 +121,12 @@ table {
 								</c:when>
 							</c:choose>
 						</tr>
-						<c:set var="startNum" value="${startNum + 1 }"></c:set>
+						<c:set var="startNum" value="${startNum + 1 }"></c:set>				
 					</c:forEach>
 				</table>
-
-
 			</div>
 		</div>
 		<jsp:include page="footer.jsp"></jsp:include>
 	</div>
-
 </body>
 </html>

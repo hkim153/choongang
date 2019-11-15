@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,6 +11,12 @@
 
 </head>
 <body>
+<c:if test = "${sessionScope.result ne 1 }">
+	<script type="text/javascript">
+		alert("로그인 해주세요");
+		location.href="jw_loginForm.do";
+	</script>
+</c:if>
 	<div id="wrap1">
 		<header> <jsp:include page="header.jsp"></jsp:include> </header>
 		<div id="container" style="height: 968px;">
@@ -97,43 +104,63 @@
 							</div>
 							<div class="sh_content" style="background-color: #EAEAEA;">
 								<ul>
-									<li>
-										<div class="inner">
-											<span><img src="images/delivery.png" alt="배송중"/></span>
-											<dl>
-												<dt>배송중</dt>
-												<dd class="com_num">
-													<em class="num0">0</em>
-												</dd>
-											</dl>
-										</div>
-									</li>
-									<li>
-										<div class="inner">
-											<span><img src="images/arrive.png" alt="배송완료"/></span>
-											<dl>
-												<dt>배송완료</dt>
-												<dd class="com_num">
-													<em class="num0">0</em>
-												</dd>
-											</dl>
-										</div>
-									</li>
-									<li>
-										<div class="inner">
-											<span><img src="images/return.png" alt="취소/반품/교환"/></span>
-											<dl>
-												<dt>취소/반품/교환</dt>
-												<dd class="com_num">
-													<em class="num0">0</em>
-												</dd>
-											</dl>
-										</div>
-									</li>
+										<li>
+											<div class="inner">
+												<span><img src="images/delivery.png" alt="배송중"/></span>
+												<dl>
+													<dt>배송중</dt>
+													<dd class="com_num">
+														<c:forEach var="orderstate" items="${orderstate }">
+															<c:if test="${orderstate.state == 1 && orderstate.state_count != 0}">
+																<em class="num0">${orderstate.state}</em>
+															</c:if>
+															 <c:if test="${orderstate.state == 1 && orderstate.state_count == 0}">
+																<em class="num0">${orderstate.state_count}</em>
+															</c:if> 
+														</c:forEach>
+													</dd>
+												</dl>
+											</div>
+										</li>
+										<li>
+											<div class="inner">
+												<span><img src="images/arrive.png" alt="배송완료"/></span>
+												<dl>
+													<dt>배송완료</dt>
+													<dd class="com_num">
+														<c:forEach var="orderstate" items="${orderstate }">
+															<c:if test="${orderstate.state == 2 && orderstate.state_count != 0}">
+																<em class="num0">${orderstate.state_count}</em>
+															</c:if>
+															<c:if test="${orderstate.state == 2 && orderstate.state_count == 0}">
+																<em class="num0">${orderstate.state_count}</em>
+															</c:if>
+														</c:forEach>
+													</dd>
+												</dl>
+											</div>
+										</li>
+										<li>
+											<div class="inner">
+												<span><img src="images/return.png" alt="취소/반품/교환"/></span>
+												<dl>
+													<dt>취소/반품/교환</dt>
+													<dd class="com_num">
+																<c:if test="${total > 0}">
+																	<em class="num0">${total}</em>
+																</c:if>
+																<c:if  test="${total == 0}">
+																	<em class="num0">0</em> 
+																</c:if>
+													</dd>
+												</dl>
+											</div>
+										</li>
+									
 								</ul>
 							</div>
 							<p class="btn_area_btm" style="text-align: right; margin: 20px 40px 0;">
-								<input type="button" onclick="location.href='wh_buylist.do'"
+								<input type="button" onclick="location.href='wh_OrderList.do'"
 									value="구매내역" class="btn_model">
 							</p>
 						
@@ -142,7 +169,9 @@
 			</div>
 
 		</div>
-		<jsp:include page="footer.jsp"></jsp:include>
+		<div>
+			<jsp:include page="footer.jsp"></jsp:include>
+		</div>
 	</div>
 
 </body>

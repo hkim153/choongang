@@ -12,10 +12,10 @@ div {
 #container {
 	position: relative;
 	z-index: 20;
-	max-width: 954px;
+	max-width: 1080px;
 	margin: 0 auto;
 }
-
+ 
 #content.section_home {
 	line-height: 14px;
 	zoom: 1;

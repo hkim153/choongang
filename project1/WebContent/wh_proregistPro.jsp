@@ -15,7 +15,7 @@
 <c:if test="${result==0 }">
 	<script type="text/javascript">
 		alert("입력실패");
-		location.href="pro_registForm.do";
+		location.href="wh_ProregistForm.do";
 	</script>
 </c:if>
 </head>

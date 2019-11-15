@@ -61,6 +61,8 @@ public class WH_ProOrderProAction implements CommandProcess {
 			result = sd.order(store);
 			result2 = sd.sellcnt(pro_num,quantity);
 			request.setAttribute("result", result);
+			request.setAttribute("pro_num", pro_num);
+			request.setAttribute("pro_code", pro_code);
 			System.out.println("result ==>" + result);
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());

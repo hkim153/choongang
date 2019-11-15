@@ -8,7 +8,7 @@
 <link href="./css/store.css" rel="stylesheet" type="text/css">
 <script type="text/javascript">
 	function sell_list(){
-		
+		location.href="wh_OrderList.do";
 	}
 </script>
 </head>
@@ -21,7 +21,9 @@
 						<div class="content">
 							<div>
 								<h3 class="best_tit">야낚자 추천 베스트 </h3>
-								<input type="button" value="판매리스트" onclick="sell_list()">
+								<c:if test = "${sessionScope.result eq 1 && adminResult eq 1}">
+									<input type="button" value="판매리스트" onclick="sell_list()">
+								</c:if>
 								<div class="pro_list">
 									<ul class="pro_wrap">
 										<c:forEach var="poplist" items="${pop_list}">

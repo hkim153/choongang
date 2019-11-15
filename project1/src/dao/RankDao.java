@@ -71,6 +71,7 @@ public class RankDao {
 		return result1;
 	}
 
+	
 	public List<Rank> list(int startRow, int endRow, String get_fish
 			) throws SQLException {
 		System.out.println("list start");
@@ -78,9 +79,10 @@ public class RankDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql	 = "select * from ranking where num between ? and ? "
-					+ "and get_fish =? and TO_CHAR(reg_date , 'MM')=TO_CHAR(sysdate , 'MM')"
-					+ "order by length desc, reg_date asc";
+		String sql	 = "select r.* from ranking r, member m "
+				+ "where r.id = m.id and m.alive_c='A' and num Between ? and ? "
+				+ "and get_fish=? and TO_CHAR(r.reg_date , 'MM')=TO_CHAR(sysdate , 'MM') "
+				+ "order by r.length desc, r.reg_date asc";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -159,8 +161,10 @@ public class RankDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql	 = "select * from ranking where num between ? and ? "
-					+ "order by length desc, reg_date asc";
+		String sql	 = "select r.* from ranking r, member m "
+				+ "where r.id = m.id and m.alive_c='A' and num Between ? and ? "
+				+ "and TO_CHAR(r.reg_date , 'MM')=TO_CHAR(sysdate , 'MM') "
+				+ "order by r.length desc, r.reg_date asc";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
