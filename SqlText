@@ -1,0 +1,18 @@
+sql문 각자 기입해주시길바랍니다.
+
+<-- LJW SQl Query-->
+create table member(user_num number(38) constraint pk_member primary key,
+id varchar2(100),
+password varchar2(100),
+name varchar2(100),
+email varchar2(100),
+address varchar2(100),
+tel varchar2(100),
+admin_c varchar2(20),
+alive_c varchar2(20),
+reg_date date);
+
+create sequence usernum1 increment by 1 start with 1;
+
+<-- 재원이꺼 -->
+
