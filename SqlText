@@ -16,3 +16,51 @@ create sequence usernum1 increment by 1 start with 1;
 
 <-- 재원이꺼 -->
 
+
+
+<-- DH_인원모집 -->
+-------------------- 인원모집 리스트 테이블 START -----------------------
+CREATE TABLE RECRUIT
+	(	RECRUIT_NUM NUMBER (3, 0),
+		ID VARCHAR2 (20 BYTE),
+		RECRUIT_TITLE VARCHAR2 (100 BYTE),
+		RECRUIT_PASSWD VARCHAR2(20 BYTE),
+		RECRUIT_TIMESET VARCHAR2(20 BYTE),
+		RECRUIT_GOAL VARCHAR2(30 BYTE),
+		RECRUIT_SPECIES VARCHAR2(20 BYTE),
+		RECRUIT_EVENT DATE,
+		RECRUIT_MEMBER NUMBER(3,0),
+		REG_DATE DATE,
+		RECRUIT_STATE NUMBER,
+		E_ID NUMBER(5,0)
+	);
+-------------------- 인원모집 리스트 테이블 END -----------------------
+
+
+------------------ 채팅방 테이블 START ----------------------------
+CREATE TABLE RECRUIT_CHATROOM
+	(	RECRUIT_NUM NUMBER primary key
+		CHATID NUMBER
+		ROOM_MANAGER VARCHAR2(20 BYTE)
+		FROMID VARCHAR2(20 BYTE)
+		CHATCONTENT VARCHAR2(500 BYTE)
+		CHATTIME DATE
+	);
+
+CREATE SEQUENCE CHATID 
+START WITH 1
+MAXVALUE 10000
+MINVALUE 1
+INCREMENT BY 1
+CYCLE
+NOCACHE;
+------------------ 채팅방 테이블 END ----------------------------
+
+
+----------------------- 채팅방 참여자 테이블 START -------------------------
+CREATE TABLE CHAT_PARTICIPANT
+	(	RECRUIT_NUM NUMBER
+		PARTICIPANT VARCHAR2(20 BYTE)
+	);
+----------------------- 채팅방 참여자 테이블 END -------------------------
+<-- DH_인원모집 종료 -->
