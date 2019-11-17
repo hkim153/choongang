@@ -73,7 +73,7 @@ CREATE TABLE CHAT_PARTICIPANT
 
 
 
-<-- 낚시터 게시판 및 추천 시작 BY   -->
+<-- 낚시터 게시판 및 추천 시작 BY HYUNSOO   -->
 ----1. 시퀀스 생성----
 create sequence SEQ_FISH_CODE
 	MINVALUE 1000
