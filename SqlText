@@ -14,7 +14,7 @@ reg_date date);
 
 create sequence usernum1 increment by 1 start with 1;
 
-create sequence ranknum increment by 1 start with 1; // 승주야 쓰고나서 지워라
+create sequence ranknum increment by 1 start with 1; // 승주야 쓰고나서 지워라 - 아직사용안함
 
 insert into member values('admin1', 'admin1', '이재원숭이1', 'fkenl123@gmail.com', '경기도 광주시 쌍령동 푸르지오', '010-2441-0856', 'A', 'A', sysdate, usernum1.nextval);
 
@@ -143,7 +143,7 @@ INSERT INTO FISH VALUES(SEQ_FISH_CODE.NEXTVAL, '잉어');
 <-- 랭크 -->
 
   CREATE TABLE RANKING  
-  NUM NUMBER(38,0) NOT NULL ENABLE, 
+  NUM NUMBER(38,0) primary key, 
   ID VARCHAR2(100 BYTE), 
   GET_FISH VARCHAR2(100 BYTE) NOT NULL ENABLE, 
   LENGTH NUMBER(38,0) NOT NULL ENABLE, 
