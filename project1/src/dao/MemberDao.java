@@ -501,7 +501,7 @@ public int memberOut(Member member) throws SQLException{
 	try {
 		conn = getConnection();
 		pstmt = conn.prepareStatement(sql);
-		rs = pstmt.executeQuery();
+		rs = pstmt.executeQuery(); 
 		pstmt.setString(1, member.getPasswd());
 		pstmt.setString(2, member.getId());
 		
