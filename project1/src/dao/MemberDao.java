@@ -314,7 +314,7 @@ public class MemberDao {
 		return member;
 	}
 
-	public String Findid1(String email, String tel) throws SQLException {
+	public String Findid1(String email, String tel) throws SQLException { //id찾기 정보불러오기
 		Connection conn = null;			
 		String id = null;
 		String sql  = "select id from member where email=? and tel=?"; 
@@ -348,7 +348,7 @@ public class MemberDao {
 		return id ;		
 	}
 	
-	public int Findid2(String email, String tel) throws SQLException {
+	public int Findid2(String email, String tel) throws SQLException { //id찾기 일치확인
 		Connection conn = null;			
 		String id = null;
 		int result = 0;
@@ -384,7 +384,7 @@ public class MemberDao {
 		return result ;		
 	}
 	
-	public String Findpw1(String id, String email, String tel) throws SQLException {
+	public String Findpw1(String id, String email, String tel) throws SQLException { //pw찾기 정보불러오기
 		Connection conn = null;			
 		String passwd = null;
 		String sql  = "select passwd from member where id=? and email=? and tel=?"; 
@@ -421,7 +421,7 @@ public class MemberDao {
 		return passwd ;		
 	}
 	
-	public int Findpw2(String id, String email, String tel) throws SQLException {
+	public int Findpw2(String id, String email, String tel) throws SQLException { //pw찾기 일치확인
 		Connection conn = null;			
 		String passwd = null;
 		int result = 0;
@@ -459,13 +459,12 @@ public class MemberDao {
 		return result ;		
 	}
 	
-public int myPageModify(Member member) throws SQLException{
+public int myPageModify(Member member) throws SQLException{ // 회원정보수정
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		int result = 0;
-				String sql="update member set name=?,email=?,address=?,"+
-            	"tel=? where id=?";
+				String sql="update member set name=?, email=?, address=?, tel=? where id=?";
 		System.out.println("sql:"+sql);
 		try {
 			conn = getConnection();
@@ -492,23 +491,21 @@ public int myPageModify(Member member) throws SQLException{
 		return result;
 	}
 
-public int memberOut(Member member) throws SQLException{
+public int memberOut(Member member) throws SQLException{ //회원탈퇴
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	int result = 0;
-	ResultSet rs = null;
-	String sql = "update member set alive_c='D' where passwd=? and id=?";
+	String sql = "update member set alive_c='D' where passwd=? and id=?"; //회원상태 D로 바꾸기
+	System.out.println("memberOut result start...");
 	try {
 		conn = getConnection();
+		System.out.println("memberOut try sql ->"+sql);
+		System.out.println("memberOut try member.getId() ->"+member.getId());
+		System.out.println("memberOut try member.getPasswd() ->"+member.getPasswd());
 		pstmt = conn.prepareStatement(sql);
-		rs = pstmt.executeQuery(); 
 		pstmt.setString(1, member.getPasswd());
 		pstmt.setString(2, member.getId());
-		
-		
-		
-		
-		 
+		result = pstmt.executeUpdate();
 			
 	} catch (Exception e) {
 		 System.out.println(e.getMessage());
@@ -516,6 +513,7 @@ public int memberOut(Member member) throws SQLException{
 		if(pstmt !=null) pstmt.close();
 		if(conn !=null) conn.close();
 	}
+	System.out.println("memberOut result->"+result);
 	return result;
 }
 
