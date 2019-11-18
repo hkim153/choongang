@@ -1,0 +1,330 @@
+sql문 각자 기입해주시길바랍니다.
+
+<-- LJW SQl Query-->
+create table member(user_num number(38) constraint pk_member primary key,
+id varchar2(100),
+password varchar2(100),
+name varchar2(100),
+email varchar2(100),
+address varchar2(100),
+tel varchar2(100),
+admin_c varchar2(20),
+alive_c varchar2(20),
+reg_date date);
+
+create sequence usernum1 increment by 1 start with 1;
+
+create sequence ranknum increment by 1 start with 1; // 승주야 쓰고나서 지워라 - 아직사용안함
+
+insert into member values('admin1', 'admin1', '이재원숭이1', 'fkenl123@gmail.com', '경기도 광주시 쌍령동 푸르지오', '010-2441-0856', 'A', 'A', sysdate, usernum1.nextval);
+
+insert into member values('Lee123', '1234', 'Lee123', 'lee123@gmail.com', '경기도 광주시 쌍령동 푸르지오', '010-2441-0856', 'N', 'A', sysdate, usernum1.nextval);
+
+<-- 재원이꺼 -->
+
+
+
+<-- DH_인원모집 -->
+-------------------- 인원모집 리스트 테이블 START -----------------------
+CREATE TABLE RECRUIT
+	(	RECRUIT_NUM NUMBER (3, 0),
+		ID VARCHAR2 (20 BYTE),
+		RECRUIT_TITLE VARCHAR2 (100 BYTE),
+		RECRUIT_PASSWD VARCHAR2(20 BYTE),
+		RECRUIT_TIMESET VARCHAR2(20 BYTE),
+		RECRUIT_GOAL VARCHAR2(30 BYTE),
+		RECRUIT_SPECIES VARCHAR2(20 BYTE),
+		RECRUIT_EVENT DATE,
+		RECRUIT_MEMBER NUMBER(3,0),
+		REG_DATE DATE,
+		RECRUIT_STATE NUMBER,
+		E_ID NUMBER(5,0)
+	);
+-------------------- 인원모집 리스트 테이블 END -----------------------
+
+
+------------------ 채팅방 테이블 START ----------------------------
+CREATE TABLE RECRUIT_CHATROOM
+	(	RECRUIT_NUM NUMBER primary key
+		CHATID NUMBER
+		ROOM_MANAGER VARCHAR2(20 BYTE)
+		FROMID VARCHAR2(20 BYTE)
+		CHATCONTENT VARCHAR2(500 BYTE)
+		CHATTIME DATE
+	);
+
+CREATE SEQUENCE CHATID 
+START WITH 1
+MAXVALUE 10000
+MINVALUE 1
+INCREMENT BY 1
+CYCLE
+NOCACHE;
+------------------ 채팅방 테이블 END ----------------------------
+
+
+----------------------- 채팅방 참여자 테이블 START -------------------------
+CREATE TABLE CHAT_PARTICIPANT
+	(	RECRUIT_NUM NUMBER
+		PARTICIPANT VARCHAR2(20 BYTE)
+	);
+----------------------- 채팅방 참여자 테이블 END -------------------------
+<-- DH_인원모집 종료 -->
+
+
+
+<-- 낚시터 게시판 및 추천 시작 BY HYUNSOO   -->
+----1. 시퀀스 생성----
+create sequence SEQ_FISH_CODE
+	MINVALUE 1000
+	MAXVALUE 10000
+	INCREMENT BY 1
+	START WITH 1000
+	ORDER CYCLE;
+ CREATE SEQUENCE SEQ_FISHINGSITE_CODE 
+ 	MINVALUE 1000
+	MAXVALUE 10000
+	INCREMENT BY 1
+	START WITH 1000
+	ORDER  CYCLE ;
+
+
+----2. TABLE 생성(FISH, FISHINGSITE, FISHMAPPING)----
+
+CREATE TABLE FISH 
+(
+	F_CODE NUMBER(*,0) PRIMARY KEY,
+	F_NAME VARCHAR2(20 BYTE) NOT NULL ENABLE
+);
+	
+CREATE TABLE FISHINGSITE
+(	
+	FS_CODE NUMBER(*,0) PRIMARY KEY, 
+	FS_NAME VARCHAR2(50 BYTE) NOT NULL ENABLE, 
+	FS_ADDR VARCHAR2(1000 BYTE) NOT NULL ENABLE, 
+	FS_CONTENT VARCHAR2(4000 BYTE), 
+	FS_REG VARCHAR2(50 BYTE) NOT NULL ENABLE, 
+	READCOUNT NUMBER(6,0), 
+	REG_DATE DATE NOT NULL ENABLE, 
+	ID VARCHAR2(12 BYTE) NOT NULL ENABLE, 
+	FS_NUM NUMBER, 
+	IMG_FOLDER VARCHAR2(200 BYTE), 
+	REAL_NAME VARCHAR2(200 BYTE), 
+	SAVED_NAME VARCHAR2(200 BYTE), 
+	FS_PHONE VARCHAR2(40 BYTE)
+);
+CREATE TABLE FISHMAPPING 
+(	
+  	FS_CODE NUMBER(*,0), 
+	F_CODE NUMBER(*,0), 
+	FOREIGN KEY (FS_CODE) REFERENCES FISHINGSITE(FS_CODE) ENABLE, 
+	FOREIGN KEY (F_CODE)REFERENCES FISH(F_CODE) ENABLE
+);
+
+----3. INSERT 데이터(FISH, FISHINGSITE, FISHMAPPING)----
+INSERT INTO FISH VALUES(SEQ_FISH_CODE.NEXTVAL, '광어');
+INSERT INTO FISH VALUES(SEQ_FISH_CODE.NEXTVAL, '연어');
+INSERT INTO FISH VALUES(SEQ_FISH_CODE.NEXTVAL, '문어');
+INSERT INTO FISH VALUES(SEQ_FISH_CODE.NEXTVAL, '숭어');
+INSERT INTO FISH VALUES(SEQ_FISH_CODE.NEXTVAL, '송어');
+INSERT INTO FISH VALUES(SEQ_FISH_CODE.NEXTVAL, '이면수');
+INSERT INTO FISH VALUES(SEQ_FISH_CODE.NEXTVAL, '산천어');
+INSERT INTO FISH VALUES(SEQ_FISH_CODE.NEXTVAL, '갈치');
+INSERT INTO FISH VALUES(SEQ_FISH_CODE.NEXTVAL, '명태');
+INSERT INTO FISH VALUES(SEQ_FISH_CODE.NEXTVAL, '은어');
+INSERT INTO FISH VALUES(SEQ_FISH_CODE.NEXTVAL, '붕어');
+INSERT INTO FISH VALUES(SEQ_FISH_CODE.NEXTVAL, '잉어');
+
+
+
+<-- 낚시터 게시판 및 추천 종료 -->
+
+
+<-- 랭크 -->
+
+  CREATE TABLE RANKING  
+  NUM NUMBER(38,0) primary key, 
+  ID VARCHAR2(100 BYTE), 
+  GET_FISH VARCHAR2(100 BYTE) NOT NULL ENABLE, 
+  LENGTH NUMBER(38,0) NOT NULL ENABLE, 
+  CONTENT VARCHAR2(100 BYTE) NOT NULL ENABLE, 
+  REG_DATE DATE, 
+  IMG_FOLDER VARCHAR2(100 BYTE), 
+  FILE_NAME VARCHAR2(100 BYTE), 
+  REAL_NAME VARCHAR2(100 BYTE)
+
+<-- 랭크 종료 -->
+
+<-- 게시판 -->
+create table board(
+
+b_num number(30) primary key,
+b_title varchar2(100),
+b_content varchar2(2000),
+b_id varchar2(50),
+b_readcount number,
+b_date date,
+b_filename varchar2(300),
+b_notice number,
+b_head number
+);
+
+<-- 게시판 댓글 -->
+create table b_comment(
+c_num number primary key,
+c_bnum number not null, -- 외래키
+c_id varchar2(50) not null,
+c_date date not null,
+c_content varchar2(500) not null
+);
+
+
+create sequence  comment_seq;
+ <--여기까지 상훈-->
+
+
+<----- 원희 시작 ------->
+
+-------------------- TABLE / SEQUENCE 초기화 ---------------------
+
+DROP TABLE store_MENU;
+DROP TABLE store_img;
+DROP TABLE STORE;
+DROP TABLE ORDER_LIST;
+DROP TABLE ORDER_STATE;
+
+DROP SEQUENCE SEQ_PRO_NUM;
+DROP SEQUENCE SEQ_BUY_NUM;
+
+-------------------- TABLE / SEQUENCE 초기화 ---------------------
+
+------------------- 상점 테이블 START -----------------------------
+ CREATE TABLE STORE
+   (	PRO_NUM NUMBER, 
+	PRO_CODE NUMBER, 
+	PRO_NAME VARCHAR2(100 BYTE), 
+	PRICE NUMBER, 
+	SELLER VARCHAR2(30 BYTE), 
+	SELLCNT NUMBER DEFAULT 0, 
+	STOCK NUMBER, 
+	ORIGIN VARCHAR2(50 BYTE), 
+	PRO_MADE VARCHAR2(50 BYTE), 
+	PRO_STATE NUMBER, 
+	REG_DATE DATE
+   );
+
+ 
+CREATE SEQUENCE SEQ_PRO_NUM
+START WITH 100
+MAXVALUE 10000
+MINVALUE 100
+INCREMENT BY 1
+CYCLE
+NOCACHE;
+
+------------------- 상점 테이블 END -----------------------------
+
+------------------- 상품 이미지 START -----------------------------
+
+CREATE TABLE STORE_IMG
+  ( Pro_code NUMBER,
+    Img_num Number,
+    Img_path varchar2(500 BYTE),
+    File_name varchar2(200 BYTE),
+    Real_name varchar2(200 Byte)
+    );
+    
+------------------- 상품 이미지 END -----------------------------  
+
+------------------- 주문리스트 테이블 START -----------------------------
+ CREATE TABLE ORDER_LIST
+   (	Buy_num NUMBER, 
+      Pro_num NUMBER,
+      ID VARCHAR2(30 BYTE),
+      Name varchar2(20 BYTE),
+      Email varchar2(100 BYTE),
+      Address varchar2(100 BYTE),
+      Tel varchar2(100 BYTE),
+      Seller VARCHAR2(30 BYTE), 
+      Pro_code NUMBER,
+      Pro_name VARCHAR2(100 BYTE), 
+      Price NUMBER,
+      Quantity NUMBER,
+      Request_term VARCHAR2(300 BYTE),
+      State NUMBER,
+      Reg_date DATE
+    );
+    
+  CREATE SEQUENCE SEQ_BUY_NUM
+  START WITH 100
+  MAXVALUE 10000
+  MINVALUE 100
+  INCREMENT BY 1
+  CYCLE
+  NOCACHE;
+
+------------------- 주문리스트 테이블 END -----------------------------
+
+------------------- 주문리스트 상태 테이블 START ----------------------
+CREATE TABLE ORDER_STATE 
+   (	STATE NUMBER
+   );
+
+INSERT INTO ORDER_STATE values(0);
+INSERT INTO ORDER_STATE values(1);
+INSERT INTO ORDER_STATE values(2);
+INSERT INTO ORDER_STATE values(3);
+INSERT INTO ORDER_STATE values(4);
+INSERT INTO ORDER_STATE values(5);
+INSERT INTO ORDER_STATE values(6);
+------------------- 주문리스트 상태 테이블 END ----------------------
+
+------------------- 메뉴리스트 테이블 START -----------------------------
+
+CREATE TABLE Store_MENU
+   (	B_code VARCHAR2(10 BYTE) DEFAULT '00', 
+      M_code VARCHAR2(10 BYTE) DEFAULT '00', 
+      S_code VARCHAR2(10 BYTE) DEFAULT '00', 
+      B_Name VARCHAR2(100 BYTE),
+      M_Name VARCHAR2(100 BYTE),
+      S_Name VARCHAR2(100 BYTE)
+    );
+    
+    
+INSERT INTO Store_MENU (B_Code, B_Name) values( '01', '낚시대');
+INSERT INTO Store_MENU (B_Code, M_code,B_name,M_name) values( '01','01','낚시대','민물낚시대');
+INSERT INTO Store_MENU (B_Code, M_code,B_name,M_name) values( '01','02','낚시대','바다낚시대');
+INSERT INTO Store_MENU values( '01','01','01','낚시대','민물낚시대','붕어낚시대');
+INSERT INTO Store_MENU values( '01','01','02','낚시대','민물낚시대','잉어/향어 낚시대');
+INSERT INTO Store_MENU values( '01','01','03','낚시대','민물낚시대','대물경질낚시대');
+INSERT INTO Store_MENU values( '01','01','04','낚시대','민물낚시대','은어낚시대');
+INSERT INTO Store_MENU values( '01','01','05','낚시대','민물낚시대','민물다용도 릴낚시대');
+INSERT INTO Store_MENU values( '01','01','06','낚시대','민물낚시대','장어릴낚시대');
+INSERT INTO Store_MENU values( '01','01','07','낚시대','민물낚시대','생활낚시대(피라미/견지/돌틈)');
+INSERT INTO Store_MENU values( '01','01','08','낚시대','민물낚시대','낚시대케이스');
+
+INSERT INTO Store_MENU values( '01','02','01','낚시대','바다낚시대','감성돔/벵에돔 릴낚시대');
+INSERT INTO Store_MENU values( '01','02','02','낚시대','바다낚시대','참돔낚시대');
+INSERT INTO Store_MENU values( '01','02','03','낚시대','바다낚시대','부시리낚시대');
+INSERT INTO Store_MENU values( '01','02','04','낚시대','바다낚시대','원투/홀치기 낚시대');
+INSERT INTO Store_MENU values( '01','02','05','낚시대','바다낚시대','갈치낚시대');
+INSERT INTO Store_MENU values( '01','02','06','낚시대','바다낚시대','선상 우럭 낚시대');
+INSERT INTO Store_MENU values( '01','02','07','낚시대','바다낚시대','바다민장대');
+INSERT INTO Store_MENU values( '01','02','08','낚시대','바다낚시대','낚시대거치대');
+
+INSERT INTO Store_MENU (B_Code, B_Name) values( '02', '릴');
+INSERT INTO Store_MENU (B_Code, M_code,B_name,M_name) values( '02','01','릴','전동릴');
+INSERT INTO Store_MENU (B_Code, M_code,B_name,M_name) values( '02','02','릴','베이트릴(배스,가물치,바다용)');
+INSERT INTO Store_MENU values( '02','02','01','릴','베이트릴(배스,가물치,바다용)','배스용 베이트릴');
+INSERT INTO Store_MENU values( '02','02','02','릴','베이트릴(배스,가물치,바다용)','가물치용 장구통릴');
+INSERT INTO Store_MENU values( '02','02','03','릴','베이트릴(배스,가물치,바다용)','바다용 베이트릴');
+
+INSERT INTO Store_MENU (B_Code, B_Name) values( '03', '줄');
+INSERT INTO Store_MENU (B_Code, B_Name) values( '04', '찌');
+INSERT INTO Store_MENU (B_Code, B_Name) values( '05', '루어');
+INSERT INTO Store_MENU (B_Code, B_Name) values( '06', '뜰채');
+INSERT INTO Store_MENU (B_Code, B_Name) values( '07', '가방');
+
+<---------- 원희 종료 --------->
+
+    
