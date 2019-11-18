@@ -6,25 +6,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link href="test.css" rel="stylesheet" type="text/css">
-<script type="text/javascript">
-
-	function winop() {
-		/* if (!frm.id.value) {
-			alert("id를 입력하고 사용하세요");
-			frm.id.focus();
-			return false;
-		} */
-		window.open("jw_confirmIdPro.do?id=${id}" + frm.id.value, "",
-				"width=300 height=300");
-	}
-</script>
 </head>
 <body>
 <div class="wrap">
 		<header> <jsp:include page="header.jsp"></jsp:include> </header>
 		
 	<div class="container" role="main">	
-	<form action="ws_idfindPro.do" method="post" name="frm"		onsubmit="return chk()">
+	<form action="ws_idfindPro.do" method="post" name="frm"	onsubmit="return chk()">
 		<table border="1">
 			<caption>
 				<h2>아이디 찾기</h2>

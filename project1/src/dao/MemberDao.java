@@ -37,29 +37,35 @@ public class MemberDao {
 		return conn;
 	}
 
-	public int getUser_num() throws SQLException {
+	public List<Member> user_list(String id) throws SQLException{
+		List<Member> list = new ArrayList<Member>();
 		Connection conn = null;
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		int tot = 0;
-		String sql = "select user_num(*) from member";
+		String sql = "select distinct name, email, address, tel from member where id=?";
 		try {
 			conn = getConnection();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			if (rs.next())
-				tot = rs.getInt(1);
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Member member = new Member();
+				member.setName(rs.getString("name"));
+				member.setEmail(rs.getString("email"));
+				member.setAddress(rs.getString("address"));
+				member.setTel(rs.getString("tel"));
+				list.add(member);	
+				System.out.println("list안에는 뭐가있을까"+list);
+			}
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			 System.out.println(e.getMessage());
 		} finally {
-			if (rs != null)
-				rs.close();
-			if (stmt != null)
-				stmt.close();
-			if (conn != null)
-				conn.close();
+			if( rs !=null) rs.close();
+			if(pstmt !=null) pstmt.close();
+			if(conn !=null) conn.close();
 		}
-		return tot;
+		return list;
+		
 	}
 
 	public int check(String id, String passwd) throws SQLException { // 로그인
@@ -163,7 +169,7 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		List<Member> ids = new ArrayList<Member>();
 		String sql1 = "select id from member where alive_c = 'A'";
-		String sql = "select alive_c from member where id=?";
+//		String sql = "select alive_c from member where id=?";
 		System.out.println("Dao confirm_Alive   id->" + id);
 		
 		try {
@@ -458,11 +464,8 @@ public int myPageModify(Member member) throws SQLException{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		int result = 0;
-
-	//	String sql = "update member values(?, ?, ?, ?)";
-		String sql="update member set name=?,email=?,address=?,"+
+				String sql="update member set name=?,email=?,address=?,"+
             	"tel=? where id=?";
-
 		System.out.println("sql:"+sql);
 		try {
 			conn = getConnection();
@@ -488,4 +491,32 @@ public int myPageModify(Member member) throws SQLException{
 		}
 		return result;
 	}
+
+public int memberOut(Member member) throws SQLException{
+	Connection conn = null;
+	PreparedStatement pstmt = null;
+	int result = 0;
+	ResultSet rs = null;
+	String sql = "update member set alive_c='D' where passwd=? and id=?";
+	try {
+		conn = getConnection();
+		pstmt = conn.prepareStatement(sql);
+		rs = pstmt.executeQuery();
+		pstmt.setString(1, member.getPasswd());
+		pstmt.setString(2, member.getId());
+		
+		
+		
+		
+		 
+			
+	} catch (Exception e) {
+		 System.out.println(e.getMessage());
+	} finally {
+		if(pstmt !=null) pstmt.close();
+		if(conn !=null) conn.close();
+	}
+	return result;
+}
+
 }

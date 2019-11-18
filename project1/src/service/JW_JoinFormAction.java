@@ -16,15 +16,17 @@ public class JW_JoinFormAction implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		try {
-			String id = request.getParameter("id");
-			MemberDao md = MemberDao.getInstance();
-			Member member = md.select(id);
-			request.setAttribute("id", id);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			String id = request.getParameter("id");
+//			MemberDao md = MemberDao.getInstance();
+//			Member member = md.select(id);
+//			
+//			request.setAttribute("id", id);
+//			System.out.println("회원가입id "+id);
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		return "jw_joinForm.jsp";
 	}
 }

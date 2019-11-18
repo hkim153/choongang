@@ -44,6 +44,7 @@
 						<p class="btn_area_btm">
 							<input type="button" onclick="location.href='ws_myPageModifyForm.do'"
 								value="수정하기" class="btn_model">
+								<input type="button" value="탈퇴하기" onclick="location.href='jw_outForm.do'" class="btn_model">
 						</p>
 					</div>
 					<div class="sh_group">

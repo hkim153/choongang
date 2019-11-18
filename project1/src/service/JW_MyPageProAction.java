@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.Member;
+import dao.MemberDao;
 import dao.Store;
 import dao.StoreDao;
 
@@ -21,10 +23,19 @@ public class JW_MyPageProAction implements CommandProcess {
 		HttpSession session = request.getSession(); // 세션 선언
 		// 마이페이지에서 구매현황 코드
 		StoreDao sd = StoreDao.getInstance();
+		MemberDao md = MemberDao.getInstance();
 		String id = (String)session.getAttribute("id");
+		
+		
 		request.setCharacterEncoding("utf-8");
 		
 		try {
+			Member member = md.select(id);
+			String name = member.getName();
+			String email = member.getEmail();
+			String tel = member.getTel();
+			String address = member.getAddress();
+
 			List<Store> order_state = sd.order_state(id);
 			int cancel = order_state.get(3).getState_count();   // 취소한 상품 갯수
 			int takeback =order_state.get(4).getState_count();  // 반품한 상품 갯수
@@ -32,6 +43,11 @@ public class JW_MyPageProAction implements CommandProcess {
 			int decide = order_state.get(6).getState();         // 구매확정 상태값
 			int total = cancel + takeback + exchange;           // 3가지 합계
 
+			request.setAttribute("name", name);
+			request.setAttribute("email", email);
+			request.setAttribute("tel", tel);
+			request.setAttribute("address", address);
+			
 			request.setAttribute("decide", decide);
 			request.setAttribute("total", total);
 			request.setAttribute("orderstate", order_state);

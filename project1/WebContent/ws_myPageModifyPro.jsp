@@ -12,7 +12,7 @@
 <c:if test="${result > 0 }">
 	<script type="text/javascript">
 		alert("수정 완료 ! ");
-		location.href="jw_myPage.jsp?pageNum=${pageNum}";
+		location.href="jw_myPage.do?id=${id}";
 	</script>
 </c:if>	
 <c:if test="${result == 0 }">

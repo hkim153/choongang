@@ -13,24 +13,8 @@
 			alert("아이디중복체크를 하셔야합니땅!");
 			return false;
 	   }
-
 		return true;
-	}
-
-	function inputIdChk() { //중복체크하고난뒤 아이디를 재입력시 다시 중복체크하도록 하는 기능
-		document.frm.idDuplication.value = "idUncheck";
-	}
-
-	function winop() {
-		/* if (!frm.id.value) {
-			alert("id를 입력하고 사용하세요");
-			frm.id.focus();
-			return false;
-		} */
-		window.name = "parentForm";
-		window.open("jw_confirmIdPro.do?id=${id}" + frm.id.value, "chkForm",
-				"width=510 height=510");
-	}
+	}	
 </script>
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript">
@@ -40,10 +24,10 @@
 			var sendData = 'id=' + id;
 			var msgTrim = "";
 			frm.idChkVal.value="1";
-			$.post('nameCheckAjax.jsp', sendData, function(msg) {
+			$.post('jw_nameCheckAjax.jsp', sendData, function(msg) {
 				// 양쪽 Trim 제거
 			    msgTrim = msg.replace(/(^\s*)|(\s*$)/g, "") ;
-			    /* alert("msgTrim-->"+msgTrim) */
+			     alert("msgTrim-->"+msgTrim) 
 				if (msgTrim == "1") {
 			     	$('#msg').html("이미 사용중인 아이디입니땅!");
 					frm.idChkVal.value="0";  // 초기화를 해야만 새로운 아이디 입력시 중복체크여부 확인

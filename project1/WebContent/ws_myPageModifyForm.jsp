@@ -6,18 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link href="test.css" rel="stylesheet" type="text/css">
-<script type="text/javascript">
-
-	function winop() {
-		/* if (!frm.id.value) {
-			alert("id를 입력하고 사용하세요");
-			frm.id.focus();
-			return false;
-		} */
-		window.open("jw_confirmIdPro.do?id=${id}" + frm.id.value, "",
-				"width=300 height=300");
-	}
-</script>
 </head>
 <body>
 	<div class="wrap">

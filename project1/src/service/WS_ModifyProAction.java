@@ -24,16 +24,17 @@ public class WS_ModifyProAction implements CommandProcess {
 			member.setAddress(request.getParameter("address"));
 			member.setTel(request.getParameter("tel"));		
 		     
-			System.out.println("ws_ModifyProAction id"+id);
-			System.out.println("ws_ModifyProAction name"+request.getParameter("name"));
-			System.out.println("ws_ModifyProAction email"+request.getParameter("email"));
-			System.out.println("ws_ModifyProAction address"+request.getParameter("address"));
+			System.out.println("ws_ModifyProAction id: "+id);
+			System.out.println("ws_ModifyProAction name: "+request.getParameter("name"));
+			System.out.println("ws_ModifyProAction email: "+request.getParameter("email"));
+			System.out.println("ws_ModifyProAction address: "+request.getParameter("address"));
 					
 			
 			MemberDao md = MemberDao.getInstance();
 			int result = md.myPageModify(member);
 			System.out.println("result"+result);
 			request.setAttribute("result", result);
+			request.setAttribute("id", id);
 
 		
 		} catch (Exception e) { System.out.println(e.getMessage());
