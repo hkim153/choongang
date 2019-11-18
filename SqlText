@@ -14,7 +14,7 @@ reg_date date);
 
 create sequence usernum1 increment by 1 start with 1;
 
-create sequence ranknum increment by 1 start with 1; // 승주야 쓰고나서 지워라 - 아직사용안함
+ // 승주야 쓰고나서 지워라 - 아직사용안함
 
 insert into member values('admin1', 'admin1', '이재원숭이1', 'fkenl123@gmail.com', '경기도 광주시 쌍령동 푸르지오', '010-2441-0856', 'A', 'A', sysdate, usernum1.nextval);
 
@@ -152,6 +152,8 @@ INSERT INTO FISH VALUES(SEQ_FISH_CODE.NEXTVAL, '잉어');
   IMG_FOLDER VARCHAR2(100 BYTE), 
   FILE_NAME VARCHAR2(100 BYTE), 
   REAL_NAME VARCHAR2(100 BYTE));
+
+CREATE SEQUENCE RANKNUM1  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 41 CACHE 20 NOORDER  NOCYCLE ;
 
 insert into RANKING values(1,'aa','광어',10,'물고기가 너무 무거웠어요',to_date('19/11/27','RR/MM/DD'),'/fish_rank','kwang-length2.png','kwang-length.png');
 <-- 랭크 종료 -->
