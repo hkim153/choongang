@@ -181,3 +181,150 @@ c_content varchar2(500) not null
 
 create sequence  comment_seq;
  <--여기까지 상훈-->
+
+
+<----- 원희 시작 ------->
+
+-------------------- TABLE / SEQUENCE 초기화 ---------------------
+
+DROP TABLE store_MENU;
+DROP TABLE store_img;
+DROP TABLE STORE;
+DROP TABLE ORDER_LIST;
+DROP TABLE ORDER_STATE;
+
+DROP SEQUENCE SEQ_PRO_NUM;
+DROP SEQUENCE SEQ_BUY_NUM;
+
+-------------------- TABLE / SEQUENCE 초기화 ---------------------
+
+------------------- 상점 테이블 START -----------------------------
+ CREATE TABLE STORE
+   (	PRO_NUM NUMBER, 
+	PRO_CODE NUMBER, 
+	PRO_NAME VARCHAR2(100 BYTE), 
+	PRICE NUMBER, 
+	SELLER VARCHAR2(30 BYTE), 
+	SELLCNT NUMBER DEFAULT 0, 
+	STOCK NUMBER, 
+	ORIGIN VARCHAR2(50 BYTE), 
+	PRO_MADE VARCHAR2(50 BYTE), 
+	PRO_STATE NUMBER, 
+	REG_DATE DATE
+   );
+
+ 
+CREATE SEQUENCE SEQ_PRO_NUM
+START WITH 100
+MAXVALUE 10000
+MINVALUE 100
+INCREMENT BY 1
+CYCLE
+NOCACHE;
+
+------------------- 상점 테이블 END -----------------------------
+
+------------------- 상품 이미지 START -----------------------------
+
+CREATE TABLE STORE_IMG
+  ( Pro_code NUMBER,
+    Img_num Number,
+    Img_path varchar2(500 BYTE),
+    File_name varchar2(200 BYTE),
+    Real_name varchar2(200 Byte)
+    );
+    
+------------------- 상품 이미지 END -----------------------------  
+
+------------------- 주문리스트 테이블 START -----------------------------
+ CREATE TABLE ORDER_LIST
+   (	Buy_num NUMBER, 
+      Pro_num NUMBER,
+      ID VARCHAR2(30 BYTE),
+      Name varchar2(20 BYTE),
+      Email varchar2(100 BYTE),
+      Address varchar2(100 BYTE),
+      Tel varchar2(100 BYTE),
+      Seller VARCHAR2(30 BYTE), 
+      Pro_code NUMBER,
+      Pro_name VARCHAR2(100 BYTE), 
+      Price NUMBER,
+      Quantity NUMBER,
+      Request_term VARCHAR2(300 BYTE),
+      State NUMBER,
+      Reg_date DATE
+    );
+    
+  CREATE SEQUENCE SEQ_BUY_NUM
+  START WITH 100
+  MAXVALUE 10000
+  MINVALUE 100
+  INCREMENT BY 1
+  CYCLE
+  NOCACHE;
+
+------------------- 주문리스트 테이블 END -----------------------------
+
+------------------- 주문리스트 상태 테이블 START ----------------------
+CREATE TABLE ORDER_STATE 
+   (	STATE NUMBER
+   );
+
+INSERT INTO ORDER_STATE values(0);
+INSERT INTO ORDER_STATE values(1);
+INSERT INTO ORDER_STATE values(2);
+INSERT INTO ORDER_STATE values(3);
+INSERT INTO ORDER_STATE values(4);
+INSERT INTO ORDER_STATE values(5);
+INSERT INTO ORDER_STATE values(6);
+------------------- 주문리스트 상태 테이블 END ----------------------
+
+------------------- 메뉴리스트 테이블 START -----------------------------
+
+CREATE TABLE Store_MENU
+   (	B_code VARCHAR2(10 BYTE) DEFAULT '00', 
+      M_code VARCHAR2(10 BYTE) DEFAULT '00', 
+      S_code VARCHAR2(10 BYTE) DEFAULT '00', 
+      B_Name VARCHAR2(100 BYTE),
+      M_Name VARCHAR2(100 BYTE),
+      S_Name VARCHAR2(100 BYTE)
+    );
+    
+    
+INSERT INTO Store_MENU (B_Code, B_Name) values( '01', '낚시대');
+INSERT INTO Store_MENU (B_Code, M_code,B_name,M_name) values( '01','01','낚시대','민물낚시대');
+INSERT INTO Store_MENU (B_Code, M_code,B_name,M_name) values( '01','02','낚시대','바다낚시대');
+INSERT INTO Store_MENU values( '01','01','01','낚시대','민물낚시대','붕어낚시대');
+INSERT INTO Store_MENU values( '01','01','02','낚시대','민물낚시대','잉어/향어 낚시대');
+INSERT INTO Store_MENU values( '01','01','03','낚시대','민물낚시대','대물경질낚시대');
+INSERT INTO Store_MENU values( '01','01','04','낚시대','민물낚시대','은어낚시대');
+INSERT INTO Store_MENU values( '01','01','05','낚시대','민물낚시대','민물다용도 릴낚시대');
+INSERT INTO Store_MENU values( '01','01','06','낚시대','민물낚시대','장어릴낚시대');
+INSERT INTO Store_MENU values( '01','01','07','낚시대','민물낚시대','생활낚시대(피라미/견지/돌틈)');
+INSERT INTO Store_MENU values( '01','01','08','낚시대','민물낚시대','낚시대케이스');
+
+INSERT INTO Store_MENU values( '01','02','01','낚시대','바다낚시대','감성돔/벵에돔 릴낚시대');
+INSERT INTO Store_MENU values( '01','02','02','낚시대','바다낚시대','참돔낚시대');
+INSERT INTO Store_MENU values( '01','02','03','낚시대','바다낚시대','부시리낚시대');
+INSERT INTO Store_MENU values( '01','02','04','낚시대','바다낚시대','원투/홀치기 낚시대');
+INSERT INTO Store_MENU values( '01','02','05','낚시대','바다낚시대','갈치낚시대');
+INSERT INTO Store_MENU values( '01','02','06','낚시대','바다낚시대','선상 우럭 낚시대');
+INSERT INTO Store_MENU values( '01','02','07','낚시대','바다낚시대','바다민장대');
+INSERT INTO Store_MENU values( '01','02','08','낚시대','바다낚시대','낚시대거치대');
+
+INSERT INTO Store_MENU (B_Code, B_Name) values( '02', '릴');
+INSERT INTO Store_MENU (B_Code, M_code,B_name,M_name) values( '02','01','릴','전동릴');
+INSERT INTO Store_MENU (B_Code, M_code,B_name,M_name) values( '02','02','릴','베이트릴(배스,가물치,바다용)');
+INSERT INTO Store_MENU values( '02','02','01','릴','베이트릴(배스,가물치,바다용)','배스용 베이트릴');
+INSERT INTO Store_MENU values( '02','02','02','릴','베이트릴(배스,가물치,바다용)','가물치용 장구통릴');
+INSERT INTO Store_MENU values( '02','02','03','릴','베이트릴(배스,가물치,바다용)','바다용 베이트릴');
+
+INSERT INTO Store_MENU (B_Code, B_Name) values( '03', '줄');
+INSERT INTO Store_MENU (B_Code, B_Name) values( '04', '찌');
+INSERT INTO Store_MENU (B_Code, B_Name) values( '05', '루어');
+INSERT INTO Store_MENU (B_Code, B_Name) values( '06', '뜰채');
+INSERT INTO Store_MENU (B_Code, B_Name) values( '07', '가방');
+
+<---------- 원희 종료 --------->
+
+    
