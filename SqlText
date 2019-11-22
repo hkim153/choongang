@@ -18,6 +18,8 @@ insert into member values('admin1', 'admin1', '이재원숭이1', 'fkenl123@gmai
 
 insert into member values('Lee123', '1234', 'Lee123', 'lee123@gmail.com', '경기도 광주시 쌍령동 푸르지오', '010-2441-0856', 'N', 'A', sysdate, usernum1.nextval);
 
+insert into member values('aa', '1', '이재원', 'fkenl123@naver.com', '경기도 광주시 쌍령동 푸르지오', '010-2442-0856', 'N', 'A', sysdate, usernum1.next.val);
+
 
 <-- 재원이꺼 -->
 
