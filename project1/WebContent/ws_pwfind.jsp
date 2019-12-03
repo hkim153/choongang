@@ -6,52 +6,77 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link href="test.css" rel="stylesheet" type="text/css">
-<script type="text/javascript">
-
-	function winop() {
-		/* if (!frm.id.value) {
-			alert("id를 입력하고 사용하세요");
-			frm.id.focus();
-			return false;
-		} */
-		window.open("jw_confirmIdPro.do?id=${id}" + frm.id.value, "",
-				"width=300 height=300");
+<link href="join.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+.wrap {
+	position: relative;
+	overflow: hidden;
+	min-width: 1100px;
+	background: #fff;
 	}
-</script>
+	
+.container {
+	width: 1080px;
+	margin: 0 auto;
+	padding: 8px 10px 0;
+	zoom: 1;
+	height: 480px;
+	}
+	
+.btnColor{
+margin-top: 5px;
+	border: 0;
+	color: white;
+	background-color: #3DB7CC;
+	background-position: - -47px;
+	height: 29px;
+	width: 80px;
+	font-size: 15px;
+}
+</style>
 </head>
 <body>
 <div class="wrap">
-		<header> <jsp:include page="header.jsp"></jsp:include> </header>
-		
+		<header> <jsp:include page="header.jsp"></jsp:include> </header>		
 	<div class="container" role="main">	
 	<form action="ws_pwfindPro.do" method="post" name="frm"		onsubmit="return chk()">
-		<table border="1">
-			<caption>
-				<h2>비밀번호 찾기</h2>
-			</caption>
-			<tr>
-				<td>아이디</td>
-				<td><input type="text" name="id" required="required"></td>
-			</tr>
-			<tr>
-				<td>E-Mail</td>
-				<td><input type="text" name="email" required="required"></td>
-			</tr>
-			<tr>
-				<td>전화번호</td>
-				<td><input type="tel" name="tel" required="required"
-					patten="\d{2,3}-\d{3-4}-\d{4}" placeholder="xxx-xxxx-xxxx"
-					title="2,3자리-3,4자리-4자리"></td>
-			</tr>
-			<tr>
-				<td><input type="submit" value="확인" >
-				<input type="reset" value="취소" onclick="location.href='main.do'"></td>
-			</tr>
-		</table>
-	</form>
+		<input type="hidden"  id="idChkVal" name="idChkVal"  value="0" >
+			<div id="container1" role="main">
+				<div id="content">
+					<div class="join_content">
+						<div class="row_group">
+							<div class="join_row">
+								<h1>비밀번호 찾기</h1>
+							<h3 class="join_title">
+								<label for="id"> 아이디 </label>
+							</h3>
+							<span class="ps_box int_id"> <input type="text"
+								name="id" required="required" class="int">
+							</span>
+							<h3 class="join_title">
+								<label for="id"> E-Mail </label>
+							</h3>
+							<span class="ps_box int_id"> <input type="text"
+								name="email" required="required" class="int">
+							</span>
+							<h3 class="join_title">
+								<label for="id"> 전화번호 </label>
+							</h3>
+							<span class="ps_box int_id"> <input type="tel" name="tel"
+								required="required" class="int" patten="\d{2,3}-\d{3-4}-\d{4}"
+								placeholder="xxx-xxxx-xxxx" title="2,3자리-3,4자리-4자리"
+								style="font-size:">
+							</span> <input type="submit" value="확인" class="btnColor"	 > 
+							<input type="reset" value="취소" onclick="location.href='main.do'" class="btnColor">
+						</div>
+					</div>
+				</div>
+			</div>			
+		</form>
+	</div>
+	
 	</div>
 	<jsp:include page="footer.jsp"></jsp:include>
-	</div>
 		
 </body>
 </html>

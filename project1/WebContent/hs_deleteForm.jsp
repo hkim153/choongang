@@ -5,37 +5,70 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css?family=Dokdo&display=swap"
+	rel="stylesheet">
 <link href="test.css" rel="stylesheet" type="text/css">
 <style>
-table {
-	width: 80%;
-}
 
-#hsd {
-	width: 1400px;
+* {
 	margin: 0 auto;
-	text-align: center;
-	font-size: 9pt;
-	font-color: black;
+	padding: 0;
+	font-family: 'Malgun gothic', 'Sans-Serif', 'Arial';
 }
 
-table {
-	background-color: #99e7ff;
-	width: 1080px;
-	text-align: center;
-	margin: 0 auto;
-	padding: 8px 10px 0;
-	zoom: 1;
+a {
+	text-decoration: none;
+	color: #333;
 }
 
-tr:hover {
-	background-color: ornage;
+ul li {
+	list-style: none;
 }
 
-td {
-	background-color: #e8ffff;
+/*공통*/
+.fl {
+	float: left;
+}
+
+.tc {
 	text-align: center;
-	padding: 10px;
+}
+
+/*게시판 목록*/
+#board_area {
+	width: 1100px;
+	position: relative;
+	margin-top: 20px;
+}
+
+.list-table {
+	margin-top: 40px;
+}
+
+.list-table thead th {
+	height: 40px;
+	border-top: 2px solid #09C;
+	border-bottom: 1px solid #CCC;
+	font-weight: bold;
+	font-size: 50px;
+	font-family: 'Dokdo', cursive;
+}
+
+.list-table tbody td {
+	text-align: center;
+	padding: 10px 0;
+	border-bottom: 1px solid #CCC;
+	height: 20px;
+	font-size: 14px
+}
+
+.bt{
+	color: white;
+	font-size: 15px;
+	background-color: #3db6cc;
+	border: 0;
+	height: 30px;
+	width: 120px;
 }
 </style>
 </head>
@@ -46,18 +79,24 @@ td {
 			<jsp:include page="header.jsp"></jsp:include>
 		</header>
 
-		<div id="hsd">
-			<h2>삭제하려면 암호를 입력하세요</h2>
+		<div id="board_area">
+			
 			<form action="hs_deletePro.do">
-				<input type="hidden" name="pageNum" value="${pageNum }"> <input
-					type="hidden" name="num" value="${num }"> <input
-					type="hidden" name="id" value="${fs.id }"> <input
-					type="hidden" name="curid" value="${sessionScope.id }"> <input
-					type="hidden" name="rightpasswd" value="${sessionScope.passwd}">
-				<table>
+				<input type="hidden" name="pageNum" value="${pageNum }"> 
+				<input type="hidden" name="num" value="${num }"> 
+				<!-- 게시글 작성자, 현재 로그인 아이디, 비번 넘겨서 비교하기  -->
+				<input type="hidden" name="id" value="${fs.id }"> 
+				<input type="hidden" name="curid" value="${sessionScope.id }"> 
+				<input type="hidden" name="rightpasswd" value="${sessionScope.passwd}">
+				<table class="list-table">
+					<thead>
 					<tr>
-						<td>작성자</td>
-						<td>${fs.id }</td>
+						<th colspan = "2">낚시터 정보 삭제</th>
+					</tr>
+					</thead>
+					<tr>
+						<td width = "100">작성자</td>
+						<td width = "700">${fs.id }</td>
 					</tr>
 					<tr>
 						<td>암호</td>
@@ -65,8 +104,8 @@ td {
 					</tr>
 					<tr>
 						<td></td>
-						<td colspan="2"><input type="submit" value="확인"> <input
-							type="reset" value="다시 쓰기"></td>
+						<td colspan="2"><input class = "bt" type="submit" value="확인"> 
+						<input  class = "bt" type="reset" value="다시 쓰기"></td>
 					</tr>
 
 				</table>

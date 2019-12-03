@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -36,6 +37,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<c:if test = "${sessionScope.result ne 1 }">
+		<script type="text/javascript">
+			alert("로그인 해주세요");
+			location.href="jw_loginForm.do";
+		</script>
+	</c:if>
 	<div id="wrap">
 		<div>
 		
@@ -71,7 +78,7 @@
 							${proContent.pro_name}
 						</td>
 						<td>
-							${proContent.seller }
+							${proContent.sell_name }
 						</td>
 						<td>
 							무료
@@ -114,7 +121,8 @@
 				</div>
 				<div class="bottom">
 				<div style="text-align: center; margin: 60px auto;">
-					<input type="submit" value="주문완료">
+					<input type="submit" value="주문완료">&emsp;&emsp;&emsp;
+					<input type="button" value="뒤로" onclick="history.back(-1);">
 				</div>
 			</div>
 			</div>

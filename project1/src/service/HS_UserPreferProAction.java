@@ -7,8 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.fishingsite;
-import dao.fishingsiteDao;
+import dao.Fishingsite;
+import dao.FishingsiteDao;
 
 public class HS_UserPreferProAction implements CommandProcess {
 
@@ -24,8 +24,9 @@ public class HS_UserPreferProAction implements CommandProcess {
 			for(String cf : fishes) {
 				System.out.println(cf);
 			}
-			fishingsiteDao fsd = fishingsiteDao.getInstance();
-			List<fishingsite> fslist = fsd.find_fs_code(regions, fishes);
+			FishingsiteDao fsd = FishingsiteDao.getInstance();
+			//지역과 어종 둘다 일치하는 낚시터들 db에서 가져오기
+			List<Fishingsite> fslist = fsd.find_fs_code(regions, fishes);
 			
 			request.setAttribute("fslist", fslist);
 		}catch(Exception e) {System.out.println(e.getMessage());}

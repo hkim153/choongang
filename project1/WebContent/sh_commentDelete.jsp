@@ -10,8 +10,8 @@
 <body>
 <c:if test="${result > 0 }">
 		<script type="text/javascript">
-		alert("삭제 완료 ! ");
-		location.href="sh_content.do?b_num=${b_num}&pageNum=${pageNum}&status=0";
+			confirm("삭제 하시겠습니까?");
+		location.href="sh_content.do?b_num=${b_num}&pageNum=${pageNum}&status=0";		
 	</script>
 </c:if>
 	

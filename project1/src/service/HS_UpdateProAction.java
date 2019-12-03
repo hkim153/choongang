@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import dao.fishingsite;
-import dao.fishingsiteDao;
+import dao.Fishingsite;
+import dao.FishingsiteDao;
 
 public class HS_UpdateProAction implements CommandProcess {
 
@@ -38,15 +38,17 @@ public class HS_UpdateProAction implements CommandProcess {
 			String [] fishes = multi.getParameterValues("어종");
 			int num = Integer.parseInt(multi.getParameter("num"));
 			int result;
+			//작성자랑 현재 로그인된 아이디가 다를때
 			if(!id.equals(curid)) {
 				result = -1;
 			}
 			else {
+				//입력한 비번이랑 현재 로그인된 비번이 다를때
 				if(!passwd.equals(rightpasswd)) {
 					result = -2;
 				}
 				else {
-					fishingsite fs = new fishingsite();
+					Fishingsite fs = new Fishingsite();
 					fs.setFs_num(num);
 					fs.setFs_reg(multi.getParameter("fs_reg"));
 					fs.setFs_addr(multi.getParameter("fs_addr"));
@@ -66,15 +68,16 @@ public class HS_UpdateProAction implements CommandProcess {
 					String original = multi.getOriginalFileName(filename1);
 					
 					
-					fishingsiteDao fsd = fishingsiteDao.getInstance();
-					
+					FishingsiteDao fsd = FishingsiteDao.getInstance();
+					//만약에 수정할 이미지를 첨부하지 않았다면 이미 저장된 이미지 사용
 					if(filename == null) {
 						System.out.println("파일 없음!!!!!!!");
-						fishingsite temp = fsd.select(num);
+						Fishingsite temp = fsd.select(num);
 						fs.setImg_folder(temp.getImg_folder());
 						fs.setReal_name(temp.getReal_name());
 						fs.setSaved_name(temp.getSaved_name());
 					}
+					//수정할 이미지를 첨부했다면 파일이름과 폴더이름 다시 set하기!
 					else {
 						System.out.println("파일 잇음!!!~~~~~~");
 					
@@ -87,7 +90,9 @@ public class HS_UpdateProAction implements CommandProcess {
 						fs.setSaved_name(filename);
 					}
 					
-					
+					//1. 현재 낚시터에 서식하고 있는 맵핑 정보 다 delete하고
+					//2. 낚시터 정보 update하구
+					//3. 낚시터의 서식어종 다시 입력해준다
 					fsd.deletefishmapping(num);
 					result = fsd.update(fs);
 					fsd.mappingfish(fishes, fs_name);

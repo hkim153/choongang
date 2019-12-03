@@ -11,19 +11,16 @@
  <link rel="stylesheet" href="vendor/css/fullcalendar.min.css" />
 <!--  두번째 -->
    <link rel="stylesheet" href="vendor/css/bootstrap.min.css">
+   <link href="https://fonts.googleapis.com/css?family=Dokdo&display=swap" rel="stylesheet">
 <style type="text/css">
 .fc-day-grid{
 pointer-events: none;
 cursor: default;
-
 }
 h2 {
 font-size: x-large;
+font-family: 'Dokdo', cursive;
 }
-
-
-
-
 </style>
 
 </head>
@@ -32,11 +29,7 @@ font-size: x-large;
     <div class="container">
 
             <div id="calendar"></div>
-            <div class="input-group">
-                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="사나"
-                                checked>행사 표시</label> 
-  
-                    </div>        
+             
             
 
     </div>
@@ -48,7 +41,7 @@ font-size: x-large;
     <script src="vendor/js/ko.js"></script>
 	<script src="vendor/js/select2.min.js"></script>
     <script src="vendor/js/bootstrap-datetimepicker.min.js"></script>
- 	<script src="js/mai.js"></script>
+ 	<script src="js/main.js"></script>
     <script src="js/etcSetting.js"></script>
 
 </body>

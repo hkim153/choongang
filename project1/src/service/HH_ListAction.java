@@ -11,6 +11,7 @@ public class HH_ListAction implements CommandProcess {
 		HttpServletResponse response) throws ServletException, IOException {
 		EventDao ed = EventDao.getInstance();
 		try { 
+			//기본 게시판 요소
 			    int totCnt  = ed.getTotalCnt();	
 				String pageNum = request.getParameter("pageNum");	
 				if (pageNum==null || pageNum.equals("")) {	pageNum = "1";	}

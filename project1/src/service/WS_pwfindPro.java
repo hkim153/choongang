@@ -35,8 +35,14 @@ public class WS_pwfindPro implements CommandProcess {
         MemberDao md = MemberDao.getInstance();
         String y_pw = md.Findpw1(id, email, tel);
         int result = md.Findpw2(id, email, tel);
-		request.setAttribute("result", result);
+        if(result == 1) {
+        	
+        request.setAttribute("result", result);
 		request.setAttribute("y_pw", y_pw);
+		}  else {
+			request.setAttribute("result", 0);
+			System.out.println("잘못된정보입니다!");
+		}
 		System.out.println("result"+result);
 		System.out.println("pwfindProAction : "+ y_pw);
 	} catch(Exception e) { System.out.println(e.getMessage());			

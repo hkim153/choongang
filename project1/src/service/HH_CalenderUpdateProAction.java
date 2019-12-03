@@ -16,12 +16,19 @@ public class HH_CalenderUpdateProAction implements CommandProcess {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String json = "/data1.json";
+		String realPath = request.getServletContext().getRealPath(json);//json 파일의 real Path 를 추출
+
+		
 		try {
 			Event event = new Event();	
 			EventDao ed = EventDao.getInstance();
-			JSONArray jsonArray = ed.getOnesoJSON();
+			//json 파일 생성
+			JSONArray jsonArray = ed.getOnesoJSON(realPath);
+			// 모임의 경우 sysdate 기준으로 값들을 삭제
 			int result = ed.delpast();
 			
+	
 
 
 		} catch (Exception e) {

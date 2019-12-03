@@ -1,5 +1,5 @@
 @charset "UTF-8";
-ul{
+/* ul{
 	list-style : none;
 	margin-block-start:1em;
 	margin-block-end:1em;
@@ -11,7 +11,7 @@ ul{
 		content:'';
 		display:block;
 		clear:both;
-	}
+	} */
 body{
 	font-family:""Dotum","dotum",Tahoma,arial,Helvetica,AppleGothic,Sans-serif;
 	font-size:14px;
@@ -19,15 +19,40 @@ body{
 	line-height:1.2em;
 	color:#646464;
 }
-div{ display: block;}	
+div{ display: block;}
+
+#veta_top{
+	height:380px;
+	
+}
+
+.s_container {
+	width: 1080px;
+	margin: 0 auto;
+	padding: 8px 10px 0;
+	zoom: 1;
+	min-height: 600px;
+}
+
 .content{
 		padding:0;
 		margin :1em auto 25px;
-		width:928px;
+		width:739px;
 		position:relative;
 		}
-.pro_best{ background: #f1f4f9;}
+		
+.pro_menu .menu_title div span{
+	font-size: 60px;
+	font-family: 'Dokdo', cursive;
+}
+.pro_best{ background: #fffff;}
 .pro_best .content{ padding:0;}
+.pro_title span {
+	color:black;
+	font-family: 'Dokdo', cursive;
+	font-size:40px;
+	font-weight: bold;
+}
 .best_tit{
 	font-size: 20px;
 	color:#2c4eae;
@@ -36,8 +61,15 @@ div{ display: block;}
 	font-family:"Malgun Gothic",'맑은 고딕','Dotum',sans-serif;
 	letter-spacing: -1px;
 }
+
+.pro_list ul.pro_wrap{
+	list-style: none;
+	width:739px;
+	height:340px;
+	padding:0;s
+}
 .pro_list .pro_wrap li{
-	width:20%;
+	width:25%;
 	float: left;
 }	
 	

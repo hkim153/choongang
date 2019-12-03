@@ -15,6 +15,7 @@ public class HH_UpdateProAction implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
+			//기본 게시판 요소
 			request.setCharacterEncoding("utf-8");
 			String pageNum = request.getParameter("pageNum");
 			Event event = new Event();
@@ -25,6 +26,7 @@ public class HH_UpdateProAction implements CommandProcess {
 			event.setE_end(request.getParameter("e_end"));
 			event.setE_type(request.getParameter("e_type"));
 			event.setRsa(request.getParameter("rsa"));
+			event.setUrl(request.getParameter("url"));
 			
 			EventDao ed = EventDao.getInstance();
 			int result = ed.update(event);

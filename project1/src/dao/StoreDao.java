@@ -249,7 +249,7 @@ public class StoreDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from store s, store_img si where s.pro_num = si.pro_num and s.pro_num = ? and s.pro_code= ? and si.img_num = 0";
+		String sql = "select * from (select s.*,m.name as sell_name from store s, member m where s.seller = m.id ) s2, store_img si where s2.pro_num = si.pro_num and si.img_num = 0 and s2.pro_num = ? and s2.pro_code = ?";
 		Store store = new Store();
 		try {
 			conn = getConnection();
@@ -263,6 +263,7 @@ public class StoreDao {
 				store.setPro_name(rs.getString("pro_name"));
 				store.setPrice(rs.getInt("price"));
 				store.setSeller(rs.getString("seller"));
+				store.setSell_name(rs.getString("sell_name"));
 				store.setSellcnt(rs.getInt("sellcnt"));
 				store.setStock(rs.getInt("stock"));
 				store.setOrigin(rs.getString("origin"));
@@ -287,7 +288,7 @@ public class StoreDao {
 		int result = 0;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "insert into order_list values(SEQ_BUY_NUM.nextval,?,?,?,?,?,?,?,?,?,?,?,?,1,sysdate)";
+		String sql = "insert into order_list values(SEQ_BUY_NUM.nextval,?,?,?,?,?,?,?,?,?,?,?,?,0,sysdate)";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -373,8 +374,8 @@ public class StoreDao {
 		ResultSet rs = null;
 		String sql = "select * \r\n" + 
 				"from order_list ol, \r\n" + 
-				"  (select tel2, si.* from \r\n" + 
-				"    (select tel as tel2, pro_num \r\n" + 
+				"  (select tel2, sell_name, si.* from \r\n" + 
+				"    (select tel as tel2, pro_num, m.name as sell_name \r\n" + 
 				"      from store s, member m \r\n" + 
 				"      where s.seller = m.id) ss, \r\n" + 
 				"     store_img si \r\n" + 
@@ -391,6 +392,7 @@ public class StoreDao {
 				store.setPro_num(rs.getInt("pro_num"));
 				store.setPro_name(rs.getString("pro_name"));
 				store.setSeller(rs.getString("seller"));
+				store.setSell_name(rs.getString("sell_name"));
 				store.setPro_code(rs.getInt("pro_code"));
 				store.setPrice(rs.getInt("price"));
 				store.setReg_date(rs.getDate("reg_date"));
@@ -410,31 +412,186 @@ public class StoreDao {
 		}
 		return list;
 	}
-	public List<Store> sell_list(String id) throws SQLException {
+	
+	public int getTotalCnt() throws SQLException {
+		int result = 0 ;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select count(*) from order_list";
+		try {
+			conn  = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				result = rs.getInt(1);
+			} 					
+		}catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		} finally {
+			if (rs != null) rs.close();
+			if (pstmt != null) pstmt.close();
+			if (conn != null) conn.close();
+		
+		}
+		return result;
+	}
+	
+	public List<Store> sell_list(String id, int startRow, int endRow) throws SQLException {
 		List<Store> list = new ArrayList<Store>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from order_list ol, store_img si where ol.pro_num = si.pro_num and si.img_num = 1 and seller = ?";
+		System.out.println("id + startRow + endRow : " + id + startRow + endRow);
+		String sql = "SELECT * FROM(SELECT ROWNUM rn , a.* FROM (SELECT * from order_list where seller = ?  order by reg_date desc) a ) WHERE rn between ? and ?";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				Store store = new Store();
 				store.setBuy_num(rs.getInt("buy_num"));
 				store.setPro_num(rs.getInt("pro_num"));
+				store.setId(rs.getString("id"));
+				store.setName(rs.getString("name"));
+				store.setEmail(rs.getString("email"));
 				store.setPro_name(rs.getString("pro_name"));
 				store.setSeller(rs.getString("seller"));
 				store.setPro_code(rs.getInt("pro_code"));
 				store.setPrice(rs.getInt("price"));
 				store.setReg_date(rs.getDate("reg_date"));
+				store.setQuantity(rs.getInt("quantity"));
 				store.setState(rs.getInt("state"));
-				store.setTel(rs.getString("tel2"));
+				store.setTel(rs.getString("tel"));
+				store.setRequest_term(rs.getString("request_term"));
+				list.add(store);
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			if (rs != null) rs.close();
+			if (pstmt != null) pstmt.close();
+			if (conn != null) conn.close();
+		}
+		return list;
+	}
+	
+	public Store order_content(int buy_num, String id) throws SQLException {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from order_list ol,(select tel2, sell_address, sell_name ,si.* from (select tel as tel2, pro_num, m.ADDRESS as sell_address, m.name as sell_name from store s, member m  where s.seller = m.id) ss,  store_img si  where ss.pro_num = si.pro_num and si.img_num = 1) sss  where ol.buy_num = ? and ol.id = ? and ol.pro_num = sss.pro_num";
+		Store store = new Store();
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, buy_num);
+			pstmt.setString(2, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				store.setBuy_num(rs.getInt("buy_num"));
+				store.setPro_num(rs.getInt("pro_num"));
+				store.setPro_name(rs.getString("pro_name"));
+				store.setName(rs.getString("name"));
+				store.setEmail(rs.getString("email"));
+				store.setSeller(rs.getString("seller"));
+				store.setSell_name(rs.getString("sell_name"));
+				store.setPro_code(rs.getInt("pro_code"));
+				store.setPrice(rs.getInt("price"));
+				store.setReg_date(rs.getDate("reg_date"));
+				store.setState(rs.getInt("state"));
+				store.setTel(rs.getString("tel"));
+				store.setTel2(rs.getString("tel2"));
+				store.setQuantity(rs.getInt("quantity"));
+				store.setSell_address(rs.getString("sell_address"));
 				store.setRequest_term(rs.getString("request_term"));
 				store.setImg_folder(rs.getString("img_folder"));
 				store.setReal_name(rs.getString("real_name"));
+				}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			if (rs != null) rs.close();
+			if (pstmt != null) pstmt.close();
+			if (conn != null) conn.close();
+		}
+		return store;
+	}
+	
+	public int changestate(int state, int buy_num) throws SQLException{
+		int result = 0;
+		Connection conn = null; 
+		PreparedStatement pstmt = null;
+		String sql = "update order_list set state = ? where buy_num = ?";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, state);
+			pstmt.setInt(2, buy_num);
+			result = pstmt.executeUpdate();
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		if (pstmt != null) pstmt.close();
+		if (conn != null) conn.close();
+		return result;
+	}
+	
+	public Store selectstate(int buy_num) throws SQLException{
+		ResultSet rs = null;
+		Connection conn = null; 
+		PreparedStatement pstmt = null;
+		String sql = "select state from order_list where buy_num = ?";
+		Store store = new Store();
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, buy_num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				store.setState(rs.getInt("state"));
+			}
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		if (rs != null) rs.close();
+		if (pstmt != null) pstmt.close();
+		if (conn != null) conn.close();
+		return store;
+	}
+	public List<Store> pro_list(String code, int i) throws SQLException {
+		List<Store> list = new ArrayList<Store>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from store s, store_img si where s.pro_num = si.pro_num and si.img_num = 1 and substr(s.pro_code,0,?) = ? order by reg_date desc";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, i);
+			pstmt.setString(2, code);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Store store = new Store();
+				store.setPro_num(rs.getInt("pro_num"));
+				store.setPro_code(rs.getInt("pro_code"));
+				store.setPro_name(rs.getString("pro_name"));
+				store.setPrice(rs.getInt("price"));
+				store.setSeller(rs.getString("seller"));
+				store.setSellcnt(rs.getInt("sellcnt"));
+				store.setStock(rs.getInt("stock"));
+				store.setOrigin(rs.getString("origin"));
+				store.setPro_made(rs.getString("pro_made"));
+				store.setPro_state(rs.getInt("pro_state"));
+				store.setReg_date(rs.getDate("reg_date"));
+				store.setImg_num(rs.getInt("img_num"));
+				store.setFile_name(rs.getString("file_name"));
+				store.setReal_name(rs.getString("real_name"));
+				store.setImg_folder(rs.getString("img_folder"));
 				list.add(store);
 			}
 		} catch (Exception e) {

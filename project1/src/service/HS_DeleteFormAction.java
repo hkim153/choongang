@@ -6,8 +6,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.fishingsite;
-import dao.fishingsiteDao;
+import dao.Fishingsite;
+import dao.FishingsiteDao;
 
 public class HS_DeleteFormAction implements CommandProcess {
 
@@ -19,8 +19,9 @@ public class HS_DeleteFormAction implements CommandProcess {
 			int num = Integer.parseInt(request.getParameter("num"));
 			String pageNum = request.getParameter("pageNum");		
 			
-			fishingsiteDao fsd = fishingsiteDao.getInstance();
-			fishingsite fs = fsd.select(num);
+			FishingsiteDao fsd = FishingsiteDao.getInstance();
+			//현재 게시글의 작성자를 알기위해서 select문으로 찾고 넘김
+			Fishingsite fs = fsd.select(num);
 			
 			request.setAttribute("num", num);
 			request.setAttribute("pageNum", pageNum);

@@ -20,7 +20,8 @@ public class SH_CommentDeleteAction  implements CommandProcess{
 			String pageNum = request.getParameter("pageNum");
 
 			BoardDao db = BoardDao.getInstance();
-			int result = db.cdelete(comment_num);
+			
+			int result = db.cdelete(comment_num); //댓글 삭제 게시글 번호와 댓글번호 가져와서 삭제
 			
 			request.setAttribute("b_num", b_num);
 			request.setAttribute("result", result);
@@ -29,6 +30,9 @@ public class SH_CommentDeleteAction  implements CommandProcess{
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}
-		return "sh_commentDelete.jsp";
-}
+		
+		
+		/*return "sh_content.jsp";*/
+		return new SH_ContentAction().requestPro(request, response);
+ 	}
 }

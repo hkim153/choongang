@@ -5,6 +5,22 @@
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title></head><body>
 <c:if test="${result > 0 }">
+	  <c:if test="${chk==1 }">
+	<script type="text/javascript">
+		alert("입력 완료");  
+		 self.close();
+	</script>
+</c:if>
+</c:if>
+<c:if test="${result == 0 }">  
+	 <c:if test="${chk==1 }">
+	<script type="text/javascript">
+		alert("입력실패");  
+		self.close();
+	</script>
+</c:if>
+</c:if>
+<c:if test="${result > 0 }">
 	<script type="text/javascript">
 		alert("입력 완료");  
 		location.href="hh_list.do?pageNum=${pageNum}";
@@ -16,5 +32,7 @@
 		location.href="hh_writeForm.do?e_id=${e_id}&pageNum=${pageNum}";
 	</script>
 </c:if>
+
+
 </body>
 </html>

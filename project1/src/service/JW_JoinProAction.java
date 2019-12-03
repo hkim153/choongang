@@ -27,14 +27,11 @@ public class JW_JoinProAction implements CommandProcess {
 			member.setAddress(request.getParameter("address"));
 			member.setTel(request.getParameter("tel"));		
 			member.setAdmin_c("N");			
-			member.setAlive_c("A");
+			member.setAlive_c("A");			
 			
+			int result = md.insert(member); // sql문이 정상적으로 읽혀 db에 값을 입력했다면 result =1;			
 			
-			
-			int result = md.insert(member);
-			
-			
-			request.setAttribute("result", result);
+			request.setAttribute("result", result); 
 			System.out.println("result: "+result);
 		
 		} catch (Exception e) { System.out.println(e.getMessage());

@@ -15,13 +15,12 @@ public class SJ_DeleteProAction implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			System.out.println("DeleteProAction start");
 			request.setCharacterEncoding("utf-8");
+			//순위 게시글 번호(보일 필요 없어 hidden 처리)
 			int num = Integer.parseInt(request.getParameter("num"));
-			Rank rank = new Rank();
 			RankDao rk = RankDao.getInstance();
+			// 삭제에 성공하면 result값이 1 실패하면 0
 			int result = rk.delete(num);
-			System.out.println("DeleteProAction result->"+result);
 			request.setAttribute("result", result);
 			request.setAttribute("num", num);
 		} catch(Exception e) { System.out.println(e.getMessage()); }

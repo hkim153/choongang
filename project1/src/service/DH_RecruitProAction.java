@@ -2,6 +2,7 @@ package service;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.ServletException;
@@ -16,15 +17,15 @@ import dao.EventDao;
 import dao.Recruit;
 import dao.RecruitDao;
 import dao.StoreDao;
-import dao.MemberDao;
-import dao.Member;
+
+
 
 public class DH_RecruitProAction implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession(); // 세션 선언
+		HttpSession session = request.getSession(); // 세션 선언 
 		request.setCharacterEncoding("utf-8");
 		
 		String recruit_title = request.getParameter("Recruit_title");
@@ -69,36 +70,54 @@ public class DH_RecruitProAction implements CommandProcess {
 		int result3 = 0;
 		
 		try {
-			result = rd.insert_recruit(recruit);
-			result2 = cd.chatRoom(chat);
-			result3 = cd.participantlist(chat);
+			result = rd.insert(recruit);                //팀원 모집 글 등록
+			result2 = cd.createchatroom(chat);          // 팀원모집 글 등록과 동시에 채팅방 생성
+			result3 = cd.participantlist(chat);         // 방생성 과 동시에 방 별 인원 리스트 생성
 			
 				int result6 = rd.maxnum();
+				System.out.println("result6 ->" + result6);
 			
 				Event event = new Event();
 		        event.setTitle(recruit_title);
-		        event.setUsername("사나");		
-		        event.setE_type("모임");		
+		        System.out.println("event.title->" +event.getTitle());
+		        event.setE_type("모임");	
+		        System.out.println("event.type->" +event.getE_type());
 		        event.setTextColor("#ffffff");	
+		        System.out.println("event.Color->" +event.getTextColor());
 		        event.setBackgroundColor("#74c0fc");
+		        System.out.println("event.BackgroundColor->" +event.getBackgroundColor());
 		        String [] rea = recruit_event.split("");
 		        String re = "";
-		        for (int i = 0; i < rea.length; i++) {
+	        	for (int i = 0; i < rea.length; i++) {
 					re += rea[i];
-					if (i==3||i==5) {
+				if (i==3||i==5) {
 						re += "-";
 					}
 				}
- 
-		        event.setE_start(re);
+	        	System.out.println(re);
+
+		        SimpleDateFormat format = new SimpleDateFormat ( "yyyy-MM-dd");
+		        
+		        Date time = new Date();
+				
+		        String time1 = format.format(time);
+		        
+		        event.setE_start(time1);
+
 		        event.setE_end(re);
+		        System.out.println("event.re" +event.getE_end());
 		        event.setDescription("상세 사항 참조");
 		        event.setAllDay("true");
 		        event.setRsa("변동 가능");
 		        
-		        String a= "/project1/dh_recruit_content.do?recruit_num="+result6+"&room_manager="+recruit_id;
+		        
+		    	String realPath = request.getRequestURI();
+				String [] repaarr = realPath.split("/");
+				realPath = repaarr[1];
+		        
+		        String a= "/"+realPath+"/dh_recruit_content.do?recruit_num="+result6+"&room_manager="+recruit_id;
 		        System.out.println("result6 - > " + result6);
-				event.setUrl(a);
+				event.setUrl(a); 
 				EventDao ed = EventDao.getInstance();//DB 
 		        int result5 = ed.insert(event);
 		 
@@ -111,6 +130,7 @@ public class DH_RecruitProAction implements CommandProcess {
 		request.setAttribute("result", result);
 		request.setAttribute("result2", result2);
 		request.setAttribute("result3", result3);
+		
 		return "dh_recruitPro.jsp";
 	}
 

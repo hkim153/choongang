@@ -1,4 +1,4 @@
-package dao;
+﻿package dao;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -113,7 +113,6 @@ public class EventDao {
 			rs = stmt.executeQuery(sql);
 			if (rs.next()) {
 				event.setE_id(rs.getInt("e_id"));
-				event.setUsername(rs.getString("username"));
 				event.setTitle(rs.getString("title"));
 				event.setE_type(rs.getString("e_type"));
 				event.setTextColor(rs.getString("textColor"));
@@ -170,7 +169,7 @@ public class EventDao {
 		int result = 0;
 		ResultSet rs = null;
 		String sql1 ="select nvl(max(e_id),0) from event";
-		String sql = "insert into event values(?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into event values(?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql1);
@@ -186,12 +185,11 @@ public class EventDao {
 			pstmt.setString(4, event.getE_start());
 			pstmt.setString(5, event.getE_end());
 			pstmt.setString(6, event.getE_type());
-			pstmt.setString(7, event.getUsername());
-			pstmt.setString(8, event.getBackgroundColor());
-			pstmt.setString(9, event.getAllDay());
-			pstmt.setString(10, event.getTextColor());
-			pstmt.setString(11, event.getRsa());
-			pstmt.setString(12, event.getUrl());
+			pstmt.setString(7, event.getBackgroundColor());
+			pstmt.setString(8, event.getAllDay());
+			pstmt.setString(9, event.getTextColor());
+			pstmt.setString(10, event.getRsa());
+			pstmt.setString(11, event.getUrl());
 			
 			result = pstmt.executeUpdate();
 			
@@ -226,9 +224,9 @@ public class EventDao {
 		}
 		return result;
 	}
-
-	public JSONArray getOnesoJSON() throws SQLException, FileNotFoundException {
-		OutputStream output = new FileOutputStream("C:/Users/user/git/choongang/project1/WebContent/data1.json");
+	//json 파일 생성
+	public JSONArray getOnesoJSON(String realPath) throws SQLException, FileNotFoundException {
+		OutputStream output = new FileOutputStream(realPath);
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -241,22 +239,36 @@ public class EventDao {
 			while (rs.next()) {
 				JSONObject obj = new JSONObject();
 				
-				obj.put("url", rs.getString(12));
-				obj.put("rsa", rs.getString(11));
-				obj.put("textColor", rs.getString(10));
-				obj.put("allday", rs.getString(9));
-				obj.put("backgroundColor", rs.getString(8));
-				obj.put("username", rs.getString(7));
+				obj.put("url", rs.getString(11));
+				obj.put("rsa", rs.getString(10));
+				obj.put("textColor", rs.getString(9));
+				obj.put("allday", rs.getString(8));
+				obj.put("backgroundColor", rs.getString(7));
 				obj.put("type", rs.getString(6));
 				obj.put("end", rs.getString(5));
 				obj.put("start", rs.getString(4));
 				obj.put("description", rs.getString(3));
-				obj.put("title", rs.getString(2));
+				
+				String title = rs.getString(2);
+				String [] titlearr = title.split(" ");
+				String title2 = "";
+				
+				//(제보) 부분 삭제
+				for (int i = 0; i < titlearr.length; i++) {
+					if (titlearr[i].equals("(제보)")) {
+						break;
+					}	
+					title2 += titlearr[i] + " ";
+				}
+				
+				obj.put("title", title2);
 				obj.put("_id", rs.getInt(1));				
 				jsonArray.add(obj);
 			
 			}
+			//string 에 json 입력
 			String input = jsonArray.toJSONString();
+			//json 파일 생성
 			output.write(input.getBytes());   
 					 
 	
@@ -295,6 +307,7 @@ public class EventDao {
 	}
 		
 	
+	//낚시터 이름 추출
 	public List<Event> list() throws SQLException {
 		List<Event> list = new ArrayList<Event>();
 		Connection conn = null;
@@ -324,6 +337,7 @@ public class EventDao {
 		
 		return list;
 	}
+	// 과거 모임값 삭제
 	public int delpast() throws SQLException {
 		Connection conn = null;
 		Statement stmt = null;
@@ -344,5 +358,31 @@ public class EventDao {
 		}
 		return result;
 	}
+	
+	//모집 게시판에 있는 사항을 수정하기 위한 메소드
+	public int update2(Event event) throws SQLException {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = "update event set title=?, e_end=? where e_id=?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, event.getTitle());
+			pstmt.setString(2, event.getE_end());
+			pstmt.setInt(3, event.getE_id());
+			
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			if (pstmt != null) pstmt.close();
+			if (conn != null) conn.close();
+			
+		}
+		return result;
+	}
+	
 	
 }

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.RecruitDao;
-import dao.fish;
+import dao.Fish;
 
 public class DH_RecruitFormAction implements CommandProcess {
 
@@ -20,7 +20,7 @@ public class DH_RecruitFormAction implements CommandProcess {
 		RecruitDao rd = RecruitDao.getInstance();
 
 		try {
-			List<fish> f_species = rd.f_species();
+			List<Fish> f_species = rd.f_species();
 			request.setAttribute("f_species", f_species);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

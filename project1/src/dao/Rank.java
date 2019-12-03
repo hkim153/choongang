@@ -3,15 +3,15 @@ package dao;
 import java.util.Date;
 
 public class Rank {
-	private int num;
-	private String id;
-	private String get_fish;
-	private int length;
-	private String content;
-	private Date reg_date;
-	private String img_folder;
-	private String file_name;
-	private String real_name;
+	private int num;			//insert하는 경우 +1씩 되는 숫자 sequence사용 ranknum1.nextval 사용
+	private String id;			//계정
+	private String get_fish;	//잡은 물고기
+	private int length;			//물고기 길이
+	private String content;		//물고기 잡고 난 후 기분 표현
+	private Date reg_date;		//등록일
+	private String img_folder;	//이미지 업로드시 저장되는 폴더
+	private String file_name;	//이미지 업로드된 파일 이름
+	private String real_name;	//이미지 업로드된 파일의 원래 이름
 	
 	public int getNum() {
 		return num;

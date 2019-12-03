@@ -10,7 +10,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
-
+<link href="test.css" rel="stylesheet" type="text/css">
+<link href="test1.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="js/jquery.js"></script>
 
 
@@ -89,7 +90,20 @@ if(b_code != "00"){
 </style>
 </head>
 <body>
+	<div id="wrap">
+		<div>
+			<jsp:include page="header.jsp"></jsp:include>
+		</div>
+	<c:if test = "${sessionScope.result ne 1 }">
+		<script type="text/javascript">
+			alert("로그인 해주세요");
+			location.href="jw_loginForm.do";
+		</script>
+	</c:if>
+	<div id="container" style="width: 1080px;">
+		<div class="content" style="width:388px; margin:20px auto;">
 	<h2>상품등록</h2>
+	<hr>
 	<form action="wh_ProregistPro.do" enctype="multipart/form-data" method="post">
 		<table border="1">
 			<tr>
@@ -175,5 +189,11 @@ if(b_code != "00"){
 			</tr>
 		</table>
 	</form>
+	</div>
+	</div>
+	<div>
+			<jsp:include page="footer.jsp"></jsp:include>
+		</div>
+	</div>
 </body>
 </html>

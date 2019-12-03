@@ -48,10 +48,11 @@ div {
 .row_group {
 	overflow: hidden;
 	width: 100%;
+	margin-bottom: 20px;
 }
 
 label {
-	cursor: default;
+	cursor: default;	
 }
 
 .join_title {
@@ -60,8 +61,11 @@ label {
 	font-weight: 700;
 }
 
-.ps_box.int_id {
+.ps_box .int_id {
 	padding-right: 110px;
+}
+.ps_box .int_id1{
+	padding-right: 55px;
 }
 
 .ps_box, .ps_box_disable {
@@ -102,6 +106,5 @@ button, input, select, textarea {
 	border-radius: 0;
 	-webkit-appearance: none;
 	-moz-appearance: none;
-	appearance: none
+	appearance: none	
 }
-

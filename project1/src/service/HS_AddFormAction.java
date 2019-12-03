@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-import dao.fish;
-import dao.fishingsite;
-import dao.fishingsiteDao;
+import dao.Fish;
+import dao.Fishingsite;
+import dao.FishingsiteDao;
 
 public class HS_AddFormAction implements CommandProcess {
 
@@ -19,15 +19,13 @@ public class HS_AddFormAction implements CommandProcess {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try {
-			int num = 0;
 			String pageNum = request.getParameter("pageNum");
 			if (pageNum == null) pageNum = "1";
 			
-			fishingsiteDao fsd = fishingsiteDao.getInstance();
-			List<fish> flist = fsd.get_all_fish();
+			FishingsiteDao fsd = FishingsiteDao.getInstance();
+			List<Fish> flist = fsd.get_all_fish();
 			
 			request.setAttribute("flist", flist);
-			request.setAttribute("num", num);
 			request.setAttribute("pageNum", pageNum);
 			
 		}catch(Exception e) {	System.out.println(e.getMessage());	}

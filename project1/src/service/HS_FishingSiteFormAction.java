@@ -7,8 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.fishingsite;
-import dao.fishingsiteDao;
+import dao.Fishingsite;
+import dao.FishingsiteDao;
 
 public class HS_FishingSiteFormAction implements CommandProcess {
 
@@ -16,7 +16,6 @@ public class HS_FishingSiteFormAction implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
 		
 		
 		return "hs_fishingSiteForm.jsp";

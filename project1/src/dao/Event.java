@@ -59,12 +59,7 @@ public class Event {
 	public void setE_type(String e_type) {
 		this.e_type = e_type;
 	}
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
+	
 	public String getBackgroundColor() {
 		return backgroundColor;
 	}
@@ -83,7 +78,6 @@ public class Event {
 	public void setAllDay(String allDay) {
 		this.allDay = allDay;
 	}
-	private String username;
 	private String backgroundColor;
 	private String textColor;
 	private String allDay;

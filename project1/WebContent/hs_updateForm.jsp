@@ -6,36 +6,70 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css?family=Dokdo&display=swap"
+	rel="stylesheet">
 <link href="test.css" rel="stylesheet" type="text/css">
 <style>
-table {
-	width: 80%;
-}
 
-#hsd {
-	width: 1400px;
+* {
 	margin: 0 auto;
-	text-align: center;
-	font-size: 9pt;
+	padding: 0;
+	font-family: 'Malgun gothic', 'Sans-Serif', 'Arial';
 }
 
-table {
-	background-color: #99e7ff;
-	width: 1080px;
-	text-align: center;
-	margin: 0 auto;
-	padding: 8px 10px 0;
-	zoom: 1;
+a {
+	text-decoration: none;
+	color: #333;
 }
 
-tr:hover {
-	background-color: ornage;
+ul li {
+	list-style: none;
 }
 
-td {
-	background-color: #e8ffff;
+/*공통*/
+.fl {
+	float: left;
+}
+
+.tc {
 	text-align: center;
-	padding: 10px;
+}
+
+/*게시판 목록*/
+#board_area {
+	width: 1100px;
+	position: relative;
+	margin-top: 20px;
+}
+
+.list-table {
+	margin-top: 40px;
+}
+
+.list-table thead th {
+	height: 40px;
+	border-top: 2px solid #09C;
+	border-bottom: 1px solid #CCC;
+	font-weight: bold;
+	font-size: 50px;
+	font-family: 'Dokdo', cursive;
+}
+
+.list-table tbody td {
+	text-align: center;
+	padding: 10px 0;
+	border-bottom: 1px solid #CCC;
+	height: 20px;
+	font-size: 14px
+}
+
+.bt{
+	color: white;
+	font-size: 15px;
+	background-color: #3db6cc;
+	border: 0;
+	height: 30px;
+	width: 120px;
 }
 </style>
 
@@ -46,11 +80,11 @@ td {
 		$("#checkall").click(function() {
 			//클릭되었으면
 			if ($("#checkall").prop("checked")) {
-				//input태그의 name이 chk인 태그들을 찾아서 checked옵션을 true로 정의
+				//input태그의 name이 어종인 태그들을 찾아서 checked옵션을 true로 정의
 				$("input[name=어종]").prop("checked", true);
 				//클릭이 안되있으면
 			} else {
-				//input태그의 name이 chk인 태그들을 찾아서 checked옵션을 false로 정의
+				//input태그의 name이 어종인 태그들을 찾아서 checked옵션을 false로 정의
 				$("input[name=어종]").prop("checked", false);
 			}
 		})
@@ -64,21 +98,24 @@ td {
 		<header>
 			<jsp:include page="header.jsp"></jsp:include>
 		</header>
-		<div id="hsd">
+		<div id="board_area">
 			<form action="hs_updatePro.do" enctype="multipart/form-data"
 				method="post">
-				<input type="hidden" name="num" value="${fs.fs_num}"> <input
-					type="hidden" name="pageNum" value="${pageNum}"> <input
-					type="hidden" name="id" value="${fs.id }"> <input
-					type="hidden" name="curid" value="${sessionScope.id }"> <input
-					type="hidden" name="rightpasswd" value="${sessionScope.passwd}">
-				<table border="1">
-					<caption>
-						<h2>낚시터 정보 수정</h2>
-					</caption>
+				<input type="hidden" name="num" value="${fs.fs_num}"> 
+				<input type="hidden" name="pageNum" value="${pageNum}"> 
+				<!-- 작성자, 현재 로그인 아이디, 비번 hidden으로 보내기 -->
+				<input type="hidden" name="id" value="${fs.id }"> 
+				<input type="hidden" name="curid" value="${sessionScope.id }"> 
+				<input type="hidden" name="rightpasswd" value="${sessionScope.passwd}">
+				<table class="list-table">
+					<thead>
+					<tr >
+						<th colspan = "2">낚시터 정보 수정</th>
+					</tr>
+					</thead>
 					<tr>
-						<td>번호</td>
-						<td>${fs.fs_num}</td>
+						<td width = "100">번호</td>
+						<td width = "700">${fs.fs_num}</td>
 					</tr>
 					<tr>
 						<td>낚시터 이름</td>
@@ -121,12 +158,15 @@ td {
 					</tr>
 					<tr>
 						<td>서식 어종</td>
+						<!-- 먼저 현재 서식하는 어종 보이고 수정할 어종 체크박스로 보내기 -->
 						<td>현재 어종: <c:forEach var="sfish" items="${fishes }">
-						${sfish }  
-					</c:forEach> <br> <input type="checkbox" id="checkall">모두 체크<br>
+									${sfish }  
+									</c:forEach> 
+						<br> 
+							<input type="checkbox" id="checkall">모두 체크<br>
 							<c:forEach var="fish" items="${flist }">
 								<input type="checkbox" name="어종" value="${fish.f_name }">${fish.f_name }
-					</c:forEach>
+							</c:forEach>
 						</td>
 					</tr>
 					<tr>
@@ -135,7 +175,7 @@ td {
 					</tr>
 					<tr>
 						<td>이미지</td>
-						<td><input type="file" name="fs_img"></td>
+						<td><input  type="file" name="fs_img"></td>
 					</tr>
 					<tr>
 						<td>작성자</td>
@@ -146,7 +186,7 @@ td {
 						<td><input type="password" name="passwd" required="required"></td>
 					</tr>
 					<tr>
-						<td colspan="2"><input type="submit" value="수정완료"></td>
+						<td colspan="2"><input class = "bt" type="submit" value="수정완료"></td>
 					</tr>
 				</table>
 			</form>

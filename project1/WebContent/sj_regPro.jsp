@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" errorPage="error.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -9,9 +9,6 @@
 </head>
 <body>
 
-
-<%-- result->${result}; --%> 
-
 <c:if test="${result>0 }">
 <script type="text/javascript">
 	alert("입력 완료");
@@ -20,7 +17,7 @@
 </c:if>
 <c:if test="${result==0 }">
 <script type="text/javascript">
-	alert("다른 분이 좋아하는 숫자입니다.");
+	alert("입력 실패");
 	location.href="fishingking.do?id=${id}";
 </script>
 </c:if>

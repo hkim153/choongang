@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css?family=Dokdo&display=swap"
+	rel="stylesheet">
 <link href="test.css" rel="stylesheet" type="text/css">
 <style>
 #hsd1 {
@@ -19,16 +21,14 @@
 	width: 300px;
 	height: 300px;
 	display: inline-block;
-	background-color: #e8ffff;
+	background-color: #3db7cc;
 	border-radius: 50px;
 	box-shadow: 10px 10px 15px 5px black;
-	font-style
 }
 
 #hsf1, #hsf2 {
-	font-style: italic;
-	margin-top: 135px;
-	font-size: 40px;
+	font: 60px Dokdo, cursive;
+	margin-top: 125px;
 }
 </style>
 </head>

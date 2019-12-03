@@ -6,36 +6,70 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css?family=Dokdo&display=swap"
+	rel="stylesheet">
 <link href="test.css" rel="stylesheet" type="text/css">
 <style>
-table {
-	width: 80%;
-}
 
-#hsd {
-	width: 1400px;
+* {
 	margin: 0 auto;
-	text-align: center;
-	font-size: 9pt;
+	padding: 0;
+	font-family: 'Malgun gothic', 'Sans-Serif', 'Arial';
 }
 
-table {
-	background-color: #99e7ff;
-	width: 1080px;
-	text-align: center;
-	margin: 0 auto;
-	padding: 8px 10px 0;
-	zoom: 1;
+a {
+	text-decoration: none;
+	color: #333;
 }
 
-tr:hover {
-	background-color: ornage;
+ul li {
+	list-style: none;
 }
 
-td {
-	background-color: #e8ffff;
+/*공통*/
+.fl {
+	float: left;
+}
+
+.tc {
 	text-align: center;
-	padding: 10px;
+}
+
+/*게시판 목록*/
+#board_area {
+	width: 1100px;
+	position: relative;
+	margin-top: 20px;
+}
+
+.list-table {
+	margin-top: 40px;
+}
+
+.list-table thead th {
+	height: 40px;
+	border-top: 2px solid #09C;
+	border-bottom: 1px solid #CCC;
+	font-weight: bold;
+	font-size: 50px;
+	font-family: 'Dokdo', cursive;
+}
+
+.list-table tbody td {
+	text-align: center;
+	padding: 10px 0;
+	border-bottom: 1px solid #CCC;
+	height: 20px;
+	font-size: 14px
+}
+
+.bt{
+	color: white;
+	font-size: 15px;
+	background-color: #3db6cc;
+	border: 0;
+	height: 30px;
+	width: 120px;
 }
 </style>
 
@@ -46,11 +80,11 @@ td {
 		$("#checkall").click(function() {
 			//클릭되었으면
 			if ($("#checkall").prop("checked")) {
-				//input태그의 name이 chk인 태그들을 찾아서 checked옵션을 true로 정의
+				//input태그의 name이 어종인 태그들을 찾아서 checked옵션을 true로 정의
 				$("input[name=어종]").prop("checked", true);
 				//클릭이 안되있으면
 			} else {
-				//input태그의 name이 chk인 태그들을 찾아서 checked옵션을 false로 정의
+				//input태그의 name이 어종인 태그들을 찾아서 checked옵션을 false로 정의
 				$("input[name=어종]").prop("checked", false);
 			}
 		})
@@ -60,22 +94,27 @@ td {
 
 </head>
 <body>
+	<!-- 낚시터 추가  -->
 	<div class="wrap">
 		<header>
 			<jsp:include page="header.jsp"></jsp:include>
 		</header>
-		<div id="hsd">
+		<div id="board_area">
+			<!-- 폼 써서 모든 input 내용들을 넘긴다. 이때 이미지를 첨부하여 넘기기 때문에 enctype="multipart/form-data" 포함시킴  -->
 			<form action="hs_addPro.do?pageNum=${pageNum}"
 				enctype="multipart/form-data" method="post">
-				<input type="hidden" name="num" value="${num}"> <input
-					type="hidden" name="id" value="${sessionScope.id }">
-				<table>
-					<caption>
-						<h2>낚시터 추가</h2>
-					</caption>
+				<!-- 현재 로그인 되어 있는 아이디를 작성자로서 넣어야 하기때문에 hidden으로 현재 로그인 아이디 넘김 -->
+				<input type="hidden" name="id" value="${sessionScope.id }">
+				<!-- 테이블 시작 각 내용들 입력한다 -->
+				<table class="list-table">
+					<thead>
+						<tr>
+							<th colspan = "2">낚시터 추가</th>
+						</tr>
+					</thead>
 					<tr>
-						<td>낚시터 이름</td>
-						<td><input type="text" name="fs_name" required="required"></td>
+						<td width = "100">낚시터 이름</td>
+						<td width = "700"><input type="text" name="fs_name" required="required"></td>
 					</tr>
 					<tr>
 						<td>지역</td>
@@ -111,10 +150,14 @@ td {
 					</tr>
 					<tr>
 						<td>서식 어종</td>
-						<td><input type="checkbox" id="checkall">모두 체크<br>
+						<td>
+							<!-- 모두 체크할 수 있는 jQuery 추가함 자세한건 위에 읽으삼  --> <input
+							type="checkbox" id="checkall">모두 체크<br> <!-- 현재 db에 저장되어 있는 어종 가져와버리기 -->
 							<c:forEach var="fish" items="${flist }">
+								<!-- 어종 가져와서 checkbox로 데이터 넘겨버리기 -->
 								<input type="checkbox" name="어종" value="${fish.f_name }">${fish.f_name }
-			</c:forEach></td>
+							</c:forEach>
+						</td>
 					</tr>
 					<tr>
 						<td>내용</td>
@@ -129,8 +172,8 @@ td {
 						<td>${sessionScope.id }</td>
 					</tr>
 					<tr>
-						<td><input type="submit" value="확인"></td>
-						<td><input type="reset" value="다시작성"></td>
+						<td><input class = "bt" type="reset" value="다시작성"></td>
+						<td><input class = "bt" type="submit" value="확인"></td>
 					</tr>
 				</table>
 			</form>

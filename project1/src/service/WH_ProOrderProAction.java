@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.Store; 
 import dao.StoreDao;
@@ -18,11 +19,13 @@ public class WH_ProOrderProAction implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		HttpSession session =  request.getSession(true);
 		StoreDao sd = StoreDao.getInstance();
 		int totalPrice = Integer.parseInt(request.getParameter("totalPrice"));
 		int pro_num = Integer.parseInt(request.getParameter("pro_num"));
 		int pro_code = Integer.parseInt(request.getParameter("pro_code"));
 		int quantity = Integer.parseInt(request.getParameter("quantity"));
+		String id = (String)session.getAttribute("id");
 		String pro_name = request.getParameter("pro_name");
 		String seller = request.getParameter("seller");
 		String name = request.getParameter("name");
@@ -33,6 +36,7 @@ public class WH_ProOrderProAction implements CommandProcess {
 		int result = 0;
 		int result2 = 0;
 		
+		System.out.println("0  ==> " + id);
 		System.out.println("1  ==> " + totalPrice);
 		System.out.println("2  ==> " + pro_num );
 		System.out.println("3  ==> " + pro_code);
@@ -51,6 +55,7 @@ public class WH_ProOrderProAction implements CommandProcess {
 		store.setPro_code(pro_code);
 		store.setQuantity(quantity);
 		store.setPro_name(pro_name);
+		store.setId(id);
 		store.setSeller(seller);
 		store.setRequest_term(request_term);
 		store.setName(name);

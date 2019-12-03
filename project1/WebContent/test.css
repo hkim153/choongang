@@ -73,11 +73,30 @@ a {
 }
 
 .board_side {
-	width: 740px;
+	width: 1080px;
 	height: 300px;
 	overflow: hidden;
 	padding-top: 8px;
 	background: #fff;
+}
+
+.board_side .board_title{
+	float:left;
+	width:1080px;
+}
+
+.board_side .board_title span{
+	width:332px;
+	height:25px;
+	margin:20px 0px 5px 10px;
+	float:left;
+	font-size: 40px;
+	font-family: 'Dokdo', cursive;
+	font-weight: bold;
+}
+
+.board_side .board_table{
+	float:left;
 }
 
 .column_right {
@@ -92,6 +111,7 @@ a {
 	border: 0;
 	background: #fff;
 }
+
 .section_login #loginBtn{
 	position: relative;
 	height: 37px;
@@ -100,16 +120,30 @@ a {
 	color: white;
 	margin-left: 26px;
 	margin-top: 40.5px;
-	background-color: #4CAF50;
+	background-color: #3DB7CC;
 	background-position: - -47px;
 }
-
+.section_login .login_view{
+	margin-left: 26px;
+}
+.section_login .login_view #btnColor{
+	border: 0;
+	color: white;
+	background-color: #3DB7CC;
+	background-position: - -47px;
+	height: 29px;
+	width: 70px;
+	margin-right: 5px;
+	font-size: 15px;
+	margin-top: 18px;
+}
 .section_event {
 	position: relative;
 	height: 500px;
 	border: 1px solid #dee3eb;
 	background: #fff;
 }
+
 
 .sj_c td {
 	border-top: 1px groove;
@@ -118,20 +152,99 @@ a {
 }
 #sj_o {
 	text-align: center;
-	width: 100px;
+	width: 80px;
 	height: 50px;
 }
 #sj_p {
 	text-align: center;
-	width: 150px;
+	width: 100px;
+}
+#sj_h {
+	text-align: center;
+	width: 120px;
 }
 .sj_c {
 	float: left;
-	margin-left: 40px;
+	margin-left: 10px;
+	width:729px;
+}
+.sj_c .rank_title{
+	width: 739px;
+}
 
+.sj_c .rank_title span{
+	font-size: 30px;
+	font-family: 'Dokdo', cursive;
+}
+
+.rank_table{
+	border:1px;
+	float:left;
+	width:420px;
+	height:230px;
+}
+
+.thumbnail{
+	text-align: center;
+}
+
+.rank_top1 {
+	float:left;
+	width:287px;
+	height:230px;
+	text-align: center;
+}
+
+.rank_top1 img{
+	width:220px;
+	height:220px;
+	margin: auto 44px;
+}
+
+.rank_info{
+	float: left;
+	width:739px;
+	margin-bottom: 5px;
+}
+
+.rank_info span {
+	float:right;
+	margin-right: 45px;
+	font-size: 11px;
+	font-weight: bold;
 }
 #sj_e {
 	float: right;
 	margin-right: 150px;
 	width: 400px;
 	height: 200px;
+}
+#sj_f {
+	height: 230px;
+}
+
+
+.recruit{
+	width: 332px;
+	height:240px;
+	margin-top:30px;
+}
+
+.recruit .recruit_title span{
+	width:332px;
+	height:25px;
+	margin:20px 0px 5px 10px;
+	float:left;
+	font-size: 40px;
+	font-family: 'Dokdo', cursive;
+	font-weight: bold;
+}
+#loginBtn1{
+	position: relative;
+	height: 30px;	
+	border: 0;
+	color: white;
+	background-color: #3DB7CC;
+	background-position: - -47px;
+}
+	

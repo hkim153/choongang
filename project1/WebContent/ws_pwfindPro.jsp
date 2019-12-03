@@ -9,16 +9,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:if test="${result > 0 }">
+<c:if test="${result != 0 }">
 	<script type="text/javascript">
 		alert("회원님의 비밀번호는 ${y_pw}입니다.");
-		location.href="jw_loginForm.do?pageNum=${pageNum}";
+		location.href="jw_loginForm.do";
 	</script>
 </c:if>	
 <c:if test="${result == 0 }">
 	<script type="text/javascript">
 		alert("정보가 일치하지 않습니다.");
-		location.href="jw_loginForm.do?num=${num}&pageNum=${pageNum}";
+		location.href="jw_loginForm.do";
 	</script>
 </c:if>
 

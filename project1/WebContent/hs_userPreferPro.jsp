@@ -1,4 +1,4 @@
-<%@page import="dao.fishingsite"%>
+<%@page import="dao.*"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -8,9 +8,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css?family=Dokdo&display=swap"
+	rel="stylesheet">
 <link href="test.css" rel="stylesheet" type="text/css">
-
 <style>
+
+#hsd h1{
+	font-size: 50px;
+	font-family: 'Dokdo', cursive;
+	font-weight: bold;
+}
 #hsd {
 	width: 1400px;
 	margin: 0 auto;
@@ -19,230 +26,235 @@
 }
 
 img.absolute {
-	position: relative;
-	left: 100px;
-	top: 200px;
-}
-
-.map1 {
-	width: 200px;
-	height: auto;
-	border-style: solid;
-	background-color: #e8ffff;
-	border-color:#99e7ff;
-	text-align: center;
-	padding: 10px;
-	position: relative;
-	left: 550px;
-	top: -1050px;
-}
-
-.map2 {
-	width: 200px;
-	height: auto;
-	border-style: solid;
-	background-color: #e8ffff;
-	border-color:#99e7ff;
-	text-align: center;
-	padding: 10px;
-	position: relative;
-	left: 300px;
-	top: 100px;
-}
-
-.map3 {
-	width: 200px;
-	height: auto;
-	border-style: solid;
-	background-color: #e8ffff;
-	border-color:#99e7ff;
-	text-align: center;
-	padding: 10px;
-	position: relative;
-	left: 50px;
-	top: 200px;
-}
-
-.map4 {
-	width: 200px;
-	height: auto;
-	border-style: solid;
-	background-color: #e8ffff;
-	border-color:#99e7ff;
-	text-align: center;
-	padding: 10px;
-	position: relative;
-	left: 1000px;
-	top: 150px;
-}
-
-.map5 {
-	width: 200px;
-	height: auto;
-	border-style: solid;
-	background-color: #e8ffff;
-	border-color:#99e7ff;
-	text-align: center;
-	padding: 10px;
-	position: relative;
-	left: 50px;
-	top: 400px;
-}
-
-.map6 {
-	width: 200px;
-	height: auto;
-	border-style: solid;
-	background-color: #e8ffff;
-	border-color:#99e7ff;
-	text-align: center;
-	padding: 10px;
-	position: relative;
-	left: 1000px;
-	top: 350px;
-}
-
-.map7 {
-	width: 200px;
-	height: auto;
-	border-style: solid;
-	background-color: #e8ffff;
-	border-color:#99e7ff;
-	text-align: center;
-	padding: 10px;
-	position: relative;
-	left: 50px;
+	position: absolute;
+	left: 500px;
 	top: 600px;
 }
 
-.map8 {
-	width: 200px;
+#imgdiv{
+	height:1400px;
+	margin-top: 300px;
+}
+
+.map1 {
+	width: 150px;
 	height: auto;
 	border-style: solid;
 	background-color: #e8ffff;
 	border-color:#99e7ff;
 	text-align: center;
 	padding: 10px;
-	position: relative;
-	left: 50px;
-	top: 800px;
+	position: absolute;
+	left: 700px;
+	top: 400px;
+}
+
+.map2 {
+	width: 150px;
+	height: auto;
+	border-style: solid;
+	background-color: #e8ffff;
+	border-color:#99e7ff;
+	text-align: center;
+	padding: 10px;
+	position: absolute;
+	left: 500px;
+	top: 500px;
+}
+
+.map3 {
+	width: 150px;
+	height: auto;
+	border-style: solid;
+	background-color: #e8ffff;
+	border-color:#99e7ff;
+	text-align: center;
+	padding: 10px;
+	position: absolute;
+	left: 300px;
+	top: 500px;
+}
+
+.map4 {
+	width: 150px;
+	height: auto;
+	border-style: solid;
+	background-color: #e8ffff;
+	border-color:#99e7ff;
+	text-align: center;
+	padding: 10px;
+	position: absolute;
+	left: 900px;
+	top: 400px;
+}
+
+.map5 {
+	width: 150px;
+	height: auto;
+	border-style: solid;
+	background-color: #e8ffff;
+	border-color:#99e7ff;
+	text-align: center;
+	padding: 10px;
+	position: absolute;
+	left: 400px;
+	top: 700px;
+}
+
+.map6 {
+	width: 150px;
+	height: auto;
+	border-style: solid;
+	background-color: #e8ffff;
+	border-color:#99e7ff;
+	text-align: center;
+	padding: 10px;
+	position: absolute;
+	left: 1050px;
+	top: 600px;
+}
+
+.map7 {
+	width: 150px;
+	height: auto;
+	border-style: solid;
+	background-color: #e8ffff;
+	border-color:#99e7ff;
+	text-align: center;
+	padding: 10px;
+	position: absolute;
+	left: 400px;
+	top: 900px;
+}
+
+.map8 {
+	width: 150px;
+	height: auto;
+	border-style: solid;
+	background-color: #e8ffff;
+	border-color:#99e7ff;
+	text-align: center;
+	padding: 10px;
+	position: absolute;
+	left: 450px;
+	top: 1100px;
 }
 
 .map9 {
-	width: 200px;
+	width: 150px;
 	height: auto;
 	border-style: solid;
 	background-color: #e8ffff;
 	border-color:#99e7ff;
 	text-align: center;
 	padding: 10px;
-	position: relative;
-	left: 50px;
-	top: 1000px;
+	position: absolute;
+	left: 400px;
+	top: 1300px;
 }
 
 .map10 {
-	width: 200px;
+	width: 150px;
 	height: auto;
 	border-style: solid;
 	background-color: #e8ffff;
 	border-color:#99e7ff;
 	text-align: center;
 	padding: 10px;
-	position: relative;
-	left: 50px;
-	top: 1200px;
+	position: absolute;
+	left: 400px;
+	top: 1500px;
 }
 
 .map11 {
-	width: 200px;
+	width: 150px;
 	height: auto;
 	border-style: solid;
 	background-color: #e8ffff;
 	border-color:#99e7ff;
 	text-align: center;
 	padding: 10px;
-	position: relative;
-	left: 50px;
-	top: 1400px;
+	position: absolute;
+	left: 800px;
+	top: 1450px;
 }
 
 .map12 {
-	width: 200px;
+	width: 150px;
 	height: auto;
 	border-style: solid;
 	background-color: #e8ffff;
 	border-color:#99e7ff;
 	text-align: center;
 	padding: 10px;
-	position: relative;
-	left: 1000px;
-	top: 550px;
+	position: absolute;
+	left: 1100px;
+	top: 800px;
 }
 
 .map13 {
-	width: 200px;
+	width: 150px;
 	height: auto;
 	border-style: solid;
 	background-color: #e8ffff;
 	border-color:#99e7ff;
 	text-align: center;
 	padding: 10px;
-	position: relative;
-	left: 650px;
-	top: 1200px;
+	position: absolute;
+	left: 1000px;
+	top: 1450px;
 }
 
 .map14 {
-	width: 200px;
+	width: 150px;
 	height: auto;
 	border-style: solid;
 	background-color: #e8ffff;
 	border-color:#99e7ff;
 	text-align: center;
 	padding: 10px;
-	position: relative;
-	left: 1000px;
-	top: 750px;
+	position: absolute;
+	left: 1150px;
+	top: 1000px;
 }
 
 .map15 {
-	width: 200px;
+	width: 150px;
 	height: auto;
 	border-style: solid;
 	background-color: #e8ffff;
 	border-color:#99e7ff;
 	text-align: center;
 	padding: 10px;
-	position: relative;
-	left: 1000px;
-	top: 950px;
+	position: absolute;
+	left: 1150px;
+	top: 1200px;
 }
 
 .map16 {
-	width: 200px;
+	width: 150px;
 	height: auto;
 	border-style: solid;
 	background-color: #e8ffff;
 	border-color:#99e7ff;
 	text-align: center;
 	padding: 10px;
-	position: relative;
-	left: 1000px;
-	top: 1150px;
+	position: absolute;
+	left: 1200px;
+	top: 1450px;
 }
 
 .map17 {
-	width: 200px;
+	width: 150px;
 	height: auto;
 	border-style: solid;
 	background-color: #e8ffff;
 	border-color:#99e7ff;
 	text-align: center;
 	padding: 10px;
-	position: relative;
-	left: 300px;
-	top: 1400px;
+	position: absolute;
+	left: 600px;
+	top: 1660px;
 }
 
 
@@ -253,8 +265,12 @@ img.absolute {
 	<div id="hsd">
 		<h1>추천 지역</h1>
 		<hr>
-		<img src="images/map.jpg" alt="우리나라 구역" class="absolute">
+		<!-- 우리나라 지도 표시  -->
+		<div id="imgdiv">
+			<img src="images/map.jpg" alt="우리나라 구역" class="absolute">
+		</div>
 		<p>
+		<!-- 17개 구역을 체크하기 위해서 먼저 17개 변수를 다 0으로 설정한 후에 추천 지역이 있다면 해당 변수만 1로 변경 -->
 			<c:set var="reg1" value="0" />
 			<c:set var="reg2" value="0" />
 			<c:set var="reg3" value="0" />
@@ -327,11 +343,15 @@ img.absolute {
 					</c:when>
 				</c:choose>
 			</c:forEach>
+			<!-- 만약 추천 지역이 있다면 변수가 1로 변했기 때문에,
+				 1로 변경된 부분만 박스를 만들고 낚시터 정보를 가져오면 된다 -->
 			<c:if test="${reg1 == '1' }">
 				<div class="map1">
 					<b>경기도</b>
 					<hr>
 					<ul>
+						<!-- 예를들어 추천낚시터에 해당하는 어종도 같고 경기도에 있다면 
+							경기도 박스만 일단 만들고 그 박스안에 낚시터 정보 가져옴 -->
 						<c:forEach var="fslist" items="${fslist }">
 							<c:choose>
 								<c:when test="${fslist.getFs_reg() == '경기도'}">

@@ -5,8 +5,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="https://fonts.googleapis.com/css?family=Dokdo&display=swap" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="css/js-load.css" media="screen" />
 <link href="test.css" rel="stylesheet" type="text/css">
-<link href="test1.css" rel="stylesheet" type="text/css">
+<link href="test1.css" rel="stylesheet" type="text/css"> 
 <style type="text/css">
 #content {
 	width: 1080px;
@@ -33,7 +35,6 @@ ul{
     margin-block-end: 1em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
-    padding-inline-start: 40px;
 }
 
 ul ul{
@@ -68,8 +69,8 @@ p{
 strong {
     font-weight: bold;
 }
-.goods_pay_item{
-	display: table;
+.lists__item{
+	margin: 5px auto;
     width: 1075px;
     min-height: 161px;
     padding: 23px 0 24px;
@@ -78,18 +79,18 @@ strong {
     border: 2px inset #6A84B7
 }
 
-.goods_pay_item .goods_item{
+.lists__item .goods_item{
 	position: relative;
     padding-left: 129px;
     width: 500px;
 }
 
-.goods_pay_item > div{
+.lists__item > div{
 	display: table-cell;
     vertical-align: middle;
 }
 
-.goods_pay_item .goods_item .goods_thumb{
+.lists__item .goods_item .goods_thumb{
 	overflow: hidden;
     position: absolute;
     left: 9px;
@@ -100,23 +101,23 @@ strong {
     text-align: center;
 }
 
-.goods_pay_item .goods_item .goods_thumb img{
+.lists__item .goods_item .goods_thumb img{
 	vertical-align: top;
 	border:0;
 	width:90px;
 	height:90px;
 }
 
-.goods_pay_item .goods_item .goods_info{
+.lists__item .goods_item .goods_info{
 	font-size: 13px;
 }
 
-.goods_pay_item .goods_item .goods_info .goods{
+.lists__item .goods_item .goods_info .goods{
 	display: block;
     text-decoration: none;
 }
 
-.goods_pay_item .goods_item .goods_info .goods .name{
+.lists__item .goods_item .goods_info .goods .name{
 	max-width: 100%;
     overflow: hidden;
     color: #000;
@@ -127,11 +128,11 @@ strong {
     text-decoration: none;
 }
 
-.goods_pay_item .goods_item .goods_info .goods .info{
+.lists__item .goods_item .goods_info .goods .info{
 	margin: 8px 0px 12px;
 }
 
-.goods_pay_item .goods_item .goods_info .goods .info li {
+.lists__item .goods_item .goods_info .goods .info li {
 	display: inline-block;
     color: #000;
     font-size: 14px;
@@ -157,12 +158,12 @@ strong {
     color: #808080;
 }
 
-.goods_pay_item .goods_item .goods_info .goods .info li.date{
+.lists__item .goods_item .goods_info .goods .info li.date{
 	color: #a5a5a5 !important;
     font-family: Helvetica, '나눔고딕', NanumGothic, '맑은고딕', MalgunGothic, '돋움', Dotum, sans-serif;
 }
 
-.goods_pay_item .goods_item .goods_info .goods .info li + li{
+.lists__item .goods_item .goods_info .goods .info li + li{
 	margin: 0 0 0 8px !important;
     padding-left: 11px;
 }
@@ -172,54 +173,70 @@ strong {
 	list-style:none;
 }
 
-.goods_pay_item .goods_item .goods_info .state{
+.lists__item .goods_item .goods_info .state{
 	   color: #a5a5a5;
 }
 
-.goods_pay_item .goods_item .goods_info{
+.lists__item .goods_item .goods_info{
 	margin-top: 10px;
     padding-top: 10px;
     color: #646465;
     line-height: 18px;
-    border-top: 1px solid #f4f6f7;
 }
 
-.goods_pay_item .seller_item{
+.lists__item .seller_item{
 	width: 150px;
 }
 
-.goods_pay_item .seller_item .inner{
+.lists__item .seller_item .inner{
 	padding: 0 25px;
     color: #000;
     text-align: center;
 }
-.goods_pay_item .seller_item .inner > * {
+.lists__item .seller_item .inner > * {
 	display: block;
 }
 
-.goods_pay_item .seller_item .inner .seller{
+.lists__item .seller_item .inner .seller{
 	overflow: hidden;
     max-width: 100%;
     white-space: nowrap;
     -ms-text-overflow: ellipsis;
     text-overflow: ellipsis;
-    margin-bottom: 5px;
+    margin-bottom: 17px;
+    margin-top:22px;
 }
 
-.goods_pay_item .seller_item .inner .tel{
+.lists__item .seller_item .inner .tel{
 	margin-bottom: 5px;
     color: #a5a5a5;
     font-size: 11px;
     font-family: Helvetica, '나눔고딕', NanumGothic, '맑은고딕', MalgunGothic, '돋움', Dotum, sans-serif;
 }
 
+.lists__item .seller_item .inner a img{
+	width: 160px;
+}
+
+.button_item{
+	width:236px;
+}
+
 .button_item .inner{
 	text-align: center;
 }
 </style>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/js-load.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
+	<c:if test = "${sessionScope.result ne 1 }">
+		<script type="text/javascript">
+			alert("로그인 해주세요");
+			location.href="jw_loginForm.do";
+		</script>
+	</c:if>
 	<div id="wrap">
 		<div>
 			<jsp:include page="header.jsp"></jsp:include>
@@ -233,20 +250,20 @@ strong {
 					<button value="마이페이지" style="float:right; margin: 0px 15px 15px 0;"><a href="javascript:history.back();">마이페이지</a></button>
 					<hr style="width:1080px;">
 				</div>
-				<div class="sub_sc" style="min-height:850px;">
+				<div class="sub_sc">
 				<div id="_listContentArea">
 				<div class="goods_pay_section">
-				<c:forEach var="orderlist" items="${orderlist }">
-					<div>
-						<ul>
-							<li class="goods_pay_item">
+					<div id="js-load" class="main">
+						<ul class="lists">
+							<c:forEach var="orderlist" items="${orderlist }">
+							<li class="lists__item js-load">
 								<div class="goods_item">
-										<a href="wh_ProContent.do?pro_num=${orderlist.pro_num }&pro_code=${orderlist.pro_code}" class="goods_thumb">
+										<a href="wh_OrderContent.do?buy_num=${orderlist.buy_num }" class="goods_thumb">
 											<img src="${pageContext.request.contextPath}/${orderlist.img_folder}/${orderlist.real_name }" >
 										</a>
 									
 									<div class="goods_info">
-										<a href="wh_ProContent.do?pro_num=${orderlist.pro_num }&pro_code=${orderlist.pro_code}" class="goods">
+										<a href="wh_OrderContent.do?buy_num=${orderlist.buy_num }" class="goods">
 											<p class="name">${orderlist.pro_name}</p>
 											<ul class="info">
 												<li>
@@ -276,12 +293,12 @@ strong {
 											</c:when>
 											<c:when test="${orderlist.state eq 3}">
 												<span class="state">
-													구매취소										
+													구매취소 요청(환불)										
 												</span>
 											</c:when>
 											<c:when test="${orderlist.state eq 4}">
 												<span class="state">
-													반품										
+													반품 요청(환불)								
 												</span>
 											</c:when>
 											<c:when test="${orderlist.state eq 5}">
@@ -294,37 +311,73 @@ strong {
 													구매확정										
 												</span>
 											</c:when>
+											<c:when test="${orderlist.state eq 7}">
+												<span class="state">
+													환불처리 완료										
+												</span>
+											</c:when>
+											<c:when test="${orderlist.state eq 8}">
+												<span class="state">
+													교환배송중										
+												</span>
+											</c:when>
+											<c:when test="${orderlist.state eq 9}">
+												<span class="state">
+													교환배송 완료										
+												</span>
+											</c:when>
 										</c:choose>
+										<p class="guide">
+										<c:if test="${orderlist.state eq 0 ||orderlist.state eq 1||orderlist.state eq 2 || orderlist.state eq 6}">
+										구매가 완료되었습니다. 이용해주셔서 감사합니다. <br>
+										</c:if>
+										<c:if test="${orderlist.state eq 3}">
+										취소요청 되었습니다. 더 좋은 상품으로 준비하겠습니다. <br>
+										</c:if>
+										<c:if test="${orderlist.state eq 4}">
+										반품요청 되었습니다. 더 좋은 상품으로 준비하겠습니다. <br>
+										</c:if>
+										<c:if test="${orderlist.state eq 5}">
+										교환요청 되었습니다. 이용해주셔서 감사합니다. <br>
+										</c:if>
+										<c:if test="${orderlist.state eq 6}">
+											구매확정 이후 <strong> 상품의 이용방법, 반품 등에 대한 문의는 판매자에게 문의해주세요.</strong>
+										</c:if>
+										</p>
+										
+										<c:if test="${orderlist.state eq 4}">
 										<p class="guide">구매가 완료되었습니다. 이용해주셔서 감사합니다. <br>
 										<c:if test="${orderlist.state eq 6}">
 											구매확정 이후 <strong> 상품의 이용방법, 반품 등에 대한 문의는 판매자에게 문의해주세요.</strong>
 										</c:if>
 										</p>
+										</c:if>
 									</div>
 								</div>
 								<div class="seller_item">
 									<div class="inner">
-										<span class="seller">${orderlist.seller }</span>
+										<span class="seller">${orderlist.sell_name }</span>
 										<span class="tel">${orderlist.tel }</span>
-										<a href="#"><img src="./images/ask.png"></a>
+										
+										<a href="javascript:alert('죄송합니다. 해당 기능은 준비중 입니다.')"><img src="./images/ask.png">
+										</a>
 									</div>
 								</div>
 								<div class="button_item">
 									<div class="inner">
-										<c:if test="${orderlist.state eq 0}">
-											<button value="취소요청">취소요청</button>
-										</c:if>
-										<c:if test="${orderlist.state eq 2}">
-											<button value="반품요청">반품요청</button><br><br>
-											<button value="교환요청">교환요청</button><br><br>
-											<button value="구매확정">구매확정</button><br><br>
-										</c:if>
+										<button type="button" onclick="location.href = 'wh_OrderContent.do?buy_num=${orderlist.buy_num }'">주문내역 상세보기</button>
 									</div>
 								</div>	
 							</li>
+						</c:forEach>
 						</ul>
+						<div id="js-btn-wrap" class="btn-wrap">
+							 <a href="javascript:;" class="button">
+							 	<span style="color:#3db7cc; font-size:30px;">+ 더보기</span>
+							 </a> 
+						</div>
 					</div>
-				</c:forEach>
+				
 				</div>
 				</div>
 				</div>

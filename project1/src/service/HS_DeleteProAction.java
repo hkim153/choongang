@@ -6,8 +6,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.fishingsite;
-import dao.fishingsiteDao;
+import dao.Fishingsite;
+import dao.FishingsiteDao;
 
 public class HS_DeleteProAction implements CommandProcess {
 
@@ -24,15 +24,20 @@ public class HS_DeleteProAction implements CommandProcess {
 			String curid = request.getParameter("curid");
 			
 			int result;
+			//작성자랑 로그인 아이디가 다를때 
 			if(!id.equals(curid)) {
 				result = -1;
 			}
 			else {
+				//비밀번호가 틀렸을때
 				if(!passwd.equals(rightpasswd)) {
 					result = -2;
 				}
 				else {
-					fishingsiteDao fsd = fishingsiteDao.getInstance();
+					//아이디도 같고 비번도 같으면 먼저
+					//fishmapping에 연결되어 있는 서식 어종들 삭제하고
+					//낚시터 정보 삭제
+					FishingsiteDao fsd = FishingsiteDao.getInstance();
 					fsd.deletefishmapping(num);
 					result = fsd.delete(num);
 				}

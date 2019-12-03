@@ -7,8 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.fish;
-import dao.fishingsiteDao;
+import dao.Fish;
+import dao.FishingsiteDao;
 
 public class HS_UserPreferFormAction implements CommandProcess {
 
@@ -17,8 +17,9 @@ public class HS_UserPreferFormAction implements CommandProcess {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try {
-			fishingsiteDao fsd = fishingsiteDao.getInstance();
-			List<fish> flist = fsd.get_all_fish();
+			FishingsiteDao fsd = FishingsiteDao.getInstance();
+			//db에 저장된 모든 어종 보내버리기
+			List<Fish> flist = fsd.get_all_fish();
 			request.setAttribute("flist", flist);
 		}catch(Exception e) {	System.out.println(e.getMessage());	}
 		return "hs_userPreferForm.jsp";

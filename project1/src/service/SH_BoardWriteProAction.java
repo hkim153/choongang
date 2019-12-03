@@ -20,10 +20,22 @@ try {
 	        request.setCharacterEncoding("utf-8"); 
 	        String pageNum = request.getParameter("pageNum");
 	        Board board = new Board();
-			board.setB_id(request.getParameter("b_id"));
-			board.setB_title(request.getParameter("b_title"));
-			board.setB_content(request.getParameter("b_content"));
+	        String b_id = request.getParameter("b_id");
+	        String b_title = request.getParameter("b_title");
+	        String b_content = request.getParameter("b_content");
+	        	
+			board.setB_id(b_id);
+			board.setB_title(b_title);
+			board.setB_content(b_content);
 	      	String type = request.getParameter("b_head");
+	      	
+	      	/*
+	      	System.out.println("확인해보기");
+	      	System.out.println(b_id);
+	      	System.out.println(b_title);
+	      	System.out.println(b_content);
+	      	System.out.println(type);
+	      	*/
 			if(type.equals("공지")) {
 				board.setB_notice(1);
 				board.setB_head(1);

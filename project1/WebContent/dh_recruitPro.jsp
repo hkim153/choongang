@@ -9,7 +9,7 @@
 <c:if test="${result>0 && result2>0 && result3>0}">
 	<script type="text/javascript">
 		alert("입력완료");
-		location.href="main.do";
+		location.href="dh_recruitList.do";
 	</script>
 </c:if>
 <c:if test="${result==0 && result2 ==0 && result3==0}">

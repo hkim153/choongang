@@ -2,7 +2,7 @@ package dao;
 
 import java.sql.Date;
 
-public class CommentDTO {
+public class Comment {
 	private int comment_num;
 	private int comment_board;
 	private String comment_id;

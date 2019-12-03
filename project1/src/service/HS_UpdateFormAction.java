@@ -7,9 +7,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.fish;
-import dao.fishingsite;
-import dao.fishingsiteDao;
+import dao.Fish;
+import dao.Fishingsite;
+import dao.FishingsiteDao;
 
 public class HS_UpdateFormAction implements CommandProcess {
 
@@ -20,9 +20,12 @@ public class HS_UpdateFormAction implements CommandProcess {
 		try {
 			int num = Integer.parseInt(request.getParameter("num"));
 			String pageNum = request.getParameter("pageNum");
-			fishingsiteDao fsd = fishingsiteDao.getInstance();
-			fishingsite fs = fsd.select(num);
-			List<fish> flist = fsd.get_all_fish();
+			FishingsiteDao fsd = FishingsiteDao.getInstance();
+			//현재 낚시터 정보 가져오기
+			Fishingsite fs = fsd.select(num);
+			//db에 있는 모든 어종 가져오기
+			List<Fish> flist = fsd.get_all_fish();
+			//현재 낚시터에 서식하는 어종 가져오기
 			List<String> fishes = fsd.get_fish(num);
 			
 			request.setAttribute("fishes", fishes);

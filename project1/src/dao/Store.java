@@ -34,11 +34,14 @@ public class Store {
 	private String real_name;
 	private String id;
 	private String name;
+	private String sell_name;
 	private String email;
 	private String address;
 	private String tel;
- 	private String request_term;
+	private String tel2;
+	private String request_term;
  	private int state_count;
+ 	private String sell_address;
 	
  
 	
@@ -228,6 +231,12 @@ public class Store {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public String getSell_name() {
+		return sell_name;
+	}
+	public void setSell_name(String sell_name) {
+		this.sell_name = sell_name;
+	}
 	public String getEmail() {
 		return email;
 	}
@@ -246,6 +255,12 @@ public class Store {
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
+	public String getTel2() {
+		return tel2;
+	}
+	public void setTel2(String tel2) {
+		this.tel2 = tel2;
+	}
 	public String getRequest_term() {
 		return request_term;
 	}
@@ -257,5 +272,11 @@ public class Store {
 	}
 	public void setState_count(int state_count) {
 		this.state_count = state_count;
+	}
+	public String getSell_address() {
+		return sell_address;
+	}
+	public void setSell_address(String sell_address) {
+		this.sell_address = sell_address;
 	}
 }

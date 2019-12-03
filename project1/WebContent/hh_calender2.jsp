@@ -16,21 +16,27 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="css/main.css">
+    
+    
+       <link href="https://fonts.googleapis.com/css?family=Dokdo&display=swap" rel="stylesheet">
+    <style type="text/css">
+
+    .fc-left{
+font-family: 'Dokdo', cursive;
+}
+    </style>
 </head>
 <body>
 	<div class="wrap">
+			<!--어드민 권한 있을 때 (기본게시판 - 등록 삭제 수정 기능) 이벤트 관리 페이지로 이동하게 되며 관리가 가능함.
+				게시판 내에서 json 업데이트를 해야 달력에 표기 되며, json 은 브라우저 내부에 반영 되기 때문에 방문 기록을 삭제 해야 업데이트를 볼 수 있음.-->
 		<header>
-			<c:choose>
-				
+			<c:choose>			
+		
 					<c:when	test="${sessionScope.result eq 1 and(sessionScope.adminResult eq 1) }">	<!-- 로그인값, 어드민권한 둘다 있을때  -->
 						<p align="right"><a href="hh_index.jsp">이동하기</a></p>
 					</c:when>
-				</c:choose>
-		
-		
-					
-					
-			
+				</c:choose>							
 		</header>
 		
     <div class="container">
@@ -47,24 +53,20 @@
                     <label for="calendar_view">구분별</label>
                     <div class="input-group">
                         <select class="filter" id="type_filter" multiple="multiple">
-                             <option value="지역 행사" style="color: #4d638c;">지역 행사</option>
-                            <option value="개인 행사" style="color: #4d638c;">개인 행사</option>
-                            <option value="대회" style="color: #4d638c;">대회</option>
-                            <option value="모임" style="color: #4d638c">모임</option>
-                            <option value="기타" style="color: #4d638c;">기타</option>
+                            <option value="지역 행사">지역 행사</option>
+                            <option value="개인 행사">개인 행사</option>
+                            <option value="대회" >대회</option>
+                            <option value="모임" >모임</option>
+                            <option value="기타" >기타</option>
+                            <option value="금어기">금어기</option>
                         </select>
                     </div>
                 </div>
-               <div class="col-lg-6">
-                    <label for="calendar_view"></label>
-                    <div class="input-group">
-                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="사나"
-                                checked>행사 숨기기</label>        
-                    </div>               
-                </div> 
+
             </div>
         </div>
     </div>
+    
     <script src="vendor/js/jquery.min.js"></script>
     <script src="vendor/js/bootstrap.min.js"></script>
     <script src="vendor/js/moment.min.js"></script>

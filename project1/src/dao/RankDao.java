@@ -22,10 +22,10 @@ public class RankDao {
 		if (instance == null) {
 			instance = new RankDao();
 		}
-		return instance; 
+		return instance;
 	}
 
-	private Connection getConnection() {
+	private Connection getConnection() {	// db연결
 		Connection conn = null;
 		try {
 			Context ctx = new InitialContext();
@@ -36,26 +36,25 @@ public class RankDao {
 		}
 		return conn;
 	}
-
+		//등록하는 경우에 사용 sql문이 insert성공하면 result1=1, 실패하면 result1=0
 	public int insert(Rank rank) throws SQLException {
-		int num = 3;
+		
 		int result1 = 0;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "insert into ranking values(?,?,?,?,?,sysdate,?,?,?)";
+		String sql = "insert into ranking values(ranknum1.nextval,?,?,?,?,sysdate,?,?,?)";
 
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 
-			pstmt.setInt(1, rank.getNum());
-			pstmt.setString(2, rank.getId());
-			pstmt.setString(3, rank.getGet_fish());
-			pstmt.setInt(4, rank.getLength());
-			pstmt.setString(5, rank.getContent());
-			pstmt.setString(6, rank.getImg_folder());
-			pstmt.setString(7, rank.getFile_name());
-			pstmt.setString(8, rank.getReal_name());
+			pstmt.setString(1, rank.getId());
+			pstmt.setString(2, rank.getGet_fish());
+			pstmt.setInt(3, rank.getLength());
+			pstmt.setString(4, rank.getContent());
+			pstmt.setString(5, rank.getImg_folder());
+			pstmt.setString(6, rank.getFile_name());
+			pstmt.setString(7, rank.getReal_name());
 			result1 = pstmt.executeUpdate();
 
 		} catch (Exception e) {
@@ -70,16 +69,14 @@ public class RankDao {
 
 		return result1;
 	}
-
-	
-	public List<Rank> list(int startRow, int endRow, String get_fish
-			) throws SQLException {
+				//이달의 낚시왕의 페이지에서 활용되는 리스트 num(startrow,endrow)과 get_fish를 이용하여 리스트를 뿌려줍니다
+	public List<Rank> list(int startRow, int endRow, String get_fish) throws SQLException {
 		System.out.println("list start");
 		List<Rank> list = new ArrayList<Rank>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql	 = "select r.* from ranking r, member m "
+		String sql = "select r.* from ranking r, member m "
 				+ "where r.id = m.id and m.alive_c='A' and num Between ? and ? "
 				+ "and get_fish=? and TO_CHAR(r.reg_date , 'MM')=TO_CHAR(sysdate , 'MM') "
 				+ "order by r.length desc, r.reg_date asc";
@@ -117,7 +114,7 @@ public class RankDao {
 		}
 		return list;
 	}
-
+			//num값이 일치하는 것을 불러올 때 이용합니다 주로 content페이지에서 이용
 	public Rank select(int num) throws SQLException {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -155,16 +152,18 @@ public class RankDao {
 
 		return rank;
 	}
+				//메인페이지에서 이용하는 리스트   num은 3등까지만 불러옵니다
 	public List<Rank> list1(int startRow, int endRow) throws SQLException {
 		System.out.println("list1 start");
 		List<Rank> list1 = new ArrayList<Rank>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql	 = "select r.* from ranking r, member m "
-				+ "where r.id = m.id and m.alive_c='A' and num Between ? and ? "
-				+ "and TO_CHAR(r.reg_date , 'MM')=TO_CHAR(sysdate , 'MM') "
-				+ "order by r.length desc, r.reg_date asc";
+		String sql = "select r.* from ranking r, member m " + 
+				"where r.id = m.id and m.alive_c='A' " + 
+				"and num Between ? and ? and get_fish='광어' " + 
+				"and TO_CHAR(r.reg_date , 'MM')=TO_CHAR(sysdate , 'MM') " +  
+				"order by r.length desc, r.reg_date asc";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -197,43 +196,44 @@ public class RankDao {
 		}
 		return list1;
 	}
-
+				//db값 삭제할 때 이용 deleteform에서 이용
 	public int delete(int num) throws SQLException {
-		int result  = 0;
+		int result = 0;
 		Connection conn = null;
-		PreparedStatement pstmt=null;
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql ="delete from ranking where num=?";
+		String sql = "delete from ranking where num=?";
 		try {
 			conn = getConnection();
-			pstmt=conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, num);
-			rs=pstmt.executeQuery();
-			if(rs.next()) {
-					result=pstmt.executeUpdate();
-				} else result=0;
-		} catch(Exception e) {
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				result = pstmt.executeUpdate();
+			} else
+				result = 0;
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
-		}finally {
-			if(rs != null)
+		} finally {
+			if (rs != null)
 				rs.close();
-			if(pstmt != null)
+			if (pstmt != null)
 				pstmt.close();
-			if (conn != null) 
+			if (conn != null)
 				conn.close();
 		}
 		return result;
-}
+	}
+				//메인페이지에서 1등 사진만 보여주기 할때 사용하는 리스트 
 	public List<Rank> list2(int startRow1, int endRow1) throws SQLException {
 		System.out.println("list2 start");
 		List<Rank> list2 = new ArrayList<Rank>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql	 = "select * from ranking where num between ? and ? "
-					+ "order by length desc";
+		String sql = "select * from ranking where num between ? and ? " + "order by length desc";
 		try {
-			
+
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, startRow1);
@@ -265,21 +265,20 @@ public class RankDao {
 		}
 		return list2;
 	}
-	/*public List<fish> list3(int startRow3, int endRow3) throws SQLException {
+		//fish테이블에 있는 물고기 값 불러올 때 사용하는 리스트 낚시왕페이지,등록페이지에서 활용
+	public List<Fish> list3() throws SQLException {
 		System.out.println("list3 start");
-		List<fish> list3 = new ArrayList<fish>();
+		List<Fish> list3 = new ArrayList<Fish>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql	 = "select f_name from fish where f_code between ? and ?";
+		String sql = "select * from fish";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, startRow3);
-			pstmt.setInt(2, endRow3);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				fish fs = new fish();
+				Fish fs = new Fish();
 				fs.setF_code(rs.getInt("f_code"));
 				fs.setF_name(rs.getString("f_name"));
 				list3.add(fs);
@@ -296,65 +295,5 @@ public class RankDao {
 
 		}
 		return list3;
-	}*/
-	public List<fish> list3() throws SQLException {
-		System.out.println("list3 start");
-		List<fish> list3 = new ArrayList<fish>();
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql	 = "select * from fish";
-		try {
-			conn = getConnection();
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				fish fs = new fish();
-				fs.setF_code(rs.getInt("f_code"));
-				fs.setF_name(rs.getString("f_name"));
-				list3.add(fs);
-			}
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		} finally {
-			if (rs != null)
-				rs.close();
-			if (pstmt != null)
-				pstmt.close();
-			if (conn != null)
-				conn.close();
-
-		}
-		return list3;
-	}
-	public List<fish> list4() throws SQLException {
-		System.out.println("list4 start");
-		List<fish> list4 = new ArrayList<fish>();
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql	 = "select * from fish";
-		try {
-			conn = getConnection();
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				fish fs = new fish();
-				fs.setF_code(rs.getInt("f_code"));
-				fs.setF_name(rs.getString("f_name"));
-				list4.add(fs);
-			}
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		} finally {
-			if (rs != null)
-				rs.close();
-			if (pstmt != null)
-				pstmt.close();
-			if (conn != null)
-				conn.close();
-
-		}
-		return list4;
 	}
 }

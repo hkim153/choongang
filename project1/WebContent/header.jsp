@@ -5,8 +5,12 @@
 <html>
 <head>
 <style type="text/css">
- li{
-color: yellow;
+#header .gnb ul li.nickname{
+	color:white;
+	font-weight: bold;
+}
+#header .gnb ul li a:hover{
+	color:red;
 }
 </style>
 </head>
@@ -19,8 +23,8 @@ color: yellow;
 		<div class="gnb">
 			<ul>
 				<li><a href="sh_board.do">게시판</a></li>
-				<li><a href="wh_Store.do">판매 및 대여</a></li>
-				<li><a href="dh_recruitlist.do">팀원모집</a></li>
+				<li><a href="wh_Store.do">상&nbsp&nbsp&nbsp 점</a></li>
+				<li><a href="dh_recruitList.do">팀원모집</a></li>
 				<li><a href="hs_fishingSiteForm.do">낚시터</a></li>
 				<li><a href="hh_event.do">이벤트 달력</a></li>
 				<li><a href="fishingking.do">이달의 낚시왕</a></li>
@@ -29,25 +33,18 @@ color: yellow;
 					<c:when test="${sessionScope.result ne 1 }"> <li><a href="jw_loginForm.do">로그인하기</a></li></c:when>					
 					<c:when
 						test="${sessionScope.result eq 1 and ( sessionScope.adminResult ne 1) }">
-						<li><a href="jw_myPage.do">${sessionScope.id } 님 환영합니다.</a></li>
-						<li><a href="jw_logOut.do">로그아웃</a></li>
+						<li class="nickname"><a href="jw_myPage.do">${sessionScope.id } 님 </a><a href="jw_logOut.do">  로그아웃</a></li>
+						
+						
 					</c:when>
 					<c:when	test="${sessionScope.result eq 1 and(sessionScope.adminResult eq 1) }">	<!-- 로그인값, 어드민권한 둘다 있을때  -->
-						<li>Admin님 환영합니다	<a href="jw_logOut.do">로그아웃</a></li>
+						<li class="nickname">관리자 님	<a href="jw_logOut.do">로그아웃</a></li>
 						<p align="right">
 					</c:when>
 				</c:choose>
-
-
-
 			</ul>
 		</div>
-		<!-- <div class="logo">
-				<form action="search.jsp" name="search" method="get">
-					<input type="text" name="searchBox" title="searchBox"
-						placeholder="검색어를입력해주세요!">
-				</form>
-			</div> -->
+		
 	</div>
 </body>
 </html>

@@ -16,7 +16,9 @@ table {	   width: 100%;   }
 <body>
 <input type="button" value="달력이동" onclick="location.href='hh_event.do'">
 	<h2>게시판</h2>
-	<table><tr><td><a href="hh_writeEventForm.do">글쓰기</a></td></tr></table>
+	<table><tr><td><a href="hh_writeEventForm.do?chk=0">글쓰기</a></td></tr></table>
+	<!-- 업데이트 이벤트시 db 에 있는 데이터 들을 json 파일을 새로 만듦.// (제보) 표시 사항들은 (제보)표시를 버리고 json에 반영
+	json 파일은 브라우저 내부로 들어가기 때문에 방문 기록을 삭제 해야 달력에서 확인 가능. -->
 	<table><tr><td><a href="hh_CalenderUpdate.do">달력 업데이트</a></td></tr></table>
 	<form action="hh_massdelete.do">
 	<table>

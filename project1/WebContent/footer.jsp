@@ -71,6 +71,7 @@
  	margin:0;
  	padding:0;
  	display: block;
+ 	font-size: 15px;
  }
  
  .notice_box dd{
@@ -119,14 +120,11 @@
 			<div class="content">
 				<div class="f-notice">
 					<div class="notice_box">
-						<h4>공지사항</h4>
+						
+						<h2>찾아오시는길</h2>
 						<ul>
-							<li><a><dl><dt>[랭킹전] 11월 랭킹전 시작</dt><dd>2019-11-01</dd></dl></a></li>
-							<li><a><dl><dt>[랭킹전] 10월 랭킹 마감</dt><dd>2019-10-31</dd></dl></a></li>
-							<li><a><dl><dt>[택배] 한글날 영업 안내</dt><dd>2019-10-08</dd></dl></a></li>
-							<li><a><dl><dt>[택배] 개천절 영업 안내</dt><dd>2019-10-02</dd></dl></a></li>
-							<%-- <c:forEach var="notice" items="${notice_list}">
-							</c:forEach> --%>
+							<li><a><dl><dt>(우)06134 | 서울 강남구 테헤란로7길 7, 7층</dt></dl></a></li>
+							<li><a><dl><dt>(지번)역삼동 649-5</dt></dl></a></li>							
 						</ul>
 					</div>
 				</div>
@@ -135,7 +133,7 @@
 						<span>
 							<img src="./images/cs.png" style="vertical-align:middle;border:0;">
 						</span>
-						<a>
+						<a href='wh_OrderList.do'>
 							<img src="./images/order_s.png" style="vertical-align:middle;border:0;">
 						</a>
 						<a>

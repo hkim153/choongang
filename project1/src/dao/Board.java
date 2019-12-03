@@ -40,12 +40,6 @@ public class Board {
 	public void setB_date(Date b_date) {
 		this.b_date = b_date;
 	}
-	public String getB_filename() {
-		return b_filename;
-	}
-	public void setB_filename(String b_filename) {
-		this.b_filename = b_filename;
-	}
 	public int getB_notice() {
 		return b_notice;
 	}
@@ -63,7 +57,6 @@ public class Board {
 	private String b_id;
 	private int b_readcount;
 	private Date b_date;
-	private String b_filename;
 	private int b_notice;
 	private int b_head;
 

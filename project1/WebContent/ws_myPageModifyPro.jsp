@@ -12,13 +12,13 @@
 <c:if test="${result > 0 }">
 	<script type="text/javascript">
 		alert("수정 완료 ! ");
-		location.href="jw_myPage.do?id=${id}";
+		location.href="jw_myPage.do";
 	</script>
 </c:if>	
 <c:if test="${result == 0 }">
 	<script type="text/javascript">
 		alert("비밀번호가 틀렸습니다.");
-		location.href="ws_myPageModifyForm.jsp?num=${num}&pageNum=${pageNum}";
+		location.href="ws_myPageModifyForm.do";
 	</script>
 </c:if>
 

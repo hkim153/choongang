@@ -19,9 +19,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.RankDao;
 import dao.Rank;
-import dao.fish;
-import dao.MemberDao;
-import dao.Member;
+import dao.Fish;
 public class SJ_RegFormAction implements CommandProcess {
 	
 	@Override
@@ -29,26 +27,14 @@ public class SJ_RegFormAction implements CommandProcess {
 			throws ServletException, IOException {
 		
 		try {
-			System.out.println("sj_regformaction");	
-			HttpSession session = request.getSession();	
 			request.setCharacterEncoding("utf-8");
-			int num=0;		
-			Member member = new Member();
-			MemberDao md = MemberDao.getInstance();
+			//등록시 아이디 한번 더 안쓰게 하기위해서 디폴트 값으로 넣기위해
 			String id = request.getParameter("id");
-			String passwd = request.getParameter("passwd");
-			Rank rank = new Rank();
-			rank.setNum(num);
+			
 			RankDao rk = RankDao.getInstance();
-			List<fish> list4 = rk.list4();
-			request.setAttribute("list4", list4);	
-			System.out.println("list4->"+list4);	
-			if(request.getParameter("num") != null) {
-			num = Integer.parseInt(request.getParameter("num"));
-			//System.out.println("regformaction result->"+result);
-			int result1 = rk.insert(rank);
-	}
-			request.setAttribute("num", num);
+			//fish테이블 어종 불러오기
+			List<Fish> list3 = rk.list3();
+			request.setAttribute("list3", list3);	
 			request.setAttribute("id", id);
 			
 		} catch(Exception e) { System.out.println(e.getMessage()); }

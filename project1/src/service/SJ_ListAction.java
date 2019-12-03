@@ -8,11 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.Member;
-import dao.MemberDao;
 import dao.Rank;
 import dao.RankDao;
-import dao.fish;
+import dao.Fish;
 
 public class SJ_ListAction implements CommandProcess {
 
@@ -22,15 +20,19 @@ public class SJ_ListAction implements CommandProcess {
 
 		try {
 			request.setCharacterEncoding("utf-8");
+			//리스트 띄우기 위해 get_fish가 일치하는지 보기위해서
 			String get_fish = request.getParameter("get_fish");
 			System.out.println("ListAction get_fish->" + get_fish);
 			
 			RankDao rk = RankDao.getInstance();
-			List<fish> list3 = rk.list3();
+			//fish테이블 어종 불러오기
+			List<Fish> list3 = rk.list3();
 			request.setAttribute("list3", list3);
-			
+			//1부터99999999 선언
 			int startRow = 1, endRow = 999999999;
+			//1부터99999999까지 보여주기
 			List<Rank> list = rk.list(startRow, endRow, get_fish);
+			//startNum 1로 선언
 			int startNum = startRow;
 						
 			request.setAttribute("get_fish", get_fish);

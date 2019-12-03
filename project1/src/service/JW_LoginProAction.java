@@ -12,7 +12,7 @@ import dao.MemberDao;
 import dao.Member;
 
 public class JW_LoginProAction implements CommandProcess {
-/// DB값이랑 비교해서 어드민권한 및 로그인 여부 확인
+// 로그인확인(어드민,가입여부)
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -24,24 +24,17 @@ public class JW_LoginProAction implements CommandProcess {
 			MemberDao md = MemberDao.getInstance();
 			String id = request.getParameter("id");
 			String passwd = request.getParameter("passwd");
-//			String admin_c = request.getParameter("admin_c");
-//			String alive_c = request.getParameter("alive_c");
-//			
-//			System.out.println("어드민 컨디션: "+admin_c);
 
 			int result = md.check(id, passwd); // id,passwd 일치여부 확인
 			int adminResult = md.confirm_Admin(id); // 어드민인지 확인
-			int aliveResult = md.confirm_Alive(id);
-			
-
-//			if(aliveResult == 1) { 	
+			int aliveResult = md.confirm_Alive(id); // 가입중인 회원은 1 탈퇴한 회원은 0			
 				
-			if (result == 1 && aliveResult == 1) {
+			if (result == 1 && aliveResult == 1) { // result = DB에 있는 회원이랑 일치 => 1, aliveResult =1(가입중인회원)
 				System.out.println("로그인 성공!");
-				session.setAttribute("result", result);
-				session.setAttribute("id", id);				
+				session.setAttribute("result", result); 
+				session.setAttribute("id", id);  
 				session.setAttribute("passwd", passwd);
-				session.setAttribute("adminResult", adminResult);
+				session.setAttribute("adminResult", adminResult); // 어드민권한
 				System.out.println("adminResult Check"+adminResult); 
 				
 			} else {

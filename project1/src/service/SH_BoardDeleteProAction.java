@@ -18,28 +18,14 @@ public class SH_BoardDeleteProAction implements CommandProcess {
 		try {
 			int b_num = Integer.parseInt(request.getParameter("b_num"));
 			String pageNum = request.getParameter("pageNum");
-			String passwd = request.getParameter("passwd");
-			String rightpasswd = request.getParameter("rightpasswd");
-			String curid = request.getParameter("curid");
-			int result = 0;
-			BoardDao bd = BoardDao.getInstance();
-			Board board = bd.select(b_num);
-			if(curid.equals(board.getB_id())) {
-				if(passwd.equals(rightpasswd)) {
-					
-					//todo 
-					bd.cdeleteall(b_num);
-					result = bd.delete(b_num);
-				}
-				else {
-					result = -2;
-				}
-			}
-			else {
-				result = -1;
-			}
+		
+		/*	BoardDao bd = BoardDao.getInstance();
+			bd.cdeleteall(b_num);  // 댓글도 같이 삭제해준다 dao에서 가져옴
+			int result = bd.delete(b_num);  //댓글 삭제
 			
-			request.setAttribute("result", result);
+		*/
+/*
+			request.setAttribute("result", result);*/
 			request.setAttribute("b_num", b_num);
 			request.setAttribute("pageNum", pageNum);
 		}catch(Exception e) {

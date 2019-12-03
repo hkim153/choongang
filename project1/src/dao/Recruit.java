@@ -13,7 +13,14 @@ public class Recruit {
 	private int recruit_member;
 	private String recruit_event;
 	private Date reg_date;
+	private int e_id;
 	
+	public int getE_id() {
+		return e_id;
+	}
+	public void setE_id(int e_id) {
+		this.e_id = e_id;
+	}
 	public int getRecruit_num() {
 		return recruit_num;
 	}

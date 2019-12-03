@@ -1,6 +1,7 @@
 package dao;
 
 import java.rmi.ServerException;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -95,19 +96,16 @@ public class BoardDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
-		 
-		String sql = "select * from (select rownum rn, a.* from(\r\n" + 
-				"select * from board order by b_notice desc, b_date desc)a) where rn between ? and ?";
-		
-		
+
+		String sql = "select * from (select rownum rn, a.* from(\r\n"
+				+ "select * from board order by b_notice desc, b_date desc)a) where rn between ? and ?";
+
 		/*
-		 * <option value="01">제목</option> <
-		 * option  value="02">제목+내용</option> 
-		 * <option value="03">작성자</option>
+		 * <option value="01">제목</option> < option value="02">제목+내용</option> <option
+		 * value="03">작성자</option>
 		 */
 		if (searchText != null && searchText.trim().length() != 0) {
-		
+
 			if ("01".equals(searchType)) {
 				sql += "  AND b_title LIKE ? \n";
 			} else if ("02".equals(searchType)) {
@@ -124,7 +122,7 @@ public class BoardDao {
 			pstmt.setInt(2, endRow);
 
 			if (searchText != null && searchText.trim().length() != 0) {
-			
+
 				if ("01".equals(searchType) || "03".equals(searchType)) {
 					pstmt.setString(3, "%" + searchText + "%");
 				} else if ("02".equals(searchType)) {
@@ -142,7 +140,6 @@ public class BoardDao {
 				board.setB_id(rs.getString("b_id"));
 				board.setB_readcount(rs.getInt("b_readcount"));
 				board.setB_date(rs.getDate("b_date"));
-				board.setB_filename(rs.getString("b_filename"));
 				board.setB_notice(rs.getInt("b_notice"));
 				board.setB_head(rs.getInt("b_head"));
 				list.add(board);
@@ -160,8 +157,86 @@ public class BoardDao {
 		return list;
 	}
 
+	public List<Board> mainlist(int head) throws SQLException {
+		List<Board> mainlist = new ArrayList<Board>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 
+		String sql = "select * from board where b_notice= ? and rownum <=4 order by b_date desc";
+		
 
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, head);
+
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Board board = new Board();
+				board.setB_num(rs.getInt("b_num"));
+				board.setB_title(rs.getString("b_title"));
+				board.setB_content(rs.getString("b_content"));
+				board.setB_id(rs.getString("b_id"));
+				board.setB_readcount(rs.getInt("b_readcount"));
+				board.setB_date(rs.getDate("b_date"));
+				board.setB_notice(rs.getInt("b_notice"));
+				board.setB_head(rs.getInt("b_head"));
+				mainlist.add(board);
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		}
+		return mainlist;
+	}	
+	public List<Board> mylist(String b_id) throws SQLException {
+		List<Board> mylist = new ArrayList<Board>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = "select b_id, b_num, b_date, b_head, b_title from board where b_id=? and rownum <=5 order by b_date desc";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, b_id);
+
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+						
+				Board board = new Board();
+				board.setB_id(rs.getString("b_id"));		
+				board.setB_num(rs.getInt("b_num"));
+				board.setB_date(rs.getDate("b_date"));
+				board.setB_head(rs.getInt("b_head"));
+				board.setB_title(rs.getString("b_title"));			
+				mylist.add(board);
+					
+			}
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		}
+		return mylist;
+	}
+	
+	
 	public Board select(int num) throws SQLException {
 		Connection conn = null;
 		Statement stmt = null;
@@ -179,7 +254,6 @@ public class BoardDao {
 				board.setB_id(rs.getString("b_id"));
 				board.setB_date(rs.getDate("b_date"));
 				board.setB_readcount(rs.getInt("b_readcount"));
-				board.setB_filename(rs.getString("b_filename"));
 				board.setB_head(rs.getInt("b_head"));
 				board.setB_notice(rs.getInt("b_notice"));
 			}
@@ -196,10 +270,10 @@ public class BoardDao {
 		return board;
 	}
 
-	public void readCount(int num) throws SQLException {
+	public void readcount(int num) throws SQLException {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "update board set b_readcount=b_readcount+1 where b_num=? "+ num;
+		String sql = "update board set b_readcount=b_readcount+1 where b_num=? ";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -244,7 +318,7 @@ public class BoardDao {
 		int result = 0;
 		ResultSet rs = null;
 		String sql1 = "select nvl(max(b_num),0) from board";
-		String sql = "insert into board values(?,?,?,?,?,sysdate,?,?,?)";
+		String sql = "insert into board values(?,?,?,?,?,sysdate,?,?)";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql1);
@@ -253,16 +327,15 @@ public class BoardDao {
 			int number = rs.getInt(1) + 1;
 			rs.close();
 			pstmt.close();
-			
+
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, number);
 			pstmt.setString(2, board.getB_title());
 			pstmt.setString(3, board.getB_content());
 			pstmt.setString(4, board.getB_id());
 			pstmt.setInt(5, 0);
-			pstmt.setString(6, board.getB_filename());
-			pstmt.setInt(7, board.getB_notice());
-			pstmt.setInt(8, board.getB_head());
+			pstmt.setInt(6, board.getB_notice());
+			pstmt.setInt(7, board.getB_head());
 
 			result = pstmt.executeUpdate();
 
@@ -284,11 +357,9 @@ public class BoardDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		int result = 0;
-
-		
 		String sql = "delete from board where b_num=?";
 		try {
-			
+
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, num);
@@ -305,8 +376,8 @@ public class BoardDao {
 		return result;
 	}
 
-	public List<CommentDTO> getallreply(int bn) throws SQLException {
-		List<CommentDTO> reply = new ArrayList<CommentDTO>();
+	public List<Comment> getallreply(int bn) throws SQLException {
+		List<Comment> reply = new ArrayList<Comment>();
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -316,7 +387,7 @@ public class BoardDao {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			while (rs.next()) {
-				CommentDTO temp = new CommentDTO();
+				Comment temp = new Comment();
 				temp.setComment_board(rs.getInt("c_bnum"));
 				temp.setComment_num(rs.getInt("c_num"));
 				temp.setComment_date(rs.getDate("c_date"));
@@ -338,7 +409,7 @@ public class BoardDao {
 
 	}
 
-	public int insertreply(CommentDTO temp) throws SQLException {
+	public int insertreply(Comment temp) throws SQLException {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -386,26 +457,26 @@ public class BoardDao {
 		}
 		return result;
 	}
-	
-	public int cdeleteall(int b_num) throws SQLException{
-			Connection conn = null;
-			PreparedStatement pstmt = null;
-			int result = 0;
-			String sql = "delete from b_comment where c_bnum=? ";
-				try {
-					conn = getConnection();
-					pstmt = conn.prepareStatement(sql);
-					pstmt.setInt(1, b_num);
-					result = pstmt.executeUpdate();
-				}catch (Exception e) {
-					System.out.println(e.getMessage());
-				}
-					finally {
-					if (pstmt != null)
-						pstmt.close();
-					if (conn != null)
-						conn.close();
-				}
-				return result;
+
+	public int cdeleteall(int b_num) throws SQLException {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = "delete from b_comment where c_bnum=? ";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, b_num);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		}
+		return result;
 	}
+
 }

@@ -15,7 +15,7 @@ public class HH_MassDeleteProAction implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			
+			//기본 게시판 요소
 			String[] e_ida  = request.getParameterValues("delf");	
 			String pageNum = request.getParameter("pageNum");
 			System.out.println("e_ida.length ->" + e_ida.length);

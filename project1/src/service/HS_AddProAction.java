@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import dao.fish;
-import dao.fishingsite;
-import dao.fishingsiteDao;
+import dao.Fish;
+import dao.Fishingsite;
+import dao.FishingsiteDao;
 
 public class HS_AddProAction implements CommandProcess {
 
@@ -25,16 +25,18 @@ public class HS_AddProAction implements CommandProcess {
 		try {
 			
 			request.setCharacterEncoding("utf-8");
+			//이미지 맥스 사이즈
 			int maxSize = 10 * 1024 * 1024;
+			//이미지파일 저장소
 			String imagefile = "/fishingsite_img";
+			//리얼 패스 가져오기
 			String realPath = request.getServletContext().getRealPath(imagefile);
 			System.out.println("realpath->" +  realPath);
 			MultipartRequest multi = new MultipartRequest(request, realPath, maxSize, "utf-8", new DefaultFileRenamePolicy());
 			
 			
 			String pageNum = multi.getParameter("pageNum");
-			fishingsite fs = new fishingsite();
-			fs.setFs_num(Integer.parseInt(multi.getParameter("num")));
+			Fishingsite fs = new Fishingsite();
 			String fs_name = multi.getParameter("fs_name");
 			fs.setFs_name(fs_name);
 			fs.setFs_addr(multi.getParameter("fs_addr"));
@@ -58,7 +60,7 @@ public class HS_AddProAction implements CommandProcess {
 			fs.setReal_name(original);
 			fs.setSaved_name(filename);
 			
-			fishingsiteDao fsd = fishingsiteDao.getInstance();
+			FishingsiteDao fsd = FishingsiteDao.getInstance();
 			int result = fsd.insert(fs);
 			
 			String [] fishes = multi.getParameterValues("어종");

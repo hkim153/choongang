@@ -5,7 +5,7 @@
 <%@page import="service.CommandProcess" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="dao.*" errorPage="Error.jsp"%>
-<%! 
+<%!  
 public String getTen(int recruit_num, String room_manager) {
 	StringBuffer result = new StringBuffer("");
 	result.append("{\"result\":[");

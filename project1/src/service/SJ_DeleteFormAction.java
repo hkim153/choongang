@@ -15,17 +15,15 @@ public class SJ_DeleteFormAction implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			System.out.println("sj_DeleteFormAction start");
-			String id = request.getParameter("id");
+		
+			//순위 게시글 번호(보일 필요 없어 hidden 처리)
 			int num = Integer.parseInt(request.getParameter("num"));
-			String pageNum = request.getParameter("pageNum");
 			RankDao rk = RankDao.getInstance();
+			// 회원 등록내역을 삭제하기위해서 num값 일치하면 삭제하기
 			Rank rank = rk.select(num);
-			request.setAttribute("id", id);
 			request.setAttribute("rank", rank);
 			request.setAttribute("num", num);
-			System.out.println("sj_DeleteFormAction end");
-		}catch(Exception e) {	System.out.println(e.getMessage());	}
+			}catch(Exception e) {	System.out.println(e.getMessage());	}
 		return "sj_deleteForm.jsp";
 	}
 

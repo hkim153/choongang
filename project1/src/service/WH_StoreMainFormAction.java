@@ -33,7 +33,7 @@ public class WH_StoreMainFormAction implements CommandProcess {
 			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		} 	
-		Store store = new Store();
+		
 		return "wh_storemain.jsp";
 	} 
 

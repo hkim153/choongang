@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -35,7 +36,6 @@
 			var recruit_num = '${recruit_num}';
 			var fromID = '${sessionScope.id}';
 			var room_manager = '${room_manager}';
-			
 			$.ajax({
 				type:'POST',
 				url:"AjaxChatList.jsp",
@@ -94,6 +94,25 @@
 </head>
 <body>
  <div class="wrap">
+  <c:if test = "${sessionScope.result ne 1 }">
+		<script type="text/javascript">
+			alert("로그인 해주세요");
+			location.href="jw_loginForm.do";
+			
+		</script> 
+</c:if>
+ <c:if test = "${chatroom_in eq 0 && sessionScope.result eq 1 }">
+		<script type="text/javascript">
+			alert("기존에 참여중인 채팅방에 입장하였습니다.");
+			window.histroy.back();
+		</script>
+</c:if>
+<c:if test = "${chatroom_in eq 1 && sessionScope.result eq 1 }">
+		<script type="text/javascript">
+			alert("채팅방에 참여하였습니다.");
+			window.histroy.back();
+		</script>
+</c:if>
 <header> <jsp:include page="header.jsp"></jsp:include> </header>
 	<div class="container bootstrap snippet">
 		<div class="row">
@@ -120,7 +139,9 @@
 							</div>
 						</div>
 					</div>
+					
 				</div>
+				<input type="button" value="방 나가기" onclick="location.href='dh_recruitList.do'">
 			</div>
 		</div>
 	</div>

@@ -12,6 +12,7 @@ public class HH_ContentAction implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
+			//기본 게시판 요소
 			int e_id = Integer.parseInt(request.getParameter("e_id"));	
 			String pageNum = request.getParameter("pageNum");
 			String title = request.getParameter("title");
