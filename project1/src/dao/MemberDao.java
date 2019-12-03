@@ -272,8 +272,13 @@ public class MemberDao {
 		return member;
 	}
 
-	public String Findid1(String email, String tel) throws SQLException {
-		Connection conn = null;
+//<<<<<<< HEAD
+//	public String Findid1(String email, String tel) throws SQLException {
+//		Connection conn = null;
+//=======
+	public String Findid1(String email, String tel) throws SQLException { //id찾기 정보불러오기
+		Connection conn = null;			
+//>>>>>>> branch 'master' of https://github.com/hkim153/choongang
 		String id = null;
 		String sql = "select id from member where email=? and tel=?";
 		PreparedStatement pstmt = null;
@@ -307,9 +312,15 @@ public class MemberDao {
 		}
 		return id;
 	}
-
-	public int Findid2(String email, String tel) throws SQLException {
-		Connection conn = null;
+//<<<<<<< HEAD
+//
+//	public int Findid2(String email, String tel) throws SQLException {
+//		Connection conn = null;
+//=======
+	
+	public int Findid2(String email, String tel) throws SQLException { //id찾기 일치확인
+		Connection conn = null;			
+//>>>>>>> branch 'master' of https://github.com/hkim153/choongang
 		String id = null;
 		int result = 0;
 		String sql = "select id,alive_c from member where email=? and tel=? and alive_c='A'";
@@ -341,9 +352,15 @@ public class MemberDao {
 		}
 		return result;
 	}
-
-	public String Findpw1(String id, String email, String tel) throws SQLException {
-		Connection conn = null;
+//<<<<<<< HEAD
+//
+//	public String Findpw1(String id, String email, String tel) throws SQLException {
+//		Connection conn = null;
+//=======
+	
+	public String Findpw1(String id, String email, String tel) throws SQLException { //pw찾기 정보불러오기
+		Connection conn = null;			
+//>>>>>>> branch 'master' of https://github.com/hkim153/choongang
 		String passwd = null;
 		String sql = "select passwd from member where id=? and email=? and tel=?";
 		PreparedStatement pstmt = null;
@@ -380,9 +397,15 @@ public class MemberDao {
 		}
 		return passwd;
 	}
-
-	public int Findpw2(String id, String email, String tel) throws SQLException {
-		Connection conn = null;
+//<<<<<<< HEAD
+//
+//	public int Findpw2(String id, String email, String tel) throws SQLException {
+//		Connection conn = null;
+//=======
+//	
+	public int Findpw2(String id, String email, String tel) throws SQLException { //pw찾기 일치확인
+		Connection conn = null;			
+//>>>>>>> branch 'master' of https://github.com/hkim153/choongang
 		String passwd = null;
 		int result = 0;
 		String sql = "select passwd,alive_c from member where id=? and email=? and tel=?";
@@ -417,15 +440,26 @@ public class MemberDao {
 		}
 		return result;
 	}
-
-	public int myPageModify(Member member) throws SQLException {
-
+//<<<<<<< HEAD
+//
+//	public int myPageModify(Member member) throws SQLException {
+//
+//=======
+	
+public int myPageModify(Member member) throws SQLException{ // 회원정보수정
+		
+//>>>>>>> branch 'master' of https://github.com/hkim153/choongang
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		int result = 0;
+//<<<<<<< HEAD
 		
-		String sql = "update member set name=?,email=?,address=?, tel=? where id=?";
+//		String sql = "update member set name=?,email=?,address=?, tel=? where id=?";
 		
+//=======
+				String sql="update member set name=?, email=?, address=?, tel=? where id=?";
+		System.out.println("sql:"+sql);
+//>>>>>>> branch 'master' of https://github.com/hkim153/choongang
 		try {
 			conn = getConnection();			
 			pstmt = conn.prepareStatement(sql);
@@ -451,32 +485,62 @@ public class MemberDao {
 		return result;
 	}
 
-	public int memberOut(Member member) throws SQLException { // 회원탈퇴
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		int result = 0;
-		String sql = "update member set alive_c='D' where passwd=? and id=?"; // 회원상태 D로 바꾸기
-		System.out.println("memberOut result start...");
-		try {
-			conn = getConnection();
-			System.out.println("memberOut try sql ->" + sql);
-			System.out.println("memberOut try member.getId() ->" + member.getId());
-			System.out.println("memberOut try member.getPasswd() ->" + member.getPasswd());
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, member.getPasswd());
-			pstmt.setString(2, member.getId());
-			result = pstmt.executeUpdate();
-
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		} finally {
-			if (pstmt != null)
-				pstmt.close();
-			if (conn != null)
-				conn.close();
-		}
-		System.out.println("memberOut result->" + result);
-		return result;
+//<<<<<<< HEAD
+//	public int memberOut(Member member) throws SQLException { // 회원탈퇴
+//		Connection conn = null;
+//		PreparedStatement pstmt = null;
+//		int result = 0;
+//		String sql = "update member set alive_c='D' where passwd=? and id=?"; // 회원상태 D로 바꾸기
+//		System.out.println("memberOut result start...");
+//		try {
+//			conn = getConnection();
+//			System.out.println("memberOut try sql ->" + sql);
+//			System.out.println("memberOut try member.getId() ->" + member.getId());
+//			System.out.println("memberOut try member.getPasswd() ->" + member.getPasswd());
+//			pstmt = conn.prepareStatement(sql);
+//			pstmt.setString(1, member.getPasswd());
+//			pstmt.setString(2, member.getId());
+//			result = pstmt.executeUpdate();
+//
+//		} catch (Exception e) {
+//			System.out.println(e.getMessage());
+//		} finally {
+//			if (pstmt != null)
+//				pstmt.close();
+//			if (conn != null)
+//				conn.close();
+//		}
+//		System.out.println("memberOut result->" + result);
+//		return result;
+//=======
+public int memberOut(Member member) throws SQLException { //회원탈퇴
+	Connection conn = null;
+	PreparedStatement pstmt = null;
+	int result = 0;
+	String sql = "update member set alive_c='D' where passwd=? and id=?"; //회원상태 D로 바꾸기
+	System.out.println("memberOut result start...");
+	try {
+		conn = getConnection();
+		System.out.println("memberOut try sql ->"+sql);
+		System.out.println("memberOut try member.getId() ->"+member.getId());
+		System.out.println("memberOut try member.getPasswd() ->"+member.getPasswd());
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, member.getPasswd());
+		pstmt.setString(2, member.getId());
+		result = pstmt.executeUpdate();
+			
+	} catch (Exception e) {
+		 System.out.println(e.getMessage());
+	} finally {
+		if(pstmt !=null) pstmt.close();
+		if(conn !=null) conn.close();
+//>>>>>>> branch 'master' of https://github.com/hkim153/choongang
 	}
+//<<<<<<< HEAD
+//=======
+	System.out.println("memberOut result->"+result);
+	return result;
+}
+//>>>>>>> branch 'master' of https://github.com/hkim153/choongang
 
 }

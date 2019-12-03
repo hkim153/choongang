@@ -1,9 +1,50 @@
-sql문 각자 기입해주시길바랍니다.
+-- 대한 --
+DROP TABLE RECRUIT;
+DROP TABLE RECRUIT_CHATROOM;
+DROP TABLE CHAT_PARTICIPANT;
+Drop sequence CHATID;
+Drop sequence SEQ_RECRUIT_NUM;
+-- 대한 --
+-- 현수 --
+Drop sequence SEQ_FISH_CODE;
+Drop sequence SEQ_FISHINGSITE_CODE ;
+DROP TABLE FISHMAPPING;
+DROP TABLE FISH ;
+DROP TABLE FISHINGSITE;
+-- 현수 --
+-- 재원 --
+DROP TABLE MEMBER;
+DROP SEQUENCE USERNUM1;
+-- 재원 --
+-- 승주 --
+DROP SEQUENCE RANKNUM1;
+DROP TABLE Ranking;
+-- 승주 --
+-- 상훈 --
+Drop table board;
+Drop sequence comment_seq;
+Drop table b_comment;
+-- 상훈 --
+-- 상점 --
+DROP TABLE store_MENU;
+DROP TABLE store_img;
+DROP TABLE STORE;
+DROP TABLE ORDER_LIST;
+DROP TABLE ORDER_STATE;
+DROP SEQUENCE SEQ_PRO_NUM;
+DROP SEQUENCE SEQ_BUY_NUM;
+-- 상점 끝 --
+-- 현호 --
+DROP TABLE EVENT;
 
-<-- LJW SQl Query-->
+
+
+
+
+-- LJW SQl Query--
 create table member(user_num number(38) constraint pk_member primary key,
 id varchar2(100),
-password varchar2(100),
+passwd varchar2(100),
 name varchar2(100),
 email varchar2(100),
 address varchar2(100),
@@ -14,17 +55,17 @@ reg_date date);
 
 create sequence usernum1 increment by 1 start with 1;
 
-create sequence ranknum increment by 1 start with 1; // 승주야 쓰고나서 지워라 - 아직사용안함
+insert into member values(usernum1.nextval, 'admin', 'admin', '(주)야낚자', 'yanakja@gmail.com', '서울시 테헤란로7길 7 7층', '010-1577-1577', 'A', 'A', sysdate);
 
-insert into member values('admin1', 'admin1', '이재원숭이1', 'fkenl123@gmail.com', '경기도 광주시 쌍령동 푸르지오', '010-2441-0856', 'A', 'A', sysdate, usernum1.nextval);
-
-insert into member values('Lee123', '1234', 'Lee123', 'lee123@gmail.com', '경기도 광주시 쌍령동 푸르지오', '010-2441-0856', 'N', 'A', sysdate, usernum1.nextval);
-
-<-- 재원이꺼 -->
+Insert into MEMBER values (usernum1.nextval,'hkim153','1','김현수','hkim153@gmail.com','경기도 용인시 기흥구 보라동','010-9011-9766','N','A',sysdate);
+insert into member values(usernum1.nextval,'aa', '1', '이재원', 'fkenl123@naver.com', '경기도 광주시 쌍령동 푸르지오', '010-2442-0856', 'N', 'A', sysdate);
 
 
+-- 재원이꺼 --
 
-<-- DH_인원모집 -->
+
+
+-- DH_인원모집 --
 -------------------- 인원모집 리스트 테이블 START -----------------------
 CREATE TABLE RECRUIT
 	(	RECRUIT_NUM NUMBER (3, 0),
@@ -40,16 +81,24 @@ CREATE TABLE RECRUIT
 		RECRUIT_STATE NUMBER,
 		E_ID NUMBER(5,0)
 	);
+
+CREATE SEQUENCE SEQ_RECRUIT_NUM
+START WITH 1
+MAXVALUE 10000
+MINVALUE 1
+INCREMENT BY 1
+CYCLE
+NOCACHE;
 -------------------- 인원모집 리스트 테이블 END -----------------------
 
 
 ------------------ 채팅방 테이블 START ----------------------------
 CREATE TABLE RECRUIT_CHATROOM
-	(	RECRUIT_NUM NUMBER primary key
-		CHATID NUMBER
-		ROOM_MANAGER VARCHAR2(20 BYTE)
-		FROMID VARCHAR2(20 BYTE)
-		CHATCONTENT VARCHAR2(500 BYTE)
+	(	RECRUIT_NUM NUMBER,
+		CHATID NUMBER,
+		ROOM_MANAGER VARCHAR2(20 BYTE),
+		FROMID VARCHAR2(20 BYTE),
+		CHATCONTENT VARCHAR2(500 BYTE),
 		CHATTIME DATE
 	);
 
@@ -65,15 +114,13 @@ NOCACHE;
 
 ----------------------- 채팅방 참여자 테이블 START -------------------------
 CREATE TABLE CHAT_PARTICIPANT
-	(	RECRUIT_NUM NUMBER
+	(	RECRUIT_NUM NUMBER,
 		PARTICIPANT VARCHAR2(20 BYTE)
 	);
 ----------------------- 채팅방 참여자 테이블 END -------------------------
-<-- DH_인원모집 종료 -->
+--- DH_인원모집 종료 -->
 
-
-
-<-- 낚시터 게시판 및 추천 시작 BY HYUNSOO   -->
+---- 낚시터 게시판 및 추천 시작 BY HYUNSOO   ---
 ----1. 시퀀스 생성----
 create sequence SEQ_FISH_CODE
 	MINVALUE 1000
@@ -122,28 +169,267 @@ CREATE TABLE FISHMAPPING
 );
 
 ----3. INSERT 데이터(FISH, FISHINGSITE, FISHMAPPING)----
-INSERT INTO FISH VALUES(SEQ_FISH_CODE.NEXTVAL, '광어');
-INSERT INTO FISH VALUES(SEQ_FISH_CODE.NEXTVAL, '연어');
-INSERT INTO FISH VALUES(SEQ_FISH_CODE.NEXTVAL, '문어');
-INSERT INTO FISH VALUES(SEQ_FISH_CODE.NEXTVAL, '숭어');
-INSERT INTO FISH VALUES(SEQ_FISH_CODE.NEXTVAL, '송어');
-INSERT INTO FISH VALUES(SEQ_FISH_CODE.NEXTVAL, '이면수');
-INSERT INTO FISH VALUES(SEQ_FISH_CODE.NEXTVAL, '산천어');
-INSERT INTO FISH VALUES(SEQ_FISH_CODE.NEXTVAL, '갈치');
-INSERT INTO FISH VALUES(SEQ_FISH_CODE.NEXTVAL, '명태');
-INSERT INTO FISH VALUES(SEQ_FISH_CODE.NEXTVAL, '은어');
-INSERT INTO FISH VALUES(SEQ_FISH_CODE.NEXTVAL, '붕어');
-INSERT INTO FISH VALUES(SEQ_FISH_CODE.NEXTVAL, '잉어');
+Insert into FISH (F_CODE,F_NAME) values (1001,'광어');
+Insert into FISH (F_CODE,F_NAME) values (1002,'연어');
+Insert into FISH (F_CODE,F_NAME) values (1003,'문어');
+Insert into FISH (F_CODE,F_NAME) values (1004,'숭어');
+Insert into FISH (F_CODE,F_NAME) values (1005,'송어');
+Insert into FISH (F_CODE,F_NAME) values (1006,'이면수');
+Insert into FISH (F_CODE,F_NAME) values (1007,'산천어');
+Insert into FISH (F_CODE,F_NAME) values (1008,'갈치');
+Insert into FISH (F_CODE,F_NAME) values (1009,'명태');
+Insert into FISH (F_CODE,F_NAME) values (1010,'은어');
+Insert into FISH (F_CODE,F_NAME) values (1011,'붕어');
+Insert into FISH (F_CODE,F_NAME) values (1012,'잉어');
+
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1034,'일직낚시터','경상북도 안동시 일직면 운산리 6','바람속에 물고기의 힘이 타 저수지에비해 월등히 강해 손맛이','경상북도',2,to_date('19/11/21','RR/MM/DD'),'hkim153',34,'/fishingsite_img','일직낚시터.jpg','일직낚시터.jpg','054-858-5348');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1035,'천평유료낚시터','경상북도 칠곡군 가산면 금화리 66-3','최고인 낚시터입니다"','경상북도',3,to_date('19/11/21','RR/MM/DD'),'hkim153',35,'/fishingsite_img','천평유료낚시터.jpg','천평유료낚시터.jpg','054-971-1528');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1036,'화현낚시','경상남도 김해시 상동면 감노리 17','"물이 많이 빠진듯합니다.','경상남도',2,to_date('19/11/21','RR/MM/DD'),'hkim153',36,'/fishingsite_img','화현낚시터.jpg','화현낚시터.jpg','055-337-9161');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1037,'산분령유료낚씨터','경상남도 사천시 실안동 1096-41','좌대낚시가 많은곳이에요.','경상남도',3,to_date('19/11/21','RR/MM/DD'),'hkim153',37,'/fishingsite_img','산분령유료낚씨터.jpg','산분령유료낚씨터.jpg','055-833-4404');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1038,'화제낚시터','경상남도 양산시 원동면 화제리','손 맛은 조사님따라 틀리답니다"','경상남도',2,to_date('19/11/21','RR/MM/DD'),'hkim153',38,'/fishingsite_img','화제낚시터.jpg','화제낚시터.jpg','055-382-5498');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1039,'지정낚시터','경상남도 의령군 지정면 봉곡리 206-2','가족단위로 휴식도즐기고 스트레스도날리고 손맛도보고좋네요','경상남도',3,to_date('19/11/21','RR/MM/DD'),'hkim153',39,'/fishingsite_img','지정낚시터.jpg','지정낚시터.jpg','055-572-1231');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1040,'왕궁낚시터','전라북도 익산시 왕궁면 동봉리 725-4','충남 최고의 도심속 힐링 명물 토종대물붕어 낚시터','전라북도',3,to_date('19/11/21','RR/MM/DD'),'hkim153',40,'/fishingsite_img','왕궁낚시터.jpg','왕궁낚시터.jpg','063-831-1488');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1041,'우정낚시터','전라북도 정읍시 소성면 주천리 635-5','"아산시 음봉면 신휴리에 소재한 신휴저수지의 쌍용낚시터는 지난 1954년 조성된','전라북도',5,to_date('19/11/21','RR/MM/DD'),'hkim153',41,'/fishingsite_img','우정낚시터.jpg','우정낚시터.jpg','063-533-1322');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1042,'신성낚시터','전라북도 김제시 상동동 87-1','53ha의 저수지로 꾼들에게는 겨울철 전국 최고의 얼음낚시터로 더 잘 알려진 곳이다."','전라북도',5,to_date('19/11/21','RR/MM/DD'),'hkim153',42,'/fishingsite_img','신성낚시터.jpg','신성낚시터.jpg','063-548-6547');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1043,'송현낚시터','전라북도 완주군 고산면 남봉리 470-12','"충남당진군면천면원동리 일대 12만여평의 면천저수지는 평지형으로 수원이 풍부해','전라북도',2,to_date('19/11/21','RR/MM/DD'),'hkim153',43,'/fishingsite_img','송현낚시터.jpg','송현낚시터.jpg','063-262-3690');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1044,'청풍유료낚시터','전라남도 화순군 청풍면 한지리 111','가뭄에도 마른 적이 없는 전천후 낚시터."','전라남도',1,to_date('19/11/21','RR/MM/DD'),'hkim153',44,'/fishingsite_img','청풍유료낚시터.jpg','청풍유료낚시터.jpg','061-373-9808');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1045,'앵남낚시터','전라남도 화순군 화순읍 앵남리 21-','"고기는 짱잘나와요 근데 의자와 파라솔은 꼭 챙겨가세요 손맛터인데 관리가 조금아쉬워요','전라남도',1,to_date('19/11/21','RR/MM/DD'),'hkim153',45,'/fishingsite_img','앵남낚시터.jpg','앵남낚시터.jpg','061-374-9554');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1046,'활주로낚시터','전라남도 나주시 산포면 등정리 557-2','그래도 손맛은 최고 잉어.향어밥은  따로 챙겨가세요 가보시면 무슨소리지 아실거에요','전라남도',2,to_date('19/11/21','RR/MM/DD'),'hkim153',46,'/fishingsite_img','활주로낚시터.jpg','활주로낚시터.jpg','061-337-0008');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1047,'무태낚시터','대구광역시 북구 연경동 570-14','참 매점이 없어서 간식거리는 꼭사가지고 가세요"','대구광역시',1,to_date('19/11/21','RR/MM/DD'),'hkim153',47,'/fishingsite_img','무태낚시터.jpg','무태낚시터.jpg',' 053-951-1177');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1048,'대평유료낚시터','대구광역시 달성군 하빈면 대평리 934','조용하고 설비도 좋고 물고기도 좋고 대전에서 이만한 낚시터는 없다?!?!','대구광역시',2,to_date('19/11/21','RR/MM/DD'),'hkim153',48,'/fishingsite_img','대평유료낚시터.jpg','대평유료낚시터.jpg','053-581-2220');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1049,'옥포유료낚시터','대구광역시 달성군 옥포면 김흥리','"방갈로 시설이 되어 있으며','대구광역시',1,to_date('19/11/21','RR/MM/DD'),'hkim153',49,'/fishingsite_img','옥포유료낚시터.jpg','옥포유료낚시터.jpg',null);
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1050,'당사해양낚시공원','울산광역시 북구 강동동 용바위1길 58','여러가지 옵션이 갖춰줘있어 가족들과 함께 가도 좋은것이며 젊은 여인들의 데이트 장소로도 좋은곳"','울산광역시',1,to_date('19/11/21','RR/MM/DD'),'hkim153',50,'/fishingsite_img','당사해양낚시공원.jpg','당사해양낚시공원.jpg','052-282-1116');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1051,'문수청정낚시터','울산광역시 울주군 삼동면 둔기리','방도 넓고 물도 맑아서 좋아요 강아지와 같이 왔는데도 좋네요','울산광역시',1,to_date('19/11/21','RR/MM/DD'),'hkim153',51,'/fishingsite_img','문수청정낚시터.jpg','문수청정낚시터.jpg',null);
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1052,'울산낚시','울산광역시 동구 방어동 동진5길 46','"손맛보기 좋은 낚시터','울산광역시',1,to_date('19/11/21','RR/MM/DD'),'hkim153',52,'/fishingsite_img','울산낚시.jpg','울산낚시.jpg','052-236-1524');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1053,'두현낚시터','울산광역시 울주군 청량면 문죽리','야외 화장실 좀 개선해주세요"','울산광역시',2,to_date('19/11/21','RR/MM/DD'),'hkim153',53,'/fishingsite_img','두현낚시터.jpg','두현낚시터.jpg',null);
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1054,'대흥낚시터','부산광역시 강서구 봉림동 740-2','아이들 데리고 가기는 좋아요 편안히 쉴 곳이 있어서요 간단히 준비해가면 고기도 구워 먹을 수 있고 라면도 끓여 먹을 수 있고 저녁에 잠도 잘 수 있어요 밤낚시 하신다면요~~','부산광역시',1,to_date('19/11/21','RR/MM/DD'),'hkim153',54,'/fishingsite_img','대흥낚시터.jpg','대흥낚시터.jpg','051-971-9223');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1055,'정관낚시터','부산광역시 기장군 정관면 달산리 937','조용하고 한적해서 좋음 고기도 잉어 손맛 보는 곳과 붕어 손맛 보는 곳으로 나뉨','부산광역시',1,to_date('19/11/21','RR/MM/DD'),'hkim153',55,'/fishingsite_img','정관낚시터.jpg','정관낚시터.jpg','051-727-8200');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1056,'태종대낚시','부산광역시 영도구 동삼동','관리실아주머니 친절하시고 냉커피가맛있어요','부산광역시',1,to_date('19/11/21','RR/MM/DD'),'hkim153',56,'/fishingsite_img','초평지낚시터.jpg','초평지낚시터.jpg',null);
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1032,'구봉유료낚시터','경상북도 칠곡군 지천면 낙산리 651','"음성군 소이면 갑산리 산속에 위치한 봉 낚시터(갑산지)는','경상북도',1,to_date('19/11/21','RR/MM/DD'),'hkim153',32,'/fishingsite_img','구봉유료낚시터.jpg','구봉유료낚시터.jpg','053-312-4543');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1001,'유정관광낚시터','경기도 광주시 도척면 유정리 588-3','개인적으로 국내최고의 겨울 송어낚시터. 다른곳은 안잡히면 송어를 많이 안풀었다고 생각되지만 이곳은 못잡으면 본인이 실력이 부족한것임. 조금 관리가 까다롭지만 그만큼 쾌적하게 낚시할수있는곳임.','경기도',2,to_date('19/11/21','RR/MM/DD'),'hkim153',1,'/fishingsite_img','유정관광낚시터.jpg','유정관광낚시터.jpg',null);
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1002,'고골낚시터','경기도 하남시 춘궁동 500','가족 낚시터로 좋아요. 텐트 설치도 가능하고 낚시도 즐기고, 단점으로는 물의 녹조현상이 많은것 같아요,','경기도',2,to_date('19/11/21','RR/MM/DD'),'hkim153',2,'/fishingsite_img','고골낚시터.jpg','고골낚시터.jpg',null);
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1003,'장절샘터낚시터','경기도 광명시 노온사동 833-2','샘터낚시터는 잡이터로 운영이 되는 곳으로. 대물잡이터와 붕어잡이터로 구분하여 운영하고 잇습니다.','경기도',2,to_date('19/11/21','RR/MM/DD'),'hkim153',3,'/fishingsite_img','장절샘터낚시터.jpg','장절샘터낚시터.jpg',null);
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1004,'배다리낚시터','경기도 하남시 감북동 105-1','손맛터중에 단연 톱이라고 생각함니다. 씨알조코 좌대 배치정리정돈 잘되엇네요 사장님 짱 이고요','경기도',3,to_date('19/11/21','RR/MM/DD'),'hkim153',4,'/fishingsite_img','배다리낚시터.jpg','배다리낚시터.jpg',null);
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1005,'배양리낚시터','경기도 남양주시 진건읍 고재로191번길 64-17','손맛낚시터에서 수준급으로 손맛보실수 있는낚시터 입니다 고기가 많이 떠 다니므로 바닥낚시 하시는분들은 고기를 가라앉히는게 관건이지만 배양리 낚시터는 어렵지않게 잡고 손맛볼수 있을정도이니 가보셔도 좋아요','경기도',1,to_date('19/11/21','RR/MM/DD'),'hkim153',5,'/fishingsite_img','배양리낚시터.jpg','배양리낚시터.jpg',null);
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1006,'새미낚시터','경기도 시흥시 조남동 299','공기 좋고 넓고 가족끼리 와서 아빠는 낚시 엄마와 아이들은  꽃 구경 따로 갈 것 없이 여기서 꽃 구경하고 뛰어 놀 수 있는 공간도 있고 자연 체험하기 좋은 곳 입니다. 어쩌면 장수 풍뎅이와 굼벵를 볼 수도...ㅎㅎ','경기도',1,to_date('19/11/21','RR/MM/DD'),'hkim153',6,'/fishingsite_img','새미낚시터.jpg','새미낚시터.jpg',null);
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1007,'솟골낚시터','경기도 남양주시 진건읍 사릉로 642-81','초보자들도 쉽게 손맛을볼수있는 낚시터입니다.','경기도',1,to_date('19/11/21','RR/MM/DD'),'hkim153',7,'/fishingsite_img','솟골낚시터.jpg','솟골낚시터.jpg',null);
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1008,'굴다리낚시터','"경기도 광주시 중부면 엄미리 49-1','작고 아담 하지만 ㆍ마음 편하게 쉴수 있는곳','경기도',1,to_date('19/11/21','RR/MM/DD'),'hkim153',8,'/fishingsite_img','굴다리낚시터.jpg','굴다리낚시터.jpg',null);
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1009,'서래섬낚시터','서울특별시 서초구 반포동 1335-1','"서래섬에 있는 낚시가 가능한 곳.','서울특별시',1,to_date('19/11/21','RR/MM/DD'),'hkim153',9,'/fishingsite_img','서래섬낚시터.jpg','서래섬낚시터.jpg','02-591-5943');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1010,'한강시민공원이촌지구낚시터','서울특별시 용산구 이촌동','인근에 주차장이 있어 이용하기 좋다."','서울특별시',1,to_date('19/11/21','RR/MM/DD'),'hkim153',10,'/fishingsite_img','한강시미공원이촌지구낚시터.jpg','한강시미공원이촌지구낚시터.jpg','02-3780-0551');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1011,'정성바다낚시터','인천광역시 중구 중산동 백운로186번길 140-1','자연호안공사가 진행된  이후, 낚시터  뿐만 아니라 산책로로 활용도가 높아지고 있어요. 아직도 곳곳에서 공사가 이루어지고 있어 기대가 큽니다.','인천광역시',1,to_date('19/11/21','RR/MM/DD'),'hkim153',11,'/fishingsite_img','정성바다낚시터.jpg','정성바다낚시터.jpg','032-751-1515');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1012,'길상가족낚시터','인천광역시 강화군 길상면 초지로 453','한달을 가둬두더라도 행복할 수 있는 곳. 혼자 있고 싶을때 생각이 많을때 미쳐버릴거 같을때 강력 추천','인천광역시',1,to_date('19/11/21','RR/MM/DD'),'hkim153',12,'/fishingsite_img','길상가족낚시터.jpg','길상가족낚시터.jpg','032-937-6497');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1013,'가현낚시터','인천광역시 서구 마전동 3','" 수도권에서 가까운 접근성과 수려한 경관 그리고','인천광역시',3,to_date('19/11/21','RR/MM/DD'),'hkim153',13,'/fishingsite_img','가현낚시터.jpg','가현낚시터.jpg',' 032-563-4637');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1014,'인산낚시터','인천광역시 강화군 양도면 중앙로787번길 8-2','깨끗한 환경과 친절한 직원들이 자랑인 곳"','인천광역시',2,to_date('19/11/21','RR/MM/DD'),'hkim153',14,'/fishingsite_img','인산낚시터.jpg','인산낚시터.jpg','032-937-8789');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1015,'만정레져','인천광역시 중구 중산동 1850-7','"대물낚시터 로소문난  가현산낚시터입니다대물과손맛그리고 파워  짱입니다','인천광역시',4,to_date('19/11/21','RR/MM/DD'),'hkim153',15,'/fishingsite_img','만정레져.jpg','만정레져.jpg','032-747-1133');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1016,'세월낚시터','강원도 춘천시 사북면 원평리 377-3','많은 조사님의 손맛보로오세요♥♥"','강원도',2,to_date('19/11/21','RR/MM/DD'),'hkim153',16,'/fishingsite_img','세월낚시터.jpg','세월낚시터.jpg',' 033-243-6820');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1017,'월명낚시터','강원도 양구군 양구읍 간척월명로 1715','강화송어빙어축제로 아이들과 즐기기에 좋은 장소임. ','강원도',4,to_date('19/11/21','RR/MM/DD'),'hkim153',17,'/fishingsite_img','월명낚시터.jpg','월명낚시터.jpg','033-482-3385');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1018,'거두리낚시터','강원도 춘천시 동내면 거두리 312-3','고기가 커서 뜰채 준비 하세요','강원도',3,to_date('19/11/21','RR/MM/DD'),'hkim153',18,'/fishingsite_img','거두리낚시터.jpg','거두리낚시터.jpg','033-262-6995');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1019,'귀운낚시터','강원도 원주시 귀래면 귀래리 1438','"세월낚시터는 춘천호에서 수초','강원도',2,to_date('19/11/21','RR/MM/DD'),'hkim153',19,'/fishingsite_img','귀운낚시터.jpg','귀운낚시터.jpg','033-761-5744');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1020,'상무룡리낚시터','강원도 양구군 양구읍 상무룡리 655-1','여건이 상당히 좋은 낚시터입니다."','강원도',2,to_date('19/11/21','RR/MM/DD'),'hkim153',20,'/fishingsite_img','상무룡리낚시터.jpg','상무룡리낚시터.jpg','033-481-6382');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1021,'거일낚시터','충청북도 음성군 감곡면 거일길 156','"바람 쐬며 맑은 공기에 하루 쉬고 가면 좋아요.','충청북도',2,to_date('19/11/21','RR/MM/DD'),'hkim153',21,'/fishingsite_img','거일낚시터.jpg','거일낚시터.jpg','043-881-9181');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1022,'성화낚시터','충청북도 청주시 흥덕구 성화동 199','조황은 그때그때 달라요~~~"','충청북도',2,to_date('19/11/21','RR/MM/DD'),'hkim153',22,'/fishingsite_img','성화낚시터.jpg','성화낚시터.jpg','043-235-0488');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1023,'큰골낚시터','충청북도 음성군 감곡면 대학길190번길 59','"춘천시 동내면 거두리에 위치한 민물낚시터로, 자연산 잉어와 붕어 등의 낚시를','충청북도',2,to_date('19/11/21','RR/MM/DD'),'hkim153',23,'/fishingsite_img','큰골낚시터.jpg','큰골낚시터.jpg','010-6271-3134');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1024,'봉낚시터','충청북도 음성군 소이면 갑산리 629-2','사시사철 즐길 수 있는 곳이다."','충청북도',2,to_date('19/11/21','RR/MM/DD'),'hkim153',24,'/fishingsite_img','봉낚시터.jpg','봉낚시터.jpg','043-873-7374');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1025,'초평지낚시터','충청북도 진천군 초평면 화산리 651','겨울에는 빙어낚시를 할 수 있다. 송어낚시와 빙어낚시로 원주권에서 유명하다.','충청북도',3,to_date('19/11/21','RR/MM/DD'),'hkim153',25,'/fishingsite_img','초평지낚시터.jpg','초평지낚시터.jpg','043-532-6248');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1026,'봉재낚시터','충청남도 아산시 둔포면 봉재리 316-6','"양구 소재의 상무룡리 낚시터는 일반인들이 자주 찾지 않는 곳이어서 더욱 자연이','충청남도',2,to_date('19/11/21','RR/MM/DD'),'hkim153',26,'/fishingsite_img','봉재낚시터.jpg','봉재낚시터.jpg','010-2103-3196');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1027,'월랑저수지낚시터','충청남도 아산시 음봉면 월랑리 104','잘 보존되어 있고, 천해의 자연경관을 자랑한다."','충청남도',2,to_date('19/11/21','RR/MM/DD'),'hkim153',27,'/fishingsite_img','월랑저수지낚시터.jpg','월랑저수지낚시터.jpg','041-542-8480');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1028,'쌍용낚시터','충청남도 아산시 음봉면 신휴리 52','"손맛,몸맛 끝내주는 대물 낚시터','충청남도',2,to_date('19/11/21','RR/MM/DD'),'hkim153',28,'/fishingsite_img','쌍용낚시터.jpg','쌍용낚시터.jpg','041-546-8907');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1029,'면천낚시터','충청남도 당진시 면천면 성상리','짜릿한 추억의 장소로 추천합니다."','충청남도',2,to_date('19/11/21','RR/MM/DD'),'hkim153',29,'/fishingsite_img','면천낚시터.jpg','면천낚시터.jpg','041-355-6050');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1030,'우성낚시터','충청남도 공주시 우성면 채죽산길 50','저렴한것에 비하여 시설이 좋음','충청남도',2,to_date('19/11/21','RR/MM/DD'),'hkim153',30,'/fishingsite_img','우성낚시터.jpg','우성낚시터.jpg','041-853-8400');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1031,'신탄낚시터','대전광역시 대덕구 신탄진동 224-3','조용하고 깨끗하게 정리된 힐링낚시터 농번기라 저수량이 얼마 안되서 낚시 조황은 별로 입니다','대전광역시',2,to_date('19/11/21','RR/MM/DD'),'hkim153',31,'/fishingsite_img','신탄낚시터.jpg','신탄낚시터.jpg','042-931-4457');
+Insert into FISHINGSITE (FS_CODE,FS_NAME,FS_ADDR,FS_CONTENT,FS_REG,READCOUNT,REG_DATE,ID,FS_NUM,IMG_FOLDER,REAL_NAME,SAVED_NAME,FS_PHONE) values (1033,'신계낚시터','경상북도 경주시 외동읍 신계길 69-11','오염원이 없는 맑은 물과 시원한','경상북도',2,to_date('19/11/21','RR/MM/DD'),'hkim153',33,'/fishingsite_img','신계낚시터.jpg','신계낚시터.jpg','054-748-6704');
+
+
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1041,1006);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1041,1009);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1015,1004);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1015,1009);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1015,1010);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1002,1001);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1002,1003);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1002,1010);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1001,1004);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1001,1011);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1001,1012);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1038,1005);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1038,1006);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1041,1004);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1038,1007);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1035,1004);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1035,1006);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1035,1010);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1039,1002);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1039,1003);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1039,1004);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1034,1006);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1034,1009);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1034,1012);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1040,1005);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1040,1006);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1040,1007);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1033,1001);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1033,1002);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1033,1006);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1042,1009);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1037,1005);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1037,1010);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1036,1004);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1036,1005);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1036,1006);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1042,1007);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1042,1008);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1037,1011);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1043,1008);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1043,1009);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1043,1010);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1031,1003);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1031,1006);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1031,1009);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1044,1010);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1044,1011);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1044,1012);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1045,1010);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1045,1011);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1045,1012);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1046,1001);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1046,1002);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1046,1012);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1030,1006);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1030,1007);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1030,1008);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1029,1006);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1029,1010);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1029,1012);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1047,1002);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1047,1003);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1047,1004);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1028,1003);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1028,1005);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1028,1007);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1048,1004);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1048,1005);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1048,1006);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1027,1002);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1027,1003);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1027,1005);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1026,1006);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1026,1009);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1026,1010);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1049,1006);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1049,1007);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1049,1008);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1025,1005);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1025,1006);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1025,1010);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1050,1007);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1050,1008);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1050,1009);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1024,1003);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1024,1005);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1024,1006);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1023,1006);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1023,1010);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1023,1011);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1051,1009);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1051,1010);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1051,1011);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1052,1010);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1052,1011);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1052,1012);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1022,1006);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1022,1008);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1022,1009);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1021,1001);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1021,1003);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1021,1010);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1053,1001);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1053,1002);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1053,1012);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1020,1010);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1020,1011);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1016,1001);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1054,1003);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1054,1004);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1054,1005);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1019,1005);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1019,1006);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1019,1009);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1055,1006);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1055,1007);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1055,1008);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1018,1001);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1018,1002);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1018,1003);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1017,1005);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1017,1008);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1017,1009);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1017,1011);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1016,1002);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1016,1003);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1032,1005);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1056,1007);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1056,1008);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1056,1009);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1020,1008);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1020,1009);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1032,1006);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1032,1009);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1014,1001);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1014,1003);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1014,1006);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1003,1006);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1003,1007);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1003,1008);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1013,1007);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1013,1008);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1013,1009);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1004,1004);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1004,1006);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1004,1010);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1012,1003);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1012,1006);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1012,1009);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1005,1002);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1005,1009);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1006,1006);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1006,1007);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1006,1009);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1007,1007);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1007,1010);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1007,1011);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1008,1001);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1008,1002);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1008,1003);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1008,1004);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1008,1005);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1008,1006);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1008,1007);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1008,1008);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1008,1009);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1008,1010);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1008,1011);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1008,1012);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1009,1006);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1009,1009);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1009,1012);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1010,1004);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1010,1008);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1010,1009);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1011,1005);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1011,1007);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1011,1008);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1215,1001);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1215,1003);
+Insert into FISHMAPPING (FS_CODE,F_CODE) values (1215,1005);
 
 
 
-<-- 낚시터 게시판 및 추천 종료 -->
+-- 낚시터 게시판 및 추천 종료 --
 
-
-<-- 랭크 -->
+---- 랭크 --
 
   CREATE TABLE RANKING  
-  NUM NUMBER(38,0) primary key, 
+ ( NUM NUMBER(38,0) primary key, 
   ID VARCHAR2(100 BYTE), 
   GET_FISH VARCHAR2(100 BYTE) NOT NULL ENABLE, 
   LENGTH NUMBER(38,0) NOT NULL ENABLE, 
@@ -151,11 +437,14 @@ INSERT INTO FISH VALUES(SEQ_FISH_CODE.NEXTVAL, '잉어');
   REG_DATE DATE, 
   IMG_FOLDER VARCHAR2(100 BYTE), 
   FILE_NAME VARCHAR2(100 BYTE), 
-  REAL_NAME VARCHAR2(100 BYTE)
+  REAL_NAME VARCHAR2(100 BYTE));
 
-<-- 랭크 종료 -->
+CREATE SEQUENCE RANKNUM1  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 41 CACHE 20 NOORDER  NOCYCLE ;
 
-<-- 게시판 -->
+insert into RANKING values(RANKNUM1.nextval,'aa','광어',10,'물고기가 너무 무거웠어요',to_date('19/11/27','RR/MM/DD'),'/fish_rank','kwang-length2.png','kwang-length.png');
+-- 랭크 종료 --
+
+-- 게시판 --
 create table board(
 
 b_num number(30) primary key,
@@ -169,7 +458,7 @@ b_notice number,
 b_head number
 );
 
-<-- 게시판 댓글 -->
+-- 게시판 댓글 --
 create table b_comment(
 c_num number primary key,
 c_bnum number not null, -- 외래키
@@ -180,23 +469,9 @@ c_content varchar2(500) not null
 
 
 create sequence  comment_seq;
- <--여기까지 상훈-->
+ --여기까지 상훈--
 
-
-<----- 원희 시작 ------->
-
--------------------- TABLE / SEQUENCE 초기화 ---------------------
-
-DROP TABLE store_MENU;
-DROP TABLE store_img;
-DROP TABLE STORE;
-DROP TABLE ORDER_LIST;
-DROP TABLE ORDER_STATE;
-
-DROP SEQUENCE SEQ_PRO_NUM;
-DROP SEQUENCE SEQ_BUY_NUM;
-
--------------------- TABLE / SEQUENCE 초기화 ---------------------
+----- 원희 시작 ------
 
 ------------------- 상점 테이블 START -----------------------------
  CREATE TABLE STORE
@@ -222,17 +497,48 @@ INCREMENT BY 1
 CYCLE
 NOCACHE;
 
+ Insert into STORE (PRO_NUM,PRO_CODE,PRO_NAME,PRICE,SELLER,SELLCNT,STOCK,ORIGIN,PRO_MADE,PRO_STATE,REG_DATE) values (110,10101,'붕어낚시장독대 골드(붕어,잉어,향어전천후대)-보증서발송-',35000,'admin',42,78,'한국','MTF',1,sysdate);
+Insert into STORE (PRO_NUM,PRO_CODE,PRO_NAME,PRICE,SELLER,SELLCNT,STOCK,ORIGIN,PRO_MADE,PRO_STATE,REG_DATE) values (107,10101,'2017 강원산업 록시스페셜(16칸~52칸)-붕어,잉어',50000,'admin',99,1,'한국','강원산업',1,sysdate);
+Insert into STORE (PRO_NUM,PRO_CODE,PRO_NAME,PRICE,SELLER,SELLCNT,STOCK,ORIGIN,PRO_MADE,PRO_STATE,REG_DATE) values (108,10101,'[프리미엄]장독대 프리미엄 VIP-신공법 신개념-',70000,'admin',67,55,'한국','MTF',1,sysdate);
+Insert into STORE (PRO_NUM,PRO_CODE,PRO_NAME,PRICE,SELLER,SELLCNT,STOCK,ORIGIN,PRO_MADE,PRO_STATE,REG_DATE) values (109,10101,'[국산]강원산업 자수정 흑선(14칸~52칸)+사은품증정',40000,'admin',57,33,'한국','강원산업',1,sysdate);
+
 ------------------- 상점 테이블 END -----------------------------
 
 ------------------- 상품 이미지 START -----------------------------
 
 CREATE TABLE STORE_IMG
-  ( Pro_code NUMBER,
+  ( pro_num number,
+    Pro_code NUMBER,
     Img_num Number,
-    Img_path varchar2(500 BYTE),
+    Img_folder varchar2(500 BYTE),
     File_name varchar2(200 BYTE),
     Real_name varchar2(200 Byte)
     );
+
+Insert into STORE_IMG (PRO_CODE,IMG_NUM,PRO_NUM,IMG_FOLDER,FILE_NAME,REAL_NAME) values (10101,0,107,'product_img','roxy_content.jpg','roxy_content.jpg');
+Insert into STORE_IMG (PRO_CODE,IMG_NUM,PRO_NUM,IMG_FOLDER,FILE_NAME,REAL_NAME) values (10101,2,107,'product_img','roxy_gangwon2.jpg','roxy_gangwon2.jpg');
+Insert into STORE_IMG (PRO_CODE,IMG_NUM,PRO_NUM,IMG_FOLDER,FILE_NAME,REAL_NAME) values (10101,1,107,'product_img','roxy_gangwon.png','roxy_gangwon.png');
+Insert into STORE_IMG (PRO_CODE,IMG_NUM,PRO_NUM,IMG_FOLDER,FILE_NAME,REAL_NAME) values (10101,3,107,'product_img','roxy_gangwon3.jpg','roxy_gangwon3.jpg');
+Insert into STORE_IMG (PRO_CODE,IMG_NUM,PRO_NUM,IMG_FOLDER,FILE_NAME,REAL_NAME) values (10101,4,107,'product_img','roxy_gangwon4.jpg','roxy_gangwon4.jpg');
+Insert into STORE_IMG (PRO_CODE,IMG_NUM,PRO_NUM,IMG_FOLDER,FILE_NAME,REAL_NAME) values (10101,5,107,'product_img','roxy_gangwon5.jpg','roxy_gangwon5.jpg');
+Insert into STORE_IMG (PRO_CODE,IMG_NUM,PRO_NUM,IMG_FOLDER,FILE_NAME,REAL_NAME) values (10101,0,108,'product_img','jang_premium_vip_content.jpg','jang_premium_vip_content.jpg');
+Insert into STORE_IMG (PRO_CODE,IMG_NUM,PRO_NUM,IMG_FOLDER,FILE_NAME,REAL_NAME) values (10101,2,108,'product_img','jang_premium2.jpg','jang_premium2.jpg');
+Insert into STORE_IMG (PRO_CODE,IMG_NUM,PRO_NUM,IMG_FOLDER,FILE_NAME,REAL_NAME) values (10101,1,108,'product_img','jang_premium.png','jang_premium.png');
+Insert into STORE_IMG (PRO_CODE,IMG_NUM,PRO_NUM,IMG_FOLDER,FILE_NAME,REAL_NAME) values (10101,3,108,'product_img','jang_premium3.jpg','jang_premium3.jpg');
+Insert into STORE_IMG (PRO_CODE,IMG_NUM,PRO_NUM,IMG_FOLDER,FILE_NAME,REAL_NAME) values (10101,4,108,'product_img','jang_premium4.jpg','jang_premium4.jpg');
+Insert into STORE_IMG (PRO_CODE,IMG_NUM,PRO_NUM,IMG_FOLDER,FILE_NAME,REAL_NAME) values (10101,5,108,'product_img','jang_premium5.jpg','jang_premium5.jpg');
+Insert into STORE_IMG (PRO_CODE,IMG_NUM,PRO_NUM,IMG_FOLDER,FILE_NAME,REAL_NAME) values (10101,0,109,'product_img','g_black_content.jpg','g_black_content.jpg');
+Insert into STORE_IMG (PRO_CODE,IMG_NUM,PRO_NUM,IMG_FOLDER,FILE_NAME,REAL_NAME) values (10101,2,109,'product_img','gangwon_black2.jpg','gangwon_black2.jpg');
+Insert into STORE_IMG (PRO_CODE,IMG_NUM,PRO_NUM,IMG_FOLDER,FILE_NAME,REAL_NAME) values (10101,1,109,'product_img','gangwon_black.png','gangwon_black.png');
+Insert into STORE_IMG (PRO_CODE,IMG_NUM,PRO_NUM,IMG_FOLDER,FILE_NAME,REAL_NAME) values (10101,3,109,'product_img','gangwon_black3.jpg','gangwon_black3.jpg');
+Insert into STORE_IMG (PRO_CODE,IMG_NUM,PRO_NUM,IMG_FOLDER,FILE_NAME,REAL_NAME) values (10101,4,109,'product_img','gangwon_black4.jpg','gangwon_black4.jpg');
+Insert into STORE_IMG (PRO_CODE,IMG_NUM,PRO_NUM,IMG_FOLDER,FILE_NAME,REAL_NAME) values (10101,5,109,'product_img','gangwon_black5.jpg','gangwon_black5.jpg');
+Insert into STORE_IMG (PRO_CODE,IMG_NUM,PRO_NUM,IMG_FOLDER,FILE_NAME,REAL_NAME) values (10101,5,110,'product_img','jang_gold5.jpg','jang_gold5.jpg');
+Insert into STORE_IMG (PRO_CODE,IMG_NUM,PRO_NUM,IMG_FOLDER,FILE_NAME,REAL_NAME) values (10101,0,110,'product_img','jang_gold_content.jpg','jang_gold_content.jpg');
+Insert into STORE_IMG (PRO_CODE,IMG_NUM,PRO_NUM,IMG_FOLDER,FILE_NAME,REAL_NAME) values (10101,2,110,'product_img','jang_gold2.jpg','jang_gold2.jpg');
+Insert into STORE_IMG (PRO_CODE,IMG_NUM,PRO_NUM,IMG_FOLDER,FILE_NAME,REAL_NAME) values (10101,1,110,'product_img','jang_gold.png','jang_gold.png');
+Insert into STORE_IMG (PRO_CODE,IMG_NUM,PRO_NUM,IMG_FOLDER,FILE_NAME,REAL_NAME) values (10101,3,110,'product_img','jang_gold3.jpg','jang_gold3.jpg');
+Insert into STORE_IMG (PRO_CODE,IMG_NUM,PRO_NUM,IMG_FOLDER,FILE_NAME,REAL_NAME) values (10101,4,110,'product_img','jang_gold4.jpg','jang_gold4.jpg'); 
     
 ------------------- 상품 이미지 END -----------------------------  
 
@@ -252,7 +558,9 @@ CREATE TABLE STORE_IMG
       Quantity NUMBER,
       Request_term VARCHAR2(300 BYTE),
       State NUMBER,
-      Reg_date DATE
+      Reg_date DATE,
+     Reason VARCHAR2(300 BYTE),
+     Review VARCHAR2(300 BYTE)
     );
     
   CREATE SEQUENCE SEQ_BUY_NUM
@@ -277,6 +585,9 @@ INSERT INTO ORDER_STATE values(3);
 INSERT INTO ORDER_STATE values(4);
 INSERT INTO ORDER_STATE values(5);
 INSERT INTO ORDER_STATE values(6);
+INSERT INTO ORDER_STATE values(7);
+INSERT INTO ORDER_STATE values(8);
+INSERT INTO ORDER_STATE values(9);
 ------------------- 주문리스트 상태 테이블 END ----------------------
 
 ------------------- 메뉴리스트 테이블 START -----------------------------
@@ -325,6 +636,28 @@ INSERT INTO Store_MENU (B_Code, B_Name) values( '05', '루어');
 INSERT INTO Store_MENU (B_Code, B_Name) values( '06', '뜰채');
 INSERT INTO Store_MENU (B_Code, B_Name) values( '07', '가방');
 
-<---------- 원희 종료 --------->
+---------- 원희 종료 ---------
+---------------- 현호 ---------------------
+CREATE TABLE EVENT
+   (	E_ID NUMBER NOT NULL ENABLE, 
+	TITLE VARCHAR2(100 BYTE), 
+	DESCRIPTION VARCHAR2(150 BYTE), 
+	E_START VARCHAR2(20 BYTE), 
+	E_END VARCHAR2(20 BYTE), 
+	E_TYPE VARCHAR2(20 BYTE), 
+	TEXTCOLOR VARCHAR2(20 BYTE), 
+	ALLDAY VARCHAR2(20 BYTE), 
+	BACKGRUNDCOLOR VARCHAR2(20 BYTE) , 
+	RSA VARCHAR2(50 BYTE), 
+	URL VARCHAR2(200 BYTE), 
+  CONSTRAINT "EVENT_PK" PRIMARY KEY ("E_ID"));
+  
 
+insert into event values(1,'쥐노래미 금어기 시작','수산자원관리법에 의거한 금어기입니다.','2019-11-01','2019-11-01','금어기','#D25565','true','#ffffff','기타','http://www.mof.go.kr');
+insert into event values(2,'쥐노래미 금어기 종료','수산자원관리법에 의거한 금어기입니다.','2019-12-31','2019-12-31','금어기','#D25565','true','#ffffff','기타','http://www.mof.go.kr');
+insert into event values(3,'대게 금어기 시작','수산자원관리법에 의거한 금어기입니다.','2019-11-02','2019-11-020','금어기','#D25565','true','#ffffff','기타','http://www.mof.go.kr');
+insert into event values(4,'대게 금어기 종료','수산자원관리법에 의거한 금어기입니다.','2019-12-30','2019-12-30','금어기','#D25565','true','#ffffff','기타','http://www.mof.go.kr');
+insert into event values(5,'얼음나라 화천산천어축제 시작','온 가족이 함께 보내는 최고의 겨울!','2019-11-22','2019-11-22','지역 행사','#ffa94d','true','#ffffff','강원','http://www.narafestival.com/');
+insert into event values(6,'얼음나라 화천산천어축제 종료','온 가족이 함께 보내는 최고의 겨울!','2020-01-16','2020-01-16','지역 행사','#ffa94d','true','#ffffff','강원','http://www.narafestival.com/');
+insert into event values(7,'생활 낚시 박람회','장소 : 킨텍스','2019-11-02','2019-11-09','개인 행사','#9775fa','true','#ffffff','경기','http://www.fishingk.com');
     

@@ -24,7 +24,10 @@ public class JW_OutProAction implements CommandProcess {
 		MemberDao md = MemberDao.getInstance();
 		System.out.println("id->"+id);
 		System.out.println("passwd->"+passwd);
-		
+//<<<<<<< HEAD
+//		
+//=======
+//>>>>>>> branch 'master' of https://github.com/hkim153/choongang
 		try {
 			int result = md.memberOut(member); //memberOut 불러오기
 			request.setAttribute("result", result);
