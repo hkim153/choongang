@@ -12,12 +12,12 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-public class fishingsiteDao {
-	private static fishingsiteDao instance;
-	private fishingsiteDao() {}
-	public static fishingsiteDao getInstance() {
+public class FishingsiteDao {
+	private static FishingsiteDao instance;
+	private FishingsiteDao() {}
+	public static FishingsiteDao getInstance() {
 		if(instance == null) {
-			instance = new fishingsiteDao();
+			instance = new FishingsiteDao();
 		}
 		return instance;
 	}
@@ -79,8 +79,8 @@ public class fishingsiteDao {
 		}
 	}
 
-	public List<fishingsite> list(int startRow, int endRow) throws SQLException {
-		List<fishingsite> list = new ArrayList<fishingsite>();
+	public List<Fishingsite> list(int startRow, int endRow) throws SQLException {
+		List<Fishingsite> list = new ArrayList<Fishingsite>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -93,7 +93,7 @@ public class fishingsiteDao {
 			pstmt.setInt(2, endRow);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				fishingsite fs = new fishingsite();
+				Fishingsite fs = new Fishingsite();
 				fs.setFs_code(rs.getInt("fs_code"));
 				fs.setFs_num(rs.getInt("fs_num"));
 				fs.setFs_name(rs.getString("fs_name"));
@@ -122,8 +122,8 @@ public class fishingsiteDao {
 	}
 	
 	
-	public List<fishingsite> find_fs_code(String [] regions, String [] fishes) throws SQLException{
-		List<fishingsite> list = new ArrayList<fishingsite>();
+	public List<Fishingsite> find_fs_code(String [] regions, String [] fishes) throws SQLException{
+		List<Fishingsite> list = new ArrayList<Fishingsite>();
 		List<Integer> fs_codes = new ArrayList<Integer>();
 		List<Integer> f_codes = new ArrayList<Integer>();
 		Connection conn = null;
@@ -164,7 +164,7 @@ public class fishingsiteDao {
 							"and f_code =" + cfc + ")";
 					rs = stmt.executeQuery(sql3);
 					if(rs.next()) {
-						fishingsite fs = new fishingsite();
+						Fishingsite fs = new Fishingsite();
 						fs.setFs_code(rs.getInt("fs_code"));
 
 						fs.setFs_name(rs.getString("fs_name"));
@@ -196,12 +196,12 @@ public class fishingsiteDao {
 		return list;
 	}
 	
-	public fishingsite select(int num) throws SQLException {
+	public Fishingsite select(int num) throws SQLException {
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
 		String sql = "select * from fishingsite where fs_num=" + num;
-		fishingsite fs = new fishingsite();
+		Fishingsite fs = new Fishingsite();
 		try {
 			conn = getConnection();
 			stmt = conn.createStatement();
@@ -234,7 +234,7 @@ public class fishingsiteDao {
 		return fs;
 	}
 	
-	public int insert(fishingsite fs) throws SQLException {
+	public int insert(Fishingsite fs) throws SQLException {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -279,7 +279,7 @@ public class fishingsiteDao {
 		return result;
 	}
 	
-	public int update(fishingsite fs) throws SQLException {
+	public int update(Fishingsite fs) throws SQLException {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -331,8 +331,8 @@ public class fishingsiteDao {
 		}
 		return result;
 	}
-	public List<fish> get_all_fish() throws SQLException{
-		List<fish> list = new ArrayList<fish>();
+	public List<Fish> get_all_fish() throws SQLException{
+		List<Fish> list = new ArrayList<Fish>();
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -342,7 +342,7 @@ public class fishingsiteDao {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			while(rs.next()) {
-				fish f = new fish();
+				Fish f = new Fish();
 				f.setF_code(rs.getInt("f_code"));
 				f.setF_name(rs.getString("f_name"));
 				list.add(f);
@@ -468,12 +468,12 @@ public class fishingsiteDao {
 					conn.close();
 			}
 	}
-	public fishingsite select2(String parameter) throws SQLException {
+	public Fishingsite select2(String parameter) throws SQLException {
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
 		String sql = "select fs_num from fishingsite where fs_name=" + "'"+parameter+"'";
-		fishingsite fs = new fishingsite();
+		Fishingsite fs = new Fishingsite();
 		try {
 			conn = getConnection();
 			stmt = conn.createStatement();

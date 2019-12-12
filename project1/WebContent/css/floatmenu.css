@@ -1,0 +1,8 @@
+/* floating menu */ 
+#floatMenu{ text-align:left; position:absolute; width:60px; top:150px; right:20px; padding:0; margin:0; z-index:200	; }
+#floatMenu a{ text-decoration:none; display:block; }
+
+a.fm_1 {width:61px; height:61px; float:left;}
+a.fm_4 {width:29px; height:23px; float:left; }
+
+a.fm_5 {width:29px; height:23px; float:left; }

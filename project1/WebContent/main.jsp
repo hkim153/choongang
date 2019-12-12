@@ -10,18 +10,6 @@
 <link href="./css/product.css" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Dokdo&display=swap"	rel="stylesheet">
 <script type="text/javascript" src="js/jquery.js"></script>
-<!-- <style type="text/css">
-.btnColor {
-	border: 0;
-	color: white;
-	background-color: #3DB7CC;
-	background-position: - -47px;
-	height: 29px;
-	width: 70px;
-	margin-right: 5px;
-	font-size: 15px;
-}
-</style>  -->
 <style type="text/css">
 .board_table tr td.left{
 	text-align: left;
@@ -52,7 +40,6 @@
 						</div>
 						<div class="rank_table">
 							<table>
-
 								<tr>
 									<th style="width: 40px;">순위</th>
 									<th id="sj_p">아이디</th>
@@ -60,29 +47,27 @@
 									<th id="sj_o">길이</th>
 									<th id="sj_h">등록일</th>
 									<th style="display: none;">삭제버튼 (안보이게할거)</th>
-								</tr>	<!-- list1가 비어있는 경우 -->
-										<!-- list1가 비어있지 않은 경우 물고기가 광어이면서 3등까지 리스트 보여주기-->
+								</tr>	
+						<!-- list1가 비어있는 경우 -->
+								
+						<!-- list1가 비어있지 않은 경우 물고기가 광어이면서 3등까지 리스트 보여주기-->
 								<c:choose>
 								<c:when test="${empty list1 }">
 								<tr>
 								<td style="text-align:center" colspan="5">현재 등록된 랭킹이 존재하지 않습니다</td>
 								</tr>
-								</c:when>
-								
+								</c:when>								
 								<c:when test="${not empty list1 }">
-								<c:forEach var="rank" items="${list1 }">
-									
+								<c:forEach var="rank" items="${list1 }">									
 									<input type="hidden" id="img_folder" name="img_folder"
 										value="${rank.img_folder }" />
 									<input type="hidden" id="real_name" name="real_name"
-										value="${rank.real_name }" />
-										
+										value="${rank.real_name }" />										
 									 <c:choose>
 										<c:when test="${startNum < 4 }">
 											<tr>
 												<th>${startNum }등</th>
-												<td id="sj_p" class="thumbnail">
-													 
+												<td id="sj_p" class="thumbnail">													 
 												<a href='sj_content.do?num=${rank.num }&id=${rank.id }&img_folder=${rank.img_folder}'>${rank.id }</a>
 												</td>
 												<td class="thumbnail">
@@ -91,8 +76,7 @@
 												<td id="sj_h" colspan="2">${rank.reg_date }</td>
 												<c:choose>
 													<c:when
-														test="${sessionScope.result eq 1 and(sessionScope.adminResult eq 1) }">
-														
+														test="${sessionScope.result eq 1 and(sessionScope.adminResult eq 1) }">														
 														<td><input type="button" value="삭제" id="loginBtn1" 
 															onclick="location.href='sj_deleteform.do?num=${rank.num}&id=${rank.id }'">
 														</td>
@@ -104,10 +88,11 @@
 									</c:choose> 
 								</c:forEach>
 								</c:when>
-								</c:choose>
-								<!-- 로그인값, 어드민권한 둘다 있을때  -->
+								</c:choose>								
+								<!-- 로그인값, 어드민권한 둘다 있을때  -->								
 							</table>
 						</div>
+						
 							<!-- 사진은 1등의 사진만 보여주기 -->
 						<div class="rank_top1">
 							<c:forEach var="rank1" items="${list2 }">
@@ -130,7 +115,7 @@
 							</div>
 						</div>
 					</div>
-<!-- 승주 랭킹 끝  -->
+			<!-- 승주 랭킹 끝  -->
 					<hr>
 					<div id="veta_top">
 						<div class="pro_best">
@@ -209,7 +194,7 @@
 								<p>Admin입니다.</p>
 				
 								<a href="hh_index.jsp"><input type="button" value="일정등록" id="btnColor"> </a>
-								<a href="wh_Pro_registForm.do"><input type="button"	value="상품등록" id="btnColor"> </a>
+								<a href="wh_ProregistForm.do"><input type="button"	value="상품등록" id="btnColor"> </a>
 								<a href="jw_logOut.do"> <input type="button" value="LogOut" id="btnColor"></a>
 							</c:when>
 							

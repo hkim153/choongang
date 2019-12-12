@@ -23,7 +23,7 @@ public class JW_OutProAction implements CommandProcess {
 		member.setPasswd(request.getParameter("passwd"));
 		MemberDao md = MemberDao.getInstance();
 		System.out.println("id->"+id);
-		System.out.println("passwd->"+passwd);
+		System.out.println("passwd->"+passwd); 
 //<<<<<<< HEAD
 //		
 //=======

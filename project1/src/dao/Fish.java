@@ -1,6 +1,6 @@
 package dao;
 
-public class fish {
+public class Fish {
 	private int f_code;
 	private String f_name;
 	public int getF_code() {

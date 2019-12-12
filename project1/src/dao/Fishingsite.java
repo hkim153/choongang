@@ -2,7 +2,7 @@ package dao;
 
 import java.util.Date;
 
-public class fishingsite {
+public class Fishingsite {
 	private int fs_code;
 	private String fs_name;
 	private String fs_addr;
